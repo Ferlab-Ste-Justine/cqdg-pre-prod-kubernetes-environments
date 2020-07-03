@@ -1,1 +1,1 @@
-kustomize build . | kubectl diff -f -
+kustomize build . | kubectl apply -f -
