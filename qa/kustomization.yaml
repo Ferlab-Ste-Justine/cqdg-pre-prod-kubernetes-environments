@@ -2,20 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ./cqdg-orchestrations/aidbox
-
-secretGenerator:
-- literals:
-  - license_id=f1d22058725f434
-  - license_key=d11e9bc248324c0eade69ea362fac0e9
-  name: aidbox-license
-  type: Opaque
-  behavior: replace
-- literals:
-  - client_id=root
-  - client_secret=secret
-  - admin_id=admin
-  - admin_password=secret
-  name: aidbox-credentials
-  type: Opaque
-  behavior: replace
+  - aidbox
+  - certificate
