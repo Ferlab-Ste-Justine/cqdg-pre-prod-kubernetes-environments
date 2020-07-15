@@ -4,7 +4,8 @@ metadata:
   name: letsencrypt
 spec:
   dnsNames:
-  - cqdgqa.ferlab.bio
+  - qa.cqdg.ferlab.bio
+  - auth.qa.cqdg.ferlab.bio
   keyAlgorithm: rsa
   keyEncoding: pkcs1
   keySize: 2048
