@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - qa.cqdg.ferlab.bio
+      - schema.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
-    - host: qa.cqdg.ferlab.bio
+    - host: schema.qa.cqdg.ferlab.bio
       http:
         paths:
         - path: /
