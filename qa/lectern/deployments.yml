@@ -15,7 +15,7 @@ spec:
         app: lectern
     spec:
       containers:
-      - image: overture/lectern:1.6.5
+      - image: chusj/lectern:d4b97eb
         name: lectern
         resources:
           requests:
