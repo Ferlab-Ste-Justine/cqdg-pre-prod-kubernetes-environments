@@ -8,6 +8,7 @@ spec:
   - auth.qa.cqdg.ferlab.bio
   - schema.qa.cqdg.ferlab.bio
   - docs.qa.cqdg.ferlab.bio
+  - search.qa.cqdg.ferlab.bio
   keyAlgorithm: rsa
   keyEncoding: pkcs1
   keySize: 2048
