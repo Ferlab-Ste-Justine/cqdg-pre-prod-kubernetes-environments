@@ -7,6 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: elasticsearch-basic-auth
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
 spec:
   tls:
     - hosts:
