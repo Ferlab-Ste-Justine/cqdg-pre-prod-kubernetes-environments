@@ -13,6 +13,7 @@ spec:
   - meta.qa.clin.cqdg.ferlab.bio
   - variant.qa.clin.cqdg.ferlab.bio
   - patient.qa.clin.cqdg.ferlab.bio
+  - fhir.qa.clin.cqdg.ferlab.bio
   keyAlgorithm: rsa
   keyEncoding: pkcs1
   keySize: 2048
