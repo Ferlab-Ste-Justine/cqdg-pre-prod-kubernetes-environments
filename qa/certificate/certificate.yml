@@ -9,6 +9,7 @@ spec:
   - schema.qa.cqdg.ferlab.bio
   - docs.qa.cqdg.ferlab.bio
   - search.qa.cqdg.ferlab.bio
+  - qa.clin.cqdg.ferlab.bio
   - gene.qa.clin.cqdg.ferlab.bio
   - meta.qa.clin.cqdg.ferlab.bio
   - variant.qa.clin.cqdg.ferlab.bio
