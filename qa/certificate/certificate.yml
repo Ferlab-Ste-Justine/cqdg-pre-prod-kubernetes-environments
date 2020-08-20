@@ -9,13 +9,13 @@ spec:
   - schema.qa.cqdg.ferlab.bio
   - docs.qa.cqdg.ferlab.bio
   - search.qa.cqdg.ferlab.bio
-  - qa.clin.cqdg.ferlab.bio
-  - gene.qa.clin.cqdg.ferlab.bio
-  - meta.qa.clin.cqdg.ferlab.bio
-  - variant.qa.clin.cqdg.ferlab.bio
-  - patient.qa.clin.cqdg.ferlab.bio
-  - hpo.qa.clin.cqdg.ferlab.bio
-  - fhir.qa.clin.cqdg.ferlab.bio
+  - qa.clin.ferlab.bio
+  - gene.qa.clin.ferlab.bio
+  - meta.qa.clin.ferlab.bio
+  - variant.qa.clin.ferlab.bio
+  - patient.qa.clin.ferlab.bio
+  - hpo.qa.clin.ferlab.bio
+  - fhir.qa.clin.ferlab.bio
   keyAlgorithm: rsa
   keyEncoding: pkcs1
   keySize: 2048
