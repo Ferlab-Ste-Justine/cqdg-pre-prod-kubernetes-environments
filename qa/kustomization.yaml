@@ -5,5 +5,4 @@ resources:
   - keycloak
   - certificate
   - lectern
-  - documentation
   - elasticsearch
