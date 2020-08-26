@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
   labels:
     app: docs
   name: docs
@@ -15,7 +17,7 @@ spec:
         app: docs
     spec:
       containers:
-      - image: chusj/cqdg-docs:6961dff
+      - image: chusj/cqdg-docs:361327741c708de94815e7d27c8b4ab5ed2cb4b3
         name: docs
         resources:
           requests:
