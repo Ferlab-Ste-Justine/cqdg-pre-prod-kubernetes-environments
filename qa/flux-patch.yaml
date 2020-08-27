@@ -9,5 +9,5 @@ spec:
       $setElementOrder/containers:
       - name: docs
       containers:
-      - image: chusj/cqdg-docs:cafc321f4b38a403f330ecb2b59e2c4d0b50feb4
+      - image: chusj/cqdg-docs:1fb8e2f6444f8e6a77706631866e9a5eb9d9ee80
         name: docs
