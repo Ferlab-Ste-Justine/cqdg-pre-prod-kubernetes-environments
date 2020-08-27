@@ -22,9 +22,15 @@ The directory of each environment has the following components:
 
 # Adding an Environment
 
-For a new persistent environment, beyond creating a new directory for it in this repo, the following steps also an entry also need to be performed:
-- Add an entry for the environment in the following repo: https://github.com/Ferlab-Ste-Justine/kubernetes-cd
-- Get flux's public ssh key from the logs and add it to the deploy keys of the repo (technically optional if you use an https reference to the repo and disable auto image updates)
+For a new persistent environment, beyond creating a new directory for it in this repo, you also need to follow the procedures detailed in the following repo: https://github.com/Ferlab-Ste-Justine/kubernetes-cd
+
+# Access Considerations
+
+Because deployments are done from the master branch, the master branch should be protected to require a pull request and a code review before changes are affected to it.
+
+Because flux needs to commit deployments automatically, users with administrative access to the repo need to remain exempt from the above (not a big security concession since they can disable it at any time anyways).
+
+As a good practice however, even users with admin access to the repo should submit pull requests (only bots are exempt).
 
 # Technological Choices
 
