@@ -7,3 +7,4 @@ resources:
   - lectern
   - documentation
   - elasticsearch
+  - git-autosync
