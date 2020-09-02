@@ -5,4 +5,5 @@ resources:
   - ../cqdg-orchestrations/keycloak
 
 patchesStrategicMerge:
-- ingress.yml
+  - ingress.yml
+  - clin-theme.yml
