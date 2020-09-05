@@ -1,5 +1,18 @@
 ---
 apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: git-autosync
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: git-autosync
+      containers:
+      - image: chusj/git-autosync:f8a8aaa249a83f8abd215152f4abf78e2460b08f
+        name: git-autosync
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docs
