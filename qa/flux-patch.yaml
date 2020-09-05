@@ -9,7 +9,7 @@ spec:
       $setElementOrder/containers:
       - name: git-autosync
       containers:
-      - image: chusj/git-autosync:b389b6b4f61d3733de070e8d0c749cd6ee97be7f
+      - image: chusj/git-autosync:5d825121fa37382e631b573c8c623b676934a121
         name: git-autosync
 ---
 apiVersion: apps/v1
