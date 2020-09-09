@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
   - ../cqdg-orchestrations/spark
+
+patchesStrategicMerge:
+  - nodeport-access.yml
