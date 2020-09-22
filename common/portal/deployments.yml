@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cqdg-portal
+  name: cqdg-portal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cqdg-portal
+  template:
+    metadata:
+      labels:
+        app: cqdg-portal
+    spec:
+      containers:
+        - image: chusj/cqdg-portal-ui:__UNDEFINED__
+          name: cqdg-portal
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: '0.50'
+            limits:
+              memory: "512Mi"
+              cpu: '1.00'
