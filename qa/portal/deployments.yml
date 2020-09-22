@@ -17,5 +17,5 @@ spec:
         app: portal
     spec:
       containers:
-      - image: chusj/cqdg-portal-ui:c905f4f
+      - image: chusj/cqdg-portal-ui:386176422ab7cb04bafed8fd8951ed38f25724c5
         name: portal
