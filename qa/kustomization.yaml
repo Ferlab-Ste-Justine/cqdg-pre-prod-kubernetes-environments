@@ -11,5 +11,4 @@ resources:
   - spark
   - hive-metastore
   - portal
-  - ../../cqdg-orchestrations/arranger-server
-  - ../../cqdg-orchestrations/arranger-admin-ui
+  - arranger

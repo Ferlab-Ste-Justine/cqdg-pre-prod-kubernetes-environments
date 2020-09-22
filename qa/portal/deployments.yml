@@ -4,14 +4,17 @@ metadata:
   labels:
     app: portal
   name: portal
-  #annotations:
-  #  fluxcd.io/automated: 'true'
+  annotations:
+    fluxcd.io/automated: 'true'
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: portal
   template:
+    metadata:
+      labels:
+        app: portal
     spec:
       containers:
       - image: chusj/cqdg-portal-ui:c905f4f
