@@ -24,3 +24,16 @@ spec:
       containers:
       - image: chusj/cqdg-docs:07afd0cd9bd31438d2e4630712f81532f1e1b806
         name: docs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hive-metastore
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: hive-metastore
+      containers:
+      - image: chusj/hive-metastore:9f6d6229e02e6bf84631d0c9fa8c3a5bca4d8919
+        name: hive-metastore
