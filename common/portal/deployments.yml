@@ -3,21 +3,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: cqdg-portal
-  name: cqdg-portal
+    app: portal
+  name: portal
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: cqdg-portal
+      app: portal
   template:
     metadata:
       labels:
-        app: cqdg-portal
+        app: portal
     spec:
       containers:
         - image: chusj/cqdg-portal-ui:__UNDEFINED__
-          name: cqdg-portal
+          name: portal
           resources:
             requests:
               memory: "256Mi"
