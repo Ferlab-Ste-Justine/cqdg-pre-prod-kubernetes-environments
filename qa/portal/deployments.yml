@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+  annotations:
+    fluxcd.io/automated: 'true'
+spec:
+  template:
+    spec:
+      containers:
+      - image: chusj/cqdg-portal-ui:386176422ab7cb04bafed8fd8951ed38f25724c5
+        name: portal

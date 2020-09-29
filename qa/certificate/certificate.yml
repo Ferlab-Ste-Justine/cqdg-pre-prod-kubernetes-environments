@@ -16,6 +16,9 @@ spec:
   - patient.qa.clin.ferlab.bio
   - hpo.qa.clin.ferlab.bio
   - fhir.qa.clin.ferlab.bio
+  - portal.qa.cqdg.ferlab.bio
+  - arranger-server.qa.clin.ferlab.bio
+  - arranger-admin.qa.clin.ferlab.bio
   keyAlgorithm: rsa
   keyEncoding: pkcs1
   keySize: 2048

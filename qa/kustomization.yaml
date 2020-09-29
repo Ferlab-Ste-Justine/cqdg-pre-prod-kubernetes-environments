@@ -10,3 +10,5 @@ resources:
   - git-autosync
   - spark
   - hive-metastore
+  - portal
+  - arranger

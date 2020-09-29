@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: portal
+spec:
+  tls:
+    - hosts:
+        - portal.qa.cqdg.ferlab.bio
+      secretName: letsencrypt-certificate
+  rules:
+    - host: portal.qa.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: portal
+              servicePort: 80
