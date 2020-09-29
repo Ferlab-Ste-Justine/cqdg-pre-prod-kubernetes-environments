@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - ../cqdg-orchestrations/arranger
+
+patchesStrategicMerge:
+  - configmaps.yml
+  - ingresses.yml
