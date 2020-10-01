@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - arranger-server.qa.clin.ferlab.bio
+        - arranger-server.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
-    - host: arranger-server.qa.clin.ferlab.bio
+    - host: arranger-server.qa.cqdg.ferlab.bio
       http:
         paths:
           - path: /
@@ -28,10 +28,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - arranger-admin.qa.clin.ferlab.bio
+        - arranger-admin.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
-    - host: arranger-admin.qa.clin.ferlab.bio
+    - host: arranger-admin.qa.cqdg.ferlab.bio
       http:
         paths:
           - path: /

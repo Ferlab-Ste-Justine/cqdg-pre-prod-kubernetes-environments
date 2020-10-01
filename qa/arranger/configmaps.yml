@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: arranger-server
 data:
-  HOST: http://arranger-server.qa.clin.ferlab.bio
+  HOST: http://arranger-server.qa.cqdg.ferlab.bio
