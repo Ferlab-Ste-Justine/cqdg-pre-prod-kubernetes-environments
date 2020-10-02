@@ -1,0 +1,3100 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configure-arranger
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      name: configure-arranger
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: configure-arranger
+          image: alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' -d'
+                  {
+                    "id" : "cqdg",
+                    "active" : true,
+                    "timestamp" : "2020-10-02T18:34:47.609Z"
+                  }
+              ';
+
+              curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' -d'
+                  {
+                    "mappings" : {
+                        "properties" : {
+                          "active" : {
+                            "type" : "boolean"
+                          },
+                          "config" : {
+                            "properties" : {
+                              "aggs-state" : {
+                                "properties" : {
+                                  "state" : {
+                                    "properties" : {
+                                      "active" : {
+                                        "type" : "boolean"
+                                      },
+                                      "field" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      },
+                                      "show" : {
+                                        "type" : "boolean"
+                                      },
+                                      "type" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "timestamp" : {
+                                    "type" : "date"
+                                  }
+                                }
+                              },
+                              "columns-state" : {
+                                "properties" : {
+                                  "state" : {
+                                    "properties" : {
+                                      "columns" : {
+                                        "properties" : {
+                                          "accessor" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          },
+                                          "canChangeShow" : {
+                                            "type" : "boolean"
+                                          },
+                                          "field" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          },
+                                          "jsonPath" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          },
+                                          "query" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          },
+                                          "show" : {
+                                            "type" : "boolean"
+                                          },
+                                          "sortable" : {
+                                            "type" : "boolean"
+                                          },
+                                          "type" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "defaultSorted" : {
+                                        "properties" : {
+                                          "desc" : {
+                                            "type" : "boolean"
+                                          },
+                                          "id" : {
+                                            "type" : "text",
+                                            "fields" : {
+                                              "keyword" : {
+                                                "type" : "keyword",
+                                                "ignore_above" : 256
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "keyField" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      },
+                                      "type" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "timestamp" : {
+                                    "type" : "date"
+                                  }
+                                }
+                              },
+                              "extended" : {
+                                "properties" : {
+                                  "active" : {
+                                    "type" : "boolean"
+                                  },
+                                  "displayName" : {
+                                    "type" : "text",
+                                    "fields" : {
+                                      "keyword" : {
+                                        "type" : "keyword",
+                                        "ignore_above" : 256
+                                      }
+                                    }
+                                  },
+                                  "displayValues" : {
+                                    "type" : "object"
+                                  },
+                                  "field" : {
+                                    "type" : "text",
+                                    "fields" : {
+                                      "keyword" : {
+                                        "type" : "keyword",
+                                        "ignore_above" : 256
+                                      }
+                                    }
+                                  },
+                                  "isArray" : {
+                                    "type" : "boolean"
+                                  },
+                                  "primaryKey" : {
+                                    "type" : "boolean"
+                                  },
+                                  "quickSearchEnabled" : {
+                                    "type" : "boolean"
+                                  },
+                                  "rangeStep" : {
+                                    "type" : "long"
+                                  },
+                                  "type" : {
+                                    "type" : "text",
+                                    "fields" : {
+                                      "keyword" : {
+                                        "type" : "keyword",
+                                        "ignore_above" : 256
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "matchbox-state" : {
+                                "properties" : {
+                                  "state" : {
+                                    "properties" : {
+                                      "displayName" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      },
+                                      "field" : {
+                                        "type" : "text",
+                                        "fields" : {
+                                          "keyword" : {
+                                            "type" : "keyword",
+                                            "ignore_above" : 256
+                                          }
+                                        }
+                                      },
+                                      "isActive" : {
+                                        "type" : "boolean"
+                                      }
+                                    }
+                                  },
+                                  "timestamp" : {
+                                    "type" : "date"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "index" : {
+                            "type" : "text",
+                            "fields" : {
+                              "keyword" : {
+                                "type" : "keyword",
+                                "ignore_above" : 256
+                              }
+                            }
+                          },
+                          "name" : {
+                            "type" : "text",
+                            "fields" : {
+                              "keyword" : {
+                                "type" : "keyword",
+                                "ignore_above" : 256
+                              }
+                            }
+                          },
+                          "timestamp" : {
+                            "type" : "date"
+                          }
+                        }
+                      }
+                  }
+              ';
+
+              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/cases" -H 'Content-Type: application/json' -d'
+                  {
+                             "index":"cases",
+                             "name":"Case",
+                             "timestamp":"2020-10-02T18:57:01.219Z",
+                             "active":true,
+                             "config":{
+                                "aggs-state":{
+                                   "timestamp":"2020-10-02T18:57:01.223Z",
+                                   "state":[
+                                      {
+                                         "field":"age_at_recruitment",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__age_at_diagnosis",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_category_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_code",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_term",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_term_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"donor_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"ethnicity",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__data_access",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__data_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__data_type",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__experimental_strategy",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_format",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_name_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_name_ngrams",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_size",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__file_variant_class",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__is_harmonized",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__platform",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"files__submitter_biospecimen_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"gender",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_category_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_code",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_term",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_term_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__domain",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__population",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name_ngrams",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__study_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__study_id_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"submitter_donor_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"vital_status",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      }
+                                   ]
+                                },
+                                "columns-state":{
+                                   "state":{
+                                      "type":"Case",
+                                      "keyField":"id",
+                                      "defaultSorted":[
+                                         {
+                                            "id":"age_at_recruitment",
+                                            "desc":false
+                                         }
+                                      ],
+                                      "columns":[
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"age_at_recruitment",
+                                            "accessor":"age_at_recruitment"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.age_at_diagnosis",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                age_at_diagnosis\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.age_at_diagnosis"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_category",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_category_keyword",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_category_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_code",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_code\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_code"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_term",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_term_keyword",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"diagnoses.hits.total",
+                                            "accessor":"diagnoses.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"donor_id",
+                                            "accessor":"donor_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"ethnicity",
+                                            "accessor":"ethnicity"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.data_access",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                data_access\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.data_access"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.data_category",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                data_category\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.data_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.data_type",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                data_type\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.data_type"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.experimental_strategy",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                experimental_strategy\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.experimental_strategy"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_format",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_format\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_format"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_id",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_name",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_name\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_name_keyword",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_name_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_name_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_name_ngrams",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_name_ngrams\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_name_ngrams"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_size",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_size\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_size"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.file_variant_class",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                file_variant_class\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.file_variant_class"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.is_harmonized",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                is_harmonized\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.is_harmonized"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.platform",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                platform\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.platform"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"files.submitter_biospecimen_id",
+                                            "query":"files {\n                hits {\n                edges {\n                node {\n                submitter_biospecimen_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.files.hits.edges[*].node.submitter_biospecimen_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"files.hits.total",
+                                            "accessor":"files.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"gender",
+                                            "accessor":"gender"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_category",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_category_keyword",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_category_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_code",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_code\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_code"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_term",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_term"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_term_keyword",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_term_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"phenotypes.hits.total",
+                                            "accessor":"phenotypes.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.domain",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                domain\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.domain"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.name",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                name\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.population",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                population\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.population"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name_keyword",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name_ngrams",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name_ngrams\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name_ngrams"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.study_id",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                study_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.study_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.study_id_keyword",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                study_id_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.study_id_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"study.hits.total",
+                                            "accessor":"study.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"submitter_donor_id",
+                                            "accessor":"submitter_donor_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"vital_status",
+                                            "accessor":"vital_status"
+                                         }
+                                      ]
+                                   },
+                                   "timestamp":"2020-10-02T18:57:01.225Z"
+                                },
+                                "matchbox-state":{
+                                   "state":[
+                                      {
+                                         "displayName":"Case",
+                                         "field":"",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Diagnoses",
+                                         "field":"diagnoses",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Files",
+                                         "field":"files",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Phenotypes",
+                                         "field":"phenotypes",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Study",
+                                         "field":"study",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      }
+                                   ],
+                                   "timestamp":"2020-10-02T18:57:01.225Z"
+                                },
+                                "extended":[
+                                   {
+                                      "field":"age_at_recruitment",
+                                      "type":"integer",
+                                      "displayName":"Age At Recruitment",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses",
+                                      "type":"nested",
+                                      "displayName":"Diagnoses",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.age_at_diagnosis",
+                                      "type":"integer",
+                                      "displayName":"Diagnoses Age At Diagnosis",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_category",
+                                      "type":"text",
+                                      "displayName":"Diagnoses Icd Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_category_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Category Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_code",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Code",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_term",
+                                      "type":"text",
+                                      "displayName":"Diagnoses Icd Term",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_term_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Term Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"donor_id",
+                                      "type":"id",
+                                      "displayName":"Donor Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"ethnicity",
+                                      "type":"keyword",
+                                      "displayName":"Ethnicity",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files",
+                                      "type":"nested",
+                                      "displayName":"Files",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.data_access",
+                                      "type":"keyword",
+                                      "displayName":"Files Data Access",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.data_category",
+                                      "type":"keyword",
+                                      "displayName":"Files Data Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.data_type",
+                                      "type":"keyword",
+                                      "displayName":"Files Data Type",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.experimental_strategy",
+                                      "type":"keyword",
+                                      "displayName":"Files Experimental Strategy",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_format",
+                                      "type":"keyword",
+                                      "displayName":"Files File Format",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_id",
+                                      "type":"id",
+                                      "displayName":"Files File Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_name",
+                                      "type":"text",
+                                      "displayName":"Files File Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_name_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Files File Name Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_name_ngrams",
+                                      "type":"text",
+                                      "displayName":"Files File Name Ngrams",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.file_size",
+                                      "type":"float",
+                                      "displayName":"Files File Size",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":0.01
+                                   },
+                                   {
+                                      "field":"files.file_variant_class",
+                                      "type":"keyword",
+                                      "displayName":"Files File Variant Class",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.is_harmonized",
+                                      "type":"boolean",
+                                      "displayName":"Files Is Harmonized",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.platform",
+                                      "type":"keyword",
+                                      "displayName":"Files Platform",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"files.submitter_biospecimen_id",
+                                      "type":"id",
+                                      "displayName":"Files Submitter Biospecimen Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"gender",
+                                      "type":"keyword",
+                                      "displayName":"Gender",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes",
+                                      "type":"nested",
+                                      "displayName":"Phenotypes",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_category",
+                                      "type":"text",
+                                      "displayName":"Phenotypes Hpo Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_category_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Category Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_code",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Code",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_term",
+                                      "type":"text",
+                                      "displayName":"Phenotypes Hpo Term",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_term_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Term Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study",
+                                      "type":"nested",
+                                      "displayName":"Study",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.domain",
+                                      "type":"keyword",
+                                      "displayName":"Study Domain",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.name",
+                                      "type":"text",
+                                      "displayName":"Study Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.population",
+                                      "type":"text",
+                                      "displayName":"Study Population",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name",
+                                      "type":"text",
+                                      "displayName":"Study Short Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Study Short Name Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name_ngrams",
+                                      "type":"text",
+                                      "displayName":"Study Short Name Ngrams",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.study_id",
+                                      "type":"id",
+                                      "displayName":"Study Study Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.study_id_keyword",
+                                      "type":"id",
+                                      "displayName":"Study Study Id Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"submitter_donor_id",
+                                      "type":"id",
+                                      "displayName":"Submitter Donor Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"vital_status",
+                                      "type":"keyword",
+                                      "displayName":"Vital Status",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   }
+                                ]
+                             }
+                          }
+              ';
+
+              curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' -d'
+                  {
+                             "index":"files",
+                             "name":"File",
+                             "timestamp":"2020-10-02T18:57:01.215Z",
+                             "active":true,
+                             "config":{
+                                "aggs-state":{
+                                   "timestamp":"2020-10-02T18:57:01.217Z",
+                                   "state":[
+                                      {
+                                         "field":"biospecimen__anatomic_location",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__icd_term",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__icd_term_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__is_cancer",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__sample_type",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__submitter_biospecimen_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__tissue_source",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__tumor_normal_designation",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"biospecimen__type",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"cases__age_at_recruitment",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"cases__ethnicity",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"cases__gender",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"cases__submitter_donor_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"cases__vital_status",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"data_access",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"data_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"data_type",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__age_at_diagnosis",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_category_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_code",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_term",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"diagnoses__icd_term_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"experimental_strategy",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_format",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_name_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_name_ngrams",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_size",
+                                         "type":"NumericAggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"file_variant_class",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"is_harmonized",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_category",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_category_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_code",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_term",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"phenotypes__hpo_term_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"platform",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__domain",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__population",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__short_name_ngrams",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__study_id",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      },
+                                      {
+                                         "field":"study__study_id_keyword",
+                                         "type":"Aggregations",
+                                         "show":false,
+                                         "active":true
+                                      }
+                                   ]
+                                },
+                                "columns-state":{
+                                   "state":{
+                                      "type":"File",
+                                      "keyField":"id",
+                                      "defaultSorted":[
+                                         {
+                                            "desc":false
+                                         }
+                                      ],
+                                      "columns":[
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.anatomic_location",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                anatomic_location\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.anatomic_location"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.icd_term",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.icd_term"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.icd_term_keyword",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.icd_term_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.is_cancer",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                is_cancer\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.is_cancer"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.sample_type",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                sample_type\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.sample_type"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.submitter_biospecimen_id",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                submitter_biospecimen_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.submitter_biospecimen_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.tissue_source",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                tissue_source\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.tissue_source"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.tumor_normal_designation",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                tumor_normal_designation\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.tumor_normal_designation"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"biospecimen.type",
+                                            "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                type\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.biospecimen.hits.edges[*].node.type"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"biospecimen.hits.total",
+                                            "accessor":"biospecimen.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"cases.age_at_recruitment",
+                                            "query":"cases {\n                hits {\n                edges {\n                node {\n                age_at_recruitment\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.cases.hits.edges[*].node.age_at_recruitment"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"cases.ethnicity",
+                                            "query":"cases {\n                hits {\n                edges {\n                node {\n                ethnicity\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.cases.hits.edges[*].node.ethnicity"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"cases.gender",
+                                            "query":"cases {\n                hits {\n                edges {\n                node {\n                gender\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.cases.hits.edges[*].node.gender"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"cases.submitter_donor_id",
+                                            "query":"cases {\n                hits {\n                edges {\n                node {\n                submitter_donor_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.cases.hits.edges[*].node.submitter_donor_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"cases.vital_status",
+                                            "query":"cases {\n                hits {\n                edges {\n                node {\n                vital_status\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.cases.hits.edges[*].node.vital_status"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"cases.hits.total",
+                                            "accessor":"cases.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"data_access",
+                                            "accessor":"data_access"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"data_category",
+                                            "accessor":"data_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"data_type",
+                                            "accessor":"data_type"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.age_at_diagnosis",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                age_at_diagnosis\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.age_at_diagnosis"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_category",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_category_keyword",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_category_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_code",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_code\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_code"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_term",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"diagnoses.icd_term_keyword",
+                                            "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"diagnoses.hits.total",
+                                            "accessor":"diagnoses.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"experimental_strategy",
+                                            "accessor":"experimental_strategy"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_format",
+                                            "accessor":"file_format"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_id",
+                                            "accessor":"file_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_name",
+                                            "accessor":"file_name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_name_keyword",
+                                            "accessor":"file_name_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_name_ngrams",
+                                            "accessor":"file_name_ngrams"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_size",
+                                            "accessor":"file_size"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"file_variant_class",
+                                            "accessor":"file_variant_class"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"boolean",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"is_harmonized",
+                                            "accessor":"is_harmonized"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_category",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_category"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_category_keyword",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_category_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_code",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_code\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_code"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_term",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_term"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"phenotypes.hpo_term_keyword",
+                                            "query":"phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.phenotypes.hits.edges[*].node.hpo_term_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"phenotypes.hits.total",
+                                            "accessor":"phenotypes.hits.total"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"string",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"platform",
+                                            "accessor":"platform"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.domain",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                domain\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.domain"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.name",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                name\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.population",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                population\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.population"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name_keyword",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.short_name_ngrams",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                short_name_ngrams\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.short_name_ngrams"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.study_id",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                study_id\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.study_id"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"list",
+                                            "sortable":false,
+                                            "canChangeShow":false,
+                                            "field":"study.study_id_keyword",
+                                            "query":"study {\n                hits {\n                edges {\n                node {\n                study_id_keyword\n              }\n              }\n              }\n              }",
+                                            "jsonPath":"$.study.hits.edges[*].node.study_id_keyword"
+                                         },
+                                         {
+                                            "show":false,
+                                            "type":"number",
+                                            "sortable":true,
+                                            "canChangeShow":true,
+                                            "field":"study.hits.total",
+                                            "accessor":"study.hits.total"
+                                         }
+                                      ]
+                                   },
+                                   "timestamp":"2020-10-02T18:57:01.221Z"
+                                },
+                                "matchbox-state":{
+                                   "state":[
+                                      {
+                                         "displayName":"File",
+                                         "field":"",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Biospecimen",
+                                         "field":"biospecimen",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Cases",
+                                         "field":"cases",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Diagnoses",
+                                         "field":"diagnoses",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Phenotypes",
+                                         "field":"phenotypes",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      },
+                                      {
+                                         "displayName":"Study",
+                                         "field":"study",
+                                         "isActive":false,
+                                         "keyField":null,
+                                         "searchFields":[
+
+                                         ]
+                                      }
+                                   ],
+                                   "timestamp":"2020-10-02T18:57:01.221Z"
+                                },
+                                "extended":[
+                                   {
+                                      "field":"biospecimen",
+                                      "type":"nested",
+                                      "displayName":"Biospecimen",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.anatomic_location",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Anatomic Location",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.icd_term",
+                                      "type":"text",
+                                      "displayName":"Biospecimen Icd Term",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.icd_term_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Icd Term Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.is_cancer",
+                                      "type":"boolean",
+                                      "displayName":"Biospecimen Is Cancer",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.sample_type",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Sample Type",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.submitter_biospecimen_id",
+                                      "type":"id",
+                                      "displayName":"Biospecimen Submitter Biospecimen Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.tissue_source",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Tissue Source",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.tumor_normal_designation",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Tumor Normal Designation",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"biospecimen.type",
+                                      "type":"keyword",
+                                      "displayName":"Biospecimen Type",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases",
+                                      "type":"nested",
+                                      "displayName":"Cases",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases.age_at_recruitment",
+                                      "type":"integer",
+                                      "displayName":"Cases Age At Recruitment",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases.ethnicity",
+                                      "type":"keyword",
+                                      "displayName":"Cases Ethnicity",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases.gender",
+                                      "type":"keyword",
+                                      "displayName":"Cases Gender",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases.submitter_donor_id",
+                                      "type":"id",
+                                      "displayName":"Cases Submitter Donor Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"cases.vital_status",
+                                      "type":"keyword",
+                                      "displayName":"Cases Vital Status",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"data_access",
+                                      "type":"keyword",
+                                      "displayName":"Data Access",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"data_category",
+                                      "type":"keyword",
+                                      "displayName":"Data Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"data_type",
+                                      "type":"keyword",
+                                      "displayName":"Data Type",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses",
+                                      "type":"nested",
+                                      "displayName":"Diagnoses",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.age_at_diagnosis",
+                                      "type":"integer",
+                                      "displayName":"Diagnoses Age At Diagnosis",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_category",
+                                      "type":"text",
+                                      "displayName":"Diagnoses Icd Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_category_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Category Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_code",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Code",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_term",
+                                      "type":"text",
+                                      "displayName":"Diagnoses Icd Term",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"diagnoses.icd_term_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Diagnoses Icd Term Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"experimental_strategy",
+                                      "type":"keyword",
+                                      "displayName":"Experimental Strategy",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_format",
+                                      "type":"keyword",
+                                      "displayName":"File Format",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_id",
+                                      "type":"id",
+                                      "displayName":"File Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_name",
+                                      "type":"text",
+                                      "displayName":"File Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_name_keyword",
+                                      "type":"keyword",
+                                      "displayName":"File Name Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_name_ngrams",
+                                      "type":"text",
+                                      "displayName":"File Name Ngrams",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"file_size",
+                                      "type":"float",
+                                      "displayName":"File Size",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":0.01
+                                   },
+                                   {
+                                      "field":"file_variant_class",
+                                      "type":"keyword",
+                                      "displayName":"File Variant Class",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"is_harmonized",
+                                      "type":"boolean",
+                                      "displayName":"Is Harmonized",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes",
+                                      "type":"nested",
+                                      "displayName":"Phenotypes",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_category",
+                                      "type":"text",
+                                      "displayName":"Phenotypes Hpo Category",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_category_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Category Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_code",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Code",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_term",
+                                      "type":"text",
+                                      "displayName":"Phenotypes Hpo Term",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"phenotypes.hpo_term_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Phenotypes Hpo Term Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"platform",
+                                      "type":"keyword",
+                                      "displayName":"Platform",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study",
+                                      "type":"nested",
+                                      "displayName":"Study",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.domain",
+                                      "type":"keyword",
+                                      "displayName":"Study Domain",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.name",
+                                      "type":"text",
+                                      "displayName":"Study Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.population",
+                                      "type":"text",
+                                      "displayName":"Study Population",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name",
+                                      "type":"text",
+                                      "displayName":"Study Short Name",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name_keyword",
+                                      "type":"keyword",
+                                      "displayName":"Study Short Name Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.short_name_ngrams",
+                                      "type":"text",
+                                      "displayName":"Study Short Name Ngrams",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.study_id",
+                                      "type":"id",
+                                      "displayName":"Study Study Id",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   },
+                                   {
+                                      "field":"study.study_id_keyword",
+                                      "type":"id",
+                                      "displayName":"Study Study Id Keyword",
+                                      "active":false,
+                                      "isArray":false,
+                                      "primaryKey":false,
+                                      "quickSearchEnabled":false,
+                                      "unit":null,
+                                      "displayValues":{
+
+                                      },
+                                      "rangeStep":1
+                                   }
+                                ]
+                             }
+                          }
+              ';
