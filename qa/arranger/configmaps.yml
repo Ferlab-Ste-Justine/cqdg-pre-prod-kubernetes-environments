@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: arranger-server
-data:
-  HOST: http://arranger-server.qa.cqdg.ferlab.bio
