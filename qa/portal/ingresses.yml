@@ -22,7 +22,3 @@ spec:
             backend:
               serviceName: arranger-server
               servicePort: 5050
-          - path: /arranger-admin
-            backend:
-                serviceName: arranger-admin-ui
-                servicePort: 80
