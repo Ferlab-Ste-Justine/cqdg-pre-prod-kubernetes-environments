@@ -1,0 +1,31 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configure-arranger
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      name: configure-arranger
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: configure-arranger
+          image: alpine
+          command:
+            - /bin/sh
+            - -c
+            - |
+              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry";
+              curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings";
+              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/cases" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cases-index";
+              curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
+          volumeMounts:
+            - mountPath: /opt/curl-bodies
+              name: configure-arranger
+              readOnly: true
+      volumes:
+        - name: configure-arranger
+          configMap:
+            name: configure-arranger
