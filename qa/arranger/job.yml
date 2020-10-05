@@ -12,7 +12,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: configure-arranger
-          image: alpine
+          image: curlimages/curl
           command:
             - /bin/sh
             - -c
