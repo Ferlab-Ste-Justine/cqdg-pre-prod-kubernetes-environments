@@ -8,5 +8,5 @@ spec:
   template:
     spec:
       containers:
-      - image: chusj/cqdg-portal-ui:386176422ab7cb04bafed8fd8951ed38f25724c5
+      - image: chusj/cqdg-portal-ui:bd6c9e5a9d9a5e5a50822af3026847f13257097d
         name: portal
