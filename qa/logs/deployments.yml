@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: logs-kibana
+  name: logs-kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logs-kibana
+  template:
+    metadata:
+      labels:
+        app: logs-kibana
+    spec:
+      containers:
+        - image: kibana:7.9.2
+          name: logs-kibana
+          env:
+            - name: ELASTICSEARCH_HOSTS
+              value: http://logs-store:9200
