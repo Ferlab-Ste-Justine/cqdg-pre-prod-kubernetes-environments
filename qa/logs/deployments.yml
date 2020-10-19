@@ -16,7 +16,7 @@ spec:
         app: logs-kibana
     spec:
       containers:
-        - image: kibana:7.9.2
+        - image: kibana:7.8.1
           name: logs-kibana
           env:
             - name: ELASTICSEARCH_HOSTS
