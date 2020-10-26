@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: fluentd
+          env:
+            - name:  FLUENT_ELASTICSEARCH_HOST
+              value: "logs-store.default.svc.cluster.local"
+          resources:
+            limits:
+              memory: 400Mi
+            requests:
+              cpu: 100m
+              memory: 400Mi

@@ -35,10 +35,10 @@ spec:
             value: 20s
         resources:
           limits:
-            memory: 400Mi
+            memory: 200Mi
           requests:
             cpu: 100m
-            memory: 400Mi
+            memory: 200Mi
         volumeMounts:
           - name: varlog
             mountPath: /var/log
