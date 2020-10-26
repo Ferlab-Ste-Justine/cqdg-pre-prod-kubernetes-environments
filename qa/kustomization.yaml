@@ -13,3 +13,4 @@ resources:
   - portal
   - arranger
   - logs
+  - fluentd
