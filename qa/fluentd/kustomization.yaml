@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../common/fluentd
+  - access.yml
 
 patchesStrategicMerge:
   - daemonset.yml
