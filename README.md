@@ -1,3 +1,5 @@
+![](https://github.com/Ferlab-Ste-Justine/cqdg-environments/workflows/Commit%20Lint%20Check/badge.svg)
+
 # About
 
 The goal of this repo is where the orchestration for cqdg environments will live (at least the pre-prod).
