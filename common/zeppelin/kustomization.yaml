@@ -1,0 +1,10 @@
+#Configuration in this directory is derived from: https://github.com/apache/zeppelin/blob/master/k8s/zeppelin-server.yaml
+#A breakdown into several files and other minor adjustments have been made to it
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - access.yml
+  - configs.yml
+  - deployments.yml
+  - services.yml
