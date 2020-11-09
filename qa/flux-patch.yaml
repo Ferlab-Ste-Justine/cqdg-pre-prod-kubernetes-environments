@@ -37,3 +37,16 @@ spec:
       containers:
       - image: chusj/hive-metastore:2b05281a31f7feb82716ca3b303d37a700a4bb3c
         name: hive-metastore
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: portal
+      containers:
+      - image: chusj/cqdg-portal-ui:cd1c3493e281d132388901f7369fb4aa156e184a
+        name: portal
