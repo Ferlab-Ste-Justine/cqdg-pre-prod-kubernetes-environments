@@ -13,267 +13,267 @@ data:
     }
   cqdg-mappings: |
     {
-      "mappings" : {
-          "properties" : {
-            "active" : {
-              "type" : "boolean"
+      "mappings":{
+         "properties":{
+            "active":{
+               "type":"boolean"
             },
-            "config" : {
-              "properties" : {
-                "aggs-state" : {
-                  "properties" : {
-                    "state" : {
-                      "properties" : {
-                        "active" : {
-                          "type" : "boolean"
+            "config":{
+               "properties":{
+                  "aggs-state":{
+                     "properties":{
+                        "state":{
+                           "properties":{
+                              "active":{
+                                 "type":"boolean"
+                              },
+                              "field":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              },
+                              "show":{
+                                 "type":"boolean"
+                              },
+                              "type":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              }
+                           }
                         },
-                        "field" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
-                        },
-                        "show" : {
-                          "type" : "boolean"
-                        },
-                        "type" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
+                        "timestamp":{
+                           "type":"date"
                         }
-                      }
-                    },
-                    "timestamp" : {
-                      "type" : "date"
-                    }
+                     }
+                  },
+                  "columns-state":{
+                     "properties":{
+                        "state":{
+                           "properties":{
+                              "columns":{
+                                 "properties":{
+                                    "accessor":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    },
+                                    "canChangeShow":{
+                                       "type":"boolean"
+                                    },
+                                    "field":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    },
+                                    "jsonPath":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    },
+                                    "query":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    },
+                                    "show":{
+                                       "type":"boolean"
+                                    },
+                                    "sortable":{
+                                       "type":"boolean"
+                                    },
+                                    "type":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "defaultSorted":{
+                                 "properties":{
+                                    "desc":{
+                                       "type":"boolean"
+                                    },
+                                    "id":{
+                                       "type":"text",
+                                       "fields":{
+                                          "keyword":{
+                                             "type":"keyword",
+                                             "ignore_above":256
+                                          }
+                                       }
+                                    }
+                                 }
+                              },
+                              "keyField":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              },
+                              "type":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              }
+                           }
+                        },
+                        "timestamp":{
+                           "type":"date"
+                        }
+                     }
+                  },
+                  "extended":{
+                     "properties":{
+                        "active":{
+                           "type":"boolean"
+                        },
+                        "displayName":{
+                           "type":"text",
+                           "fields":{
+                              "keyword":{
+                                 "type":"keyword",
+                                 "ignore_above":256
+                              }
+                           }
+                        },
+                        "displayValues":{
+                           "type":"object"
+                        },
+                        "field":{
+                           "type":"text",
+                           "fields":{
+                              "keyword":{
+                                 "type":"keyword",
+                                 "ignore_above":256
+                              }
+                           }
+                        },
+                        "isArray":{
+                           "type":"boolean"
+                        },
+                        "primaryKey":{
+                           "type":"boolean"
+                        },
+                        "quickSearchEnabled":{
+                           "type":"boolean"
+                        },
+                        "rangeStep":{
+                           "type":"long"
+                        },
+                        "type":{
+                           "type":"text",
+                           "fields":{
+                              "keyword":{
+                                 "type":"keyword",
+                                 "ignore_above":256
+                              }
+                           }
+                        }
+                     }
+                  },
+                  "matchbox-state":{
+                     "properties":{
+                        "state":{
+                           "properties":{
+                              "displayName":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              },
+                              "field":{
+                                 "type":"text",
+                                 "fields":{
+                                    "keyword":{
+                                       "type":"keyword",
+                                       "ignore_above":256
+                                    }
+                                 }
+                              },
+                              "isActive":{
+                                 "type":"boolean"
+                              }
+                           }
+                        },
+                        "timestamp":{
+                           "type":"date"
+                        }
+                     }
                   }
-                },
-                "columns-state" : {
-                  "properties" : {
-                    "state" : {
-                      "properties" : {
-                        "columns" : {
-                          "properties" : {
-                            "accessor" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            },
-                            "canChangeShow" : {
-                              "type" : "boolean"
-                            },
-                            "field" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            },
-                            "jsonPath" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            },
-                            "query" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            },
-                            "show" : {
-                              "type" : "boolean"
-                            },
-                            "sortable" : {
-                              "type" : "boolean"
-                            },
-                            "type" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "defaultSorted" : {
-                          "properties" : {
-                            "desc" : {
-                              "type" : "boolean"
-                            },
-                            "id" : {
-                              "type" : "text",
-                              "fields" : {
-                                "keyword" : {
-                                  "type" : "keyword",
-                                  "ignore_above" : 256
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "keyField" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
-                        },
-                        "type" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "timestamp" : {
-                      "type" : "date"
-                    }
-                  }
-                },
-                "extended" : {
-                  "properties" : {
-                    "active" : {
-                      "type" : "boolean"
-                    },
-                    "displayName" : {
-                      "type" : "text",
-                      "fields" : {
-                        "keyword" : {
-                          "type" : "keyword",
-                          "ignore_above" : 256
-                        }
-                      }
-                    },
-                    "displayValues" : {
-                      "type" : "object"
-                    },
-                    "field" : {
-                      "type" : "text",
-                      "fields" : {
-                        "keyword" : {
-                          "type" : "keyword",
-                          "ignore_above" : 256
-                        }
-                      }
-                    },
-                    "isArray" : {
-                      "type" : "boolean"
-                    },
-                    "primaryKey" : {
-                      "type" : "boolean"
-                    },
-                    "quickSearchEnabled" : {
-                      "type" : "boolean"
-                    },
-                    "rangeStep" : {
-                      "type" : "long"
-                    },
-                    "type" : {
-                      "type" : "text",
-                      "fields" : {
-                        "keyword" : {
-                          "type" : "keyword",
-                          "ignore_above" : 256
-                        }
-                      }
-                    }
-                  }
-                },
-                "matchbox-state" : {
-                  "properties" : {
-                    "state" : {
-                      "properties" : {
-                        "displayName" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
-                        },
-                        "field" : {
-                          "type" : "text",
-                          "fields" : {
-                            "keyword" : {
-                              "type" : "keyword",
-                              "ignore_above" : 256
-                            }
-                          }
-                        },
-                        "isActive" : {
-                          "type" : "boolean"
-                        }
-                      }
-                    },
-                    "timestamp" : {
-                      "type" : "date"
-                    }
-                  }
-                }
-              }
+               }
             },
-            "index" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword",
-                  "ignore_above" : 256
-                }
-              }
+            "index":{
+               "type":"text",
+               "fields":{
+                  "keyword":{
+                     "type":"keyword",
+                     "ignore_above":256
+                  }
+               }
             },
-            "name" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword",
-                  "ignore_above" : 256
-                }
-              }
+            "name":{
+               "type":"text",
+               "fields":{
+                  "keyword":{
+                     "type":"keyword",
+                     "ignore_above":256
+                  }
+               }
             },
-            "timestamp" : {
-              "type" : "date"
+            "timestamp":{
+               "type":"date"
             }
-          }
-        }
+         }
+      }
     }
   cases-index: |
     {
        "index":"cases",
        "name":"Case",
-       "timestamp":"2020-10-02T18:57:01.219Z",
+       "timestamp":"2020-11-13T16:50:06.045Z",
        "active":true,
        "config":{
           "aggs-state":{
-             "timestamp":"2020-10-02T18:57:01.223Z",
+             "timestamp":"2020-11-13T16:50:06.047Z",
              "state":[
                 {
                    "field":"age_at_recruitment",
@@ -300,12 +300,6 @@ data:
                    "active":true
                 },
                 {
-                   "field":"diagnoses__icd_code",
-                   "type":"Aggregations",
-                   "show":false,
-                   "active":true
-                },
-                {
                    "field":"diagnoses__icd_term",
                    "type":"Aggregations",
                    "show":false,
@@ -313,6 +307,18 @@ data:
                 },
                 {
                    "field":"diagnoses__icd_term_keyword",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"diagnoses__mondo_term",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"diagnoses__mondo_term_keyword",
                    "type":"Aggregations",
                    "show":false,
                    "active":true
@@ -409,6 +415,12 @@ data:
                 },
                 {
                    "field":"files__submitter_biospecimen_id",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"files__variant_class",
                    "type":"Aggregations",
                    "show":false,
                    "active":true
@@ -562,15 +574,6 @@ data:
                       "type":"list",
                       "sortable":false,
                       "canChangeShow":false,
-                      "field":"diagnoses.icd_code",
-                      "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_code\n              }\n              }\n              }\n              }",
-                      "jsonPath":"$.diagnoses.hits.edges[*].node.icd_code"
-                   },
-                   {
-                      "show":false,
-                      "type":"list",
-                      "sortable":false,
-                      "canChangeShow":false,
                       "field":"diagnoses.icd_term",
                       "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }",
                       "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term"
@@ -583,6 +586,24 @@ data:
                       "field":"diagnoses.icd_term_keyword",
                       "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
                       "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term_keyword"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"diagnoses.mondo_term",
+                      "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.diagnoses.hits.edges[*].node.mondo_term"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"diagnoses.mondo_term_keyword",
+                      "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term_keyword\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.diagnoses.hits.edges[*].node.mondo_term_keyword"
                    },
                    {
                       "show":false,
@@ -733,6 +754,15 @@ data:
                       "field":"files.submitter_biospecimen_id",
                       "query":"files {\n                hits {\n                edges {\n                node {\n                submitter_biospecimen_id\n              }\n              }\n              }\n              }",
                       "jsonPath":"$.files.hits.edges[*].node.submitter_biospecimen_id"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"files.variant_class",
+                      "query":"files {\n                hits {\n                edges {\n                node {\n                variant_class\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.files.hits.edges[*].node.variant_class"
                    },
                    {
                       "show":false,
@@ -901,7 +931,7 @@ data:
                    }
                 ]
              },
-             "timestamp":"2020-10-02T18:57:01.225Z"
+             "timestamp":"2020-11-13T16:50:06.050Z"
           },
           "matchbox-state":{
              "state":[
@@ -951,7 +981,7 @@ data:
                    ]
                 }
              ],
-             "timestamp":"2020-10-02T18:57:01.225Z"
+             "timestamp":"2020-11-13T16:50:06.050Z"
           },
           "extended":[
              {
@@ -1025,20 +1055,6 @@ data:
                 "rangeStep":1
              },
              {
-                "field":"diagnoses.icd_code",
-                "type":"keyword",
-                "displayName":"Diagnoses Icd Code",
-                "active":false,
-                "isArray":false,
-                "primaryKey":false,
-                "quickSearchEnabled":false,
-                "unit":null,
-                "displayValues":{
-
-                },
-                "rangeStep":1
-             },
-             {
                 "field":"diagnoses.icd_term",
                 "type":"text",
                 "displayName":"Diagnoses Icd Term",
@@ -1056,6 +1072,34 @@ data:
                 "field":"diagnoses.icd_term_keyword",
                 "type":"keyword",
                 "displayName":"Diagnoses Icd Term Keyword",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"diagnoses.mondo_term",
+                "type":"text",
+                "displayName":"Diagnoses Mondo Term",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"diagnoses.mondo_term_keyword",
+                "type":"keyword",
+                "displayName":"Diagnoses Mondo Term Keyword",
                 "active":false,
                 "isArray":false,
                 "primaryKey":false,
@@ -1294,6 +1338,20 @@ data:
                 "field":"files.submitter_biospecimen_id",
                 "type":"id",
                 "displayName":"Files Submitter Biospecimen Id",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"files.variant_class",
+                "type":"text",
+                "displayName":"Files Variant Class",
                 "active":false,
                 "isArray":false,
                 "primaryKey":false,
@@ -1563,11 +1621,11 @@ data:
     {
        "index":"files",
        "name":"File",
-       "timestamp":"2020-10-02T18:57:01.215Z",
+       "timestamp":"2020-11-13T16:50:06.046Z",
        "active":true,
        "config":{
           "aggs-state":{
-             "timestamp":"2020-10-02T18:57:01.217Z",
+             "timestamp":"2020-11-13T16:50:06.048Z",
              "state":[
                 {
                    "field":"biospecimen__anatomic_location",
@@ -1594,7 +1652,13 @@ data:
                    "active":true
                 },
                 {
-                   "field":"biospecimen__sample_type",
+                   "field":"biospecimen__samples__sample_type",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"biospecimen__samples__submitter_sample_id",
                    "type":"Aggregations",
                    "show":false,
                    "active":true
@@ -1703,6 +1767,18 @@ data:
                 },
                 {
                    "field":"diagnoses__icd_term_keyword",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"diagnoses__mondo_term",
+                   "type":"Aggregations",
+                   "show":false,
+                   "active":true
+                },
+                {
+                   "field":"diagnoses__mondo_term_keyword",
                    "type":"Aggregations",
                    "show":false,
                    "active":true
@@ -1898,9 +1974,26 @@ data:
                       "type":"list",
                       "sortable":false,
                       "canChangeShow":false,
-                      "field":"biospecimen.sample_type",
-                      "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                sample_type\n              }\n              }\n              }\n              }",
-                      "jsonPath":"$.biospecimen.hits.edges[*].node.sample_type"
+                      "field":"biospecimen.samples.sample_type",
+                      "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                samples {\n                hits {\n                edges {\n                node {\n                sample_type\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.biospecimen.hits.edges[*].node.samples.hits.edges[*].node.sample_type"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"biospecimen.samples.submitter_sample_id",
+                      "query":"biospecimen {\n                hits {\n                edges {\n                node {\n                samples {\n                hits {\n                edges {\n                node {\n                submitter_sample_id\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.biospecimen.hits.edges[*].node.samples.hits.edges[*].node.submitter_sample_id"
+                   },
+                   {
+                      "show":false,
+                      "type":"number",
+                      "sortable":true,
+                      "canChangeShow":true,
+                      "field":"biospecimen.samples.hits.total",
+                      "accessor":"biospecimen.hits.edges[0].node.samples.hits.total"
                    },
                    {
                       "show":false,
@@ -2076,6 +2169,24 @@ data:
                       "field":"diagnoses.icd_term_keyword",
                       "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
                       "jsonPath":"$.diagnoses.hits.edges[*].node.icd_term_keyword"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"diagnoses.mondo_term",
+                      "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.diagnoses.hits.edges[*].node.mondo_term"
+                   },
+                   {
+                      "show":false,
+                      "type":"list",
+                      "sortable":false,
+                      "canChangeShow":false,
+                      "field":"diagnoses.mondo_term_keyword",
+                      "query":"diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term_keyword\n              }\n              }\n              }\n              }",
+                      "jsonPath":"$.diagnoses.hits.edges[*].node.mondo_term_keyword"
                    },
                    {
                       "show":false,
@@ -2300,7 +2411,7 @@ data:
                    }
                 ]
              },
-             "timestamp":"2020-10-02T18:57:01.221Z"
+             "timestamp":"2020-11-13T16:50:06.051Z"
           },
           "matchbox-state":{
              "state":[
@@ -2316,6 +2427,15 @@ data:
                 {
                    "displayName":"Biospecimen",
                    "field":"biospecimen",
+                   "isActive":false,
+                   "keyField":null,
+                   "searchFields":[
+
+                   ]
+                },
+                {
+                   "displayName":"Biospecimen Samples",
+                   "field":"biospecimen.samples",
                    "isActive":false,
                    "keyField":null,
                    "searchFields":[
@@ -2359,7 +2479,7 @@ data:
                    ]
                 }
              ],
-             "timestamp":"2020-10-02T18:57:01.221Z"
+             "timestamp":"2020-11-13T16:50:06.051Z"
           },
           "extended":[
              {
@@ -2433,9 +2553,37 @@ data:
                 "rangeStep":1
              },
              {
-                "field":"biospecimen.sample_type",
+                "field":"biospecimen.samples",
+                "type":"nested",
+                "displayName":"Biospecimen Samples",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"biospecimen.samples.sample_type",
                 "type":"keyword",
-                "displayName":"Biospecimen Sample Type",
+                "displayName":"Biospecimen Samples Sample Type",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"biospecimen.samples.submitter_sample_id",
+                "type":"id",
+                "displayName":"Biospecimen Samples Submitter Sample Id",
                 "active":false,
                 "isArray":false,
                 "primaryKey":false,
@@ -2716,6 +2864,34 @@ data:
                 "field":"diagnoses.icd_term_keyword",
                 "type":"keyword",
                 "displayName":"Diagnoses Icd Term Keyword",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"diagnoses.mondo_term",
+                "type":"text",
+                "displayName":"Diagnoses Mondo Term",
+                "active":false,
+                "isArray":false,
+                "primaryKey":false,
+                "quickSearchEnabled":false,
+                "unit":null,
+                "displayValues":{
+
+                },
+                "rangeStep":1
+             },
+             {
+                "field":"diagnoses.mondo_term_keyword",
+                "type":"text",
+                "displayName":"Diagnoses Mondo Term Keyword",
                 "active":false,
                 "isArray":false,
                 "primaryKey":false,
