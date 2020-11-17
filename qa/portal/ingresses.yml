@@ -5,7 +5,7 @@ metadata:
   name: portal
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   tls:
     - hosts:
@@ -15,11 +15,28 @@ spec:
     - host: portal.qa.cqdg.ferlab.bio
       http:
         paths:
-          - path: /
+          - path: /(.*)
             backend:
               serviceName: portal
               servicePort: 80
-          - path: /arranger
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: arranger
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  tls:
+    - hosts:
+        - portal.qa.cqdg.ferlab.bio
+      secretName: letsencrypt-certificate
+  rules:
+    - host: portal.qa.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: "/arranger(/|$)(.*)"
             backend:
               serviceName: arranger-server
               servicePort: 5050

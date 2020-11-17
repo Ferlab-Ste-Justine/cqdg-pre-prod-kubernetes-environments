@@ -12,3 +12,5 @@ resources:
   - hive-metastore
   - portal
   - arranger
+  - logs
+  - fluentd
