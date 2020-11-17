@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - keycloak
-  - certificate
   - lectern
   - documentation
   - elasticsearch
