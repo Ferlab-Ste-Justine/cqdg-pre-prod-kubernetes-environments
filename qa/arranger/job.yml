@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-arranger
+  name: configure-arranger-19-11-2020
 spec:
   backoffLimit: 4
   template:
