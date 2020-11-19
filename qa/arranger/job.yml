@@ -7,11 +7,11 @@ spec:
   backoffLimit: 4
   template:
     metadata:
-      name: configure-arranger-19-11-2020
+      name: configure-arranger
     spec:
       restartPolicy: Never
       containers:
-        - name: configure-arranger-19-11-2020
+        - name: configure-arranger
           image: curlimages/curl
           command:
             - /bin/sh
@@ -23,9 +23,9 @@ spec:
               curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
           volumeMounts:
             - mountPath: /opt/curl-bodies
-              name: configure-arranger-19-11-2020
+              name: configure-arranger
               readOnly: true
       volumes:
-        - name: configure-arranger-19-11-2020
+        - name: configure-arranger
           configMap:
-            name: configure-arranger-19-11-2020
+            name: configure-arranger
