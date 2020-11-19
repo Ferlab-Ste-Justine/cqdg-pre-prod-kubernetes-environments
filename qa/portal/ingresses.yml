@@ -15,11 +15,11 @@ spec:
     - host: portal.qa.cqdg.ferlab.bio
       http:
         paths:
-          - path: /
-            backend:
-              serviceName: portal
-              servicePort: 80
           - path: /arranger
             backend:
               serviceName: arranger-server
               servicePort: 5050
+          - path: /.*
+            backend:
+              serviceName: portal
+              servicePort: 80
