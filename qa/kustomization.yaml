@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - keycloak
-  - certificate
   - lectern
   - documentation
   - elasticsearch
@@ -12,3 +11,6 @@ resources:
   - hive-metastore
   - portal
   - arranger
+  - logs
+  - fluentd
+  - certificate

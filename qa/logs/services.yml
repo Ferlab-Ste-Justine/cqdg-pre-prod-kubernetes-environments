@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: logs-kibana
+  name: logs-kibana
+spec:
+  ports:
+    - name: worker
+      port: 5601
+      protocol: TCP
+      targetPort: 5601
+  selector:
+    app: logs-kibana

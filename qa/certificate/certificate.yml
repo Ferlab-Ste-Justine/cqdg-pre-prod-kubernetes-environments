@@ -1,22 +1,24 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: letsencrypt
 spec:
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 4096
   dnsNames:
-  - qa.cqdg.ferlab.bio
-  - auth.qa.cqdg.ferlab.bio
-  - schema.qa.cqdg.ferlab.bio
-  - docs.qa.cqdg.ferlab.bio
-  - search.qa.cqdg.ferlab.bio
-  - qa.clin.ferlab.bio
-  - gene.qa.clin.ferlab.bio
-  - meta.qa.clin.ferlab.bio
-  - variant.qa.clin.ferlab.bio
-  - patient.qa.clin.ferlab.bio
-  - hpo.qa.clin.ferlab.bio
-  - fhir.qa.clin.ferlab.bio
-  - portal.qa.cqdg.ferlab.bio
-  keyAlgorithm: rsa
-  keyEncoding: pkcs1
-  keySize: 2048
+    - qa.cqdg.ferlab.bio
+    - auth.qa.cqdg.ferlab.bio
+    - schema.qa.cqdg.ferlab.bio
+    - docs.qa.cqdg.ferlab.bio
+    - search.qa.cqdg.ferlab.bio
+    - qa.clin.ferlab.bio
+    - gene.qa.clin.ferlab.bio
+    - meta.qa.clin.ferlab.bio
+    - variant.qa.clin.ferlab.bio
+    - patient.qa.clin.ferlab.bio
+    - hpo.qa.clin.ferlab.bio
+    - fhir.qa.clin.ferlab.bio
+    - portal.qa.cqdg.ferlab.bio
+    - logs.qa.cqdg.ferlab.bio
