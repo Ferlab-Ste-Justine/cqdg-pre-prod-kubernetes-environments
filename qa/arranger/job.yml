@@ -2,16 +2,16 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-arranger
+  name: configure-arranger-19-11-2020
 spec:
   backoffLimit: 4
   template:
     metadata:
-      name: configure-arranger
+      name: configure-arranger-19-11-2020
     spec:
       restartPolicy: Never
       containers:
-        - name: configure-arranger
+        - name: configure-arranger-19-11-2020
           image: curlimages/curl
           command:
             - /bin/sh
@@ -23,9 +23,9 @@ spec:
               curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
           volumeMounts:
             - mountPath: /opt/curl-bodies
-              name: configure-arranger
+              name: configure-arranger-19-11-2020
               readOnly: true
       volumes:
-        - name: configure-arranger
+        - name: configure-arranger-19-11-2020
           configMap:
-            name: configure-arranger
+            name: configure-arranger-19-11-2020

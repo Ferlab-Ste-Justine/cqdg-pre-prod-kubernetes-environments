@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: configure-arranger
+  name: configure-arranger-19-11-2020
   labels:
-    name: configure-arranger
+    name: configure-arranger-19-11-2020
 data:
   cqdg-entry: |
     {
