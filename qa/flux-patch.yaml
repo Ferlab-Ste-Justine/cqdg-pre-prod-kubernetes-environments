@@ -22,7 +22,7 @@ spec:
       $setElementOrder/containers:
       - name: docs
       containers:
-      - image: chusj/cqdg-docs:4679cb1f76481079a71ba0c6addfae6bab7d53bb
+      - image: chusj/cqdg-docs:55d0eca68a0cff49de14493d85c18ce13c7d42b7
         name: docs
 ---
 apiVersion: apps/v1
