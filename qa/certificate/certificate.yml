@@ -22,3 +22,4 @@ spec:
     - fhir.qa.clin.ferlab.bio
     - portal.qa.cqdg.ferlab.bio
     - logs.qa.cqdg.ferlab.bio
+    - notebook.qa.cqdg.ferlab.bio

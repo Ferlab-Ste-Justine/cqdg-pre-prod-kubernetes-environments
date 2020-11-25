@@ -5,6 +5,6 @@ resources:
   - ../cqdg-orchestrations/zeppelin
 
 patchesStrategicMerge:
-  - service.yml
   - deployment.yml
   - configs.yml
+  - ingress.yml
