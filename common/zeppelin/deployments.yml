@@ -25,9 +25,13 @@ spec:
           items:
           - key: nginx.conf
             path: nginx.conf
+      - name: interpreter-template
+        configMap:
+          name: zeppelin-template-override
+          defaultMode: 0555
       containers:
       - name: zeppelin-server
-        image: chusj/zeppelin:test
+        image: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8
         command: ["sh", "-c", "$(ZEPPELIN_HOME)/bin/zeppelin.sh"]
         lifecycle:
           preStop:
@@ -55,6 +59,10 @@ spec:
         envFrom:
         - configMapRef:
             name: zeppelin-server-conf-map
+        volumeMounts:
+        - name: interpreter-template
+          mountPath: /zeppelin/k8s/interpreter
+          readOnly: true
       # volumeMounts:
       #  - name: zeppelin-server-notebook-volume     # configure this to persist notebook
       #    mountPath: /zeppelin/notebook

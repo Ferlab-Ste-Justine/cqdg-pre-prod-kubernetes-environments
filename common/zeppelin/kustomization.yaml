@@ -8,3 +8,4 @@ resources:
   - configs.yml
   - deployments.yml
   - services.yml
+  - template-override.yml

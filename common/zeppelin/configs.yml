@@ -12,8 +12,8 @@ data:
   # Default value is 'local.zeppelin-project.org' while it points 127.0.0.1 and `kubectl port-forward zeppelin-server` will give localhost to connects.
   # If you have your ingress controller configured to connect to `zeppelin-server` service and have a domain name for it (with wildcard subdomain point the same address), you can replace serviceDomain field with your own domain.
   SERVICE_DOMAIN: notebook.qa.cqdg.ferlab.bio:8080
-  ZEPPELIN_K8S_SPARK_CONTAINER_IMAGE: chusj/spark:2b05281a31f7feb82716ca3b303d37a700a4bb3c
-  ZEPPELIN_K8S_CONTAINER_IMAGE: apache/zeppelin:0.9.0
+  ZEPPELIN_K8S_SPARK_CONTAINER_IMAGE: chusj/spark:c1eb6a27439a9f98828114e300f1b7ef447ffed8
+  ZEPPELIN_K8S_CONTAINER_IMAGE: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8
   ZEPPELIN_HOME: /zeppelin
   ZEPPELIN_SERVER_RPC_PORTRANGE: 12320:12320
   # default value of 'master' property for spark interpreter.
