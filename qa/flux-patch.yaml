@@ -35,7 +35,7 @@ spec:
       $setElementOrder/containers:
       - name: hive-metastore
       containers:
-      - image: chusj/hive-metastore:270c8e099c520055c0a497a5d552f2cf2f1b7986
+      - image: chusj/hive-metastore:c1eb6a27439a9f98828114e300f1b7ef447ffed8
         name: hive-metastore
 ---
 apiVersion: apps/v1
