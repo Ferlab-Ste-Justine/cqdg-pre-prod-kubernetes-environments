@@ -1,0 +1,11 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeppelin-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: zeppelin-server
+          image: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8

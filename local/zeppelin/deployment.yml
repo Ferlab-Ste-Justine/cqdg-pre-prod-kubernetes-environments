@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeppelin-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: zeppelin-server
+          image: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8
+          env:
+            - name: ZEPPELIN_NOTEBOOK_S3_BUCKET
+              value: notebooks
+            - name: ZEPPELIN_NOTEBOOK_S3_USER
+              value: zeppelin
+            - name: ZEPPELIN_NOTEBOOK_S3_ENDPOINT
+              value: http://minio:9000/notebooks
+            - name: AWS_ACCESS_KEY_ID
+              value: myaccess
+            - name: AWS_SECRET_ACCESS_KEY
+              value: mysecret

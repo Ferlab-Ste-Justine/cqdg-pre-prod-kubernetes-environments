@@ -5,3 +5,5 @@ resources:
   - elasticsearch
   - postgres
   - fluentd
+  - zeppelin
+  - minio

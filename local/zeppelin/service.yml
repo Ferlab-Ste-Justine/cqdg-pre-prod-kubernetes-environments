@@ -1,0 +1,16 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: zeppelin-server
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+    - name: rpc
+      port: 12320
+      targetPort: 12320
+      nodePort: 30320

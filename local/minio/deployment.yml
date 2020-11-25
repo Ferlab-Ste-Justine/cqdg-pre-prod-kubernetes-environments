@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: minio
+  name: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - image: minio/minio:RELEASE.2020-10-28T08-16-50Z
+          name: minio
+          env:
+            - name: MINIO_ACCESS_KEY
+              value: myaccess
+            - name: MINIO_SECRET_KEY
+              value: mysecret
+          command: 
+            - minio
+          args:
+            - server
+            - /data
