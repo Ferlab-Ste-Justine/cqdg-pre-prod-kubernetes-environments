@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - portal.qa.cqdg.ferlab.bio
-      secretName: letsencrypt-certificate
+      secretName: letsencrypt-certificate-temp
   rules:
     - host: portal.qa.cqdg.ferlab.bio
       http:
