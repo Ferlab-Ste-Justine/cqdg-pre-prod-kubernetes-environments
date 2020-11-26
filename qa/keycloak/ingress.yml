@@ -8,7 +8,7 @@ spec:
   tls:
     - hosts:
       - auth.qa.cqdg.ferlab.bio
-      secretName: letsencrypt-certificate
+      secretName: letsencrypt-certificate-temp
   rules:
     - host: auth.qa.cqdg.ferlab.bio
       http:
