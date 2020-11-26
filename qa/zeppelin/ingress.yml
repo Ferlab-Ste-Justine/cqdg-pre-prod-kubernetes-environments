@@ -12,7 +12,7 @@ spec:
   tls:
     - hosts:
       - notebook.qa.cqdg.ferlab.bio
-      secretName: letsencrypt-certificate-temp
+      secretName: letsencrypt-certificate
   rules:
     - host: notebook.qa.cqdg.ferlab.bio
       http:
