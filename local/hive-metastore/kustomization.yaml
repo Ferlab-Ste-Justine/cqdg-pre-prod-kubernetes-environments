@@ -2,11 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../../qa/cqdg-orchestrations/zeppelin
+  - ../../qa/cqdg-orchestrations/hive-metastore
   - configs.yml
+  - db.yml
   - secrets.yml
 
 patchesStrategicMerge:
-  - service.yml
-  - deployment.yml
-  - configs-patch.yml
+  - deployments.yml

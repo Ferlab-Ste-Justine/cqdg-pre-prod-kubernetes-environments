@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - ../cqdg-orchestrations/zeppelin
   - ingress.yml
+  - configs.yml
 
 patchesStrategicMerge:
   - deployment.yml
-  - configs.yml
+  - configs-patch.yml

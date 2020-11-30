@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: zeppelin-server
-          image: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8
+          image: chusj/zeppelin:7508c20ef44952f1ee2af91a26822b6efc10998f
           env:
             - name: ZEPPELIN_NOTEBOOK_S3_BUCKET
               value: notebooks
