@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hive-metastore-db
+  name: hive-metastore-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hive-metastore-db
+  template:
+    metadata:
+      labels:
+        app: hive-metastore-db
+    spec:
+      containers:
+        - image: postgres:12
+          name: hive-metastore-db
+          env:
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_PASSWORD
+              value: mypassword
+            - name: POSTGRES_DB
+              value: hive_metastore
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hive-metastore-db
+  name: hive-metastore-db
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: hive-metastore-db
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hive-metastore-db-credentials
+type: Opaque
+data:
+  password: bXlwYXNzd29yZA==
+  username: bXl1c2Vy
