@@ -4,5 +4,5 @@ metadata:
   name: zeppelin-server-conf-map
 data:
   SERVICE_DOMAIN: notebook.qa.cqdg.ferlab.bio:8080
-  ZEPPELIN_K8S_SPARK_CONTAINER_IMAGE: chusj/spark:c1eb6a27439a9f98828114e300f1b7ef447ffed8
-  ZEPPELIN_K8S_CONTAINER_IMAGE: chusj/zeppelin:c1eb6a27439a9f98828114e300f1b7ef447ffed8
+  ZEPPELIN_K8S_SPARK_CONTAINER_IMAGE: chusj/spark:7508c20ef44952f1ee2af91a26822b6efc10998f
+  ZEPPELIN_K8S_CONTAINER_IMAGE: chusj/zeppelin:7508c20ef44952f1ee2af91a26822b6efc10998f
