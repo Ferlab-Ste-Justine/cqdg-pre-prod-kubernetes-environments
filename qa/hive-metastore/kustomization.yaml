@@ -7,3 +7,4 @@ resources:
 
 patchesStrategicMerge:
   - deployments.yml
+  - service.yml
