@@ -19,5 +19,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: zeppelin-server
-            servicePort: 80
+            serviceName: zeppelin
+            servicePort: 6884
