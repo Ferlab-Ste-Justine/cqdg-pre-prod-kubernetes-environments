@@ -48,5 +48,5 @@ spec:
       $setElementOrder/containers:
       - name: portal
       containers:
-      - image: chusj/cqdg-portal-ui:2501f621d014bb630b3b09b1acd71f05a57283be
+      - image: chusj/cqdg-portal-ui:61ae75181ec064b2c1a941a44a9ab557d7e58add
         name: portal
