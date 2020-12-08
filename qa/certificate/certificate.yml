@@ -20,6 +20,7 @@ spec:
     - patient.qa.clin.ferlab.bio
     - hpo.qa.clin.ferlab.bio
     - fhir.qa.clin.ferlab.bio
+    - fhir-console.qa.clin.ferlab.bio
     - portal.qa.cqdg.ferlab.bio
     - logs.qa.cqdg.ferlab.bio
     - notebook.qa.cqdg.ferlab.bio
