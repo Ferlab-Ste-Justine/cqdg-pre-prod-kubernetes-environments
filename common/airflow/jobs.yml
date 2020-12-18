@@ -15,10 +15,6 @@ spec:
           configMap:
             name: airflow-config-kubernetes-template
             defaultMode: 0444
-        - name: dagbags
-          configMap:
-            name: airflow-dagbags
-            defaultMode: 0444
         - name: scripts
           configMap:
             name: airflow-scripts
@@ -33,9 +29,6 @@ spec:
             - name: pod-template-file
               mountPath: /opt/airflow/k8
               readOnly: true
-            - name: dagbags
-              mountPath: /opt/airflow/dags
-              readOnly: true
             - name: scripts
               mountPath: /opt/airflow/scripts
               readOnly: true
@@ -45,8 +38,6 @@ spec:
           env:
             - name: AIRFLOW__CORE__EXECUTOR
               value: KubernetesExecutor
-            - name: AIRFLOW__KUBERNETES__NAMESPACE
-              value: airflow
             - name: AIRFLOW__KUBERNETES__POD_TEMPLATE_FILE
               value: /opt/airflow/k8/airflow_template.yml
           envFrom:
@@ -66,6 +57,8 @@ spec:
                 name: airflow-config-email
             - configMapRef:
                 name: airflow-config-scheduler
+            - configMapRef:
+                name: airflow-config-kubernetes
             - secretRef:
                 name: airflow-smtp
             - secretRef:

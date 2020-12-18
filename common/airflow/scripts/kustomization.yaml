@@ -8,8 +8,3 @@ configMapGenerator:
       disableNameSuffixHash: true
     files:
       - airflow-init.py
-  - name: airflow-dagbags
-    options:
-      disableNameSuffixHash: true
-    files:
-      - dagbags.py

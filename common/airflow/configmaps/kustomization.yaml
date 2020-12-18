@@ -71,6 +71,11 @@ configMapGenerator:
       disableNameSuffixHash: true
     envs:
       - config-scheduler.env
+  - name: airflow-config-kubernetes
+    options:
+      disableNameSuffixHash: true
+    envs:
+      - config-kubernetes.env
   - name: airflow-config-kubernetes-template
     options:
       disableNameSuffixHash: true

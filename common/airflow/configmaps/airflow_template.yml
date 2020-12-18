@@ -33,6 +33,8 @@ spec:
             name: airflow-config-email
         - configMapRef:
             name: airflow-config-scheduler
+        - configMapRef:
+            name: airflow-config-kubernetes
         - secretRef:
             name: airflow-smtp
         - secretRef:
@@ -51,9 +53,6 @@ spec:
         - name: pod-template-file
           mountPath: /opt/airflow/k8
           readOnly: true
-        - name: dagbags
-          mountPath: /opt/airflow/dags
-          readOnly: true
         - name: secrets
           mountPath: /opt/airflow/secrets
           readOnly: true
@@ -71,10 +70,6 @@ spec:
     - name: pod-template-file
       configMap:
         name: airflow-config-kubernetes-template
-        defaultMode: 0444
-    - name: dagbags
-      configMap:
-        name: airflow-dagbags
         defaultMode: 0444
     - name: secrets
       secret:

@@ -2,6 +2,13 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: airflow-config-webserver
+data:
+  AIRFLOW__WEBSERVER__BASE_URL: http://localhost:30880
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: airflow-config-kubernetes-template
 data:
   airflow_template.yml: |
@@ -58,9 +65,6 @@ data:
             - name: pod-template-file
               mountPath: /opt/airflow/k8
               readOnly: true
-            - name: dagbags
-              mountPath: /opt/airflow/dags
-              readOnly: true
             - name: dagme
               mountPath: /opt/airflow/dags/dagme
               readOnly: true
@@ -84,10 +88,6 @@ data:
         - name: pod-template-file
           configMap:
             name: airflow-config-kubernetes-template
-            defaultMode: 0444
-        - name: dagbags
-          configMap:
-            name: airflow-dagbags
             defaultMode: 0444
         - name: dagme
           configMap:

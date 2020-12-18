@@ -22,7 +22,7 @@ spec:
             - name: dagme
               mountPath: /opt/airflow/dags/dagme
               readOnly: true
-            - name: dagme
+            - name: dagmetoo
               mountPath: /opt/airflow/dags/dagmetoo
               readOnly: true
 ---
@@ -49,6 +49,6 @@ spec:
             - name: dagme
               mountPath: /opt/airflow/dags/dagme
               readOnly: true
-            - name: dagme
+            - name: dagmetoo
               mountPath: /opt/airflow/dags/dagmetoo
               readOnly: true
