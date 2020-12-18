@@ -1,0 +1,195 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-scheduler
+  namespace: airflow
+  labels:
+    app: airflow-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: airflow-scheduler
+  template:
+    metadata:
+      labels:
+        app: airflow-scheduler
+    spec:
+      serviceAccountName: airflow
+      volumes:
+        - name: pod-template-file
+          configMap:
+            name: airflow-config-kubernetes-template
+            defaultMode: 0444
+        - name: dagbags
+          configMap:
+            name: airflow-dagbags
+            defaultMode: 0444
+        - name: secrets
+          secret:
+            secretName: airflow-secrets
+      containers:
+        - name: airflow-scheduler
+          image: apache/airflow:1.10.14-python3.7
+          volumeMounts:
+            - name: pod-template-file
+              mountPath: /opt/airflow/k8
+              readOnly: true
+            - name: dagbags
+              mountPath: /opt/airflow/dags
+              readOnly: true
+            - name: secrets
+              mountPath: /opt/airflow/secrets
+              readOnly: true
+          env:
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: KubernetesExecutor
+            - name: AIRFLOW__KUBERNETES__NAMESPACE
+              value: airflow
+            - name: AIRFLOW__KUBERNETES__POD_TEMPLATE_FILE
+              value: /opt/airflow/k8/airflow_template.yml
+          envFrom:
+            - configMapRef:
+                name: airflow-config-core
+            - configMapRef:
+                name: airflow-config-secrets
+            - configMapRef:
+                name: airflow-config-cli
+            - configMapRef:
+                name: airflow-config-api
+            - configMapRef:
+                name: airflow-config-operators
+            - configMapRef:
+                name: airflow-config-webserver
+            - configMapRef:
+                name: airflow-config-email
+            - configMapRef:
+                name: airflow-config-scheduler
+            - secretRef:
+                name: airflow-smtp
+            - secretRef:
+                name: airflow-fernet-key
+            - secretRef:
+                name: airflow-webserver-flask-key
+            - secretRef:
+                name: airflow-db-connection
+          command:
+            - airflow
+          args:
+            - scheduler
+          #We found this liveliness probe in an helm chart
+          #Not sure it won't restart the scheduler needlessly, but for now it is better 
+          #than having the scheduler hang or having it systematically restart at given intervals
+          livenessProbe:
+            initialDelaySeconds: 300
+            periodSeconds: 30
+            failureThreshold: 5
+            exec:
+              command:
+              - python
+              - -Wignore
+              - -c
+              - |
+                import os
+                os.environ['AIRFLOW__CORE__LOGGING_LEVEL'] = 'ERROR'
+                os.environ['AIRFLOW__LOGGING__LOGGING_LEVEL'] = 'ERROR'
+                from airflow.jobs.scheduler_job import SchedulerJob
+                from airflow.utils.net import get_hostname
+                import sys
+                job = SchedulerJob.most_recent_job()
+                sys.exit(0 if job.is_alive() and job.hostname == get_hostname() else 1)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-webserver
+  namespace: airflow
+  labels:
+    app: airflow-webserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: airflow-webserver
+  template:
+    metadata:
+      labels:
+        app: airflow-webserver
+    spec:
+      serviceAccountName: airflow
+      volumes:
+        - name: pod-template-file
+          configMap:
+            name: airflow-config-kubernetes-template
+            defaultMode: 0444
+        - name: dagbags
+          configMap:
+            name: airflow-dagbags
+            defaultMode: 0444
+        - name: secrets
+          secret:
+            secretName: airflow-secrets
+      containers:
+        - name: airflow-webserver
+          image: apache/airflow:1.10.14-python3.7
+          ports:
+            - name: web
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: pod-template-file
+              mountPath: /opt/airflow/k8
+              readOnly: true
+            - name: dagbags
+              mountPath: /opt/airflow/dags
+              readOnly: true
+            - name: secrets
+              mountPath: /opt/airflow/secrets
+              readOnly: true
+          env:
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: KubernetesExecutor
+            - name: AIRFLOW__KUBERNETES__NAMESPACE
+              value: airflow
+            - name: AIRFLOW__KUBERNETES__POD_TEMPLATE_FILE
+              value: /opt/airflow/k8/airflow_template.yml
+          envFrom:
+            - configMapRef:
+                name: airflow-config-core
+            - configMapRef:
+                name: airflow-config-secrets
+            - configMapRef:
+                name: airflow-config-cli
+            - configMapRef:
+                name: airflow-config-api
+            - configMapRef:
+                name: airflow-config-operators
+            - configMapRef:
+                name: airflow-config-webserver
+            - configMapRef:
+                name: airflow-config-email
+            - configMapRef:
+                name: airflow-config-scheduler
+            - secretRef:
+                name: airflow-smtp
+            - secretRef:
+                name: airflow-fernet-key
+            - secretRef:
+                name: airflow-webserver-flask-key
+            - secretRef:
+                name: airflow-db-connection
+          command:
+            - "airflow"
+          args:
+            - "webserver"
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: "/health"
+              port: web
+            initialDelaySeconds: 300
+            periodSeconds: 30
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 2

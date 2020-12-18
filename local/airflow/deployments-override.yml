@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-scheduler
+  namespace: airflow
+spec:
+  template:
+    spec:
+      volumes:
+        - name: dagme
+          configMap:
+            name: airflow-dag-me
+            defaultMode: 0444
+        - name: dagmetoo
+          configMap:
+            name: airflow-dag-me-too
+            defaultMode: 0444
+      containers:
+        - name: airflow-scheduler
+          volumeMounts:
+            - name: dagme
+              mountPath: /opt/airflow/dags/dagme
+              readOnly: true
+            - name: dagme
+              mountPath: /opt/airflow/dags/dagmetoo
+              readOnly: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-webserver
+  namespace: airflow
+spec:
+  template:
+    spec:
+      volumes:
+        - name: dagme
+          configMap:
+            name: airflow-dag-me
+            defaultMode: 0444
+        - name: dagmetoo
+          configMap:
+            name: airflow-dag-me-too
+            defaultMode: 0444
+      containers:
+        - name: airflow-webserver
+          volumeMounts:
+            - name: dagme
+              mountPath: /opt/airflow/dags/dagme
+              readOnly: true
+            - name: dagme
+              mountPath: /opt/airflow/dags/dagmetoo
+              readOnly: true
