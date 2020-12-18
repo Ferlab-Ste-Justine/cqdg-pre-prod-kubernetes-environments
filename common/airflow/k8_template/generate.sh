@@ -1,1 +1,0 @@
-docker run --rm -u 0 -v $(pwd):/opt/files -w /opt/airflow apache/airflow:1.10.14-python3.7 bash -c 'su - airflow -c "mkdir /home/airflow/airflow && cp /opt/files/airflow.cfg /home/airflow/airflow/ && airflow generate_pod_template" && cp /home/airflow/airflow_template.yml /opt/files/ && chown root:root /opt/files/airflow_template.yml'
