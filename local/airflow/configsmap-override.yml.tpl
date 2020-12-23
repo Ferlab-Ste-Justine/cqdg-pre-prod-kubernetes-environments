@@ -9,6 +9,43 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: airflow-config-kubernetes
+data:
+  AIRFLOW__KUBERNETES__DELETE_WORKER_PODS: "False"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-scripts
+data:
+  airflow-init.py: |
+    import subprocess
+
+    if __name__ == '__main__':
+        subprocess.check_call(['airflow', 'db', 'init'])
+        subprocess.check_call(
+            [
+                'airflow',
+                'users',
+                'create',
+                '--username',
+                'admin',
+                '--firstname',
+                'admin',
+                '--lastname',
+                'admin',
+                '--role',
+                'Admin',
+                '--email',
+                'admin@admin.admin',
+                '--password',
+                'admin'
+            ]
+        )
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
   name: airflow-config-kubernetes-template
 data:
   airflow_template.yml: |
@@ -22,6 +59,20 @@ data:
       labels:
         app: airflow-worker
     spec:
+      serviceAccountName: default
+      volumes:
+        - emptyDir: {}
+          name: airflow-logs
+        - name: pod-template-file
+          configMap:
+            name: airflow-config-kubernetes-template
+            defaultMode: 0444
+        - name: secrets
+          secret:
+            secretName: airflow-secrets
+        - name: dags
+          hostPath:
+            path: $CURRENT_DIR/dags
       containers:
         - args: []
           command: []
@@ -65,11 +116,8 @@ data:
             - name: pod-template-file
               mountPath: /opt/airflow/k8
               readOnly: true
-            - name: dagme
-              mountPath: /opt/airflow/dags/dagme
-              readOnly: true
-            - name: dagme
-              mountPath: /opt/airflow/dags/dagmetoo
+            - name: dags
+              mountPath: /opt/airflow/dags
               readOnly: true
             - name: secrets
               mountPath: /opt/airflow/secrets
@@ -81,22 +129,3 @@ data:
       restartPolicy: Never
       securityContext:
         runAsUser: 50000
-      serviceAccountName: default
-      volumes:
-        - emptyDir: {}
-          name: airflow-logs
-        - name: pod-template-file
-          configMap:
-            name: airflow-config-kubernetes-template
-            defaultMode: 0444
-        - name: dagme
-          configMap:
-            name: airflow-dag-me
-            defaultMode: 0444
-        - name: dagmetoo
-          configMap:
-            name: airflow-dag-me-too
-            defaultMode: 0444
-        - name: secrets
-          secret:
-            secretName: airflow-secrets

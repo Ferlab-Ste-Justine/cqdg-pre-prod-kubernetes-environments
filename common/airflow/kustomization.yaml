@@ -9,4 +9,3 @@ resources:
   - scripts
   - access.yml
   - namespace.yml
-  - jobs.yml
