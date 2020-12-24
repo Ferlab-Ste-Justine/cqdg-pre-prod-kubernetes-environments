@@ -1,1 +1,5 @@
 *.iml
+local/airflow/troubleshoot/*
+local/airflow/configsmap-override.yml
+local/airflow/deployments-override.yml
+local/airflow/deployments.yml
