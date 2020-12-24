@@ -8,3 +8,4 @@ configMapGenerator:
       disableNameSuffixHash: true
     files:
       - airflow-init.py
+      - manage-users.py

@@ -16,36 +16,6 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: airflow-scripts
-data:
-  airflow-init.py: |
-    import subprocess
-
-    if __name__ == '__main__':
-        subprocess.check_call(['airflow', 'db', 'init'])
-        subprocess.check_call(
-            [
-                'airflow',
-                'users',
-                'create',
-                '--username',
-                'admin',
-                '--firstname',
-                'admin',
-                '--lastname',
-                'admin',
-                '--role',
-                'Admin',
-                '--email',
-                'admin@admin.admin',
-                '--password',
-                'admin'
-            ]
-        )
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
   name: airflow-config-kubernetes-template
 data:
   airflow_template.yml: |
