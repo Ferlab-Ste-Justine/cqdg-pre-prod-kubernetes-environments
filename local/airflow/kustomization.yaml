@@ -5,6 +5,7 @@ resources:
   - ../../common/airflow
   - db.yml
   - secrets.yml
+  - deployments.yml
 
 patchesStrategicMerge:
   - services-override.yml
