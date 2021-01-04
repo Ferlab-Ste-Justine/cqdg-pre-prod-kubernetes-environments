@@ -31,14 +31,20 @@ spec:
         volumeMounts:
         - name: clin-keycloak-theme
           mountPath: /opt/clin-keycloak-theme
+        - name: airflow-dags
+          mountPath: /opt/airflow-dags
         - name: git-autosync-listing
           mountPath: /etc/git-autosync
       terminationGracePeriodSeconds: 10
       volumes:
-      - name: clin-keycloak-theme
-        hostPath:
-          path: /opt/clin-keycloak-theme
-          type: DirectoryOrCreate
-      - name: git-autosync-listing
-        configMap:
-          name: git-autosync-listing
+        - name: clin-keycloak-theme
+          hostPath:
+            path: /opt/clin-keycloak-theme
+            type: DirectoryOrCreate
+        - name: airflow-dags
+          hostpath:
+            path: /opt/airflow-dags
+            type: DirectoryOrCreate
+        - name: git-autosync-listing
+          configMap:
+            name: git-autosync-listing
