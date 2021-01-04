@@ -14,6 +14,9 @@ jobs:
     - name: Kustomize Build on QA
       run: kustomize build .
       working-directory: qa
+    - name: Generate Local Airflow Manifest Files
+      run: ./generate_manifests.sh
+      working-directory: local/airflow
     - name: Kustomize Build on local
       run: kustomize build .
       working-directory: local
