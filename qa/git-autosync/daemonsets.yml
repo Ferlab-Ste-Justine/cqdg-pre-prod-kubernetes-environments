@@ -42,7 +42,7 @@ spec:
             path: /opt/clin-keycloak-theme
             type: DirectoryOrCreate
         - name: airflow-dags
-          hostpath:
+          hostPath:
             path: /opt/airflow-dags
             type: DirectoryOrCreate
         - name: git-autosync-listing
