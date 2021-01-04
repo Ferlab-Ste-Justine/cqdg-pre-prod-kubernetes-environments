@@ -1,4 +1,4 @@
 export CURRENT_DIR=$(pwd);
-envsubst '$CURRENT_DIR' < configsmap-override.yml.tpl > configsmap-override.yml;
-envsubst '$CURRENT_DIR' < deployments-override.yml.tpl > deployments-override.yml;
-envsubst '$CURRENT_DIR' < deployments.yml.tpl > deployments.yml
+sed -e "s|\$CURRENT_DIR|$CURRENT_DIR|g" configsmap-override.yml.tpl > configsmap-override.yml;
+sed -e "s|\$CURRENT_DIR|$CURRENT_DIR|g" deployments-override.yml.tpl > deployments-override.yml;
+sed -e "s|\$CURRENT_DIR|$CURRENT_DIR|g" deployments.yml.tpl > deployments.yml;
