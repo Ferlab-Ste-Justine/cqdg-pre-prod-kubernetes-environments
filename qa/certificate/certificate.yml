@@ -24,3 +24,4 @@ spec:
     - portal.qa.cqdg.ferlab.bio
     - logs.qa.cqdg.ferlab.bio
     - notebook.qa.cqdg.ferlab.bio
+    - jobs.qa.cqdg.ferlab.bio
