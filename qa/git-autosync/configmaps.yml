@@ -9,5 +9,10 @@ data:
           "path": "/opt/clin-keycloak-theme",
           "repo": "https://github.com/Ferlab-Ste-Justine/clin-keycloak-theme.git",
           "branch": "master"
+      },
+      {
+          "path": "/opt/airflow-dags/cqdg",
+          "repo": "https://github.com/Ferlab-Ste-Justine/cqdg-dags.git",
+          "branch": "main"
       }
     ]

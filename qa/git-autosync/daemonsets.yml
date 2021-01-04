@@ -14,31 +14,37 @@ spec:
         name: git-autosync
     spec:
       containers:
-      - name: git-autosync
-        image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
-        env:
-        - name: SCRAPE_INTERVAL
-          value: "120000"
-        - name: LISTING_PATH
-          value: "/etc/git-autosync/listing.json"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "0.50"
-          requests:
-            memory: "64Mi"
-            cpu: "0.10"
-        volumeMounts:
-        - name: clin-keycloak-theme
-          mountPath: /opt/clin-keycloak-theme
-        - name: git-autosync-listing
-          mountPath: /etc/git-autosync
+        - name: git-autosync
+          image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
+          env:
+            - name: SCRAPE_INTERVAL
+              value: "120000"
+            - name: LISTING_PATH
+              value: "/etc/git-autosync/listing.json"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "0.50"
+            requests:
+              memory: "64Mi"
+              cpu: "0.10"
+          volumeMounts:
+            - name: clin-keycloak-theme
+              mountPath: /opt/clin-keycloak-theme
+            - name: airflow-dags
+              mountPath: /opt/airflow-dags
+            - name: git-autosync-listing
+              mountPath: /etc/git-autosync
       terminationGracePeriodSeconds: 10
       volumes:
-      - name: clin-keycloak-theme
-        hostPath:
-          path: /opt/clin-keycloak-theme
-          type: DirectoryOrCreate
-      - name: git-autosync-listing
-        configMap:
-          name: git-autosync-listing
+        - name: clin-keycloak-theme
+          hostPath:
+            path: /opt/clin-keycloak-theme
+            type: DirectoryOrCreate
+        - name: airflow-dags
+          hostpath:
+            path: /opt/airflow-dags
+            type: DirectoryOrCreate
+        - name: git-autosync-listing
+          configMap:
+            name: git-autosync-listing
