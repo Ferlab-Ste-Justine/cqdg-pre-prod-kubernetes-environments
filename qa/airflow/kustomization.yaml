@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../cqdg-orchestrations/airflow
   - ingress.yml
+  - access.yml
 
 patchesStrategicMerge:
   - deployments-override.yml
