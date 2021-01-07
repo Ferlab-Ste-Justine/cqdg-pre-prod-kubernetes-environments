@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-backup
+  namespace: airflow
+data:
+  S3_ENDPOINT: http://minio.default.svc.cluster.local:9000
+  S3_BUCKET: keycloak-backups
+  S3_REGION: myregion
+  DB: keycloak
+  DB_HOST: keycloak-db.default.svc.cluster.local
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: keycloak-db-credentials
+  namespace: airflow
+stringData:
+  username: myuser
+  password: mypassword
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: s3-credentials
+  namespace: airflow
+stringData:
+  S3_ACCESS_KEY: myaccess
+  S3_SECRET_KEY: mysecret
+

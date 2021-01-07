@@ -6,6 +6,7 @@ resources:
   - db.yml
   - secrets.yml
   - deployments.yml
+  - keycloak-backups.yml
 
 patchesStrategicMerge:
   - services-override.yml
