@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../cqdg-orchestrations/airflow
+  - dag-configs
   - ingress.yml
   - access.yml
 
