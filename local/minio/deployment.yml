@@ -22,6 +22,8 @@ spec:
               value: myaccess
             - name: MINIO_SECRET_KEY
               value: mysecret
+            - name: MINIO_REGION_NAME
+              value: myregion
           command: 
             - minio
           args:
