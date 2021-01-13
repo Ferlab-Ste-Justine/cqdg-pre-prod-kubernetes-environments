@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
+    - uses: actions/checkout@v2
     - name: Generate Local Airflow Manifest Files
       run: ./generate_manifests.sh
       working-directory: local/airflow
