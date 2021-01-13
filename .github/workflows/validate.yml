@@ -31,6 +31,8 @@ jobs:
     container: fluxcd/flux:1.21.0
     steps:
     - uses: actions/checkout@v2
+    - name: Get git submodules
+      run: git submodule init && git submodule update
     - name: Generate Local Airflow Manifest Files
       run: ./generate_manifests.sh
       working-directory: local/airflow
