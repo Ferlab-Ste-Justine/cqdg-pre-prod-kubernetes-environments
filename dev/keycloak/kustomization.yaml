@@ -5,7 +5,7 @@ namespace: dev
 
 resources:
   - ../cqdg-orchestrations/keycloak-v11
+  - ingress.yml
 
 patchesStrategicMerge:
-  - ingress.yml
   - clin-theme.yml

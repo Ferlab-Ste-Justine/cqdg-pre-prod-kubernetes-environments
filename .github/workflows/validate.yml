@@ -15,7 +15,7 @@ jobs:
       run: kustomize build .
       working-directory: qa
   dev:
-    name: Validate Qa Manifests
+    name: Validate Dev Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
