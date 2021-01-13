@@ -5,5 +5,5 @@ resources:
   - ../cqdg-orchestrations/letsencrypt/genuine
 
 patchesStrategicMerge:
-- issuers.yml
-- certificate.yml
+  - issuers.yml
+  - certificate.yml

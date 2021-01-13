@@ -1,9 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: dev
+
 resources:
-  - ../cqdg-orchestrations/keycloak-v10
+  - ../cqdg-orchestrations/keycloak-v11
+  - ingress.yml
 
 patchesStrategicMerge:
-  - ingress.yml
   - clin-theme.yml
