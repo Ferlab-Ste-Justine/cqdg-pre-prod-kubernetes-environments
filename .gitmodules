@@ -2,3 +2,6 @@
 	path = qa/cqdg-orchestrations
 	url = https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
 	branch = master
+[submodule "dev/cqdg-orchestrations"]
+	path = dev/cqdg-orchestrations
+	url = https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
