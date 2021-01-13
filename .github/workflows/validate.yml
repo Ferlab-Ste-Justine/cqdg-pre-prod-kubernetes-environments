@@ -3,17 +3,33 @@ name: Validate Manifests
 on: [push]
 
 jobs:
-  Deploy:
-    name: Validate Manifests
+  qa:
+    name: Validate Qa Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
     - uses: actions/checkout@v2
     - name: Get git submodules
       run: git submodule init && git submodule update
-    - name: Kustomize Build on QA
+    - name: Kustomize Build on qa
       run: kustomize build .
       working-directory: qa
+  dev:
+    name: Validate Qa Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get git submodules
+      run: git submodule init && git submodule update
+    - name: Kustomize Build on dev
+      run: kustomize build .
+      working-directory: dev
+  local:
+    name: Validate Local Manifests
+    runs-on: ubuntu-18.04
+    container: fluxcd/flux:1.21.0
+    steps:
     - name: Generate Local Airflow Manifest Files
       run: ./generate_manifests.sh
       working-directory: local/airflow
