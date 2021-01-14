@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: keycloak
+          env:
+            #Default prod-friendly value with 3 keycloaks replicas
+            #load-balanced behind a reverse proxy
+            - name: PROXY_ADDRESS_FORWARDING
+              value: "false"
+            - name: JGROUPS_DISCOVERY_PROTOCOL
+              value: dns.DNS_PING
+            - name: JGROUPS_DISCOVERY_PROPERTIES
+              value: 'dns_query={{ include "keycloak.serviceDnsName" . }}'
+            - name: CACHE_OWNERS_COUNT
+              value: "1"
+            - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+              value: "1"
