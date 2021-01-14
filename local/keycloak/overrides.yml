@@ -9,8 +9,6 @@ spec:
       containers:
         - name: keycloak
           env:
-            #Default prod-friendly value with 3 keycloaks replicas
-            #load-balanced behind a reverse proxy
             - name: PROXY_ADDRESS_FORWARDING
               value: "false"
             - name: JGROUPS_DISCOVERY_PROTOCOL
