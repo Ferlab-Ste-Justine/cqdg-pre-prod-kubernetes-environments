@@ -3,5 +3,8 @@
 set -e
 
 cp -r /opt/ssh/. /root/.ssh;
-git clone ${GIT_REPO} . /opt/terraform;
-git checkout ${GIT_BRANCH};
+git clone ${GIT_REPO} /opt/terraform;
+(
+    cd /opt/terraform;
+    git checkout ${GIT_BRANCH};
+)
