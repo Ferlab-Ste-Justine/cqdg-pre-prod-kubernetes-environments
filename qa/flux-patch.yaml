@@ -61,6 +61,11 @@ spec:
     spec:
       $setElementOrder/containers:
       - name: git-autosync
+      $setElementOrder/initContainers:
+      - name: git-autosync-init
       containers:
       - image: chusj/git-autosync:37ed929623b381597b3ece56d2aa46bfb5a290f5
         name: git-autosync
+      initContainers:
+      - image: chusj/git-autosync:37ed929623b381597b3ece56d2aa46bfb5a290f5
+        name: git-autosync-init
