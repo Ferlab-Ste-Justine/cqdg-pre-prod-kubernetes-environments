@@ -14,6 +14,15 @@ spec:
       labels:
         name: git-autosync
     spec:
+      initContainers:
+        - image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
+          name: git-autosync-init
+          command: ["cp", "-r", "/opt/ssh/.", "/root/.ssh"]
+          volumeMounts:
+            - name: ssh-key
+              mountPath: /opt/ssh
+            - name: root-ssh
+              mountPath: /root/.ssh
       containers:
         - name: git-autosync
           image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
@@ -36,7 +45,7 @@ spec:
               mountPath: /opt/cqdg-keycloak-configs
             - name: git-autosync-listing
               mountPath: /etc/git-autosync
-            - name: ssh-key
+            - name: root-ssh
               mountPath: /root/.ssh
       terminationGracePeriodSeconds: 10
       volumes:
@@ -55,6 +64,8 @@ spec:
           secret:
             secretName: git-autosync-ssh-key
             defaultMode: 0400
+        - name: root-ssh
+          emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: DaemonSet
