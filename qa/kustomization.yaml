@@ -16,3 +16,4 @@ resources:
   - certificate
   - zeppelin
   - airflow
+  - terraform
