@@ -1,0 +1,74 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: configure-keycloak
+  namespace: terraform
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: ssh-key
+              secret:
+                secretName: git-autosync-ssh-key
+                defaultMode: 0400
+            - name: terraform-scripts
+              configMap:
+                name: terraform-scripts
+                defaultMode: 0555
+            - name: keycloak-configs-provider
+              secret:
+                secretName: keycloak-configs-provisioner
+                defaultMode: 0555
+            - name: keycloak-configs-backend
+              secret:
+                secretName: keycloak-configs-backend
+                defaultMode: 0555
+            - name: ca-certificate
+              secret:
+                secretName: ca-certificate
+                defaultMode: 0555
+            - name: terraform
+              emptyDir: {}
+          initContainers:
+            - image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
+              name: clone-repo
+              env:
+                - name: GIT_REPO
+                  value: git@github.com:Ferlab-Ste-Justine/cqdg-keycloak-configs.git
+                - name: GIT_BRANCH
+                  value: main
+              command: ["/opt/scripts/clone.sh"]
+              volumeMounts:
+                - name: ssh-key
+                  mountPath: /opt/ssh
+                  readOnly: true
+                - name: terraform-scripts
+                  mountPath: /opt/scripts
+                  readOnly: true
+                - name: terraform
+                  mountPath: /opt/terraform
+          containers:
+            - image: hashicorp/terraform:0.14.4
+              name: configure
+              command: ["/opt/scripts/apply.sh"]
+              volumeMounts:
+                - name: terraform
+                  mountPath: /opt/terraform
+                - name: terraform-scripts
+                  mountPath: /opt/scripts
+                  readOnly: true
+                - name: keycloak-configs-provider
+                  mountPath: /opt/providers
+                  readOnly: true
+                - name: keycloak-configs-backend
+                  mountPath: /opt/backend
+                  readOnly: true
+                - name: ca-certificate
+                  mountPath: /opt/ca
+                  readOnly: true
