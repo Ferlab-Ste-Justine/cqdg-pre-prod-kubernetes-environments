@@ -9,3 +9,11 @@ resources:
 
 patchesStrategicMerge:
   - clin-theme.yml
+  - jars.yml
+
+configMapGenerator:
+  - name: jars-list
+    options:
+      disableNameSuffixHash: true
+    files:
+      - jars_list.json

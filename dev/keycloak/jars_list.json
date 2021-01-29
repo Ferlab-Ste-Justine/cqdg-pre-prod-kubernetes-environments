@@ -1,0 +1,10 @@
+{
+    "cqdg-keycloak-themes.jar": {
+        "version": "latest",
+        "path": "/opt/jboss/keycloak/standalone/deployments/cqdg-keycloak-themes.jar"
+    },
+    "cqdg-keycloak-hooks.jar": {
+        "version": "latest",
+        "path": "/opt/jboss/keycloak/providers/cqdg-keycloak-hooks.jar"
+    }
+}
