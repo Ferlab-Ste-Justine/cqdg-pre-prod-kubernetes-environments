@@ -8,3 +8,10 @@ resources:
 
 patchesStrategicMerge:
   - clin-theme.yml
+
+configMapGenerator:
+  - name: keycloak-build-artifacts
+    options:
+      disableNameSuffixHash: true
+    files:
+      - build_list.json
