@@ -6,7 +6,46 @@ spec:
   replicas: 1
   template:
     spec:
+      volumes:
+        - name: jars-list
+          configMap:
+            name: jars-list
+            defaultMode: 0444
+        - name: keycloak-themes
+          emptyDir: {}
+        - name: keycloak-spis
+          emptyDir: {}
+        - name: download-dir
+          emptyDir: {}
       containers:
+        - name: auto-updater
+          image: chusj/binary-artifacts:ddc6235e3ac37a8900f3e66192ef2800a14e4152
+          imagePullPolicy: IfNotPresent
+          command: ["python", "/opt/scripts/auto_update.py"]
+          volumeMounts:
+            - name: jars-list
+              mountPath: /opt/jar-list
+              readOnly: true
+            - name: keycloak-themes
+              mountPath: /opt/jboss/keycloak/standalone/deployments
+            - name: keycloak-spis
+              mountPath: /opt/jboss/keycloak/providers
+            - name: download-dir
+              mountPath: /opt/temp
+          envFrom:
+            - secretRef:
+                name: s3-credentials
+          env:
+            - name: S3_ENDPOINT
+              value: http://minio:9000
+            - name: S3_REGION
+              value: myregion
+            - name: BINARY_LIST_PATH
+              value: /opt/jar-list/jars_list.json
+            - name: DOWNLOAD_PATH
+              value: /opt/temp
+            - name: LOG_LEVEL
+              value: DEBUG
         - name: keycloak
           env:
             - name: PROXY_ADDRESS_FORWARDING
@@ -19,3 +58,8 @@ spec:
               value: "1"
             - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
               value: "1"
+          volumeMounts:
+            - name: keycloak-themes
+              mountPath: /opt/jboss/keycloak/standalone/deployments
+            - name: keycloak-spis
+              mountPath: /opt/jboss/keycloak/providers

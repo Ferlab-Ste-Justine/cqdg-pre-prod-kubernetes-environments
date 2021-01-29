@@ -1,0 +1,4 @@
+{
+    "cqdg-keycloak-hooks.jar": "/opt/repo/target/standalone/deployments/cqdg-keycloak-hooks.jar",
+    "cqdg-keycloak-themes.jar": "/opt/repo/target/standalone/deployments/cqdg-keycloak-themes.jar"
+}
