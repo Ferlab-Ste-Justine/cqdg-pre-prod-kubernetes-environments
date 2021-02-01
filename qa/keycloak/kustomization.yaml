@@ -8,4 +8,4 @@ resources:
 
 patchesStrategicMerge:
   - clin-theme.yml
-  - jars
+  - jars.yml
