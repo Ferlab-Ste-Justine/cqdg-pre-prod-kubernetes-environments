@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - ../cqdg-orchestrations/keycloak-v11
+  - ../cqdg-orchestrations/keycloak-with-jar-autodeploy
   - ingress.yml
 
 patchesStrategicMerge:
