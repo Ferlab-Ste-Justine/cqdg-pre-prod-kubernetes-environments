@@ -14,7 +14,7 @@ spec:
                 - name: GIT_REPO
                   value: https://github.com/Ferlab-Ste-Justine/cqdg-keycloak.git
                 - name: GIT_BRANCH
-                  value: main
+                  value: test
                 - name: S3_ENDPOINT
                   value: https://esc.calculquebec.ca:8080
                 - name: S3_REGION
@@ -22,10 +22,6 @@ spec:
           containers:
             - name: push
               env:
-                - name: GIT_REPO
-                  value: https://github.com/Ferlab-Ste-Justine/cqdg-keycloak.git
-                - name: GIT_BRANCH
-                  value: main
                 - name: S3_ENDPOINT
                   value: https://esc.calculquebec.ca:8080
                 - name: S3_REGION
