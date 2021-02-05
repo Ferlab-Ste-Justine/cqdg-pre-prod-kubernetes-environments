@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   ops:
-    name: Validate Qa Manifests
+    name: Validate Ops Manifests
     runs-on: ubuntu-18.04
     container: fluxcd/flux:1.21.0
     steps:
