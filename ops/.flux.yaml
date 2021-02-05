@@ -1,0 +1,7 @@
+version: 1
+patchUpdated:
+  generators:
+    - command: git submodule init
+    - command: git submodule update
+    - command: kustomize build .
+  patchFile: flux-patch.yaml
