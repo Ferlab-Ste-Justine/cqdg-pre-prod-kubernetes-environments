@@ -9,4 +9,4 @@ spec:
     size: 4096
   dnsNames:
     - ops.cqdg.ferlab.bio
-    - container-registry.ops.cqdg.ferlab.bio
+    - s3.ops.cqdg.ferlab.bio
