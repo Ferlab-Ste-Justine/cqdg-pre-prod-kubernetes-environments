@@ -38,7 +38,7 @@ spec:
               mountPath: /etc/git-autosync
       terminationGracePeriodSeconds: 10
       imagePullSecrets:
-        - images-pull
+        - name: images-pull
       volumes:
         - name: clin-keycloak-theme
           hostPath:
