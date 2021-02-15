@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: git-autosync
-          image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
+          image: ferlabcrsj/git-autosync:10d22c3cab424f19ba9ffc2287aa96170195b27a
           env:
             - name: SCRAPE_INTERVAL
               value: "120000"
@@ -37,6 +37,8 @@ spec:
             - name: git-autosync-listing
               mountPath: /etc/git-autosync
       terminationGracePeriodSeconds: 10
+      imagePullSecrets:
+        - name: images-pull
       volumes:
         - name: clin-keycloak-theme
           hostPath:
