@@ -14,7 +14,7 @@ spec:
               value: "logs-store.default.svc.cluster.local"
           resources:
             limits:
-              memory: 400Mi
+              memory: 1Gi
             requests:
               cpu: 100m
-              memory: 400Mi
+              memory: 1Gi
