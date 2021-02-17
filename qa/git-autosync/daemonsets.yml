@@ -14,6 +14,8 @@ spec:
       labels:
         name: git-autosync
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
         - name: git-autosync
           image: ferlabcrsj/git-autosync:10d22c3cab424f19ba9ffc2287aa96170195b27a
@@ -37,8 +39,6 @@ spec:
             - name: git-autosync-listing
               mountPath: /etc/git-autosync
       terminationGracePeriodSeconds: 10
-      imagePullSecrets:
-        - name: images-pull
       volumes:
         - name: clin-keycloak-theme
           hostPath:

@@ -8,6 +8,8 @@ spec:
     spec:
       template:
         spec:
+          imagePullSecrets:
+            - name: images-pull
           initContainers:
             - name: plan
               env:

@@ -6,3 +6,8 @@ metadata:
   labels:
     name: hive-metastore
   name: hive-metastore
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
