@@ -16,8 +16,10 @@ spec:
       labels:
         app: lectern
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
-      - image: chusj/lectern:d4b97eb
+      - image: ferlabcrsj/lectern:04dd64271b11a8cca6cdb3b20630e51a5c38d4c8
         name: lectern
         resources:
           requests:
