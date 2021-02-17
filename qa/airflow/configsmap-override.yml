@@ -23,6 +23,8 @@ data:
         app: airflow-worker
     spec:
       serviceAccountName: airflow
+      imagePullSecrets:
+        - name: images-pull
       volumes:
         - emptyDir: {}
           name: airflow-logs
