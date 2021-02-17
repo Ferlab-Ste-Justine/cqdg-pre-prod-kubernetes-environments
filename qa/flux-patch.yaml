@@ -1,0 +1,13 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hive-metastore
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: hive-metastore
+      containers:
+      - image: ferlabcrsj/hive-metastore:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
+        name: hive-metastore
