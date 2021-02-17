@@ -15,8 +15,10 @@ spec:
       labels:
         app: portal
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
-        - image: chusj/cqdg-portal-ui:__UNDEFINED__
+        - image: ferlabcrsj/cqdg-portal-ui:__UNDEFINED__
           name: portal
           resources:
             requests:
