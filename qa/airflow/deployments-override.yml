@@ -7,6 +7,8 @@ metadata:
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: images-pull
       volumes:
         - name: dags
           hostPath:
@@ -26,6 +28,8 @@ metadata:
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: images-pull
       volumes:
         - name: dags
           hostPath:

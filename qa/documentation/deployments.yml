@@ -16,8 +16,10 @@ spec:
       labels:
         app: docs
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
-      - image: chusj/cqdg-docs:361327741c708de94815e7d27c8b4ab5ed2cb4b3
+      - image: ferlabcrsj/cqdg-docs:356505991cd05fa218e8808867da6140737e5f8f
         name: docs
         resources:
           requests:
