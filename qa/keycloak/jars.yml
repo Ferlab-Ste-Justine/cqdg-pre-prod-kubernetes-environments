@@ -5,6 +5,8 @@ metadata:
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
         - name: auto-updater
           env:

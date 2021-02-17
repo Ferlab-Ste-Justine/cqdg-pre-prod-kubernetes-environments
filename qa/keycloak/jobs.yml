@@ -11,6 +11,8 @@ spec:
     spec:
       template:
         spec:
+          imagePullSecrets:
+            - name: images-pull
           restartPolicy: Never
           volumes:
             - name: ssh-key
@@ -36,7 +38,7 @@ spec:
             - name: terraform
               emptyDir: {}
           initContainers:
-            - image: chusj/git-autosync:6fa17f93dbc937488237fe79e18d4b52025a4eb9
+            - image: ferlabcrsj/git-autosync:10d22c3cab424f19ba9ffc2287aa96170195b27a
               name: clone-repo
               env:
                 - name: GIT_REPO
