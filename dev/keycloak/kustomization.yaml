@@ -4,16 +4,9 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - ../cqdg-orchestrations/keycloak-with-jar-autodeploy
+  - ../cqdg-orchestrations/keycloak
   - ingress.yml
 
 patchesStrategicMerge:
   - clin-theme.yml
   - jars.yml
-
-configMapGenerator:
-  - name: jars-list
-    options:
-      disableNameSuffixHash: true
-    files:
-      - jars_list.json
