@@ -9,4 +9,4 @@ resources:
 
 patchesStrategicMerge:
   - clin-theme.yml
-  - jars.yml
+  - cqdg-keycloak.yml
