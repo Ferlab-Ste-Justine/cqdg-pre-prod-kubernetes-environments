@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
+  name: keycloak
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - name: keycloak
+          image: ferlabcrsj/cqdg-keycloak:1c259e9380d4d8ac0391d293c7267c1f7cb81178
