@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
   - keycloak
-  - keycloak-jars-to-s3-job
   - lectern
   - documentation
   - elasticsearch
