@@ -61,6 +61,11 @@ spec:
             - image: hashicorp/terraform:0.14.4
               name: configure
               command: ["/opt/scripts/apply.sh"]
+              envFrom:
+                - secretRef:
+                    name: terraform-smtp-credentials
+                - secretRef:
+                    name: terraform-recaptcha-credentials
               volumeMounts:
                 - name: terraform
                   mountPath: /opt/terraform
