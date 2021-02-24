@@ -29,7 +29,7 @@ data:
       labels:
         app: airflow-worker
     spec:
-      serviceAccountName: default
+      serviceAccountName: airflow
       volumes:
         - emptyDir: {}
           name: airflow-logs
