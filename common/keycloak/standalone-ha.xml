@@ -152,6 +152,9 @@
             <deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" runtime-failure-causes-rollback="${jboss.deployment.scanner.rollback.on.failure:false}"/>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:ee:5.0">
+            <global-modules>
+                <module name="org.keycloak.keycloak-services"/>
+            </global-modules>
             <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
             <concurrent>
                 <context-services>
