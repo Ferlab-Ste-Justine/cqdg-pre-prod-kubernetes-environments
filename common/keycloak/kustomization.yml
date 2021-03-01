@@ -7,4 +7,4 @@ configMapGenerator:
     files:
       - standalone-ha.xml
     options:
-      disableNameSuffixHash: true
+      disableNameSuffixHash: false
