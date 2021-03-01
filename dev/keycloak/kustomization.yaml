@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: dev
 
 resources:
+  - ../../common/keycloak
   - ../cqdg-orchestrations/keycloak
   - ingress.yml
 
