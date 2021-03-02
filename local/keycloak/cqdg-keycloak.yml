@@ -7,12 +7,4 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: ferlabcrsj/cqdg-keycloak:59edb2d91e23a495a058b417a3144876d3660da6
-          volumeMounts:	
-            - name: keycloak-standalone	
-              mountPath: /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml	
-              subPath: standalone-ha.xml
-      volumes:
-        - name: keycloak-standalone
-          configMap:
-            name: keycloak-standalone
+          image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
