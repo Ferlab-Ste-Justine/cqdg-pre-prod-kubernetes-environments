@@ -2,17 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - ../../common/keycloak
   - ../cqdg-orchestrations/keycloak
   - db.yml
   - services.yml
   - secrets.yml
 
 patchesStrategicMerge:
+  - cqdg-keycloak.yml
   - overrides.yml
-
-configMapGenerator:
-  - name: jars-list
-    options:
-      disableNameSuffixHash: true
-    files:
-      - jars_list.json
