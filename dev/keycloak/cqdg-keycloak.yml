@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  annotations:	
+    fluxcd.io/automated: 'true'
   name: keycloak
 spec:
   template:
@@ -10,6 +12,10 @@ spec:
       containers:
         - name: keycloak
           image: ferlabcrsj/cqdg-keycloak:1c259e9380d4d8ac0391d293c7267c1f7cb81178
+          volumeMounts:	
+            - name: keycloak-standalone	
+              mountPath: /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml	
+              subPath: standalone-ha.xml
       volumes:
         - name: keycloak-standalone
           configMap:
