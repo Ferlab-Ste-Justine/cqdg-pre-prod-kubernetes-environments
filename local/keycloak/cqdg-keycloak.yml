@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      containers:
+        - name: keycloak
+          image: ferlabcrsj/cqdg-keycloak:e41ead98c4cd52067c6d4128fc22a00f86180802
+          volumeMounts:	
+            - name: keycloak-standalone	
+              mountPath: /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml	
+              subPath: standalone-ha.xml
+      volumes:
+        - name: keycloak-standalone
+          configMap:
+            name: keycloak-standalone
