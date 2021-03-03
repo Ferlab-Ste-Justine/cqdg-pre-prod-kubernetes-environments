@@ -11,3 +11,16 @@ spec:
       containers:
       - image: ferlabcrsj/hive-metastore:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
         name: hive-metastore
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: keycloak
+      containers:
+      - image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
+        name: keycloak
