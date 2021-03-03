@@ -66,6 +66,8 @@ spec:
                     name: terraform-smtp-credentials
                 - secretRef:
                     name: terraform-recaptcha-credentials
+                - secretRef:
+                    name: terraform-keycloak-provider-credentials
               volumeMounts:
                 - name: terraform
                   mountPath: /opt/terraform
