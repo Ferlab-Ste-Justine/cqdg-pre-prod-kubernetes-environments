@@ -2,19 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arranger-server
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: arranger-server
-      containers:
-      - image: ferlabcrsj/cqdg-arranger:fefe3e8d03c33046e929e63f573cc8d2c8408c58
-        name: arranger-server
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: hive-metastore
 spec:
   template:
