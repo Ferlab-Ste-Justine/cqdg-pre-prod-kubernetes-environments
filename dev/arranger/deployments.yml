@@ -12,7 +12,7 @@ spec:
       imagePullSecrets:
         - name: images-pull
       containers:
-        - image: ferlabcrsj/cqdg-arranger:8eb9a001eb2ba7bc25ec5a29f85feb4e3033d124
+        - image: ferlabcrsj/cqdg-arranger:fba9ddc0ce38c200c0f2e3de3922fce0395a11df
           name: arranger-server
           envFrom:
             - configMapRef:
