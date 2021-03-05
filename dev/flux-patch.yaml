@@ -1,5 +1,19 @@
 ---
 apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arranger-server
+  namespace: dev
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: arranger-server
+      containers:
+      - image: ferlabcrsj/cqdg-arranger:7a7bf12076d0137fb2bb74fa46c0509d3364819f
+        name: arranger-server
+---
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: keycloak
@@ -12,18 +26,3 @@ spec:
       containers:
       - image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
         name: keycloak
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: arranger-server
-  namespace: dev
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: arranger-server
-      containers:
-      - image: ferlabcrsj/cqdg-arranger:a349f2b25ad42d3d6738af4752235862ce526b84
-        name: arranger-server
-
