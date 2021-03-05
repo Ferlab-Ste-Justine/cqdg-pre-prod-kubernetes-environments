@@ -24,6 +24,6 @@ spec:
       $setElementOrder/containers:
       - name: arranger-server
       containers:
-      - image: ferlabcrsj/cqdg-keycloak:a349f2b25ad42d3d6738af4752235862ce526b84
+      - image: ferlabcrsj/cqdg-arranger:a349f2b25ad42d3d6738af4752235862ce526b84
         name: arranger-server
 
