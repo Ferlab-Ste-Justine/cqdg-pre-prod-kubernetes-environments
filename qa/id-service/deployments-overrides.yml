@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:	
+    fluxcd.io/automated: 'true'
+  name: id-service
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: ca-certificate
+            defaultMode: 0555
+      containers:
+        - name: id-service
+          image: ferlabcrsj/id-service:4d47f9dada5f7ec27933443997326a138b8e0546
+          env:
+            - name: NODE_EXTRA_CA_CERTS
+              value: /opt/ca/ca.pem
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            
