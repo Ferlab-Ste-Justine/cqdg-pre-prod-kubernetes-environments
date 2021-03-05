@@ -24,3 +24,17 @@ spec:
       containers:
       - image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
         name: keycloak
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: id-service
+  namespace: id-service
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: id-service
+      containers:
+      - image: ferlabcrsj/id-service:6adbbdbe421c24b34675ecefa59a26aefa17c588
+        name: id-service
