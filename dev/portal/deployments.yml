@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:	
+    fluxcd.io/automated: 'true'
+  labels:
+    app: portal
+  name: portal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: portal
+  template:
+    metadata:
+      labels:
+        app: portal
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - image: ferlabcrsj/cqdg-portal:9b64be06444cc07902dd885fab7b7600576c6cd9
+          name: portal
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: '0.50'
+            limits:
+              memory: "512Mi"
+              cpu: '1.00'
+          envFrom:
+            - configMapRef:
+                name: cqdg-portal-configs
