@@ -10,6 +10,7 @@ resources:
 
 patchesStrategicMerge:
   - deployments.yml
+  - configs-override.yml
 
 configMapGenerator:
   - name: arranger-keycloak-configs
