@@ -14,6 +14,20 @@ spec:
         name: arranger-server
 ---
 apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+  namespace: dev
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: portal
+      containers:
+      - image: ferlabcrsj/cqdg-portal:52105434798a32e57b8fd116251142b48d5520f2
+        name: portal
+---
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: keycloak
