@@ -10,3 +10,4 @@ spec:
   dnsNames:
     - dev.cqdg.ferlab.bio
     - auth.dev.cqdg.ferlab.bio
+    - portal.dev.cqdg.ferlab.bio

@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dev
+
+resources:
+  - deployments.yml
+  - services.yml
+  - ingress.yml
+
+configMapGenerator:
+  - name: cqdg-portal-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - PORTAL_URL=https://portal.dev.cqdg.ferlab.bio
+      - KEYCLOAK_URL=https://auth.dev.cqdg.ferlab.bio/auth/
