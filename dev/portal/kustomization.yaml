@@ -13,5 +13,5 @@ configMapGenerator:
     options:
       disableNameSuffixHash: false
     literals:
-      - PORTAL_URL=https://portal.dev.cqdg.ferlab.bio
+      - API_URL=https://data-api.dev.cqdg.ferlab.bio
       - KEYCLOAK_URL=https://auth.dev.cqdg.ferlab.bio/auth/

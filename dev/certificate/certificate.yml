@@ -11,3 +11,5 @@ spec:
     - dev.cqdg.ferlab.bio
     - auth.dev.cqdg.ferlab.bio
     - portal.dev.cqdg.ferlab.bio
+    - data-api.dev.cqdg.ferlab.bio
+    - clinical-data-api.dev.cqdg.ferlab.bio
