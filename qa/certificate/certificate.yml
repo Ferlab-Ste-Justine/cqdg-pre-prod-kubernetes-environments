@@ -25,3 +25,5 @@ spec:
     - logs.qa.cqdg.ferlab.bio
     - notebook.qa.cqdg.ferlab.bio
     - jobs.qa.cqdg.ferlab.bio
+    - data-api.qa.cqdg.ferlab.bio
+    - clinical-data-api.qa.cqdg.ferlab.bio
