@@ -15,5 +15,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: arranger-server
+            serviceName: arranger
             servicePort: 5050
