@@ -4,9 +4,11 @@ kind: Kustomization
 namespace: dev
 
 resources:
-  - deployments.yml
-  - services.yml
+  - ../common/portal
   - ingress.yml
+
+patchesStrategicMerge:
+  - deployments.yml
 
 configMapGenerator:
   - name: cqdg-portal-configs

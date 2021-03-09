@@ -15,10 +15,8 @@ spec:
       labels:
         app: portal
     spec:
-      imagePullSecrets:
-        - name: images-pull
       containers:
-        - image: ferlabcrsj/cqdg-portal-ui:__UNDEFINED__
+        - image: ferlabcrsj/cqdg-portal:__UNDEFINED__
           name: portal
           resources:
             requests:
@@ -27,3 +25,6 @@ spec:
             limits:
               memory: "512Mi"
               cpu: '1.00'
+          envFrom:
+            - configMapRef:
+                name: cqdg-portal-configs
