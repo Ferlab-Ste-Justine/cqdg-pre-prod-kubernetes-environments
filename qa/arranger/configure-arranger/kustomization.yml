@@ -2,5 +2,21 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - configmaps.yml
   - job.yml
+
+configMapGenerator:
+  - name: cqdg-entry
+    files:
+      - cqdg-entry.json
+  - name: cqdg-mappings
+    files:
+      - cqdg-mappings.json
+  - name: studies-index
+    files:
+      - studies-index.json
+  - name: files-index
+    files:
+      - files-index.json
+  - name: donors-index
+    files:
+      - donors-index.json

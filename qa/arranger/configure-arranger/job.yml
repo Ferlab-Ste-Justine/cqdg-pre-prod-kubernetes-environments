@@ -26,10 +26,54 @@ spec:
               curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index";
               curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
           volumeMounts:
-            - mountPath: /opt/curl-bodies
-              name: configure-arranger
+            - name: cqdg-entry
+              mountPath: /opt/curl-bodies
+              subPath: cqdg-entry.json
+              readOnly: true
+            - name: cqdg-mappings
+              mountPath: /opt/curl-bodies
+              subPath: cqdg-mappings.json
+              readOnly: true
+            - name: donors-index
+              mountPath: /opt/curl-bodies
+              subPath: donors-index.json
+              readOnly: true
+            - name: files-index
+              mountPath: /opt/curl-bodies
+              subPath: files-index.json
+              readOnly: true
+            - name: studies-index
+              mountPath: /opt/curl-bodies
+              subPath: studies-index.json
               readOnly: true
       volumes:
-        - name: configure-arranger
+        - name: cqdg-entry
           configMap:
-            name: configure-arranger
+            name: cqdg-entry
+            items:
+            - key: cqdg-entry.json
+              path: cqdg-entry.json
+        - name: cqdg-mappings
+          configMap:
+            name: cqdg-mappings
+            items:
+            - key: cqdg-mappings.json
+              path: cqdg-mappings.json
+        - name: donors-index
+          configMap:
+            name: donors-index
+            items:
+            - key: donors-index.json
+              path: donors-index.json
+        - name: files-index
+          configMap:
+            name: files-index
+            items:
+            - key: files-index.json
+              path: files-index.json
+        - name: studies-index
+          configMap:
+            name: studies-index
+            items:
+            - key: studies-index.json
+              path: studies-index.json
