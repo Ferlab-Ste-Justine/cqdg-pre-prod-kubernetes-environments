@@ -5,7 +5,7 @@ metadata:
     fluxcd.io/automated: 'true'
   name: keycloak
 spec:
-  replicas: 1
+  replicas: 3
   template:
     spec:
       imagePullSecrets:
@@ -17,6 +17,6 @@ spec:
             - name: ORCID_URL
               value: 'https://sandbox.orcid.org'
             - name: CACHE_OWNERS_COUNT
-              value: "1"
+              value: "2"
             - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
-              value: "1"
+              value: "2"
