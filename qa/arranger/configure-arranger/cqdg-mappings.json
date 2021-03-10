@@ -1,0 +1,253 @@
+{
+  "mappings": {
+    "properties": {
+      "active": {
+        "type": "boolean"
+      },
+      "config": {
+        "properties": {
+          "aggs-state": {
+            "properties": {
+              "state": {
+                "properties": {
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "field": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "show": {
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  }
+                }
+              },
+              "timestamp": {
+                "type": "date"
+              }
+            }
+          },
+          "columns-state": {
+            "properties": {
+              "state": {
+                "properties": {
+                  "columns": {
+                    "properties": {
+                      "accessor": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      },
+                      "canChangeShow": {
+                        "type": "boolean"
+                      },
+                      "field": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      },
+                      "jsonPath": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      },
+                      "query": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      },
+                      "show": {
+                        "type": "boolean"
+                      },
+                      "sortable": {
+                        "type": "boolean"
+                      },
+                      "type": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "defaultSorted": {
+                    "properties": {
+                      "desc": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "text",
+                        "fields": {
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "keyField": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "type": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  }
+                }
+              },
+              "timestamp": {
+                "type": "date"
+              }
+            }
+          },
+          "extended": {
+            "properties": {
+              "active": {
+                "type": "boolean"
+              },
+              "displayName": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "displayValues": {
+                "type": "object"
+              },
+              "field": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "isArray": {
+                "type": "boolean"
+              },
+              "primaryKey": {
+                "type": "boolean"
+              },
+              "quickSearchEnabled": {
+                "type": "boolean"
+              },
+              "rangeStep": {
+                "type": "long"
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "matchbox-state": {
+            "properties": {
+              "state": {
+                "properties": {
+                  "displayName": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "field": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                      }
+                    }
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "timestamp": {
+                "type": "date"
+              }
+            }
+          }
+        }
+      },
+      "index": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "timestamp": {
+        "type": "date"
+      }
+    }
+  }
+}

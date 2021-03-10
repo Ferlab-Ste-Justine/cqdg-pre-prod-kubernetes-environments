@@ -1,0 +1,2655 @@
+{
+  "index": "donors",
+  "name": "Donor",
+  "timestamp": "2021-01-21T21:07:41.083Z",
+  "active": true,
+  "config": {
+    "aggs-state": {
+      "timestamp": "2021-01-21T21:07:41.086Z",
+      "state": [
+        {
+          "field": "age_at_recruitment",
+          "type": "NumericAggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__age_at_diagnosis",
+          "type": "NumericAggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__follow_ups__days_to_follow_up",
+          "type": "NumericAggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__follow_ups__disease_status_at_followup",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__follow_ups__relapse_interval",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__follow_ups__submitter_follow_up_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__icd_category",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__icd_category_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__icd_term",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__icd_term_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__mondo_term",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__mondo_term_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__icd_term",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__icd_term_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__medication_class",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__medication_code",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__medication_end_date",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__medication_name",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__medication_start_date",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__submitter_treatment_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__treatment_intent",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__treatment_is_primary",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__treatment_response",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "diagnoses__treatments__treatment_type",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "donor_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "ethnicity",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "exposure__FSA",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "exposure__alcohol_status",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "exposure__smoking_status",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "exposure__submitter_exposure_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyHistory__family_cancer_history",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyHistory__family_condition_age",
+          "type": "NumericAggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyHistory__family_condition_name",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyHistory__family_condition_relationship",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyHistory__submitter_family_condition_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__familiy_1_2_relationship",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__family_2_1_relationship",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__family_type",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__submitter_donor_id_1",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__submitter_donor_id_2",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "familyRelationships__submitter_family_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__anatomic_location",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__icd_term",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__icd_term_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__is_cancer",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__samples__sample_type",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__samples__submitter_sample_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__submitter_biospecimen_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__tissue_source",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__tumor_normal_designation",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__biospecimen__type",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__data_access",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__data_category",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__data_type",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__experimental_strategy",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_format",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_name",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_name_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_name_ngrams",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_size",
+          "type": "NumericAggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__file_variant_class",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__is_harmonized",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__platform",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "files__submitter_biospecimen_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "gender",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "phenotypes__hpo_category",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "phenotypes__hpo_category_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "phenotypes__hpo_code",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "phenotypes__hpo_term",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "phenotypes__hpo_term_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__access_limitations",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__access_requirements",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__description",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__domain",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__name",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__population",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__short_name",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__short_name_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__short_name_ngrams",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__study_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__study_id_keyword",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "study__website",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "submitter_donor_id",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        },
+        {
+          "field": "vital_status",
+          "type": "Aggregations",
+          "show": false,
+          "active": true
+        }
+      ]
+    },
+    "columns-state": {
+      "state": {
+        "type": "Donor",
+        "keyField": "id",
+        "defaultSorted": [
+          {
+            "id": "age_at_recruitment",
+            "desc": false
+          }
+        ],
+        "columns": [
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "age_at_recruitment",
+            "accessor": "age_at_recruitment"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.age_at_diagnosis",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                age_at_diagnosis\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.age_at_diagnosis"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.follow_ups.days_to_follow_up",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                follow_ups {\n                hits {\n                edges {\n                node {\n                days_to_follow_up\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.follow_ups.hits.edges[*].node.days_to_follow_up"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.follow_ups.disease_status_at_followup",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                follow_ups {\n                hits {\n                edges {\n                node {\n                disease_status_at_followup\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.follow_ups.hits.edges[*].node.disease_status_at_followup"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.follow_ups.relapse_interval",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                follow_ups {\n                hits {\n                edges {\n                node {\n                relapse_interval\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.follow_ups.hits.edges[*].node.relapse_interval"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.follow_ups.submitter_follow_up_id",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                follow_ups {\n                hits {\n                edges {\n                node {\n                submitter_follow_up_id\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.follow_ups.hits.edges[*].node.submitter_follow_up_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "diagnoses.follow_ups.hits.total",
+            "accessor": "diagnoses.hits.edges[0].node.follow_ups.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.icd_category",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.icd_category"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.icd_category_keyword",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                icd_category_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.icd_category_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.icd_term",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.icd_term"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.icd_term_keyword",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.icd_term_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.mondo_term",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.mondo_term"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.mondo_term_keyword",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                mondo_term_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.mondo_term_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.icd_term",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.icd_term"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.icd_term_keyword",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.icd_term_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.medication_class",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                medication_class\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.medication_class"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.medication_code",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                medication_code\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.medication_code"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.medication_end_date",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                medication_end_date\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.medication_end_date"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.medication_name",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                medication_name\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.medication_name"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.medication_start_date",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                medication_start_date\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.medication_start_date"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.submitter_treatment_id",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                submitter_treatment_id\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.submitter_treatment_id"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.treatment_intent",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                treatment_intent\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.treatment_intent"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.treatment_is_primary",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                treatment_is_primary\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.treatment_is_primary"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.treatment_response",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                treatment_response\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.treatment_response"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "diagnoses.treatments.treatment_type",
+            "query": "diagnoses {\n                hits {\n                edges {\n                node {\n                treatments {\n                hits {\n                edges {\n                node {\n                treatment_type\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.diagnoses.hits.edges[*].node.treatments.hits.edges[*].node.treatment_type"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "diagnoses.treatments.hits.total",
+            "accessor": "diagnoses.hits.edges[0].node.treatments.hits.total"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "diagnoses.hits.total",
+            "accessor": "diagnoses.hits.total"
+          },
+          {
+            "show": false,
+            "type": "string",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "donor_id",
+            "accessor": "donor_id"
+          },
+          {
+            "show": false,
+            "type": "string",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "ethnicity",
+            "accessor": "ethnicity"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "exposure.FSA",
+            "query": "exposure {\n                hits {\n                edges {\n                node {\n                FSA\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.exposure.hits.edges[*].node.FSA"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "exposure.alcohol_status",
+            "query": "exposure {\n                hits {\n                edges {\n                node {\n                alcohol_status\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.exposure.hits.edges[*].node.alcohol_status"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "exposure.smoking_status",
+            "query": "exposure {\n                hits {\n                edges {\n                node {\n                smoking_status\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.exposure.hits.edges[*].node.smoking_status"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "exposure.submitter_exposure_id",
+            "query": "exposure {\n                hits {\n                edges {\n                node {\n                submitter_exposure_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.exposure.hits.edges[*].node.submitter_exposure_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "exposure.hits.total",
+            "accessor": "exposure.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyHistory.family_cancer_history",
+            "query": "familyHistory {\n                hits {\n                edges {\n                node {\n                family_cancer_history\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyHistory.hits.edges[*].node.family_cancer_history"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyHistory.family_condition_age",
+            "query": "familyHistory {\n                hits {\n                edges {\n                node {\n                family_condition_age\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyHistory.hits.edges[*].node.family_condition_age"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyHistory.family_condition_name",
+            "query": "familyHistory {\n                hits {\n                edges {\n                node {\n                family_condition_name\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyHistory.hits.edges[*].node.family_condition_name"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyHistory.family_condition_relationship",
+            "query": "familyHistory {\n                hits {\n                edges {\n                node {\n                family_condition_relationship\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyHistory.hits.edges[*].node.family_condition_relationship"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyHistory.submitter_family_condition_id",
+            "query": "familyHistory {\n                hits {\n                edges {\n                node {\n                submitter_family_condition_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyHistory.hits.edges[*].node.submitter_family_condition_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "familyHistory.hits.total",
+            "accessor": "familyHistory.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.familiy_1_2_relationship",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                familiy_1_2_relationship\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.familiy_1_2_relationship"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.family_2_1_relationship",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                family_2_1_relationship\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.family_2_1_relationship"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.family_type",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                family_type\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.family_type"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.submitter_donor_id_1",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                submitter_donor_id_1\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.submitter_donor_id_1"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.submitter_donor_id_2",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                submitter_donor_id_2\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.submitter_donor_id_2"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "familyRelationships.submitter_family_id",
+            "query": "familyRelationships {\n                hits {\n                edges {\n                node {\n                submitter_family_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.familyRelationships.hits.edges[*].node.submitter_family_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "familyRelationships.hits.total",
+            "accessor": "familyRelationships.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.anatomic_location",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                anatomic_location\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.anatomic_location"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.icd_term",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                icd_term\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.icd_term"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.icd_term_keyword",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                icd_term_keyword\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.icd_term_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.is_cancer",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                is_cancer\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.is_cancer"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.samples.sample_type",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                samples {\n                hits {\n                edges {\n                node {\n                sample_type\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.samples.hits.edges[*].node.sample_type"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.samples.submitter_sample_id",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                samples {\n                hits {\n                edges {\n                node {\n                submitter_sample_id\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.samples.hits.edges[*].node.submitter_sample_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "files.biospecimen.samples.hits.total",
+            "accessor": "files.hits.edges[0].node.biospecimen.hits.edges[0].node.samples.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.submitter_biospecimen_id",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                submitter_biospecimen_id\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.submitter_biospecimen_id"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.tissue_source",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                tissue_source\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.tissue_source"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.tumor_normal_designation",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                tumor_normal_designation\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.tumor_normal_designation"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.biospecimen.type",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                biospecimen {\n                hits {\n                edges {\n                node {\n                type\n              }\n              }\n              }\n              }\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.biospecimen.hits.edges[*].node.type"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "files.biospecimen.hits.total",
+            "accessor": "files.hits.edges[0].node.biospecimen.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.data_access",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                data_access\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.data_access"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.data_category",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                data_category\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.data_category"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.data_type",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                data_type\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.data_type"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.experimental_strategy",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                experimental_strategy\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.experimental_strategy"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_format",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_format\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_format"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_id",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_id"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_name",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_name\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_name"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_name_keyword",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_name_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_name_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_name_ngrams",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_name_ngrams\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_name_ngrams"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_size",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_size\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_size"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.file_variant_class",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                file_variant_class\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.file_variant_class"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.is_harmonized",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                is_harmonized\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.is_harmonized"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.platform",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                platform\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.platform"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "files.submitter_biospecimen_id",
+            "query": "files {\n                hits {\n                edges {\n                node {\n                submitter_biospecimen_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.files.hits.edges[*].node.submitter_biospecimen_id"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "files.hits.total",
+            "accessor": "files.hits.total"
+          },
+          {
+            "show": false,
+            "type": "string",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "gender",
+            "accessor": "gender"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "phenotypes.hpo_category",
+            "query": "phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.phenotypes.hits.edges[*].node.hpo_category"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "phenotypes.hpo_category_keyword",
+            "query": "phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_category_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.phenotypes.hits.edges[*].node.hpo_category_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "phenotypes.hpo_code",
+            "query": "phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_code\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.phenotypes.hits.edges[*].node.hpo_code"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "phenotypes.hpo_term",
+            "query": "phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.phenotypes.hits.edges[*].node.hpo_term"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "phenotypes.hpo_term_keyword",
+            "query": "phenotypes {\n                hits {\n                edges {\n                node {\n                hpo_term_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.phenotypes.hits.edges[*].node.hpo_term_keyword"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "phenotypes.hits.total",
+            "accessor": "phenotypes.hits.total"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.access_limitations",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                access_limitations\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.access_limitations"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.access_requirements",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                access_requirements\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.access_requirements"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.description",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                description\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.description"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.domain",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                domain\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.domain"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.keyword",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.name",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                name\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.name"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.population",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                population\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.population"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.short_name",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                short_name\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.short_name"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.short_name_keyword",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                short_name_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.short_name_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.short_name_ngrams",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                short_name_ngrams\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.short_name_ngrams"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.study_id",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                study_id\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.study_id"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.study_id_keyword",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                study_id_keyword\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.study_id_keyword"
+          },
+          {
+            "show": false,
+            "type": "list",
+            "sortable": false,
+            "canChangeShow": false,
+            "field": "study.website",
+            "query": "study {\n                hits {\n                edges {\n                node {\n                website\n              }\n              }\n              }\n              }",
+            "jsonPath": "$.study.hits.edges[*].node.website"
+          },
+          {
+            "show": false,
+            "type": "number",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "study.hits.total",
+            "accessor": "study.hits.total"
+          },
+          {
+            "show": false,
+            "type": "string",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "submitter_donor_id",
+            "accessor": "submitter_donor_id"
+          },
+          {
+            "show": false,
+            "type": "string",
+            "sortable": true,
+            "canChangeShow": true,
+            "field": "vital_status",
+            "accessor": "vital_status"
+          }
+        ]
+      },
+      "timestamp": "2021-01-21T21:07:41.091Z"
+    },
+    "matchbox-state": {
+      "state": [
+        {
+          "displayName": "Donor",
+          "field": "",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Diagnoses",
+          "field": "diagnoses",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Diagnoses Follow Ups",
+          "field": "diagnoses.follow_ups",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Diagnoses Treatments",
+          "field": "diagnoses.treatments",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Exposure",
+          "field": "exposure",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Family History",
+          "field": "familyHistory",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Family Relationships",
+          "field": "familyRelationships",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Files",
+          "field": "files",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Files Biospecimen",
+          "field": "files.biospecimen",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Files Biospecimen Samples",
+          "field": "files.biospecimen.samples",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Phenotypes",
+          "field": "phenotypes",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        },
+        {
+          "displayName": "Study",
+          "field": "study",
+          "isActive": false,
+          "keyField": null,
+          "searchFields": []
+        }
+      ],
+      "timestamp": "2021-01-21T21:07:41.092Z"
+    },
+    "extended": [
+      {
+        "field": "age_at_recruitment",
+        "type": "integer",
+        "displayName": "Age At Recruitment",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses",
+        "type": "nested",
+        "displayName": "Diagnoses",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.age_at_diagnosis",
+        "type": "integer",
+        "displayName": "Diagnoses Age At Diagnosis",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.follow_ups",
+        "type": "nested",
+        "displayName": "Diagnoses Follow Ups",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.follow_ups.days_to_follow_up",
+        "type": "integer",
+        "displayName": "Diagnoses Follow Ups Days To Follow Up",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.follow_ups.disease_status_at_followup",
+        "type": "keyword",
+        "displayName": "Diagnoses Follow Ups Disease Status At Followup",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.follow_ups.relapse_interval",
+        "type": "keyword",
+        "displayName": "Diagnoses Follow Ups Relapse Interval",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.follow_ups.submitter_follow_up_id",
+        "type": "id",
+        "displayName": "Diagnoses Follow Ups Submitter Follow Up Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.icd_category",
+        "type": "text",
+        "displayName": "Diagnoses Icd Category",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.icd_category_keyword",
+        "type": "keyword",
+        "displayName": "Diagnoses Icd Category Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.icd_term",
+        "type": "text",
+        "displayName": "Diagnoses Icd Term",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.icd_term_keyword",
+        "type": "keyword",
+        "displayName": "Diagnoses Icd Term Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.mondo_term",
+        "type": "text",
+        "displayName": "Diagnoses Mondo Term",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.mondo_term_keyword",
+        "type": "keyword",
+        "displayName": "Diagnoses Mondo Term Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments",
+        "type": "nested",
+        "displayName": "Diagnoses Treatments",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.icd_term",
+        "type": "text",
+        "displayName": "Diagnoses Treatments Icd Term",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.icd_term_keyword",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Icd Term Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.medication_class",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Medication Class",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.medication_code",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Medication Code",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.medication_end_date",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Medication End Date",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.medication_name",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Medication Name",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.medication_start_date",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Medication Start Date",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.submitter_treatment_id",
+        "type": "id",
+        "displayName": "Diagnoses Treatments Submitter Treatment Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.treatment_intent",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Treatment Intent",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.treatment_is_primary",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Treatment Is Primary",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.treatment_response",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Treatment Response",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "diagnoses.treatments.treatment_type",
+        "type": "keyword",
+        "displayName": "Diagnoses Treatments Treatment Type",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "donor_id",
+        "type": "id",
+        "displayName": "Donor Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "ethnicity",
+        "type": "keyword",
+        "displayName": "Ethnicity",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "exposure",
+        "type": "nested",
+        "displayName": "Exposure",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "exposure.FSA",
+        "type": "keyword",
+        "displayName": "Exposure FSA",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "exposure.alcohol_status",
+        "type": "keyword",
+        "displayName": "Exposure Alcohol Status",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "exposure.smoking_status",
+        "type": "keyword",
+        "displayName": "Exposure Smoking Status",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "exposure.submitter_exposure_id",
+        "type": "id",
+        "displayName": "Exposure Submitter Exposure Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory",
+        "type": "nested",
+        "displayName": "Family History",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory.family_cancer_history",
+        "type": "keyword",
+        "displayName": "Family History Family Cancer History",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory.family_condition_age",
+        "type": "integer",
+        "displayName": "Family History Family Condition Age",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory.family_condition_name",
+        "type": "keyword",
+        "displayName": "Family History Family Condition Name",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory.family_condition_relationship",
+        "type": "keyword",
+        "displayName": "Family History Family Condition Relationship",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyHistory.submitter_family_condition_id",
+        "type": "id",
+        "displayName": "Family History Submitter Family Condition Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships",
+        "type": "nested",
+        "displayName": "Family Relationships",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.familiy_1_2_relationship",
+        "type": "keyword",
+        "displayName": "Family Relationships Familiy 1 2 Relationship",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.family_2_1_relationship",
+        "type": "keyword",
+        "displayName": "Family Relationships Family 2 1 Relationship",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.family_type",
+        "type": "keyword",
+        "displayName": "Family Relationships Family Type",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.submitter_donor_id_1",
+        "type": "id",
+        "displayName": "Family Relationships Submitter Donor Id 1",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.submitter_donor_id_2",
+        "type": "id",
+        "displayName": "Family Relationships Submitter Donor Id 2",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "familyRelationships.submitter_family_id",
+        "type": "id",
+        "displayName": "Family Relationships Submitter Family Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files",
+        "type": "nested",
+        "displayName": "Files",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen",
+        "type": "nested",
+        "displayName": "Files Biospecimen",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.anatomic_location",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Anatomic Location",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.icd_term",
+        "type": "text",
+        "displayName": "Files Biospecimen Icd Term",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.icd_term_keyword",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Icd Term Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.is_cancer",
+        "type": "boolean",
+        "displayName": "Files Biospecimen Is Cancer",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.samples",
+        "type": "nested",
+        "displayName": "Files Biospecimen Samples",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.samples.sample_type",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Samples Sample Type",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.samples.submitter_sample_id",
+        "type": "id",
+        "displayName": "Files Biospecimen Samples Submitter Sample Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.submitter_biospecimen_id",
+        "type": "id",
+        "displayName": "Files Biospecimen Submitter Biospecimen Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.tissue_source",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Tissue Source",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.tumor_normal_designation",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Tumor Normal Designation",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.biospecimen.type",
+        "type": "keyword",
+        "displayName": "Files Biospecimen Type",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.data_access",
+        "type": "keyword",
+        "displayName": "Files Data Access",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.data_category",
+        "type": "keyword",
+        "displayName": "Files Data Category",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.data_type",
+        "type": "keyword",
+        "displayName": "Files Data Type",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.experimental_strategy",
+        "type": "keyword",
+        "displayName": "Files Experimental Strategy",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_format",
+        "type": "keyword",
+        "displayName": "Files File Format",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_id",
+        "type": "id",
+        "displayName": "Files File Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_name",
+        "type": "text",
+        "displayName": "Files File Name",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_name_keyword",
+        "type": "keyword",
+        "displayName": "Files File Name Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_name_ngrams",
+        "type": "text",
+        "displayName": "Files File Name Ngrams",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.file_size",
+        "type": "float",
+        "displayName": "Files File Size",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 0.01
+      },
+      {
+        "field": "files.file_variant_class",
+        "type": "keyword",
+        "displayName": "Files File Variant Class",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.is_harmonized",
+        "type": "boolean",
+        "displayName": "Files Is Harmonized",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.platform",
+        "type": "keyword",
+        "displayName": "Files Platform",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "files.submitter_biospecimen_id",
+        "type": "id",
+        "displayName": "Files Submitter Biospecimen Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "gender",
+        "type": "keyword",
+        "displayName": "Gender",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes",
+        "type": "nested",
+        "displayName": "Phenotypes",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes.hpo_category",
+        "type": "text",
+        "displayName": "Phenotypes Hpo Category",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes.hpo_category_keyword",
+        "type": "keyword",
+        "displayName": "Phenotypes Hpo Category Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes.hpo_code",
+        "type": "keyword",
+        "displayName": "Phenotypes Hpo Code",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes.hpo_term",
+        "type": "text",
+        "displayName": "Phenotypes Hpo Term",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "phenotypes.hpo_term_keyword",
+        "type": "keyword",
+        "displayName": "Phenotypes Hpo Term Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study",
+        "type": "nested",
+        "displayName": "Study",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.access_limitations",
+        "type": "keyword",
+        "displayName": "Study Access Limitations",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.access_requirements",
+        "type": "keyword",
+        "displayName": "Study Access Requirements",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.description",
+        "type": "keyword",
+        "displayName": "Study Description",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.domain",
+        "type": "keyword",
+        "displayName": "Study Domain",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.keyword",
+        "type": "keyword",
+        "displayName": "Study Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.name",
+        "type": "text",
+        "displayName": "Study Name",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.population",
+        "type": "keyword",
+        "displayName": "Study Population",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.short_name",
+        "type": "text",
+        "displayName": "Study Short Name",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.short_name_keyword",
+        "type": "keyword",
+        "displayName": "Study Short Name Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.short_name_ngrams",
+        "type": "text",
+        "displayName": "Study Short Name Ngrams",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.study_id",
+        "type": "id",
+        "displayName": "Study Study Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.study_id_keyword",
+        "type": "id",
+        "displayName": "Study Study Id Keyword",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "study.website",
+        "type": "keyword",
+        "displayName": "Study Website",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "submitter_donor_id",
+        "type": "id",
+        "displayName": "Submitter Donor Id",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      },
+      {
+        "field": "vital_status",
+        "type": "keyword",
+        "displayName": "Vital Status",
+        "active": false,
+        "isArray": false,
+        "primaryKey": false,
+        "quickSearchEnabled": false,
+        "unit": null,
+        "displayValues": {},
+        "rangeStep": 1
+      }
+    ]
+  }
+}
