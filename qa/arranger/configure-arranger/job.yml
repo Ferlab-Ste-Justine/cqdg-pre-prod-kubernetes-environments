@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-arranger-19-11-2020
+  name: configure-arranger-10-03-2021
 spec:
   backoffLimit: 4
   template:
@@ -17,9 +17,16 @@ spec:
             - /bin/sh
             - -c
             - |
+              curl -XDELETE "http://elasticsearch-workers:9200/st0001_cases-2";
+              curl -XDELETE "http://elasticsearch-workers:9200/st0002_cases-2";
+              curl -XDELETE "http://elasticsearch-workers:9200/st0003_cases-1";
+              curl -XDELETE "http://elasticsearch-workers:9200/st0004_cases-2";
+              curl -XDELETE "http://elasticsearch-workers:9200/arranger-projects";
+              curl -XDELETE "http://elasticsearch-workers:9200/arranger-projects-cqdg";
               curl -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry";
               curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings";
-              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/cases" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cases-index";
+              curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index";
+              curl -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index";
               curl -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
           volumeMounts:
             - mountPath: /opt/curl-bodies
