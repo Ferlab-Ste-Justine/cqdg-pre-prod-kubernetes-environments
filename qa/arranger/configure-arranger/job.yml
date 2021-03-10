@@ -16,6 +16,7 @@ spec:
           command:
             - /bin/sh
             - -c
+            - -e
             - |
               curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects";
               curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects-cqdg";
