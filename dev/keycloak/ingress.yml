@@ -5,6 +5,9 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, DELETE, PATCH, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-expose-headers: "*"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
 spec:
   tls:
     - hosts:
