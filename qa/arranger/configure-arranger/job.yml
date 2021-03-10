@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-arranger-2021-03-10-take3
+  name: configure-arranger-2021-03-10-take4
 spec:
   backoffLimit: 4
   template:
@@ -20,60 +20,40 @@ spec:
             - |
               curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects";
               curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects-cqdg";
-              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry";
-              curl -vvv -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings";
-              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index";
-              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index";
-              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
+              curl -vvv -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
           volumeMounts:
             - name: cqdg-entry
-              mountPath: /opt/curl-bodies
-              subPath: cqdg-entry.json
+              mountPath: /opt/curl-bodies/cqdg-entry
               readOnly: true
             - name: cqdg-mappings
-              mountPath: /opt/curl-bodies
-              subPath: cqdg-mappings.json
+              mountPath: /opt/curl-bodies/cqdg-mappings
               readOnly: true
             - name: donors-index
-              mountPath: /opt/curl-bodies
-              subPath: donors-index.json
+              mountPath: /opt/curl-bodies/donors-index
               readOnly: true
             - name: files-index
-              mountPath: /opt/curl-bodies
-              subPath: files-index.json
+              mountPath: /opt/curl-bodies/files-index
               readOnly: true
             - name: studies-index
-              mountPath: /opt/curl-bodies
-              subPath: studies-index.json
+              mountPath: /opt/curl-bodies/studies-index
               readOnly: true
       volumes:
         - name: cqdg-entry
           configMap:
             name: cqdg-entry
-            items:
-            - key: cqdg-entry.json
-              path: cqdg-entry.json
         - name: cqdg-mappings
           configMap:
             name: cqdg-mappings
-            items:
-            - key: cqdg-mappings.json
-              path: cqdg-mappings.json
         - name: donors-index
           configMap:
             name: donors-index
-            items:
-            - key: donors-index.json
-              path: donors-index.json
         - name: files-index
           configMap:
             name: files-index
-            items:
-            - key: files-index.json
-              path: files-index.json
         - name: studies-index
           configMap:
             name: studies-index
-            items:
-            - key: studies-index.json
-              path: studies-index.json
