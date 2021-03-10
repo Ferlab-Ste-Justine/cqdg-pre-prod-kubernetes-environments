@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   annotations:	
     fluxcd.io/automated: 'true'
-  name: arranger-server
+  name: arranger
 spec:
   template:
     spec:
@@ -12,11 +12,4 @@ spec:
         - name: images-pull
       containers:
         - image: ferlabcrsj/cqdg-arranger:fba9ddc0ce38c200c0f2e3de3922fce0395a11df
-          name: arranger-server
-          envFrom:
-            - configMapRef:
-                name: arranger-server
-            - configMapRef:
-                name: arranger-keycloak-configs
-            - secretRef:
-                name: arranger-keycloak-credentials
+          name: arranger

@@ -1,12 +1,15 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portal
-  annotations:
+  annotations:	
     fluxcd.io/automated: 'true'
+  name: portal
 spec:
   template:
     spec:
+      imagePullSecrets:
+        - name: images-pull
       containers:
-      - image: ferlabcrsj/cqdg-portal-ui:adaad746b15252db1f3923a5042a14fb7bcf68bf
-        name: portal
+        - image: ferlabcrsj/cqdg-portal:9b64be06444cc07902dd885fab7b7600576c6cd9
+          name: portal

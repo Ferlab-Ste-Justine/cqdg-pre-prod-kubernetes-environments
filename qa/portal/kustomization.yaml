@@ -7,3 +7,11 @@ resources:
 
 patchesStrategicMerge:
   - deployments.yml
+
+configMapGenerator:
+  - name: cqdg-portal-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - API_URL=https://data-api.qa.cqdg.ferlab.bio
+      - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth/

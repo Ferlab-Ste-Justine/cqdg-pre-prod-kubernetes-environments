@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - data-api.dev.cqdg.ferlab.bio
+      - data-api.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
-    - host: data-api.dev.cqdg.ferlab.bio
+    - host: data-api.qa.cqdg.ferlab.bio
       http:
         paths:
         - path: /
