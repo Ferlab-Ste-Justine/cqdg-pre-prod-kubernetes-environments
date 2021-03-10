@@ -2,6 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: arranger
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: arranger
+      containers:
+      - image: ferlabcrsj/cqdg-arranger:6211b3ae0011fce54847ed07c86bdd5e266de3ed
+        name: arranger
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: hive-metastore
 spec:
   template:
@@ -11,6 +24,19 @@ spec:
       containers:
       - image: ferlabcrsj/hive-metastore:ba3d4e6d97baef31fb450cb6c75c73b19ec64fce
         name: hive-metastore
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: portal
+      containers:
+      - image: ferlabcrsj/cqdg-portal:56053a6a6468cf2b5bec11ab0090e495c88da9f6
+        name: portal
 ---
 apiVersion: apps/v1
 kind: StatefulSet
