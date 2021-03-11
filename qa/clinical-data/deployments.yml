@@ -48,6 +48,8 @@ spec:
               name: clinical-data-keycloak-credentials
           - secretRef:
               name: clinical-data-lectern-credentials
+          - secretRef:
+              name: clinical-data-monitor-credentials
         volumeMounts:
           - name: ca-certificate
             mountPath: /opt/ca
