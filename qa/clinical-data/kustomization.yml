@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ingress.yml
+  - deployments.yml
+  - services.yml
+
+configMapGenerator:
+  - name: clinical-data-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - AUTH_CLIENT_ID=cqdg-system
+      - AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
+      - AUTH_REALM=CQDG
+      - LECTERN_SERVER_URL=https://schema.qa.cqdg.ferlab.bio
+      - LECTERN_DICTIONARY_NAME="CQDG Data Dictionary"
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=clinical-data-service-db
+      - TYPEORM_DATABASE=clinical-data-service
+      - S3_SIGNIN_REGION=RegionOne
+      - S3_BUCKET_NAME=clinical-data-service-qa
+      - S3_SERVICE_ENDPOINT=https://esc.calculquebec.ca:8080
