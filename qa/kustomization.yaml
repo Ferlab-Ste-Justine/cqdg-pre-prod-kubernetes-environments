@@ -18,3 +18,4 @@ resources:
   - airflow
   - terraform
   - id-service
+  - clinical-data
