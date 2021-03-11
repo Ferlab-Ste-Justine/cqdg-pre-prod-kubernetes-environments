@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    fluxcd.io/automated: 'true'
+  labels:
+    app: clinical-data
+  name: clinical-data
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clinical-data
+  template:
+    metadata:
+      labels:
+        app: clinical-data
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: ca-certificate
+            defaultMode: 0555
+      containers:
+      - image: ferlabcrsj/cqdg-clinical-data-service:3b0bc2e65aee8df24512cdf55e71fb757d084864
+        name: clinical-data
+        env:
+          - name: NODE_EXTRA_CA_CERTS
+            value: /opt/ca/ca.pem
+          - name: TYPEORM_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: clinical-data-service-db-credentials
+                key: username
+          - name: TYPEORM_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: clinical-data-service-db-credentials
+                key: password
+        envFrom:
+          - configMapRef:
+              name: clinical-data-configs
+          - secretRef:
+              name: s3-credentials
+          - secretRef:
+              name: clinical-data-keycloak-credentials
+          - secretRef:
+              name: clinical-data-lectern-credentials
+        volumeMounts:
+          - name: ca-certificate
+            mountPath: /opt/ca
+            readOnly: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: '0.25'
+          limits:
+            memory: "128Mi"
+            cpu: '0.5'
