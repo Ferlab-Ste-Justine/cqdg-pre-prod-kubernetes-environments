@@ -22,3 +22,4 @@ configMapGenerator:
       - S3_SIGNIN_REGION=RegionOne
       - S3_BUCKET_NAME=clinical-data-service-qa
       - S3_SERVICE_ENDPOINT=https://esc.calculquebec.ca:8080
+      - APP_HOST=https://clinical-data-api.qa.cqdg.ferlab.bio
