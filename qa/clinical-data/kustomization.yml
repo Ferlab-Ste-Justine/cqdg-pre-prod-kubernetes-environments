@@ -30,6 +30,7 @@ configMapGenerator:
       - APP_HOST=clinical-data-api.qa.cqdg.ferlab.bio
       - APP_SCHEMA=https
       - APP_ROUTE_PREFIX=/api
+      - APP_PORT=4000
       - APP_BANNER=true
       - FILE_UPLOAD_MAX_SIZE_MB=50
       - FILE_UPLOAD_MAX_NB_OF_FILES=11
