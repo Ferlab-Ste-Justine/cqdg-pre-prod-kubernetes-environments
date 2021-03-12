@@ -58,3 +58,4 @@ configMapGenerator:
       - MONITOR_ROUTE=/monitor
       - RULES_LOCATION=rules
       - ES_HOSTS=http://elasticsearch-workers:9200
+      - ALLOWED_CPUS=1
