@@ -28,6 +28,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: docs
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: docs
+      containers:
+      - image: ferlabcrsj/cqdg-docs:a3e6edfe1dd97a530854d4a61a008121579dd74f
+        name: docs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: hive-metastore
 spec:
   template:
