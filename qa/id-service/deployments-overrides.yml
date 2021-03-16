@@ -20,6 +20,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: id-service-db-connection-tls
+            - configMapRef:
+                name: id-service-customizations
           volumeMounts:
             - name: ca-certificate
               mountPath: /opt/ca
