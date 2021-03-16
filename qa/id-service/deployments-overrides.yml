@@ -17,9 +17,9 @@ spec:
       containers:
         - name: id-service
           image: ferlabcrsj/id-service:4d47f9dada5f7ec27933443997326a138b8e0546
-          env:
-            - name: NODE_EXTRA_CA_CERTS
-              value: /opt/ca/ca.pem
+          envFrom:
+            - configMapRef:
+                name: id-service-db-connection-tls
           volumeMounts:
             - name: ca-certificate
               mountPath: /opt/ca
