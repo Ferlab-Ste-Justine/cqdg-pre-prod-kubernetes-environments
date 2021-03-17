@@ -6,6 +6,7 @@ namespace: id-service
 resources:
   - ../cqdg-orchestrations/id-service
   - backups
+  - migrations
 
 patchesStrategicMerge:
   - deployments-overrides.yml
