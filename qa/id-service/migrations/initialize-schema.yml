@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: initialize-id-service-db-take2
+  name: initialize-id-service-db-take3
 spec:
   backoffLimit: 4
   activeDeadlineSeconds: 600
@@ -11,6 +11,17 @@ spec:
       containers:
       - name: initialize-id-service-db
         image: postgres:12
+        env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: id-service-db-credentials
+                key: username
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: id-service-db-credentials
+                key: password
         envFrom:
           - configMapRef:
               name: id-service-db-connection
