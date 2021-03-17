@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: initialize-id-service-db
+  name: initialize-id-service-db-take2
 spec:
   backoffLimit: 4
   activeDeadlineSeconds: 600
@@ -26,8 +26,15 @@ spec:
           - name: id-service-schema
             mountPath: /opt
             readOnly: true
+          - name: ca-certificate
+            mountPath: /opt/ca
+            readOnly: true
       restartPolicy: Never
       volumes:
         - name: id-service-schema
           configMap:
             name: id-service-schema
+        - name: ca-certificate
+          secret:
+            secretName: ca-certificate
+            defaultMode: 0555
