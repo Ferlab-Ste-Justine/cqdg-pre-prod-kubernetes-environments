@@ -30,7 +30,6 @@ configMapGenerator:
     options:
       disableNameSuffixHash: false
     literals:
-      - NODE_EXTRA_CA_CERTS=/opt/ca/ca.pem
       - AUTH_ENABLED=true
       - AUTH_CLIENT_ID=cqdg-system
       - AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio
