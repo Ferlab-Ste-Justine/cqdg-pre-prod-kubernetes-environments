@@ -27,8 +27,6 @@ spec:
       - image: ferlabcrsj/cqdg-clinical-data-service:3b0bc2e65aee8df24512cdf55e71fb757d084864
         name: clinical-data
         env:
-          - name: NODE_EXTRA_CA_CERTS
-            value: /opt/ca/ca.pem
           - name: TYPEORM_USERNAME
             valueFrom:
               secretKeyRef:
@@ -42,6 +40,10 @@ spec:
         envFrom:
           - configMapRef:
               name: clinical-data-configs
+          - configMapRef:
+              name: clinical-data-service-db-connection
+          - configMapRef:
+              name: clinical-data-service-db-connection-tls
           - secretRef:
               name: s3-credentials
           - secretRef:

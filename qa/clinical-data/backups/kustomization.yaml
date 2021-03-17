@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - backup.yml
+  - prune-backups.yml
+
+configMapGenerator:
+  - name: clinical-data-service-s3-backups
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - S3_ENDPOINT=https://esc.calculquebec.ca:8080
+      - S3_BUCKET=clinical-data-service-backups-qa
+      - S3_REGION=RegionOne
+      #15 days
+      - S3_BACKUP_MAX_AGE="1296000"

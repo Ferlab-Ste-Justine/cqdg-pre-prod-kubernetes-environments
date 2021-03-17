@@ -2,7 +2,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: id-service-backups-prune
+  name: clinical-data-service-backups-prune
 spec:
   schedule: "0 */4 * * *"
   concurrencyPolicy: Forbid
@@ -18,12 +18,12 @@ spec:
           restartPolicy: Never
           containers:
             - image: ferlabcrsj/postgres-backup:b3b4afc0e380db2b2410875208264b59f39a5eff
-              name: id-service-backups-prune
+              name: clinical-data-service-backups-prune
               command:
                 - python3
                 - /opt/prune-backups.py
               envFrom:
                 - secretRef:
-                    name: s3-backup-credentials
+                    name: s3-credentials
                 - configMapRef:
-                    name: id-service-s3-backups
+                    name: clinical-data-service-s3-backups
