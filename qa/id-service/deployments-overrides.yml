@@ -19,6 +19,8 @@ spec:
           image: ferlabcrsj/id-service:4d47f9dada5f7ec27933443997326a138b8e0546
           envFrom:
             - configMapRef:
+                name: id-service-db-connection
+            - configMapRef:
                 name: id-service-db-connection-tls
             - configMapRef:
                 name: id-service-customizations
