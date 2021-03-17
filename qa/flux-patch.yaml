@@ -88,5 +88,5 @@ spec:
       $setElementOrder/containers:
       - name: id-service
       containers:
-      - image: ferlabcrsj/id-service:18d03cc8942b9c24d0d1fde16eb3b5eb1f2a76eb
+      - image: ferlabcrsj/id-service:84b2015ef7b0b32010c0c0a31b8df891b56f4901
         name: id-service
