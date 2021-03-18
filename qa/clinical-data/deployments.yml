@@ -27,6 +27,8 @@ spec:
       - image: ferlabcrsj/cqdg-clinical-data-service:3b0bc2e65aee8df24512cdf55e71fb757d084864
         name: clinical-data
         env:
+          - name: LOG_LEVEL
+            value: debug
           - name: TYPEORM_USERNAME
             valueFrom:
               secretKeyRef:
