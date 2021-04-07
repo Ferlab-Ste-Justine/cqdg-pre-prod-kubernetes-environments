@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:	
+    fluxcd.io/automated: 'true'
+  name: datagrid-service
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-ca-certificate
+            defaultMode: 0555
+      containers:
+        - name: datagrid-service
+          image: ferlabcrsj/datagrid-service:8360f9c32fd8872098e16f1ef88976643612d5df
+          envFrom:
+            - configMapRef:
+                name: datagrid-service-db-connection
+            - configMapRef:
+                name: datagrid-service-db-connection-tls
+            - configMapRef:
+                name: datagrid-service-keycloak-access
+            - configMapRef:
+                name: datagrid-service-customizations
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            
