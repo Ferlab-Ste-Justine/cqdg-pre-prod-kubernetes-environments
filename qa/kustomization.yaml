@@ -19,3 +19,4 @@ resources:
   - terraform
   - id-service
   - clinical-data
+  - datagrid-service
