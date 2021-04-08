@@ -5,6 +5,7 @@ resources:
   - ../cqdg-orchestrations/datagrid-service
   - backups
   - migrations
+  - ingresses.yml
 
 patchesStrategicMerge:
   - deployments-overrides.yml
