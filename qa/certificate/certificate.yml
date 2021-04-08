@@ -27,3 +27,4 @@ spec:
     - jobs.qa.cqdg.ferlab.bio
     - data-api.qa.cqdg.ferlab.bio
     - clinical-data-api.qa.cqdg.ferlab.bio
+    - datagrid-api.qa.cqdg.ferlab.bio
