@@ -74,7 +74,7 @@ spec:
       $setElementOrder/containers:
       - name: portal
       containers:
-      - image: ferlabcrsj/cqdg-portal:48762a290f9a7ea81d7d6c121696cac0733deeb0
+      - image: ferlabcrsj/cqdg-portal:85b9e833fec631f40c6cc513559ad12fb6213714
         name: portal
 ---
 apiVersion: apps/v1
