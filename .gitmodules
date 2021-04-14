@@ -8,6 +8,3 @@
 [submodule "local/cqdg-orchestrations"]
 	path = local/cqdg-orchestrations
 	url = https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
-[submodule "ops/cqdg-orchestrations"]
-	path = ops/cqdg-orchestrations
-	url = https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
