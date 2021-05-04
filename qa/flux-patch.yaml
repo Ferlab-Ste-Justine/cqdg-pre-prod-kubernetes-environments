@@ -67,6 +67,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: lectern
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: lectern
+      containers:
+      - image: ferlabcrsj/lectern:092cf118415efdcb159e96af64c365d6c0455bfe
+        name: lectern
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: portal
 spec:
   template:
