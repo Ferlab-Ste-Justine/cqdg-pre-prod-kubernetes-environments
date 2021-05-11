@@ -13,7 +13,9 @@ spec:
         - name: fluentd
           env:
             - name:  FLUENT_ELASTICSEARCH_HOST
-              value: "logs-store.default.svc.cluster.local"
+              value: "elasticsearch-workers.default.svc.cluster.local"
+            - name:  FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+              value: "logs-kubernetes-qa"
           resources:
             limits:
               memory: 1Gi
