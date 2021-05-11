@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: es-migration-2021-05-10
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: migration-script
+          configMap:
+            name: es-migration-script
+            defaultMode: 0555
+      containers:
+      - name: es-migration
+        image: elasticdump/elasticsearch-dump@sha256:393664fac51e0fd51bfdc6993b93f6ac1edbe0b092a25c610c4a3bafd75a29f1
+        command:
+          - /opt/migration/migrate.sh 
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: '0.50'
+          limits:
+            memory: "512Mi"
+            cpu: '1.00'
+        volumeMounts:
+        - name: migration-script
+          mountPath: "/opt/migration"
+          readOnly: true
