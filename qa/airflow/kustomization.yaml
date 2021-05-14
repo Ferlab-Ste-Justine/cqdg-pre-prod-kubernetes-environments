@@ -5,7 +5,7 @@ resources:
   - ../cqdg-orchestrations/airflow
   - dag-configs
   - ingress.yml
-  - access.yml
+  - access
 
 patchesStrategicMerge:
   - deployments-override.yml
