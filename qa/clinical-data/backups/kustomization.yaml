@@ -10,8 +10,8 @@ configMapGenerator:
     options:
       disableNameSuffixHash: false
     literals:
-      - S3_ENDPOINT=https://esc.calculquebec.ca:8080
-      - S3_BUCKET=clinical-data-service-backups-qa
+      - S3_ENDPOINT=https://s3.ops.cqdg.ferlab.bio
+      - S3_BUCKET=cqdg-qa-app-clinical-data-service-backups
       - S3_REGION=RegionOne
       #15 days
       - S3_BACKUP_MAX_AGE="1296000"

@@ -24,6 +24,6 @@ spec:
                 - /opt/prune-backups.py
               envFrom:
                 - secretRef:
-                    name: s3-backup-credentials
+                    name: s3-id-service-credentials
                 - configMapRef:
                     name: id-service-s3-backups

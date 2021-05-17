@@ -40,7 +40,7 @@ spec:
                       key: password
               envFrom:
                 - secretRef:
-                    name: s3-backup-credentials
+                    name: s3-id-service-credentials
                 - configMapRef:
                     name: id-service-s3-backups
                 - configMapRef:
