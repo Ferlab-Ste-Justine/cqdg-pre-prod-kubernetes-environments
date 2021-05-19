@@ -13,6 +13,12 @@ spec:
     - schema.qa.cqdg.ferlab.bio
     - docs.qa.cqdg.ferlab.bio
     - search.qa.cqdg.ferlab.bio
+    - portal.qa.cqdg.ferlab.bio
+    - notebook.qa.cqdg.ferlab.bio
+    - jobs.qa.cqdg.ferlab.bio
+    - data-api.qa.cqdg.ferlab.bio
+    - clinical-data-api.qa.cqdg.ferlab.bio
+    - datagrid-api.qa.cqdg.ferlab.bio
     - qa.clin.ferlab.bio
     - gene.qa.clin.ferlab.bio
     - meta.qa.clin.ferlab.bio
@@ -21,9 +27,4 @@ spec:
     - hpo.qa.clin.ferlab.bio
     - fhir.qa.clin.ferlab.bio
     - fhir-console.qa.clin.ferlab.bio
-    - portal.qa.cqdg.ferlab.bio
-    - notebook.qa.cqdg.ferlab.bio
-    - jobs.qa.cqdg.ferlab.bio
-    - data-api.qa.cqdg.ferlab.bio
-    - clinical-data-api.qa.cqdg.ferlab.bio
-    - datagrid-api.qa.cqdg.ferlab.bio
+    - ferload.qa.clin.ferlab.bio
