@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - ../cqdg-orchestrations/keycloak
   - ingress.yml
-  - jobs.yml
+  - configure.yml
+  - backups
 
 patchesStrategicMerge:
   - clin-theme.yml
