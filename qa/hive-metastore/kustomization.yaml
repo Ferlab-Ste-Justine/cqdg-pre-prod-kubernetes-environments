@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../cqdg-orchestrations/hive-metastore
   - configs.yml
+  - backups
 
 patchesStrategicMerge:
   - deployments.yml
