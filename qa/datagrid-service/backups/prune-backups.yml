@@ -24,6 +24,6 @@ spec:
                 - /opt/prune-backups.py
               envFrom:
                 - secretRef:
-                    name: s3-backup-credentials
+                    name: s3-datagrid-service-credentials
                 - configMapRef:
                     name: datagrid-service-s3-backups
