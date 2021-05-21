@@ -1,0 +1,44 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: airflow-backup
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          imagePullSecrets:
+            - name: images-pull
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/postgres-backup:b3b4afc0e380db2b2410875208264b59f39a5eff
+              name: airflow-backup
+              command:
+                - python3
+                - /opt/backup.py
+              env:
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: airflow-db-credentials
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: airflow-db-credentials
+                      key: password
+                - name: PGHOST
+                  value: airflow-db.default.svc.cluster.local
+                - name: PGDATABASE
+                  value: airflow
+              envFrom:
+                - secretRef:
+                    name: s3-airflow-credentials
+                - configMapRef:
+                    name: airflow-s3-backups

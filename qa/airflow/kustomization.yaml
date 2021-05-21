@@ -6,6 +6,7 @@ resources:
   - dag-configs
   - ingress.yml
   - access
+  - backups
 
 patchesStrategicMerge:
   - deployments-override.yml
