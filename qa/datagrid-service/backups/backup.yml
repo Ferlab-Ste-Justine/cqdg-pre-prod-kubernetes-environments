@@ -22,7 +22,7 @@ spec:
                 secretName: postgres-ca-certificate
                 defaultMode: 0555
           containers:
-            - image: ferlabcrsj/postgres-backup:b3b4afc0e380db2b2410875208264b59f39a5eff
+            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
               name: datagrid-service-backup
               command:
                 - python3
