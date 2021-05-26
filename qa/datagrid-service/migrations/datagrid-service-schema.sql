@@ -7,3 +7,6 @@ CREATE TABLE IF NOT EXISTS data_grid (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE INDEX IF NOT EXISTS data_grid_user_id_entity_type_index
+ON data_grid (user_id, entity_type);
