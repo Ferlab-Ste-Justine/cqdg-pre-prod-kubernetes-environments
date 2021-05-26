@@ -14,7 +14,7 @@ configMapGenerator:
       disableNameSuffixHash: true
     literals:
       - PGDATABASE=airflow_qa
-      - PGHOST=postgres-server-qa.default.svc.cluster.local
+      - PGHOST=postgres-server-qa
   - name: airflow-db-connection-tls
     options:
       disableNameSuffixHash: true
