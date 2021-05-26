@@ -9,6 +9,11 @@ spec:
     spec:
       template:
         spec:
+          volumes:
+            - name: ca-certificate
+              secret:
+                secretName: postgres-qa-ca-certificate
+                defaultMode: 0555
           containers:
             - name: manage-airflow-users
               env:
@@ -17,3 +22,7 @@ spec:
                     secretKeyRef:
                       name: postgres-qa-airflow-connection
                       key: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              volumeMounts:
+                - name: ca-certificate
+                  mountPath: /opt/ca
+                  readOnly: true

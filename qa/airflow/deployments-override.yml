@@ -9,10 +9,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: images-pull
-      volumes:
-        - name: dags
-          hostPath:
-            path: /opt/airflow-dags
       initContainers:
         - name: db-init
           env:
@@ -21,6 +17,10 @@ spec:
                 secretKeyRef:
                   name: postgres-qa-airflow-connection
                   key: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
       containers:
         - name: airflow-scheduler
           env:
@@ -33,6 +33,17 @@ spec:
             - name: dags
               mountPath: /opt/airflow/dags
               readOnly: true
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+      volumes:
+        - name: dags
+          hostPath:
+            path: /opt/airflow-dags
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -60,3 +71,11 @@ spec:
             - name: dags
               mountPath: /opt/airflow/dags
               readOnly: true
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
