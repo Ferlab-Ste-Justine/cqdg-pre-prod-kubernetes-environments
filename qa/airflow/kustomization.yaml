@@ -2,12 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-#  - ../cqdg-orchestrations/airflow
-#  - dag-configs
-#  - ingress.yml
+  - ../cqdg-orchestrations/airflow
+  - dag-configs
+  - ingress.yml
   - access
   - backups
 
-#patchesStrategicMerge:
-#  - deployments-override.yml
-#  - configsmap-override.yml
+patchesStrategicMerge:
+  - deployments-override.yml
+  - configsmap-override.yml
+  - cronjobs-override.yml

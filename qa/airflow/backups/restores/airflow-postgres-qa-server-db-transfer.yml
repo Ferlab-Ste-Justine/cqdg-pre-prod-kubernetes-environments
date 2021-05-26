@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: airflow-postgres-qa-server-db-transfer
 spec:
-  backoffLimit: 4
+  backoffLimit: 1
   activeDeadlineSeconds: 600
   template:
     spec:

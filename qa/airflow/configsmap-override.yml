@@ -70,7 +70,7 @@ data:
             - secretRef:
                 name: airflow-webserver-flask-key
             - secretRef:
-                name: airflow-db-connection
+                name: postgres-qa-airflow-connection
           image: apache/airflow:1.10.14-python3.7
           imagePullPolicy: IfNotPresent
           name: base

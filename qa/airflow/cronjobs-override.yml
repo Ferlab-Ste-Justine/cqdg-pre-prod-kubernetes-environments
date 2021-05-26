@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: manage-airflow-users
+  namespace: airflow
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: manage-airflow-users
+              env:
+                - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-qa-airflow-connection
+                      key: AIRFLOW__CORE__SQL_ALCHEMY_CONN

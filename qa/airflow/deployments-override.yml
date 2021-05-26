@@ -13,8 +13,22 @@ spec:
         - name: dags
           hostPath:
             path: /opt/airflow-dags
+      initContainers:
+        - name: db-init
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-airflow-connection
+                  key: AIRFLOW__CORE__SQL_ALCHEMY_CONN
       containers:
         - name: airflow-scheduler
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-airflow-connection
+                  key: AIRFLOW__CORE__SQL_ALCHEMY_CONN
           volumeMounts:
             - name: dags
               mountPath: /opt/airflow/dags
@@ -36,6 +50,12 @@ spec:
             path: /opt/airflow-dags
       containers:
         - name: airflow-webserver
+          env:
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-airflow-connection
+                  key: AIRFLOW__CORE__SQL_ALCHEMY_CONN
           volumeMounts:
             - name: dags
               mountPath: /opt/airflow/dags
