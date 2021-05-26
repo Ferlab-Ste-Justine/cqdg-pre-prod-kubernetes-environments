@@ -6,8 +6,21 @@ namespace: airflow
 resources:
   - backup.yml
   - prune-backups.yml
+  - restores
 
 configMapGenerator:
+  - name: airflow-db-connection
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - PGDATABASE=airflow_qa
+      - PGHOST=postgres-server-qa.default.svc.cluster.local
+  - name: airflow-db-connection-tls
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - PGSSLMODE=verify-full
+      - PGSSLROOTCERT=/opt/ca/ca.pem
   - name: airflow-s3-backups
     options:
       disableNameSuffixHash: false
