@@ -96,3 +96,6 @@ CREATE SEQUENCE IF NOT EXISTS file_seq
     MINVALUE 1
     NO MAXVALUE
     CACHE 1;
+
+CREATE INDEX IF NOT EXISTS id_map_entity_type_hash_index
+ON id_map (entity_type, hash);
