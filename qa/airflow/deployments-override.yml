@@ -55,10 +55,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: images-pull
-      volumes:
-        - name: dags
-          hostPath:
-            path: /opt/airflow-dags
       containers:
         - name: airflow-webserver
           env:
@@ -75,6 +71,9 @@ spec:
               mountPath: /opt/ca
               readOnly: true
       volumes:
+        - name: dags
+          hostPath:
+            path: /opt/airflow-dags
         - name: ca-certificate
           secret:
             secretName: postgres-qa-ca-certificate
