@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: initialize-datagrid-service-db
+  name: initialize-datagrid-service-db-2021-05-26
 spec:
   backoffLimit: 4
   activeDeadlineSeconds: 600
