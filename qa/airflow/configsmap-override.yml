@@ -38,6 +38,10 @@ data:
         - name: dags
           hostPath:
             path: /opt/airflow-dags
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
       containers:
         - args: []
           command: []
@@ -86,6 +90,9 @@ data:
               readOnly: true
             - name: secrets
               mountPath: /opt/airflow/secrets
+              readOnly: true
+            - name: ca-certificate
+              mountPath: /opt/ca
               readOnly: true
       hostNetwork: false
       imagePullSecrets: []
