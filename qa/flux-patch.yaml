@@ -91,19 +91,6 @@ spec:
         name: portal
 ---
 apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: keycloak
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: keycloak
-      containers:
-      - image: ferlabcrsj/cqdg-keycloak:2befc99c725053e9059e772b73bf05d23ab3bc7c
-        name: keycloak
----
-apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: id-service
