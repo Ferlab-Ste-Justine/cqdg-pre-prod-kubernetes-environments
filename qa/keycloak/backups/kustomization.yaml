@@ -4,8 +4,21 @@ kind: Kustomization
 resources:
   - backup.yml
   - prune-backups.yml
+  - restores
 
 configMapGenerator:
+  - name: keycloak-db-connection
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - PGDATABASE=keycloak_qa
+      - PGHOST=postgres-server-qa
+  - name: keycloak-db-connection-tls
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - PGSSLMODE=verify-full
+      - PGSSLROOTCERT=/opt/ca/ca.pem
   - name: keycloak-s3-backups
     options:
       disableNameSuffixHash: false

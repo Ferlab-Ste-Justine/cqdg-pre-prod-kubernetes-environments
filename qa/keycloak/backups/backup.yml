@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: keycloak-backup
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "5 */4 * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
@@ -26,18 +26,18 @@ spec:
                 - name: PGUSER
                   valueFrom:
                     secretKeyRef:
-                      name: keycloak-db-credentials
+                      name: postgres-qa-keycloak-credentials
                       key: username
                 - name: PGPASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: keycloak-db-credentials
+                      name: postgres-qa-keycloak-credentials
                       key: password
-                - name: PGHOST
-                  value: keycloak-db
-                - name: PGDATABASE
-                  value: keycloak
               envFrom:
+                - configMapRef:
+                    name: keycloak-db-connection
+                - configMapRef:
+                    name: keycloak-db-connection-tls
                 - secretRef:
                     name: s3-keycloak-credentials
                 - configMapRef:

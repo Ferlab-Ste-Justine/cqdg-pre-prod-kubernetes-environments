@@ -1,0 +1,46 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: keycloak-postgres-qa-server-db-transfer
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+        name: keycloak-postgres-qa-server-db-transfer
+        env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-qa-keycloak-credentials
+                key: username
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-qa-keycloak-credentials
+                key: password
+        envFrom:
+          - secretRef:
+              name: s3-keycloak-credentials
+          - configMapRef:
+              name: keycloak-s3-backups
+          - configMapRef:
+              name: keycloak-db-connection
+          - configMapRef:
+              name: keycloak-db-connection-tls
+        command:
+          - python3
+          - /opt/restore.py
+        volumeMounts:
+          - name: ca-certificate
+            mountPath: /opt/ca
+            readOnly: true
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
