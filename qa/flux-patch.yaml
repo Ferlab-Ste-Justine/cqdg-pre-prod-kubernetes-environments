@@ -114,5 +114,5 @@ spec:
       $setElementOrder/containers:
       - name: id-service
       containers:
-      - image: ferlabcrsj/id-service:c3a3ce56e4f617c9eee2ad503a2f9cdaa941d327
+      - image: ferlabcrsj/id-service:6b8450941af27b83c511244975f81eda33919957
         name: id-service
