@@ -15,3 +15,23 @@ spec:
           env:
             - name: ORCID_URL
               value: 'https://sandbox.orcid.org'
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-keycloak-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-keycloak-credentials
+                  key: password
+            - name: DB_VENDOR
+              value: postgres
+            - name: DB_ADDR
+              value: postgres-server-qa
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DATABASE
+              value: keycloak_qa
+            - name: JDBC_PARAMS
+              value: 'sslmode=verify-full&sslrootcert=/opt/ca/ca.pem'
