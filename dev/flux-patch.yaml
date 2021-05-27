@@ -2,6 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: arranger
+  namespace: dev
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: arranger
+      containers:
+      - image: ferlabcrsj/cqdg-arranger:b3082912ed0b39b6e244f38fda56978cf839a8f6
+        name: arranger
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: portal
   namespace: dev
 spec:
@@ -10,7 +24,7 @@ spec:
       $setElementOrder/containers:
       - name: portal
       containers:
-      - image: ferlabcrsj/cqdg-portal:56053a6a6468cf2b5bec11ab0090e495c88da9f6
+      - image: ferlabcrsj/cqdg-portal:117d5c9cc6b4c58ada4363eb0e0778a5c73ac0ad
         name: portal
 ---
 apiVersion: apps/v1
@@ -24,5 +38,5 @@ spec:
       $setElementOrder/containers:
       - name: keycloak
       containers:
-      - image: ferlabcrsj/cqdg-keycloak:32e9789b8475e020cdec69a5403da8194575a001
+      - image: ferlabcrsj/cqdg-keycloak:2befc99c725053e9059e772b73bf05d23ab3bc7c
         name: keycloak
