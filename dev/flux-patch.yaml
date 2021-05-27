@@ -2,20 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arranger-server
-  namespace: dev
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: arranger-server
-      containers:
-      - image: ferlabcrsj/cqdg-arranger:6211b3ae0011fce54847ed07c86bdd5e266de3ed
-        name: arranger-server
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: portal
   namespace: dev
 spec:
