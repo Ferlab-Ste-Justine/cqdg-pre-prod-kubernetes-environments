@@ -40,3 +40,12 @@ spec:
               value: keycloak_dev
             - name: JDBC_PARAMS
               value: 'sslmode=verify-full&sslrootcert=/opt/ca/ca.pem'
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
