@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - backup.yml
   - prune-backups.yml
-  #- restores
+  - restores
 
 configMapGenerator:
   - name: clinical-data-service-s3-backups
