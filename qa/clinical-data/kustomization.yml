@@ -3,9 +3,9 @@ kind: Kustomization
 
 resources:
   - backups
-  #- ingress.yml
-  #- deployments.yml
-  #- services.yml
+  - ingress.yml
+  - deployments.yml
+  - services.yml
 
 configMapGenerator:
   - name: clinical-data-service-db-connection
