@@ -15,19 +15,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: clinical-data
-spec:
-  template:
-    spec:
-      $setElementOrder/containers:
-      - name: clinical-data
-      containers:
-      - image: ferlabcrsj/cqdg-clinical-data-service:1ade8421fdbde84379048387c9ac41265b80b243
-        name: clinical-data
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: datagrid-service
 spec:
   template:

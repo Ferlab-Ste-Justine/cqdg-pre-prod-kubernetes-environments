@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: clinical-data-service-backup
 spec:
-  schedule: "10 */4 * * *"
+  schedule: "*/1 * * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
