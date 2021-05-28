@@ -12,11 +12,11 @@ configMapGenerator:
     options:
       disableNameSuffixHash: false
     literals:
-      - PGDATABASE=clinical-data-service
-      - PGHOST=clinical-data-service-db
+      - PGDATABASE=clinical_data_service_qa
+      - PGHOST=postgres-server-qa
       - TYPEORM_CONNECTION=postgres
-      - TYPEORM_HOST=clinical-data-service-db
-      - TYPEORM_DATABASE=clinical-data-service
+      - TYPEORM_HOST=postgres-server-qa
+      - TYPEORM_DATABASE=clinical_data_service_qa
   - name: clinical-data-service-db-connection-tls
     options:
       disableNameSuffixHash: false
@@ -41,8 +41,8 @@ configMapGenerator:
       - TYPEORM_LOGGING=false
       - TYPEORM_LOGGER=advanced-console
       - S3_SIGNIN_REGION=RegionOne
-      - S3_BUCKET_NAME=clinical-data-service-qa
-      - S3_SERVICE_ENDPOINT=https://esc.calculquebec.ca:8080
+      - S3_BUCKET_NAME=cqdg-qa-app-clinical-data-service
+      - S3_SERVICE_ENDPOINT=https://s3.ops.cqdg.ferlab.bio
       - APP_HOST=clinical-data-api.qa.cqdg.ferlab.bio
       - APP_SCHEMA=https
       - APP_ROUTE_PREFIX=/api
