@@ -1,5 +1,18 @@
 ---
 apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: git-autosync
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: git-autosync
+      containers:
+      - image: ferlabcrsj/git-autosync:1.2.0
+        name: git-autosync
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: arranger
