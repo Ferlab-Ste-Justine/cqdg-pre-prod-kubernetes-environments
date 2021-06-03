@@ -27,7 +27,7 @@ spec:
                 defaultMode: 0555
             - name: keycloak-configs-provider
               secret:
-                secretName: keycloak-configs-provisioner
+                secretName: keycloak-terraform-provider-file
                 defaultMode: 0555
             - name: keycloak-configs-backend
               secret:
