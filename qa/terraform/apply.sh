@@ -8,7 +8,7 @@ fi
 
 mkdir -p /opt/apply;
 
-if [ -d "/opt/provider" ]; then
+if [ -d "/opt/providers" ]; then
     cp -Lr /opt/providers/. /opt/apply;
 fi
 if [ -d "/opt/backend" ]; then
