@@ -3,12 +3,17 @@
 set -e
 
 if [ -d "/opt/ca" ]; then
-  cp -Lr /opt/ca/. /etc/ssl/certs;
+    cp -Lr /opt/ca/. /etc/ssl/certs;
 fi
 
 mkdir -p /opt/apply;
-cp -Lr /opt/providers/. /opt/apply;
-cp -Lr /opt/backend/. /opt/apply;
+
+if [ -d "/opt/provider" ]; then
+    cp -Lr /opt/providers/. /opt/apply;
+fi
+if [ -d "/opt/backend" ]; then
+    cp -Lr /opt/backend/. /opt/apply;
+fi
 COUNT=$(cd /opt/terraform; find . -type f -name "*.tf" | wc -l)
 if [ $COUNT != 0 ]
 then 
@@ -18,4 +23,4 @@ then
         terraform init;
         terraform apply -auto-approve;
     )
-fi 
+fi
