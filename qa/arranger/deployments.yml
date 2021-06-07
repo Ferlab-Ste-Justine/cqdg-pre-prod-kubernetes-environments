@@ -13,3 +13,10 @@ spec:
       containers:
         - image: ferlabcrsj/cqdg-arranger:fba9ddc0ce38c200c0f2e3de3922fce0395a11df
           name: arranger
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: '1'
+            limits:
+              memory: "1024Mi"
+              cpu: '2'
