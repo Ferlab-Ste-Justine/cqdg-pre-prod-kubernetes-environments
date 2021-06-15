@@ -4,8 +4,7 @@ kind: Kustomization
 resources:
   - ../cqdg-orchestrations/keycloak
   - ingress.yml
-  - configure-backend-switch.yml
-  #- configure.yml
+  - configure.yml
   - backups
 
 patchesStrategicMerge:

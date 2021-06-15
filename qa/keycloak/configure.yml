@@ -29,13 +29,17 @@ spec:
               secret:
                 secretName: keycloak-terraform-provider-file
                 defaultMode: 0555
-            - name: keycloak-configs-backend
-              secret:
-                secretName: keycloak-configs-backend
+            - name: etcd-backend
+              configMap:
+                name: keycloak-terraform-backend-file
                 defaultMode: 0555
-            - name: ca-certificate
+            - name: etcd-ca-cert
               secret:
-                secretName: ca-certificate
+                secretName: etcd-alpha-ops-ca-cert
+                defaultMode: 0555
+            - name: etcd-client-cert
+              secret:
+                secretName: etcd-alpha-ops-terraform-keycloak-qa-cert
                 defaultMode: 0555
             - name: terraform
               emptyDir: {}
@@ -77,9 +81,12 @@ spec:
                 - name: keycloak-configs-provider
                   mountPath: /opt/providers
                   readOnly: true
-                - name: keycloak-configs-backend
+                - name: etcd-backend
                   mountPath: /opt/backend
                   readOnly: true
-                - name: ca-certificate
-                  mountPath: /opt/ca
+                - name: etcd-ca-cert
+                  mountPath: /opt/etcd-ca
+                  readOnly: true
+                - name: etcd-client-cert
+                  mountPath: /opt/etcd-client-cert
                   readOnly: true
