@@ -1,0 +1,108 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: keycloak-config-backend-switch
+  name: keycloak-config-backend-switch
+  namespace: terraform
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak-config-backend-switch
+  template:
+    metadata:
+      labels:
+        app: keycloak-config-backend-switch
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: ssh-key
+          secret:
+            secretName: git-autosync-ssh-key
+            defaultMode: 0400
+        - name: terraform-scripts
+          configMap:
+            name: terraform-scripts
+            defaultMode: 0555
+        - name: keycloak-configs-provider
+          secret:
+            secretName: keycloak-terraform-provider-file
+            defaultMode: 0555
+        - name: keycloak-configs-backend
+          secret:
+            secretName: keycloak-configs-backend
+            defaultMode: 0555
+        - name: ca-certificate
+          secret:
+            secretName: ca-certificate
+            defaultMode: 0555
+        - name: etcd-backend
+          configMap:
+            name: keycloak-terraform-backend-file
+            defaultMode: 0555
+        - name: etcd-ca-cert
+          secret:
+            secretName: etcd-alpha-ops-ca-cert
+            defaultMode: 0555
+        - name: etcd-client-cert
+          secret:
+            secretName: etcd-alpha-ops-terraform-keycloak-qa-cert
+            defaultMode: 0555
+        - name: terraform
+          emptyDir: {}
+      initContainers:
+        - image: ferlabcrsj/git-autosync:10d22c3cab424f19ba9ffc2287aa96170195b27a
+          name: clone-repo
+          env:
+            - name: GIT_REPO
+              value: git@github.com:Ferlab-Ste-Justine/cqdg-keycloak-configs.git
+            - name: GIT_BRANCH
+              value: main
+          command: ["/opt/scripts/clone.sh"]
+          volumeMounts:
+            - name: ssh-key
+              mountPath: /opt/ssh
+              readOnly: true
+            - name: terraform-scripts
+              mountPath: /opt/scripts
+              readOnly: true
+            - name: terraform
+              mountPath: /opt/terraform
+      containers:
+        - image: hashicorp/terraform:0.14.4
+          name: configure
+          command: ["sleep", "infinity"]
+          envFrom:
+            - secretRef:
+                name: terraform-smtp-credentials
+            - secretRef:
+                name: terraform-recaptcha-credentials
+            - secretRef:
+                name: terraform-keycloak-provider-credentials
+          volumeMounts:
+            - name: terraform
+              mountPath: /opt/terraform
+            - name: terraform-scripts
+              mountPath: /opt/scripts
+              readOnly: true
+            - name: keycloak-configs-provider
+              mountPath: /opt/providers
+              readOnly: true
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            - name: keycloak-configs-backend
+              mountPath: /opt/previous-backend
+              readOnly: true
+            - name: etcd-backend
+              mountPath: /opt/backend
+              readOnly: true
+            - name: etcd-ca-cert
+              mountPath: /opt/etcd-ca
+              readOnly: true
+            - name: etcd-client-cert
+              mountPath: /opt/etcd-client-cert
+              readOnly: true
