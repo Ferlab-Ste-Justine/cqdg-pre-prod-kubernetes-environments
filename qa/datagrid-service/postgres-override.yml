@@ -4,10 +4,8 @@ kind: ConfigMap
 metadata:
   name: datagrid-service-db-connection
 data:
-  PGDATABASE: datagrid-service
-  PGHOST: datagrid-service-db
-  #PGDATABASE: datagrid_service_qa
-  #PGHOST: postgres-server-qa
+  PGDATABASE: datagrid_service_qa
+  PGHOST: postgres-server-qa
 ---
 apiVersion: v1
 kind: ConfigMap

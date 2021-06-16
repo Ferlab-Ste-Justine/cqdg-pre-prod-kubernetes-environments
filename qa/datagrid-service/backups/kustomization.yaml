@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - backup.yml
   - prune-backups.yml
+  - restores
 
 configMapGenerator:
   - name: datagrid-service-s3-backups
