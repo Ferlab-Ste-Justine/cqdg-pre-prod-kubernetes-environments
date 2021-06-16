@@ -41,6 +41,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: datagrid-service
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: datagrid-service
+      containers:
+      - image: ferlabcrsj/datagrid-service:0505e5b8349ff1632fb967fe8c190bf6a2d25ae4
+        name: datagrid-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: docs
 spec:
   template:
