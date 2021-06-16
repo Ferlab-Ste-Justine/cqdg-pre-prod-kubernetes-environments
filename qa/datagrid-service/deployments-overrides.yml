@@ -12,7 +12,7 @@ spec:
       volumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-ca-certificate
+            secretName: postgres-qa-ca-certificate
             defaultMode: 0555
       containers:
         - name: datagrid-service
