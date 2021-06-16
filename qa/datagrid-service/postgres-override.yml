@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datagrid-service-db-connection
+data:
+  PGDATABASE: datagrid_service_qa
+  PGHOST: postgres-server-qa

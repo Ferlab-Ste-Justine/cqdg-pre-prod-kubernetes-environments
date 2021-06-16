@@ -6,6 +6,7 @@ resources:
   - backups
   - migrations
   - ingresses.yml
+  - postgres-override.yml
 
 patchesStrategicMerge:
   #- deployments-overrides.yml
