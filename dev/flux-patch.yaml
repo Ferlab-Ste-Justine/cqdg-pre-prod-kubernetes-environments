@@ -38,5 +38,5 @@ spec:
       $setElementOrder/containers:
       - name: keycloak
       containers:
-      - image: ferlabcrsj/cqdg-keycloak:2befc99c725053e9059e772b73bf05d23ab3bc7c
+      - image: ferlabcrsj/cqdg-keycloak:bc9fed459abceb24d924e5d0fb4172a4032fcec9
         name: keycloak
