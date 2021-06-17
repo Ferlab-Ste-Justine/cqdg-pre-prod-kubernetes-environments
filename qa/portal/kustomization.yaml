@@ -17,3 +17,4 @@ configMapGenerator:
       - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - CLINICAL_DATA_API=https://clinical-data-api.qa.cqdg.ferlab.bio/api
       - DATA_STORAGE_API=https://datagrid-api.qa.cqdg.ferlab.bio
+      - CQDG_DOCS_URL=https://docs.qa.cqdg.ferlab.bio
