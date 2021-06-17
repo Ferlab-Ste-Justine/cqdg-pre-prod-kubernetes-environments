@@ -10,7 +10,7 @@ spec:
       $setElementOrder/containers:
       - name: arranger
       containers:
-      - image: ferlabcrsj/cqdg-arranger:f43c80b40a2f0c0e8e64dc07c18b0cd3e76babcd
+      - image: ferlabcrsj/cqdg-arranger:668c401f6d1c2239d474d19fd27f1dd66082ca83
         name: arranger
 ---
 apiVersion: apps/v1
