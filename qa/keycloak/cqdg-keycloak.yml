@@ -13,6 +13,10 @@ spec:
         - name: keycloak
           image: ferlabcrsj/cqdg-keycloak:1c259e9380d4d8ac0391d293c7267c1f7cb81178
           env:
+            - name: HOME_URL
+              value: 'https://portal.qa.cqdg.ferlab.bio'
+            - name: DOCS_URL
+              value: 'https://docs.qa.cqdg.ferlab.bio'
             - name: ORCID_URL
               value: 'https://sandbox.orcid.org'
             - name: DB_USER
