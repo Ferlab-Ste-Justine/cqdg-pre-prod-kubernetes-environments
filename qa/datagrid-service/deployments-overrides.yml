@@ -17,6 +17,17 @@ spec:
       containers:
         - name: datagrid-service
           image: ferlabcrsj/datagrid-service:8360f9c32fd8872098e16f1ef88976643612d5df
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-datagrid-service-credentials
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-datagrid-service-credentials
+                  key: password
           envFrom:
             - configMapRef:
                 name: datagrid-service-db-connection
