@@ -113,7 +113,7 @@ spec:
       $setElementOrder/containers:
       - name: keycloak
       containers:
-      - image: ferlabcrsj/cqdg-keycloak:bc9fed459abceb24d924e5d0fb4172a4032fcec9
+      - image: ferlabcrsj/cqdg-keycloak:1.0.0
         name: keycloak
 ---
 apiVersion: apps/v1
