@@ -51,6 +51,8 @@ spec:
                   value: git@github.com:Ferlab-Ste-Justine/cqdg-keycloak-configs.git
                 - name: GIT_BRANCH
                   value: main
+                - name: GIT_PATH
+                  value: qa
               command: ["/opt/scripts/clone.sh"]
               volumeMounts:
                 - name: ssh-key
