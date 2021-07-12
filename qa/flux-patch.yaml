@@ -61,7 +61,7 @@ spec:
       $setElementOrder/containers:
       - name: docs
       containers:
-      - image: ferlabcrsj/cqdg-docs:a2a0fef4e5114cd3791e23826147962e9180dc93
+      - image: ferlabcrsj/cqdg-docs:7edc3137168c2a60b91fe2f9ebf74f8ed8c43a0a
         name: docs
 ---
 apiVersion: apps/v1
