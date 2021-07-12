@@ -48,7 +48,7 @@ spec:
       $setElementOrder/containers:
       - name: datagrid-service
       containers:
-      - image: ferlabcrsj/datagrid-service:fb46eb88cccaa786472f766243f4463bb4fa2ff9
+      - image: ferlabcrsj/datagrid-service:a1f6ee877daba603f5f6af355713aab685a699ca
         name: datagrid-service
 ---
 apiVersion: apps/v1
