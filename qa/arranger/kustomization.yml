@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - ingress.yml
-  - configure-arranger
+  #- configure-arranger
   - ../cqdg-orchestrations/arranger
 
 patchesStrategicMerge:
