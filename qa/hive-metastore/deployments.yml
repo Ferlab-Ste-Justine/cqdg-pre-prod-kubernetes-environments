@@ -11,3 +11,16 @@ spec:
     spec:
       imagePullSecrets:
         - name: images-pull
+      containers:
+        - name: hive-metastore
+          env:
+            - name: S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-hive-metastore-credentials
+                  key: S3_ACCESS_KEY
+            - name: S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-hive-metastore-credentials
+                  key: S3_SECRET_KEY
