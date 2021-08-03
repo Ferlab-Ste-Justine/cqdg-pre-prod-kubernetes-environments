@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
   - ../cqdg-orchestrations/spark-core
+
+patchesStrategicMerge:
+  - core-override.yml

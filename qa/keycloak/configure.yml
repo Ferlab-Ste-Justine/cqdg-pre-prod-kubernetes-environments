@@ -19,7 +19,7 @@ spec:
           volumes:
             - name: ssh-key
               secret:
-                secretName: git-autosync-ssh-key
+                secretName: cqdg-keycloak-terraform-github-ssh-key
                 defaultMode: 0400
             - name: terraform-scripts
               configMap:

@@ -13,7 +13,7 @@ spec:
         - name: fluentd
           env:
             - name:  FLUENT_ELASTICSEARCH_HOST
-              value: "elasticsearch-workers.default.svc.cluster.local"
+              value: "elasticsearch-workers.default.svc.cluster.qa"
             - name:  FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
               value: "logs-kubernetes-qa"
           resources:
