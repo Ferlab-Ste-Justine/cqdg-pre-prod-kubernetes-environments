@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: ferlabcrsj/cqdg-keycloak:45f8026f0c7fcd0dcdbb47e096f4cd1918bb85fa
+          image: ferlabcrsj/cqdg-keycloak:1.0.0

@@ -10,4 +10,4 @@ resources:
 patchesStrategicMerge:
   - cqdg-keycloak.yml
   - clin-themes.yml
-  - overrides.yml
+  - single-replica-overrides.yml
