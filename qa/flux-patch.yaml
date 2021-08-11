@@ -35,7 +35,7 @@ spec:
       $setElementOrder/containers:
       - name: clinical-data
       containers:
-      - image: ferlabcrsj/cqdg-clinical-data-service:efc739c37dd452a0681338f961876e3d650d58ad
+      - image: ferlabcrsj/cqdg-clinical-data-service:9671929211ec7d42e7f793b5b6bd28268ed0ad81
         name: clinical-data
 ---
 apiVersion: apps/v1
