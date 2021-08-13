@@ -67,6 +67,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: hive-metastore
+spec:
+  template:
+    spec:
+      $setElementOrder/containers:
+      - name: hive-metastore
+      containers:
+      - image: ferlabcrsj/hive-metastore:0edb597e24b5320a3363e0c07050736c325082b5
+        name: hive-metastore
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: lectern
 spec:
   template:
