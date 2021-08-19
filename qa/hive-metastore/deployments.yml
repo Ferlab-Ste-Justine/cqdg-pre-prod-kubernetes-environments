@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:	
+    fluxcd.io/automated: 'true'
   labels:
     name: hive-metastore
   name: hive-metastore
@@ -12,6 +14,8 @@ spec:
       containers:
         - name: hive-metastore
           env:
+            - name: JDBC_CONNECTION_URL
+              value: jdbc:postgresql://hive-metastore-db:5432/hive_metastore
             - name: S3_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
