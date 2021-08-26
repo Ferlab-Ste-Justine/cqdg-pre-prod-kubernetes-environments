@@ -7,7 +7,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - clinical-data-api.qa.cqdg.ferlab.bio
+        - clinical-data-api.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
     - host: clinical-data-api.qa.cqdg.ferlab.bio
