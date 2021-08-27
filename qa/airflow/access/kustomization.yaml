@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
   - spark-ns.yml
-  - etl-clin-qa-ns.yml
