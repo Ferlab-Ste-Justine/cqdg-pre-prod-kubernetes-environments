@@ -7,7 +7,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - datagrid-api.qa.cqdg.ferlab.bio
+        - datagrid-api.qa.cqdg.ferlab.bio
       secretName: letsencrypt-certificate
   rules:
     - host: datagrid-api.qa.cqdg.ferlab.bio
