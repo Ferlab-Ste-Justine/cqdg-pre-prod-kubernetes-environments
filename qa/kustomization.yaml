@@ -1,16 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-#patches:
-#  - patch: |-
-#      - op: replace
-#        path: /spec/tls/0/secretName
-#        value: cqdg-ingress-internal-certificate
-#    target:
-#      kind: Ingress
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: cqdg-ingress-internal-certificate
+    target:
+      kind: Ingress
 
 resources:
-  - certificate
+  #- certificate
   - keycloak
   - lectern
   - documentation
