@@ -16,7 +16,7 @@ configMapGenerator:
     literals:
       - LOGS_REQUEST_INTERCEPTOR="false"
       - AUTH_CLIENT_ID=cqdg-client
-      - AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
+      - AUTH_SERVER_URL=http://keycloak-http/auth
       - AUTH_REALM=CQDG
       - SERVICE_ACCOUNT_CLIENT_ID=cqdg-system
       - SECURE="true"
