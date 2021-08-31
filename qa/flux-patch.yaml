@@ -74,7 +74,7 @@ spec:
       $setElementOrder/containers:
       - name: hive-metastore
       containers:
-      - image: ferlabcrsj/hive-metastore:beb4833903d65965ae9002999770979ba0147e36
+      - image: ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1
         name: hive-metastore
 ---
 apiVersion: apps/v1
