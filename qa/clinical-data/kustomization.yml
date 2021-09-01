@@ -8,6 +8,11 @@ resources:
   - services.yml
 
 configMapGenerator:
+  - name: clinical-data-service-ca-bundle
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
   - name: clinical-data-service-db-connection
     options:
       disableNameSuffixHash: false
@@ -25,7 +30,6 @@ configMapGenerator:
     literals:
       - PGSSLMODE=verify-full
       - PGSSLROOTCERT=/opt/ca/ca.pem
-      - NODE_EXTRA_CA_CERTS=/opt/ca/ca.pem
   - name: clinical-data-configs
     options:
       disableNameSuffixHash: false
