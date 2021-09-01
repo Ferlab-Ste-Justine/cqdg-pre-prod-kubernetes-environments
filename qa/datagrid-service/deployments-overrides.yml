@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   annotations:	
     fluxcd.io/automated: 'true'
+    fluxcd.io/tag.copy-zonefile: semver:~3.13.6
+    fluxcd.io/tag.copy-coredns: semver:~1.8.4
   name: datagrid-service
 spec:
   template:
@@ -24,21 +26,31 @@ spec:
             defaultMode: 0444
         - name: zonefile-copy
           emptyDir: {}
+      dnsPolicy: None
       dnsConfig:
         nameservers:
           - 127.0.0.1
+          - 169.254.25.10
+        searches:
+          - search
+          - default.svc.cluster.qa
+          - svc.cluster.qa
+          - cluster.qa
+          - openstacklocal
+        options:
+          - name: ndots
+            value: "5"
       initContainers:
         - name: copy-zonefile
           image: alpine:3.13.6
-          command: ["cp"]
-          args: ["/opt/zonefiles/*", "/opt/zonefiles-copy/"]
+          command: ["sh"]
+          args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
           volumeMounts:
             - name: zonefile
               mountPath: /opt/zonefiles
               readOnly: true
             - name: zonefile-copy
               mountPath: /opt/zonefiles-copy
-              readOnly: true
       containers:
         - name: coredns
           image: coredns/coredns:1.8.4
