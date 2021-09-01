@@ -4,7 +4,7 @@ metadata:
   annotations:	
     fluxcd.io/automated: 'true'
     fluxcd.io/tag.copy-zonefile: semver:~3.13.6
-    fluxcd.io/tag.copy-coredns: semver:~1.8.4
+    fluxcd.io/tag.coredns: semver:~1.8.4
   name: datagrid-service
 spec:
   template:
