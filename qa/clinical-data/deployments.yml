@@ -4,6 +4,7 @@ metadata:
   annotations:
     fluxcd.io/automated: 'true'
     fluxcd.io/tag.copy-zonefile: semver:~3.13.6
+    fluxcd.io/tag.ca-bundler: semver:~3.13.6
     fluxcd.io/tag.coredns: semver:~1.8.4
   labels:
     app: clinical-data
@@ -21,10 +22,16 @@ spec:
       imagePullSecrets:
         - name: images-pull
       volumes:
-        - name: ca-certificate
+        - name: postgres-ca-certificate
           secret:
             secretName: postgres-qa-ca-certificate
             defaultMode: 0555
+        - name: ingress-internal-ca-certificate
+          secret:
+            secretName: cqdg-ingress-internal-ca-certificate
+            defaultMode: 0555
+        - name: ca-bundle
+          emptyDir: {}
         - name: corefile
           configMap:
             name: coredns-zonefiles-corefile
@@ -60,6 +67,19 @@ spec:
               readOnly: true
             - name: zonefile-copy
               mountPath: /opt/zonefiles-copy
+        - name: ca-bundler
+          image: alpine:3.13.6
+          command: ["sh"]
+          args: ["-c", "cat /opt/postgres-ca/ca.pem /opt/ingress-ca/ca.pem > /opt/ca-bundle/ca.pem"]
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/postgres-ca
+              readOnly: true
+            - name: ingress-internal-ca-certificate
+              mountPath: /opt/ingress-ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
       containers:
         - name: coredns
           image: coredns/coredns:1.8.4
@@ -91,6 +111,8 @@ spec:
             - configMapRef:
                 name: clinical-data-configs
             - configMapRef:
+                name: clinical-data-service-ca-bundle
+            - configMapRef:
                 name: clinical-data-service-db-connection
             - configMapRef:
                 name: clinical-data-service-db-connection-tls
@@ -103,8 +125,11 @@ spec:
             - secretRef:
                 name: clinical-data-monitor-credentials
           volumeMounts:
-            - name: ca-certificate
+            - name: postgres-ca-certificate
               mountPath: /opt/ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
               readOnly: true
           resources:
             requests:
