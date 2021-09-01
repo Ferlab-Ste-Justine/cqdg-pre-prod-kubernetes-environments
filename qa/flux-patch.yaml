@@ -48,14 +48,9 @@ spec:
       $setElementOrder/containers:
       - name: datagrid-service
       - name: coredns
-      $setElementOrder/initContainers:
-      - name: copy-zonefile
       containers:
       - image: ferlabcrsj/datagrid-service:1.0.0
         name: datagrid-service
-      initContainers:
-      - image: alpine:3.11
-        name: copy-zonefile
 ---
 apiVersion: apps/v1
 kind: Deployment
