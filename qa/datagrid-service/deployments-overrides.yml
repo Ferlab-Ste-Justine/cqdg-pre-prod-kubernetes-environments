@@ -22,9 +22,23 @@ spec:
           configMap:
             name: qa-domain-zonefile-internal-ip
             defaultMode: 0444
+        - name: zonefile-copy
+          emptyDir: {}
       dnsConfig:
         nameservers:
           - 127.0.0.1
+      initContainers:
+        - name: copy-zonefile
+          image: alpine:3.13.6
+          command: ["cp"]
+          args: ["/opt/zonefiles/*", "/opt/zonefiles-copy/"]
+          volumeMounts:
+            - name: zonefile
+              mountPath: /opt/zonefiles
+              readOnly: true
+            - name: zonefile-copy
+              mountPath: /opt/zonefiles-copy
+              readOnly: true
       containers:
         - name: coredns
           image: coredns/coredns:1.8.4
@@ -34,7 +48,7 @@ spec:
             - name: corefile
               mountPath: /opt/corefile
               readOnly: true
-            - name: zonefile
+            - name: zonefile-copy
               mountPath: /opt/zonefiles
               readOnly: true
         - name: datagrid-service
