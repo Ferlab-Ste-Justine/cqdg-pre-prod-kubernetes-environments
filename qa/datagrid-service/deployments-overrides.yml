@@ -14,7 +14,29 @@ spec:
           secret:
             secretName: postgres-qa-ca-certificate
             defaultMode: 0555
+        - name: corefile
+          configMap:
+            name: coredns-zonefiles-corefile
+            defaultMode: 0444
+        - name: zonefile
+          configMap:
+            name: qa-domain-zonefile-internal-ip
+            defaultMode: 0444
+      dnsConfig:
+        nameservers:
+          - 127.0.0.1
       containers:
+        - name: coredns
+          image: coredns/coredns:1.8.4
+          command: ["/coredns"]
+          args: ["-conf", "/opt/corefile/Corefile"]
+          volumeMounts:
+            - name: corefile
+              mountPath: /opt/corefile
+              readOnly: true
+            - name: zonefile
+              mountPath: /opt/zonefiles
+              readOnly: true
         - name: datagrid-service
           image: ferlabcrsj/datagrid-service:8360f9c32fd8872098e16f1ef88976643612d5df
           env:
