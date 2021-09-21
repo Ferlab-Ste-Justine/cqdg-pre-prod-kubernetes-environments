@@ -21,8 +21,9 @@ spec:
     spec:
       $setElementOrder/containers:
       - name: arranger
+      - name: coredns
       containers:
-      - image: ferlabcrsj/cqdg-arranger:668c401f6d1c2239d474d19fd27f1dd66082ca83
+      - image: ferlabcrsj/cqdg-arranger:1.0.0
         name: arranger
 ---
 apiVersion: apps/v1
@@ -33,6 +34,7 @@ spec:
   template:
     spec:
       $setElementOrder/containers:
+      - name: coredns
       - name: clinical-data
       containers:
       - image: ferlabcrsj/cqdg-clinical-data-service:9671929211ec7d42e7f793b5b6bd28268ed0ad81
