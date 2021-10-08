@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: terraform
+
+configMapGenerator:
+  - name: elasticsearch-terraform-provider-file
+    options:
+      disableNameSuffixHash: true
+    files:
+      - provider.tf
+
+resources:
+  - cron-job.yml
