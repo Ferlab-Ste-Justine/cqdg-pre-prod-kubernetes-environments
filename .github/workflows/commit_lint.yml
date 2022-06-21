@@ -11,4 +11,4 @@ jobs:
       with:
         fetch-depth: 0
     - name: Lint Commits
-      uses: Ferlab-Ste-Justine/action-commit-lint@master
+      uses: Ferlab-Ste-Justine/action-commit-lint@v2
