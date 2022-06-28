@@ -28,7 +28,7 @@ spec:
             defaultMode: 0555
         - name: ingress-internal-ca-certificate
           secret:
-            secretName: cqdg-ingress-internal-ca-certificate
+            secretName: cqdg-ingress-internal-ca-certificate-v2
             defaultMode: 0555
         - name: ca-bundle
           emptyDir: {}
