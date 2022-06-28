@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: spark-ceph-endpoint
-  namespace: spark
-data:
-  spark-ceph-endpoint.conf: |
-    spark.hadoop.fs.s3a.endpoint=https://esc.calculquebec.ca:8080
