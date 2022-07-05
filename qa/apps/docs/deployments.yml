@@ -15,9 +15,9 @@ spec:
         app: docs
     spec:
       imagePullSecrets:
-        - name: images-pull
+      - name: images-pull
       containers:
-      - image: ferlabcrsj/cqdg-docs:356505991cd05fa218e8808867da6140737e5f8f # {"$imagepolicy": "cqdg-qa-fluxcd:docs"}
+      - image: index.docker.io/ferlabcrsj/cqdg-docs:5c2151cdf78df3f0cfebca05e3262c7b920d0b3b-1657056790 # {"$imagepolicy": "cqdg-qa-fluxcd:docs"}
         name: docs
         resources:
           requests:
