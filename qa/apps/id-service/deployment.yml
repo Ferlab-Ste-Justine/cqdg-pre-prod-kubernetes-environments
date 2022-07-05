@@ -1,5 +1,3 @@
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,47 +15,47 @@ spec:
         app: id-service
     spec:
       imagePullSecrets:
-        - name: images-pull
+      - name: images-pull
       volumes:
-        - name: db-ca-certificate
-          secret:
-            secretName: id-service-db-ca-certificate
-            defaultMode: 0555
+      - name: db-ca-certificate
+        secret:
+          secretName: id-service-db-ca-certificate
+          defaultMode: 0555
       containers:
-        - image: ferlabcrsj/id-service:4d47f9dada5f7ec27933443997326a138b8e0546 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
-          name: id-service
-          env:
-            - name: PGUSER
-              valueFrom:
-                secretKeyRef:
-                  name: id-service-db-credentials
-                  key: username
-            - name: PGPASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: id-service-db-credentials
-                  key: password
-            - name: PGDATABASE
-              value: id-service
-            - name: PGHOST
-              value: id-service-db
-            - name: PGSSLMODE
-              value: verify-full
-            - name: PGSSLROOTCERT
-              value: /opt/ca/ca.pem
-            - name: NODE_EXTRA_CA_CERTS
-              value: /opt/ca/ca.pem
-          envFrom:
-            - configMapRef:
-                name: id-service-customizations
-          volumeMounts:
-            - name: db-ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-          resources:
-            requests:
-              memory: "64Mi"
-              cpu: '0.25'
-            limits:
-              memory: "128Mi"
-              cpu: '0.50'
+      - image: index.docker.io/ferlabcrsj/id-service:6d6d39dca61a469d04414e837673a6c413aef1f2-1657052279 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+        name: id-service
+        env:
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: id-service-db-credentials
+              key: username
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: id-service-db-credentials
+              key: password
+        - name: PGDATABASE
+          value: id-service
+        - name: PGHOST
+          value: id-service-db
+        - name: PGSSLMODE
+          value: verify-full
+        - name: PGSSLROOTCERT
+          value: /opt/ca/ca.pem
+        - name: NODE_EXTRA_CA_CERTS
+          value: /opt/ca/ca.pem
+        envFrom:
+        - configMapRef:
+            name: id-service-customizations
+        volumeMounts:
+        - name: db-ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: '0.25'
+          limits:
+            memory: "128Mi"
+            cpu: '0.50'
