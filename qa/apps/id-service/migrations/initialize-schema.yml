@@ -1,0 +1,56 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: initialize-id-service
+spec:
+  backoffLimit: 4
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: id-service-schema
+          configMap:
+            name: id-service-schema
+        - name: db-ca-certificate
+          secret:
+            secretName: id-service-db-ca-certificate
+            defaultMode: 0555
+      containers:
+      - name: initialize-id-service-db
+        image: postgres:12
+        env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: id-service-db-credentials
+                key: username
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: id-service-db-credentials
+                key: password
+          - name: PGDATABASE
+            value: id-service
+          - name: PGHOST
+            value: id-service-db
+          - name: PGSSLMODE
+            value: verify-full
+          - name: PGSSLROOTCERT
+            value: /opt/ca/ca.pem
+        workingDir: /opt
+        command:
+          - psql
+        args:
+          - -f
+          - id-service-schema.sql
+        volumeMounts:
+          - name: id-service-schema
+            mountPath: /opt
+            readOnly: true
+          - name: db-ca-certificate
+            mountPath: /opt/ca
+            readOnly: true
+      restartPolicy: Never
