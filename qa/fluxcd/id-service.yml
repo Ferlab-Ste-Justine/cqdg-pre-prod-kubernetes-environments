@@ -45,7 +45,7 @@ spec:
   image: index.docker.io/ferlabcrsj/id-service
   interval: 1m
   secretRef:
-    name: images-pull
+    name: images-registry-credentials
   accessFrom:
     namespaceSelectors:
       - matchLabels:
