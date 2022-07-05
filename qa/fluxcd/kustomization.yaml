@@ -7,3 +7,4 @@ resources:
   - cqdg-apps.yml
   - postgres-backups.yml
   - id-service.yml
+  - docs.yml

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: docs
+  name: docs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      labels:
+        app: docs
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+      - image: ferlabcrsj/cqdg-docs:356505991cd05fa218e8808867da6140737e5f8f # {"$imagepolicy": "cqdg-qa-fluxcd:docs"}
+        name: docs
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: '0.25'
+          limits:
+            memory: "512Mi"
+            cpu: '0.5'
