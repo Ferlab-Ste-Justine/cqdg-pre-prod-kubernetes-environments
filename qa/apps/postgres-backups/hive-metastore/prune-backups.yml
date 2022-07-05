@@ -1,0 +1,29 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hive-metastore-backups-prune
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          imagePullSecrets:
+            - name: images-pull
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+              name: hive-metastore-backups-prune
+              command:
+                - python3
+                - /opt/prune-backups.py
+              envFrom:
+                - secretRef:
+                    name: s3-hive-metastore-credentials
+                - configMapRef:
+                    name: hive-metastore-s3-backups

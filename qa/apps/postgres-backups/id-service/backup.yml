@@ -1,0 +1,57 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: id-service-backup
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          imagePullSecrets:
+            - name: images-pull
+          restartPolicy: Never
+          volumes:
+            - name: db-ca-certificate
+              secret:
+                secretName: id-service-db-ca-certificate
+                defaultMode: 0555
+          containers:
+            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+              name: id-service-backup
+              command:
+                - python3
+                - /opt/backup.py
+              env:
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      name: id-service-db-credentials
+                      key: username
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: id-service-db-credentials
+                      key: password
+                - name: PGSSLMODE
+                  value: verify-full
+                - name: PGSSLROOTCERT
+                  value: /opt/ca/ca.pem
+                - name: PGHOST
+                  value: id-service-db
+                - name: PGDATABASE
+                  value: id-service
+              envFrom:
+                - secretRef:
+                    name: s3-id-service-credentials
+                - configMapRef:
+                    name: id-service-s3-backups
+              volumeMounts:
+                - name: db-ca-certificate
+                  mountPath: /opt/ca
+                  readOnly: true
