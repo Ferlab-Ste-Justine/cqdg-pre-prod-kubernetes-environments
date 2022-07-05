@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: hive-metastore-backups-prune
 spec:
-  schedule: "0 */4 * * *"
+  schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
