@@ -10,3 +10,4 @@ resources:
   - docs.yml
   - portal.yml
   - portal-ui.yml
+  - lectern.yml

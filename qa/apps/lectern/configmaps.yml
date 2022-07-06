@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lectern-cmd
+data:
+  launch.sh: |
+    #!/usr/bin/env bash
+    
+    DB_USERNAME=$(cat /opt/db-credentials/username | tr -d '\n');
+    DB_PASSWORD=$(cat /opt/db-credentials/password | tr -d '\n');
+    exec env MONGO_URL="mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongodb-replicaset-lectern-qa-1:27017,mongodb-replicaset-lectern-qa-2:27017,mongodb-replicaset-lectern-qa-3:27017/lectern?authSource=admin&tls=false&replicaSet=replicaset-lectern-qa" npm run serve
