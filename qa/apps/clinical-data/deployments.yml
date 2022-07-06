@@ -1,0 +1,135 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clinical-data
+  name: clinical-data
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: clinical-data
+  template:
+    metadata:
+      labels:
+        app: clinical-data
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      volumes:
+        - name: postgres-ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+        - name: ingress-ca-certificate
+          secret:
+            secretName: cqdg-ingress-ca-certificate
+            defaultMode: 0555
+        - name: ca-bundle
+          emptyDir: {}
+        - name: corefile
+          configMap:
+            name: coredns-zonefiles-corefile
+            defaultMode: 0444
+        - name: zonefile
+          configMap:
+            name: qa-domain-zonefile
+            defaultMode: 0444
+        - name: zonefile-copy
+          emptyDir: {}
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 127.0.0.1
+          - 169.254.25.10
+        searches:
+          - search
+          - cqdg-qa.svc.cluster.qa
+          - svc.cluster.qa
+          - cluster.qa
+          - openstacklocal
+        options:
+          - name: ndots
+            value: "5"
+      initContainers:
+        - name: copy-zonefile
+          image: alpine:3.13.6
+          command: ["sh"]
+          args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
+          volumeMounts:
+            - name: zonefile
+              mountPath: /opt/zonefiles
+              readOnly: true
+            - name: zonefile-copy
+              mountPath: /opt/zonefiles-copy
+        - name: ca-bundler
+          image: alpine:3.13.6
+          command: ["sh"]
+          args: ["-c", "cat /opt/postgres-ca/ca.pem /opt/ingress-ca/ca.pem > /opt/ca-bundle/ca.pem"]
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/postgres-ca
+              readOnly: true
+            - name: ingress-ca-certificate
+              mountPath: /opt/ingress-ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
+      containers:
+        - name: coredns
+          image: coredns/coredns:1.8.4
+          command: ["/coredns"]
+          args: ["-conf", "/opt/corefile/Corefile"]
+          volumeMounts:
+            - name: corefile
+              mountPath: /opt/corefile
+              readOnly: true
+            - name: zonefile-copy
+              mountPath: /opt/zonefiles
+              readOnly: true
+        - image: ferlabcrsj/cqdg-clinical-data-service:3b0bc2e65aee8df24512cdf55e71fb757d084864 # {"$imagepolicy": "cqdg-qa-fluxcd:clinical-data"}
+          name: clinical-data
+          env:
+            - name: LOG_LEVEL
+              value: info
+            - name: TYPEORM_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clinical-data-service-credentials
+                  key: username
+            - name: TYPEORM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-clinical-data-service-credentials
+                  key: password
+          envFrom:
+            - configMapRef:
+                name: clinical-data-configs
+            - configMapRef:
+                name: clinical-data-service-ca-bundle
+            - configMapRef:
+                name: clinical-data-service-db-connection
+            - configMapRef:
+                name: clinical-data-service-db-connection-tls
+            - secretRef:
+                name: s3-clinical-data-service-credentials
+            - secretRef:
+                name: clinical-data-keycloak-credentials
+            - secretRef:
+                name: clinical-data-lectern-credentials
+            - secretRef:
+                name: clinical-data-monitor-credentials
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
+              readOnly: true
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: '1.0'
+            limits:
+              memory: "2048Mi"
+              cpu: '2.0'

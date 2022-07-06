@@ -16,3 +16,4 @@ resources:
   - coredns.yml
   - arranger.yml
   - datagrid-service.yml
+  - clinical-data.yml
