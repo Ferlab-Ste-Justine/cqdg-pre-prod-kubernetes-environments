@@ -6,6 +6,6 @@ namespace: cqdg-qa
 configMapGenerator:
   - name: coredns-zonefiles-corefile
     options:
-      disableNameSuffixHash: false
+      disableNameSuffixHash: true
     files:
       - Corefile=Corefile
