@@ -4,9 +4,10 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  #- configure-arranger
+  - ../../cqdg-orchestrations/arranger
   - ingress.yml
-  - ../cqdg-orchestrations/arranger
+  #- configure-arranger
+
 
 patchesStrategicMerge:
   - deployments.yml
