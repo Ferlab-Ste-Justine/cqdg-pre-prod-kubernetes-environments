@@ -17,3 +17,5 @@ resources:
   - arranger.yml
   - datagrid-service.yml
   - clinical-data.yml
+  - elasticsearch.yml
+  - zeppelin.yml
