@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: git-autosync-listing
+data:
+  listing.json: |
+    [
+      {
+          "path": "/opt/clin-keycloak-theme",
+          "repo": "https://github.com/Ferlab-Ste-Justine/clin-keycloak-theme.git",
+          "branch": "master"
+      }
+    ]

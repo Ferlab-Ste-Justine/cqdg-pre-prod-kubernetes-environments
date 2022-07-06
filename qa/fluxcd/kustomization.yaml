@@ -11,3 +11,4 @@ resources:
   - portal.yml
   - portal-ui.yml
   - lectern.yml
+  - git-autosync.yml
