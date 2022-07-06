@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,72 +6,72 @@ spec:
   template:
     spec:
       imagePullSecrets:
-        - name: images-pull
+      - name: images-pull
       volumes:
-        - name: ingress-ca-certificate
-          secret:
-            secretName: cqdg-ingress-ca-certificate
-            defaultMode: 0555
-        - name: corefile
-          configMap:
-            name: coredns-zonefiles-corefile
-            defaultMode: 0444
-        - name: zonefile
-          configMap:
-            name: qa-domain-zonefile
-            defaultMode: 0444
-        - name: zonefile-copy
-          emptyDir: {}
+      - name: ingress-ca-certificate
+        secret:
+          secretName: cqdg-ingress-ca-certificate
+          defaultMode: 0555
+      - name: corefile
+        configMap:
+          name: coredns-zonefiles-corefile
+          defaultMode: 0444
+      - name: zonefile
+        configMap:
+          name: qa-domain-zonefile
+          defaultMode: 0444
+      - name: zonefile-copy
+        emptyDir: {}
       dnsPolicy: None
       dnsConfig:
         nameservers:
-          - 127.0.0.1
-          - 169.254.25.10
+        - 127.0.0.1
+        - 169.254.25.10
         searches:
-          - search
-          - cqdg-qa.svc.cluster.qa
-          - svc.cluster.qa
-          - cluster.qa
-          - openstacklocal
+        - search
+        - cqdg-qa.svc.cluster.qa
+        - svc.cluster.qa
+        - cluster.qa
+        - openstacklocal
         options:
-          - name: ndots
-            value: "5"
+        - name: ndots
+          value: "5"
       initContainers:
-        - name: copy-zonefile
-          image: alpine:3.13.6
-          command: ["sh"]
-          args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
-          volumeMounts:
-            - name: zonefile
-              mountPath: /opt/zonefiles
-              readOnly: true
-            - name: zonefile-copy
-              mountPath: /opt/zonefiles-copy
+      - name: copy-zonefile
+        image: alpine:3.13.6
+        command: ["sh"]
+        args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
+        volumeMounts:
+        - name: zonefile
+          mountPath: /opt/zonefiles
+          readOnly: true
+        - name: zonefile-copy
+          mountPath: /opt/zonefiles-copy
       containers:
-        - name: coredns
-          image: coredns/coredns:1.8.4
-          command: ["/coredns"]
-          args: ["-conf", "/opt/corefile/Corefile"]
-          volumeMounts:
-            - name: corefile
-              mountPath: /opt/corefile
-              readOnly: true
-            - name: zonefile-copy
-              mountPath: /opt/zonefiles
-              readOnly: true
-        - image: ferlabcrsj/cqdg-arranger:fba9ddc0ce38c200c0f2e3de3922fce0395a11df # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
-          name: arranger
-          env:
-            - name: NODE_EXTRA_CA_CERTS
-              value: /opt/ca-bundle/ca.pem
-          volumeMounts:
-            - name: ingress-ca-certificate
-              mountPath: /opt/ca-bundle
-              readOnly: true
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: '1'
-            limits:
-              memory: "1024Mi"
-              cpu: '2'
+      - name: coredns
+        image: coredns/coredns:1.8.4
+        command: ["/coredns"]
+        args: ["-conf", "/opt/corefile/Corefile"]
+        volumeMounts:
+        - name: corefile
+          mountPath: /opt/corefile
+          readOnly: true
+        - name: zonefile-copy
+          mountPath: /opt/zonefiles
+          readOnly: true
+      - image: index.docker.io/ferlabcrsj/cqdg-arranger:074abb56a0cd0babe065d020e93826dc930c3dd8-1657082604 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+        name: arranger
+        env:
+        - name: NODE_EXTRA_CA_CERTS
+          value: /opt/ca-bundle/ca.pem
+        volumeMounts:
+        - name: ingress-ca-certificate
+          mountPath: /opt/ca-bundle
+          readOnly: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: '1'
+          limits:
+            memory: "1024Mi"
+            cpu: '2'
