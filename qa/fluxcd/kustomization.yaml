@@ -13,3 +13,4 @@ resources:
   - lectern.yml
   - git-autosync.yml
   - keycloak.yml
+  - coredns.yml
