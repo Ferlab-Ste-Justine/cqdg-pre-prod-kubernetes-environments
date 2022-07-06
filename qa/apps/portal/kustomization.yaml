@@ -5,7 +5,7 @@ namespace: cqdg-qa
 
 resources:
   - ../../../common/portal
-  - ingresses.yml
+  #- ingresses.yml
 
 patchesStrategicMerge:
   - deployments.yml

@@ -5,5 +5,5 @@ namespace: cqdg-qa
 
 resources:
   - deployments.yml
-  #- ingresses.yml
+  - ingresses.yml
   - services.yml
