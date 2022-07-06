@@ -12,3 +12,4 @@ resources:
   - portal-ui.yml
   - lectern.yml
   - git-autosync.yml
+  - keycloak.yml

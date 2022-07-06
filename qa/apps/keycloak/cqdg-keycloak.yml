@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+        - name: images-pull
+      containers:
+        - name: keycloak
+          image: ferlabcrsj/cqdg-keycloak:1c259e9380d4d8ac0391d293c7267c1f7cb81178  # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+          env:
+            - name: HOME_URL
+              value: 'https://portal.qa.cqdg.ferlab.bio'
+            - name: DOCS_URL
+              value: 'https://docs.qa.cqdg.ferlab.bio'
+            - name: ORCID_URL
+              value: 'https://sandbox.orcid.org'
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-keycloak-credentials
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-keycloak-credentials
+                  key: password
+            - name: DB_VENDOR
+              value: postgres
+            - name: DB_ADDR
+              value: postgres-server-qa
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_DATABASE
+              value: keycloak_qa
+            - name: JDBC_PARAMS
+              value: 'sslmode=verify-full&sslrootcert=/opt/ca/ca.pem'
+          volumeMounts:
+            - name: ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+      volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555

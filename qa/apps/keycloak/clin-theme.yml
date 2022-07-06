@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: keycloak
+spec:
+  template:
+    spec:
+      containers:
+        - name: keycloak
+          volumeMounts:
+            - name: clin-keycloak-theme
+              readOnly: true
+              mountPath: /opt/jboss/keycloak/themes/clin-keycloak-theme
+      volumes:
+        - name: clin-keycloak-theme
+          hostPath:
+            path: /opt/clin-keycloak-theme
+            type: Directory
