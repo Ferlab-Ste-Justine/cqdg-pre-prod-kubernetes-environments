@@ -8,3 +8,5 @@ resources:
   - postgres-backups.yml
   - id-service.yml
   - docs.yml
+  - portal.yml
+  - portal-ui.yml

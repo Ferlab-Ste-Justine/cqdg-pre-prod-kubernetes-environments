@@ -1,0 +1,67 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: portal-ui
+spec:
+  serviceAccountName: fluxcd
+  interval: 1m
+  path: "./qa/apps/portal-ui"
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+    namespace: cqdg-qa-fluxcd
+  prune: true
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: portal-ui
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./qa/apps/portal-ui"
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: main
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: portal-ui
+spec:
+  image: index.docker.io/ferlabcrsj/cqdg-portal-ui
+  interval: 1m
+  secretRef:
+    name: images-registry-credentials
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: cqdg-qa-fluxcd
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: portal-ui
+spec:
+  imageRepositoryRef:
+    name: portal-ui
+    namespace: cqdg-qa-fluxcd
+  filterTags:
+    pattern: '^qa-[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+     numerical:
+      order: asc
