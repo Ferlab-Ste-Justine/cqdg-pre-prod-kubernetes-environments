@@ -17,7 +17,7 @@ spec:
       imagePullSecrets:
       - name: images-pull
       containers:
-      - image: index.docker.io/ferlabcrsj/lectern:092cf118415efdcb159e96af64c365d6c0455bfe # {"$imagepolicy": "cqdg-qa-fluxcd:lectern"}
+      - image: index.docker.io/ferlabcrsj/lectern:314649ba381099c139cd0bd5b8b77f999148c3d8-1657075099 # {"$imagepolicy": "cqdg-qa-fluxcd:lectern"}
         name: lectern
         resources:
           requests:
