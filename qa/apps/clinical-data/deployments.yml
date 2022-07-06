@@ -87,7 +87,7 @@ spec:
         - name: zonefile-copy
           mountPath: /opt/zonefiles
           readOnly: true
-      - image: index.docker.io/ferlabcrsj/cqdg-clinical-data-service:e6f1c1369afaa63dea648794a387fb29a82c4790-1657082788 # {"$imagepolicy": "cqdg-qa-fluxcd:clinical-data"}
+      - image: index.docker.io/ferlabcrsj/cqdg-clinical-data-service:9671929211ec7d42e7f793b5b6bd28268ed0ad81 # {"$imagepolicy": "cqdg-qa-fluxcd:clinical-data"}
         name: clinical-data
         env:
         - name: LOG_LEVEL
