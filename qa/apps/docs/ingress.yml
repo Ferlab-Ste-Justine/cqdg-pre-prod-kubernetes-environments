@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - docs-test.qa.cqdg.ferlab.bio
+        - docs.qa.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: docs-test.qa.cqdg.ferlab.bio
+    - host: docs.qa.cqdg.ferlab.bio
       http:
         paths:
         - path: /
