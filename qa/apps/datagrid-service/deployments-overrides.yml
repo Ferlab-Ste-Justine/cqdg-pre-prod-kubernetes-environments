@@ -79,7 +79,7 @@ spec:
           mountPath: /opt/zonefiles
           readOnly: true
       - name: datagrid-service
-        image: index.docker.io/ferlabcrsj/datagrid-service:1.0.0 # {"$imagepolicy": "cqdg-qa-fluxcd:datagrid-service"}
+        image: index.docker.io/ferlabcrsj/datagrid-service:83dade669b2fa759e43ae5b51ff72d57482e8589-1657083299 # {"$imagepolicy": "cqdg-qa-fluxcd:datagrid-service"}
         env:
         - name: PGUSER
           valueFrom:
