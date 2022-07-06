@@ -1,0 +1,59 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configure-arranger-2021-03-10-take4
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      name: configure-arranger
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: configure-arranger
+          image: curlimages/curl
+          command:
+            - /bin/sh
+            - -c
+            - -e
+            - |
+              curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects";
+              curl -vvv -XDELETE "http://elasticsearch-workers:9200/arranger-projects-cqdg";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
+              curl -vvv -XPUT "http://elasticsearch-workers:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
+              curl -vvv -XPOST "http://elasticsearch-workers:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
+          volumeMounts:
+            - name: cqdg-entry
+              mountPath: /opt/curl-bodies/cqdg-entry
+              readOnly: true
+            - name: cqdg-mappings
+              mountPath: /opt/curl-bodies/cqdg-mappings
+              readOnly: true
+            - name: donors-index
+              mountPath: /opt/curl-bodies/donors-index
+              readOnly: true
+            - name: files-index
+              mountPath: /opt/curl-bodies/files-index
+              readOnly: true
+            - name: studies-index
+              mountPath: /opt/curl-bodies/studies-index
+              readOnly: true
+      volumes:
+        - name: cqdg-entry
+          configMap:
+            name: cqdg-entry
+        - name: cqdg-mappings
+          configMap:
+            name: cqdg-mappings
+        - name: donors-index
+          configMap:
+            name: donors-index
+        - name: files-index
+          configMap:
+            name: files-index
+        - name: studies-index
+          configMap:
+            name: studies-index
