@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - ../cqdg-orchestrations/keycloak
+  - ../../cqdg-orchestrations/keycloak
   - ingress.yml
 
 patchesStrategicMerge:
