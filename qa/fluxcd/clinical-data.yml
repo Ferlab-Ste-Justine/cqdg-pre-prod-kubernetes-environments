@@ -17,6 +17,7 @@ kind: ImageUpdateAutomation
 metadata:
   name: clinical-data
 spec:
+  suspend: true
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
