@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - ../../common/portal
+  - ../../../common/portal
   - ingresses.yml
 
 patchesStrategicMerge:
