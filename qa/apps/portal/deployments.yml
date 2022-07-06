@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,7 +6,7 @@ spec:
   template:
     spec:
       imagePullSecrets:
-        - name: images-pull
+      - name: images-pull
       containers:
-        - image: ferlabcrsj/cqdg-portal:9b64be06444cc07902dd885fab7b7600576c6cd9 # {"$imagepolicy": "cqdg-qa-fluxcd:portal"}
-          name: portal
+      - image: index.docker.io/ferlabcrsj/cqdg-portal:235879a5406d8d3cb4d5bd06b6306a1fe45e90e2-1657069326 # {"$imagepolicy": "cqdg-qa-fluxcd:portal"}
+        name: portal
