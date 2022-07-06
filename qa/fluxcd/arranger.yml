@@ -17,7 +17,6 @@ kind: ImageUpdateAutomation
 metadata:
   name: arranger
 spec:
-  suspend: true
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
