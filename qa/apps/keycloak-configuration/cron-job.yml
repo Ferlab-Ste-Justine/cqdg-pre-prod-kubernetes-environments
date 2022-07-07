@@ -34,8 +34,8 @@ spec:
                 name: keycloak-configuration-terracd-configs
                 defaultMode: 0555
             - name: ingress-ca-certificate
-              configMap:
-                name: cqdg-ingress-ca-certificate
+              secret:
+                secretName: cqdg-ingress-ca-certificate
                 defaultMode: 0555
             - name: entrypoint
               configMap:
