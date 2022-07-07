@@ -33,26 +33,15 @@ spec:
               configMap:
                 name: keycloak-configuration-terracd-configs
                 defaultMode: 0555
-            - name: ingress-ca-certificate
-              secret:
-                secretName: cqdg-ingress-ca-certificate
-                defaultMode: 0555
-            - name: entrypoint
-              configMap:
-                name: keycloak-configuration-entrypoint
-                defaultMode: 0555
           containers:
             - image: ferlabcrsj/terracd:0.5.0
               name: keycloak-configuration
-              command: ["/opt/entrypoint/entrypoint.sh"]
               envFrom:
                 - secretRef:
                     name: keycloak-configs-terraform-variables
               env:
                 - name: TERRACD_CONFIG_FILE
                   value: /opt/terracd-configuration/config.yml
-                - name: GODEBUG
-                  value: "x509ignoreCN=0"
               volumeMounts:
                 - name: github-credentials
                   mountPath: /opt/github-ssh
@@ -62,7 +51,3 @@ spec:
                   mountPath: /opt/provider
                 - name: terracd-configuration
                   mountPath: /opt/terracd-configuration
-                - name: ingress-ca-certificate
-                  mountPath: /opt/ingress-ca
-                - name: entrypoint
-                  mountPath: /opt/entrypoint
