@@ -21,3 +21,4 @@ resources:
   - elasticsearch.yml
   - zeppelin.yml
   - hive-metastore.yml
+  - spark.yml
