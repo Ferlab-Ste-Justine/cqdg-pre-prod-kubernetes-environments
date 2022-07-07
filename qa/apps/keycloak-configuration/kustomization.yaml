@@ -4,6 +4,5 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - entrypoint
   - terracd-configuration
   - cron-job.yml
