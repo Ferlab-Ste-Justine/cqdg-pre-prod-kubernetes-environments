@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hive-metastore
+data:
+  S3_ENDPOINT: https://s3.ops.cqdg.ferlab.bio

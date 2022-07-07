@@ -20,3 +20,4 @@ resources:
   - clinical-data.yml
   - elasticsearch.yml
   - zeppelin.yml
+  - hive-metastore.yml
