@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:	
+  annotations:
     fluxcd.io/automated: 'true'
   labels:
     name: hive-metastore
@@ -10,20 +10,20 @@ spec:
   template:
     spec:
       imagePullSecrets:
-        - name: images-pull
+      - name: images-pull
       containers:
-        - name: hive-metastore
-          image: ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1 # {"$imagepolicy": "cqdg-qa-fluxcd:hive-metastore"}
-          env:
-            - name: JDBC_CONNECTION_URL
-              value: jdbc:postgresql://hive-metastore-db:5432/hive_metastore
-            - name: S3_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: s3-hive-metastore-credentials
-                  key: S3_ACCESS_KEY
-            - name: S3_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: s3-hive-metastore-credentials
-                  key: S3_SECRET_KEY
+      - name: hive-metastore
+        image: index.docker.io/ferlabcrsj/hive-metastore:652b9944cbab17db5ba45d6ed53735ba191adba1-1635951075 # {"$imagepolicy": "cqdg-qa-fluxcd:hive-metastore"}
+        env:
+        - name: JDBC_CONNECTION_URL
+          value: jdbc:postgresql://hive-metastore-db:5432/hive_metastore
+        - name: S3_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: s3-hive-metastore-credentials
+              key: S3_ACCESS_KEY
+        - name: S3_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: s3-hive-metastore-credentials
+              key: S3_SECRET_KEY
