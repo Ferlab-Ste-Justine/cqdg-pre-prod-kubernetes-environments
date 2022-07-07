@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    fluxcd.io/automated: 'true'
   labels:
     name: hive-metastore
   name: hive-metastore
