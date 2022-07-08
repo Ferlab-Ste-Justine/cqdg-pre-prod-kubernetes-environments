@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fhir-server-blue
+  name: fhir-server-blue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fhir-server-blue
+  template:
+    metadata:
+      labels:
+        app: fhir-server-blue
+    spec:
+      volumes:
+      - name: postgres-ca-certificate
+        configMap:
+          name: cqdg-qa-postgres-ca-cert
+          defaultMode: 0555
+      - name: ingress-ca-certificate
+        configMap:
+          name: ingress-ca-certificate
+          defaultMode: 0555
+      - name: entrypoint
+        configMap:
+          name: fhir-entrypoint
+          defaultMode: 0555
+      imagePullSecrets:
+      - name: images-registry-credentials
+      containers:
+      - image: index.docker.io/ferlabcrsj/cqdg-fhir-server:235879a5406d8d3cb4d5bd06b6306a1fe45e90e2-1657069326 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-server"}
+        name: fhir-server-blue
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: "1.00"
+          limits:
+            memory: "4096Mi"
+            cpu: "2.00"
+        command: ["/opt/entrypoint/entrypoint.sh"]
+        env:
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: cqdg-qa-fhir-db-credentials
+              key: PGUSER
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cqdg-qa-fhir-db-credentials
+              key: PGPASSWORD
+        - name: BIO_AUTH_AUTHORIZATION_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-client-acl-credentials
+              key: client-secret
+        envFrom:
+        - configMapRef:
+            name: fhir-server-blue
+        volumeMounts:
+        - name: postgres-ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+        - name: ingress-ca-certificate
+          mountPath: /opt/ingress-ca
+          readOnly: true
+        - name: entrypoint
+          mountPath: /opt/entrypoint

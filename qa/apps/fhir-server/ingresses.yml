@@ -1,0 +1,66 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fhir-server
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  tls:
+    - hosts:
+        - fhir.qa.cqdg.hsj.rtss.qc.ca
+      secretName: ingress-certificate
+  rules:
+    - host: fhir.qa.cqdg.hsj.rtss.qc.ca
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fhir-server
+              servicePort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fhir-server-green
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  tls:
+    - hosts:
+        - fhir-green.qa.cqdg.hsj.rtss.qc.ca
+      secretName: ingress-certificate
+  rules:
+    - host: fhir-green.qa.cqdg.hsj.rtss.qc.ca
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fhir-server-green
+              servicePort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fhir-server-blue
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+spec:
+  tls:
+    - hosts:
+        - fhir-blue.qa.cqdg.hsj.rtss.qc.ca
+      secretName: ingress-certificate
+  rules:
+    - host: fhir-blue.qa.cqdg.hsj.rtss.qc.ca
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fhir-server-blue
+              servicePort: 8080
