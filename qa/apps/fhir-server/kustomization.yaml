@@ -11,5 +11,8 @@ resources:
   - entrypoint
   - deployment.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+
 commonLabels:
   group: cqdg-fhir-server
