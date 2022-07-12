@@ -44,12 +44,12 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: cqdg-qa-fhir-db-credentials
+                  name: postgres-qa-fhir-credentials
                   key: PGUSER
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: cqgc-qa-fhir-db-credentials
+                  name: postgres-qa-fhir-credentials
                   key: PGPASSWORD
             - name: BIO_AUTH_AUTHORIZATION_CLIENT_SECRET
               valueFrom:
