@@ -6,6 +6,10 @@ spec:
   template:
     spec:
       volumes:
+        - name: corefile
+          configMap:
+            name: coredns-zonefiles-corefile
+            defaultMode: 0444
         - name: zonefile
           configMap:
             name: qa-domain-zonefile
