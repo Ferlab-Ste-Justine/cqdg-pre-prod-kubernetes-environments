@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: fhir-server-green
-  name: fhir-server-green
+    app: fhir-server
+  name: fhir-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fhir-server-green
+      app: fhir-server
   template:
     metadata:
       labels:
-        app: fhir-server-green
+        app: fhir-server
     spec:
       volumes:
       - name: postgres-ca-certificate
@@ -31,7 +31,7 @@ spec:
       - name: images-registry-credentials
       containers:
       - image: index.docker.io/ferlabcrsj/clin-fhir-server:235879a5406d8d3cb4d5bd06b6306a1fe45e90e2-1657069326 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-server"}
-        name: fhir-server-green
+        name: fhir-server
         resources:
           requests:
             memory: "2048Mi"

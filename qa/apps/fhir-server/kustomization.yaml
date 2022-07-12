@@ -9,8 +9,7 @@ resources:
   - services.yml
   - configmaps
   - entrypoint
-  - deployment-blue.yml
-  - deployment-green.yml
+  - deployment.yml
 
 commonLabels:
   group: cqdg-fhir-server

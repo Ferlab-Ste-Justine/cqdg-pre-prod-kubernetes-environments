@@ -2,10 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 configMapGenerator:
-  - name: fhir-server-green
+  - name: fhir-server
     literals:
-      - BIO_ELASTICSEARCH_HOST=elasticsearch
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir_green?sslmode=verify-full&sslrootcert=/opt/ca/ca.crt
+      - BIO_ELASTICSEARCH_HOST=elasticsearch-workers
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir_qa?sslmode=verify-full&sslrootcert=/opt/ca/ca.crt
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
       - BIO_AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - BIO_AUTH_REALM=CQDG
@@ -13,54 +13,23 @@ configMapGenerator:
       - BIO_AUTH_LEEWAY=120
       - BIO_AUTH_AUTHORIZATION_ENABLED=true
       - BIO_AUTH_DISABLE_SSL_VALIDATION=false
-      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-green.qa.cqdg.hsj.rtss.qc.ca/fhir/
+      - HAPI_FHIR_SERVER_ADDRESS=https://fhir.qa.cqdg.hsj.rtss.qc.ca/fhir/
       - HAPI_FHIR_GRAPHQL_ENABLED=true
       - HAPI_FHIR_ALLOW_MULTIPLE_DELETE=true
       - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
-      - BIO_ELASTICSEARCH_PATIENTS_INDEX=cqdg-qa-patients-green
-      - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=cqgd-qa-prescriptions-green
+      - BIO_ELASTICSEARCH_PATIENTS_INDEX=TDB
+      - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=TBD
       - BIO_TAGGING_ENABLED=true
       - BIO_SERVICE_REQUEST_ROUTING_ENABLED=false
       - BIO_NANUQ_ENABLED=true
-      - BIO_NANUQ_ANALYSES_INDEX=cqdg-qa-analyses-green
-      - BIO_NANUQ_SEQUENCINGS_INDEX=cqdg-qa-sequencings-green
-  - name: fhir-server-blue
-    literals:
-      - BIO_ELASTICSEARCH_HOST=elasticsearch
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir_blue?sslmode=verify-full&sslrootcert=/opt/ca/ca.crt
-      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
-      - BIO_AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
-      - BIO_AUTH_REALM=CQDG
-      - BIO_AUTH_ENABLED=true
-      - BIO_AUTH_LEEWAY=120
-      - BIO_AUTH_AUTHORIZATION_ENABLED=true
-      - BIO_AUTH_DISABLE_SSL_VALIDATION=false
-      - HAPI_FHIR_SERVER_ADDRESS=https://fhir-blue.qa.cqdg.hsj.rtss.qc.ca/fhir/
-      - HAPI_FHIR_GRAPHQL_ENABLED=true
-      - HAPI_FHIR_ALLOW_MULTIPLE_DELETE=true
-      - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
-      - BIO_ELASTICSEARCH_PATIENTS_INDEX=cqdg-qa-patients-blue
-      - BIO_ELASTICSEARCH_PRESCRIPTIONS_INDEX=cqdg-qa-prescriptions-blue
-      - BIO_TAGGING_ENABLED=true
-      - BIO_SERVICE_REQUEST_ROUTING_ENABLED=false
-      - BIO_NANUQ_ENABLED=true
-      - BIO_NANUQ_ANALYSES_INDEX=cqdg-qa-analyses-blue
-      - BIO_NANUQ_SEQUENCINGS_INDEX=cqdg-qa-sequencings-blue
+      - BIO_NANUQ_ANALYSES_INDEX=cqdg-qa-analyses
+      - BIO_NANUQ_SEQUENCINGS_INDEX=cqdg-qa-sequencings
   #Used for jobs
-  - name: fhir-server-green-db-connection
+  - name: fhir-server-db-connection
     options:
       disableNameSuffixHash: true
     literals:
-      - PGDATABASE=fhir_green
-      - PGHOST=postgres-server-qa
-      - PGSSLMODE=verify-full
-      - PGSSLROOTCERT=/opt/ca/ca.crt
-      - NODE_EXTRA_CA_CERTS=/opt/ca/ca.crt
-  - name: fhir-server-blue-db-connection
-    options:
-      disableNameSuffixHash: true
-    literals:
-      - PGDATABASE=fhir_blue
+      - PGDATABASE=fhir_qa
       - PGHOST=postgres-server-qa
       - PGSSLMODE=verify-full
       - PGSSLROOTCERT=/opt/ca/ca.crt

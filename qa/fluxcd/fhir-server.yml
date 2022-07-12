@@ -14,11 +14,7 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: fhir-server-green
-      namespace: cqdg-qa
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: fhir-server-blue
+      name: fhir-server
       namespace: cqdg-qa
   dependsOn:
     - name: keycloak
