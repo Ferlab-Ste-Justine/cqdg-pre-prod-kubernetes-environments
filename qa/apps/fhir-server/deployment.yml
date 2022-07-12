@@ -30,7 +30,7 @@ spec:
       imagePullSecrets:
       - name: images-registry-credentials
       containers:
-      - image: index.docker.io/ferlabcrsj/clin-fhir-server:235879a5406d8d3cb4d5bd06b6306a1fe45e90e2-1657069326 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-server"}
+      - image: index.docker.io/ferlabcrsj/cqdg-fhir-server:ab7a5347f97332f142a6052e5b1c8a5dc038ceaf-1657570078 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-server"}
         name: fhir-server
         resources:
           requests:
