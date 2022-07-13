@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - fhir.qa.cqdg.hsj.rtss.qc.ca
+        - fhir.qa.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: fhir.qa.cqdg.hsj.rtss.qc.ca
+    - host: fhir.qa.cqdg.ferlab.bio
       http:
         paths:
           - path: /
