@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-api
+spec:
+  template:
+    spec:
+      volumes:
+        - name: ca-bundle
+          emptyDir: {}
+      initContainers:
+        - name: ca-bundler
+          image: alpine:3.13.6
+          command: ["sh"]
+          args: ["-c", "cat /opt/postgres-ca/ca.pem /opt/ingress-ca/ca.pem > /opt/ca-bundle/ca.pem"]
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/postgres-ca
+              readOnly: true
+            - name: ingress-ca-certificate
+              mountPath: /opt/ingress-ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle

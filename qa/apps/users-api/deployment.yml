@@ -15,40 +15,29 @@ spec:
         app: users-api
     spec:
       volumes:
-      - name: postgres-ca-certificate
-        secret:
-          secretName: postgres-qa-ca-certificate
-          defaultMode: 0555
-      - name: ingress-ca-certificate
-        secret:
-          secretName: cqdg-ingress-ca-certificate
-          defaultMode: 0555
-      - name: entrypoint
-        configMap:
-          name: fhir-entrypoint
-          defaultMode: 0555
-      imagePullSecrets:
-      - name: images-registry-credentials
-      containers:
-      - image: index.docker.io/ferlabcrsj/users-api:a45e2403f0a26a5b95605a6032331e934217a22c-1657123280 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
-        name: users-api
-        resources:
-          requests:
-            memory: "2048Mi"
-            cpu: "1.00"
-          limits:
-            memory: "4096Mi"
-            cpu: "2.00"
-        command: ["/opt/entrypoint/entrypoint.sh"
-        envFrom:
-        - configMapRef:
-            name: users-api
-        volumeMounts:
         - name: postgres-ca-certificate
-          mountPath: /opt/ca
-          readOnly: true
-        - name: ingress-ca-certificate
-          mountPath: /opt/ingress-ca
-          readOnly: true
-        - name: entrypoint
-          mountPath: /opt/entrypoint
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      imagePullSecrets:
+        - name: images-registry-credentials
+      containers:
+        - image: index.docker.io/ferlabcrsj/users-api:a45e2403f0a26a5b95605a6032331e934217a22c-1657123280 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+          name: users-api
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: "1.00"
+            limits:
+              memory: "4096Mi"
+              cpu: "2.00"
+          envFrom:
+            - configMapRef:
+                name: users-api
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
+              readOnly: true
