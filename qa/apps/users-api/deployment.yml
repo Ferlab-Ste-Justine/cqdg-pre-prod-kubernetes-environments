@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: users-api
+  name: users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      imagePullSecrets:
+        - name: images-registry-credentials
+      containers:
+        - image: index.docker.io/ferlabcrsj/users-api:a45e2403f0a26a5b95605a6032331e934217a22c-1657123280 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+          name: users-api
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: "1.00"
+            limits:
+              memory: "4096Mi"
+              cpu: "2.00"
+          envFrom:
+            - configMapRef:
+                name: users-api
+          volumeMounts:
+            - name: postgres-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
+            - name: ca-bundle
+              mountPath: /opt/ca-bundle
+              readOnly: true

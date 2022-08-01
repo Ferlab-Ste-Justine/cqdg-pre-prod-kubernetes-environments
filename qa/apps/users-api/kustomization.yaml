@@ -1,0 +1,33 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cqdg-qa
+
+resources:
+  - ingresses.yml
+  - deployment.yml
+
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+
+commonLabels:
+  group: cqdg-users-api
+
+configMapGenerator:
+  - name: users-api
+    literals:
+      - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
+      - KEYCLOAK_REALM=CQDG
+      - KEYCLOAK_CLIENT=cqdg-acl
+  #Used for jobs
+  - name: fhir-server-db-connection
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - PGDATABASE=fhir_qa
+      - PGHOST=postgres-server-qa
+      - PGSSLMODE=verify-full
+      - PGSSLROOTCERT=/opt/ca/ca.pem
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
