@@ -6,6 +6,14 @@ spec:
   template:
     spec:
       volumes:
+        - name: postgres-ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+        - name: ingress-ca-certificate
+          secret:
+            secretName: cqdg-ingress-ca-certificate
+            defaultMode: 0555
         - name: ca-bundle
           emptyDir: {}
       initContainers:

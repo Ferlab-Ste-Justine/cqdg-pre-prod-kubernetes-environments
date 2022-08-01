@@ -14,11 +14,6 @@ spec:
       labels:
         app: users-api
     spec:
-      volumes:
-        - name: postgres-ca-certificate
-          secret:
-            secretName: postgres-qa-ca-certificate
-            defaultMode: 0555
       imagePullSecrets:
         - name: images-registry-credentials
       containers:
