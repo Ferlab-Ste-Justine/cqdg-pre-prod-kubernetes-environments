@@ -26,9 +26,22 @@ spec:
             limits:
               memory: "4096Mi"
               cpu: "2.00"
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-users-api-credentials
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-users-api-credentials
+                  key: password
           envFrom:
             - configMapRef:
-                name: users-api
+                name: users-api-keycloak
+            - configMapRef:
+                name: users-api-db-connection
           volumeMounts:
             - name: postgres-ca-certificate
               mountPath: /opt/ca
