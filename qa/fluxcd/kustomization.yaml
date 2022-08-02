@@ -24,3 +24,4 @@ resources:
   - hive-metastore.yml
   - spark.yml
   - users-api.yml
+  - postgres-configuration.yml

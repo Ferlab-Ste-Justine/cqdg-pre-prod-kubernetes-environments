@@ -1,0 +1,10 @@
+terraform_path: /bin/terraform
+sources:
+  - repo:
+      url: git@github.com:Ferlab-Ste-Justine/cqdg-postgres-databases-configs.git
+      ref: main
+      path: qa
+      auth:
+        ssh_key_path: /opt/github-ssh/id_rsa
+        known_hosts_path: /opt/github-ssh/known_hosts
+  - dir: /opt/backend
