@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fhir-console
+  name: fhir-console
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fhir-console
+  template:
+    metadata:
+      labels:
+        app: fhir-console
+    spec:
+      volumes:
+        - name: ingress-ca-certificate
+          configMap:
+            name: ingress-ca-certificate
+            defaultMode: 0555
+        - name: entrypoint
+          configMap:
+            name: fhir-console-entrypoint
+            defaultMode: 0555
+        - name: application-config
+          configMap:
+            name: fhir-console-config
+            items:
+              - key: application.properties
+                path: application.properties
+      containers:
+        - image: chusj/fhir-console:__UNDEFINED__
+          name: fhir-console
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: '1.00'
+            limits:
+              memory: "2048Mi"
+              cpu: '2.00'
+          command: ["/opt/entrypoint/entrypoint.sh"]
+          volumeMounts:
+            - name: ingress-ca-certificate
+              mountPath: /opt/ingress-ca
+              readOnly: true
+            - name: entrypoint
+              mountPath: /opt/entrypoint
+            - name: application-config
+              mountPath: /app/config
+              readOnly: true

@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: fhir-console
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+spec:
+  tls:
+    - hosts:
+        - fhir-console.qa.cqdg.ferlab.bio
+      secretName: ingress-certificate
+  rules:
+    - host: fhir-console.qa.cqgc.ferlab.bio
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fhir-console
+              servicePort: 8080
