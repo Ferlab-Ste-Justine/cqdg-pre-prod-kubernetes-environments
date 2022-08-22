@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - fhir-console.qa.cqdg.ferlab.bio
-      secretName: ingress-certificate
+      secretName: cqdg-ingress-certificate
   rules:
     - host: fhir-console.qa.cqgc.ferlab.bio
       http:
