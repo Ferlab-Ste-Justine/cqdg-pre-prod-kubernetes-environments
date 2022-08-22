@@ -8,6 +8,7 @@ resources:
   - postgres-backups.yml
   - id-service.yml
   - fhir-server.yml
+  - fhir-console.yml
   - docs.yml
   - portal.yml
   - portal-ui.yml
