@@ -17,8 +17,8 @@ spec:
     spec:
       volumes:
         - name: ingress-ca-certificate
-          configMap:
-            name: cqdg-ingress-certificate
+          secret:
+            secretName: cqdg-ingress-ca-certificate
             defaultMode: 0555
         - name: entrypoint
           configMap:
