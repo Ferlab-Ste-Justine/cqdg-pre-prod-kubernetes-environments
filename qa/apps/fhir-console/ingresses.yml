@@ -12,7 +12,7 @@ spec:
         - fhir-console.qa.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: fhir-console.qa.cqgc.ferlab.bio
+    - host: fhir-console.qa.cqdg.ferlab.bio
       http:
         paths:
           - path: /
