@@ -33,7 +33,7 @@ spec:
         name: ferlab-automation
         email: automation@ferlab.bio
       messageTemplate: |
-        Auto-release from fluxcd      
+        Auto-release from fluxcd
     push:
       branch: main
 ---
@@ -42,7 +42,7 @@ kind: ImageRepository
 metadata:
   name: arranger
 spec:
-  image: index.docker.io/ferlabcrsj/cqdg-arranger
+  image: index.docker.io/ferlabcrsj/cqdg-api-arranger
   interval: 1m
   secretRef:
     name: images-registry-credentials
