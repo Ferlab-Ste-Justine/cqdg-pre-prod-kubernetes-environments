@@ -34,7 +34,7 @@ spec:
                 secretName: postgres-qa-ca-certificate
                 defaultMode: 0555
           containers:
-            - image: ferlabcrsj/terracd:0.5.0
+            - image: ferlabcrsj/terracd:0.7.0
               name: postgres-configuration
               envFrom:
                 - secretRef:
