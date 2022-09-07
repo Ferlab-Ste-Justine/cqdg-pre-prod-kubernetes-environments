@@ -2,7 +2,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: postgres-configuration
+  name: postgres-green-configuration
 spec:
   schedule: "*/1 * * * *"
   concurrencyPolicy: Forbid
@@ -35,7 +35,7 @@ spec:
                 defaultMode: 0555
           containers:
             - image: ferlabcrsj/terracd:0.7.0
-              name: postgres-configuration
+              name: postgres-green-configuration
               envFrom:
                 - secretRef:
                     name: postgres-configs-terraform-variables
