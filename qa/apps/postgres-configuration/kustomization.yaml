@@ -6,5 +6,5 @@ namespace: cqdg-qa
 resources:
   - terracd-configuration-green
   - cron-job-green.yml
-  # - terracd-configuration-blue
-  # - cron-job-blue.yml
+  - terracd-configuration-blue
+  - cron-job-blue.yml

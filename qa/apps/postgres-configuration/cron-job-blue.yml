@@ -2,7 +2,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: postgres-configuration
+  name: postgres-blue-configuration
 spec:
   schedule: "*/1 * * * *"
   concurrencyPolicy: Forbid
@@ -23,11 +23,11 @@ spec:
                 defaultMode: 0400
             - name: terraform-backend
               secret:
-                secretName: postgres-configs-terraform-backend
+                secretName: postgres-blue-configs-terraform-backend
                 defaultMode: 0400
             - name: terracd-configuration
               configMap:
-                name: postgres-configuration-terracd-configs
+                name: postgres-blue-configuration-terracd-configs
                 defaultMode: 0555
             - name: db-ca-certificate
               secret:
