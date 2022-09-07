@@ -4,5 +4,7 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - terracd-configuration
-  - cron-job.yml
+  - terracd-configuration-green
+  - cron-job-green.yml
+  - terracd-configuration-blue
+  - cron-job-blue.yml
