@@ -38,7 +38,7 @@ spec:
               name: postgres-blue-configuration
               envFrom:
                 - secretRef:
-                    name: postgres-configs-terraform-variables
+                    name: postgres-blue-configs-terraform-variables
               env:
                 - name: TERRACD_CONFIG_FILE
                   value: /opt/terracd-configuration/config.yml
