@@ -60,7 +60,7 @@ spec:
     name: users-api
     namespace: cqdg-qa-fluxcd
   filterTags:
-    pattern: '^qa-[a-fA-F0-9]+-(?P<ts>.*)'
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
     extract: '$ts'
   policy:
      numerical:
