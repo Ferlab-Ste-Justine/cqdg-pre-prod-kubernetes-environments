@@ -22,7 +22,7 @@ spec:
           secretName: id-service-db-ca-certificate
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/id-service:ebde652e9a7f489e00c4cae25b2a1c396728d22b-1661358686 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+      - image: index.docker.io/ferlabcrsj/id-service:b328df2d6ac56a5646033d0d7ca390c05b5ef71d-1663014416 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
         name: id-service
         env:
         - name: PGUSER
