@@ -33,7 +33,7 @@ spec:
             - name: PGSSLROOTCERT
               value: /opt/ca/ca.pem
             - name: PGHOST
-              value: postgres-server-qa
+              value: postgres-server-blue-qa
             - name: PGDATABASE
               value: datagrid_service_qa
           envFrom:
