@@ -6,6 +6,7 @@ namespace: cqdg-qa-fluxcd
 resources:
   - cqdg-apps.yml
   - postgres-backups.yml
+  - postgres-restores.yml
   - id-service.yml
   - fhir-server.yml
   - fhir-console.yml

@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: restore_blue_2022_09_14_13h50-datagrid-service
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: 9000
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: db-ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      containers:
+        - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+          name: restore_blue_2022_09_14_13h50-datagrid
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-datagrid-service-credentials
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-qa-datagrid-service-credentials
+                  key: password
+            - name: PGSSLMODE
+              value: verify-full
+            - name: PGSSLROOTCERT
+              value: /opt/ca/ca.pem
+            - name: PGHOST
+              value: postgres-server-qa
+            - name: PGDATABASE
+              value: datagrid_service_qa
+          envFrom:
+            - secretRef:
+                name: s3-datagrid-service-credentials
+            - configMapRef:
+                name: datagrid-service-s3-restore
+          command:
+            - python3
+            - /opt/restore.py
+          volumeMounts:
+            - name: db-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true

@@ -1,0 +1,37 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: restore_blue_2022_09_14_13h50-hive-metastore
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: 9000
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+          name: restore_blue_2022_09_14_13h50-hive-metastore
+          env:
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: hive-metastore-db-credentials
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hive-metastore-db-credentials
+                  key: password
+            - name: PGHOST
+              value: hive-metastore-db
+            - name: PGDATABASE
+              value: hive_metastore
+          envFrom:
+            - secretRef:
+                name: s3-hive-metastore-credentials
+            - configMapRef:
+                name: hive-metastore-s3-restore
+          command:
+            - python3
+            - /opt/restore.py
