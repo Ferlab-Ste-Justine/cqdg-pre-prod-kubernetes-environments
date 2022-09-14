@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - clinical-data.yml
   - datagrid-service.yml
-  - hive-metastore.yml
-  - id-service.yml
+  # - hive-metastore.yml
+  # - id-service.yml
   - keycloak.yml
