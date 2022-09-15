@@ -31,7 +31,7 @@ spec:
                 - name: PGDATABASE
                   value: fhir_qa
                 - name: PGHOST
-                  value: postgres-server-qa
+                  value: postgres-server-blue-qa
                 - name: PGSSLMODE
                   value: verify-full
                 - name: PGSSLROOTCERT

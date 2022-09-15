@@ -30,7 +30,7 @@ spec:
         - name: DB_VENDOR
           value: postgres
         - name: DB_ADDR
-          value: postgres-server-qa
+          value: postgres-server-blue-qa
         - name: DB_PORT
           value: "5432"
         - name: DB_DATABASE

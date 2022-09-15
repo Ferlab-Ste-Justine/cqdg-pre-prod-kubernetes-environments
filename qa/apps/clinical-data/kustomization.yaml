@@ -19,9 +19,9 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - PGDATABASE=clinical_data_service_qa
-      - PGHOST=postgres-server-qa
+      - PGHOST=postgres-server-blue-qa
       - TYPEORM_CONNECTION=postgres
-      - TYPEORM_HOST=postgres-server-qa
+      - TYPEORM_HOST=postgres-server-blue-qa
       - TYPEORM_DATABASE=clinical_data_service_qa
   - name: clinical-data-service-db-connection-tls
     options:

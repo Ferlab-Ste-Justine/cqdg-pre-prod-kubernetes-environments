@@ -5,7 +5,7 @@ metadata:
   name: datagrid-service-db-connection
 data:
   PGDATABASE: datagrid_service_qa
-  PGHOST: postgres-server-qa
+  PGHOST: postgres-server-blue-qa
 ---
 apiVersion: v1
 kind: ConfigMap

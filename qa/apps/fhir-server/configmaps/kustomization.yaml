@@ -5,7 +5,7 @@ configMapGenerator:
   - name: fhir-server
     literals:
       - BIO_ELASTICSEARCH_HOST=elasticsearch-workers
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir_qa?sslmode=verify-full&sslrootcert=/opt/ca/ca.pem
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-blue-qa:5432/fhir_qa?sslmode=verify-full&sslrootcert=/opt/ca/ca.pem
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
       - BIO_AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - BIO_AUTH_REALM=CQDG
@@ -30,7 +30,7 @@ configMapGenerator:
       disableNameSuffixHash: true
     literals:
       - PGDATABASE=fhir_qa
-      - PGHOST=postgres-server-qa
+      - PGHOST=postgres-server-blue-qa
       - PGSSLMODE=verify-full
       - PGSSLROOTCERT=/opt/ca/ca.pem
       - NODE_EXTRA_CA_CERTS=/opt/ca/ca.pem
