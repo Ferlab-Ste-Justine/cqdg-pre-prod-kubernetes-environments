@@ -4,8 +4,7 @@ kind: CronJob
 metadata:
   name: fhir-backup
 spec:
-  schedule: "*/5 * * * *"
-  # schedule: "0 */4 * * *"
+  schedule: "0 */4 * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:

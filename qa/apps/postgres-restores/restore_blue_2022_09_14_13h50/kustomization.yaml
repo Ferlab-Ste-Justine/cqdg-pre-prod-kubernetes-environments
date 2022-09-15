@@ -7,3 +7,4 @@ resources:
   # - hive-metastore.yml
   # - id-service.yml
   - keycloak.yml
+  - fhir.yml

@@ -39,5 +39,12 @@ configMapGenerator:
       - S3_ENDPOINT=https://s3.ops.cqdg.ferlab.bio
       - S3_BUCKET=cqdg-qa-app-keycloak-backups
       - S3_REGION=RegionOne
+  - name: fhir-s3-restore
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - S3_ENDPOINT=https://s3.ops.cqdg.ferlab.bio
+      - S3_BUCKET=cqdg-qa-app-fhir-backups
+      - S3_REGION=RegionOne
 resources:
   - restore_blue_2022_09_14_13h50
