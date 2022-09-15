@@ -9,3 +9,4 @@ resources:
   - clinical-data
   - hive-metastore
   - keycloak
+  - fhir
