@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: fhir-backups-pruning
+spec:
+  schedule: "*/5 * * * *"
+  # schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          imagePullSecrets:
+            - name: images-registry-credentials
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+              name: fhir-backup-pruning
+              command:
+                - python3
+                - /opt/prune-backups.py
+              envFrom:
+                - secretRef:
+                    name: s3-fhir-credentials
+                - configMapRef:
+                    name: fhir-s3-backups
