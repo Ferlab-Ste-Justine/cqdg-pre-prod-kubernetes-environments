@@ -5,25 +5,25 @@ namespace: cqdg-qa-fluxcd
 
 resources:
   - cqdg-apps.yml
-  # - postgres-backups.yml
+  - postgres-backups.yml
   - postgres-restores.yml
   - id-service.yml
-  # - fhir-server.yml
-  # - fhir-console.yml
+  - fhir-server.yml
+  - fhir-console.yml
   - docs.yml
   - portal.yml
   - portal-ui.yml
   - lectern.yml
   - git-autosync.yml
-  # - keycloak.yml
-  # - keycloak-configuration.yml
+  - keycloak.yml
+  - keycloak-configuration.yml
   - coredns.yml
   - arranger.yml
-  # - datagrid-service.yml
-  # - clinical-data.yml
+  - datagrid-service.yml
+  - clinical-data.yml
   - elasticsearch.yml
-  # - zeppelin.yml
+  - zeppelin.yml
   - hive-metastore.yml
-  # - spark.yml
+  - spark.yml
   - users-api.yml
-  # - postgres-configuration.yml
+  - postgres-configuration.yml
