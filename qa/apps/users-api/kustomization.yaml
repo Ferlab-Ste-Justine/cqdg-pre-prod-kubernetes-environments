@@ -7,6 +7,7 @@ namespace: cqdg-qa
 resources:
   - ingresses.yml
   - deployment.yml
+  - service.yml
 
 patchesStrategicMerge:
   - dns-overrides.yml
