@@ -42,7 +42,7 @@ spec:
               mountPath: /opt/zonefiles-copy
       containers:
         - name: coredns
-          image: ferlabcrsj/coredns:1.1.0
+          image: ferlabcrsj/coredns:1.1.1
           command: ["/coredns"]
           args: ["-conf", "/opt/corefile/Corefile"]
           volumeMounts:

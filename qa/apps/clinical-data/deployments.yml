@@ -41,7 +41,6 @@ spec:
       dnsConfig:
         nameservers:
         - 127.0.0.1
-        - 169.254.25.10
         searches:
         - search
         - cqdg-qa.svc.cluster.qa
@@ -77,7 +76,7 @@ spec:
           mountPath: /opt/ca-bundle
       containers:
       - name: coredns
-        image: coredns/coredns:1.8.4
+        image: ferlabcrsj/coredns:1.1.1
         command: ["/coredns"]
         args: ["-conf", "/opt/corefile/Corefile"]
         volumeMounts:
