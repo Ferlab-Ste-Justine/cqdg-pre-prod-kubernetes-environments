@@ -20,7 +20,6 @@ spec:
       dnsConfig:
         nameservers:
           - 127.0.0.1
-          - 169.254.25.10
         searches:
           - search
           - cqdg-qa.svc.cluster.qa
@@ -43,7 +42,7 @@ spec:
               mountPath: /opt/zonefiles-copy
       containers:
         - name: coredns
-          image: coredns/coredns:1.8.4
+          image: ferlab/coredns:1.1.0
           command: ["/coredns"]
           args: ["-conf", "/opt/corefile/Corefile"]
           volumeMounts:
