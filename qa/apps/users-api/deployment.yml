@@ -37,8 +37,6 @@ spec:
             secretKeyRef:
               name: postgres-qa-users-api-credentials
               key: password
-        - name: NODE_EXTRA_CA_CERTS
-          value: /opt/ca/ca.pem
         envFrom:
         - configMapRef:
             name: users-api-keycloak
