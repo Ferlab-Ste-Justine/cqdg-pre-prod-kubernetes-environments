@@ -17,6 +17,7 @@ configMapGenerator:
       - DATA_ACCESS_PREFIX=DA
       - DIAGNOSIS_PREFIX=DI
       - DONOR_PREFIX=DO
+      - PARTICIPANT_PREFIX=PT
       - EXPOSURE_PREFIX=EX
       - FAMILY_HISTORY_PREFIX=FH
       - FAMILY_RELATIONSHIPS_PREFIX=FR
@@ -26,10 +27,12 @@ configMapGenerator:
       - SAMPLE_REGISTRATION_PREFIX=SA
       - STUDY_PREFIX=ST
       - TREATMENT_PREFIX=TR
+      - SEQUENCING_EXPERIMENT_PREFIX=SXP
       - BIOSPECIMEN_PAD=7
       - DATA_ACCESS_PAD=7
       - DIAGNOSIS_PAD=7
       - DONOR_PAD=7
+      - PARTICIPANT_PAD=7
       - EXPOSURE_PAD=7
       - FAMILY_HISTORY_PAD=7
       - FAMILY_RELATIONSHIP_PAD=7
@@ -39,10 +42,12 @@ configMapGenerator:
       - SAMPLE_REGISTRATION_PAD=7
       - STUDY_PAD=7
       - TREATMENT_PAD=7
+      - SEQUENCING_EXPERIMENT_PAD=7
       - BIOSPECIMEN_PAD_CHAR=0
       - DATA_ACCESS_PAD_CHAR=0
       - DIAGNOSIS_PAD_CHAR=0
       - DONOR_PAD_CHAR=0
+      - PARTICIPANT_PAD_CHAR=0
       - EXPOSURE_PAD_CHAR=0
       - FAMILY_HISTORY_PAD_CHAR=0
       - FAMILY_RELATIONSHIP_PAD_CHAR=0
@@ -52,10 +57,12 @@ configMapGenerator:
       - SAMPLE_REGISTRATION_PAD_CHAR=0
       - STUDY_PAD_CHAR=0
       - TREATMENT_PAD_CHAR=0
+      - SEQUENCING_EXPERIMENT_PAD_CHAR=0
       - BIOSPECIMEN_SEQ=biospecimen_seq
       - DATA_ACCESS_SEQ=data_access_seq
       - DIAGNOSIS_SEQ=diagnosis_seq
       - DONOR_SEQ=donor_seq
+      - PARTICIPANT_SEQ=participant_seq
       - EXPOSURE_SEQ=exposure_seq
       - FAMILY_HISTORY_SEQ=family_history_seq
       - FAMILY_RELATIONSHIP_SEQ=family_relationship_seq
@@ -65,3 +72,4 @@ configMapGenerator:
       - SAMPLE_REGISTRATION_SEQ=sample_registration_seq
       - STUDY_SEQ=study_seq
       - TREATMENT_SEQ=treatment_seq
+      - SEQUENCING_EXPERIMENT_SEQ=sequencing_experiment_seq
