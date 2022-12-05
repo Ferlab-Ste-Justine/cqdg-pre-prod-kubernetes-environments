@@ -18,8 +18,8 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - LOGS_REQUEST_INTERCEPTOR="false"
-      - AUTH_CLIENT_ID=cqdg-client
-      - AUTH_SERVER_URL=https://auth.dev.cqdg.ferlab.bio/auth
-      - AUTH_REALM=CQDG
-      - SERVICE_ACCOUNT_CLIENT_ID=cqdg-system
+      - KEYCLOAK_URL=https://auth.dev.cqdg.ferlab.bio/auth
+      - KEYCLOAK_REALM=CQDG
+      - KEYCLOAK_CLIENT=cqdg-client
       - SECURE="true"
+      - PARTICIPANT_ID_KEY=participant_id
