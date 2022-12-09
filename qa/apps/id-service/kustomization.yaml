@@ -60,9 +60,7 @@ configMapGenerator:
       - ANALYSIS_FILE_SEQ=analysis_file_seq
       - FAMILY_RELATIONSHIP_PAD=7
       - FAMILY_RELATIONSHIP_PAD_CHAR=0
-      - FAMILY_RELATIONSHIP_PAD_CHAR=0
       - FAMILY_RELATIONSHIP_SEQ=family_relationship_seq
       - DATA_ACCESS_PREFIX=DA
-      - DATA_ACCESS_PAD_CHAR=0
       - DATA_ACCESS_PAD_CHAR=0
       - DATA_ACCESS_SEQ=family_relationship_seq
