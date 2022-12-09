@@ -6,8 +6,14 @@ namespace: cqdg-qa
 resources:
   - deployment.yml
   - service.yml
-  - migrations
   - ingress.yml
+
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+
+commonLabels:
+  group: cqdg-report-api
 
 configMapGenerator:
   - name: report-api-customizations
@@ -17,3 +23,4 @@ configMapGenerator:
       - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-client
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem

@@ -34,6 +34,9 @@ spec:
         - name: ingress-ca-certificate
           mountPath: /opt/ca
           readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
+          readOnly: true
         resources:
           requests:
             memory: "64Mi"
