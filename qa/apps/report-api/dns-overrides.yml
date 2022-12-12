@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-api
+spec:
+  template:
+    spec:
+      volumes:
+        - name: corefile
+          configMap:
+            name: coredns-zonefiles-corefile
+            defaultMode: 0444
+        - name: zonefile
+          configMap:
+            name: qa-domain-zonefile
+            defaultMode: 0444
+        - name: zonefile-copy
+          emptyDir: {}
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 127.0.0.1
+        searches:
+          - search
+          - cqdg-qa.svc.cluster.qa
+          - svc.cluster.qa
+          - cluster.qa
+          - openstacklocal
+        options:
+          - name: ndots
+            value: "5"
+      initContainers:
+        - name: copy-zonefile
+          image: alpine:3.13.6
+          command: ["sh"]
+          args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
+          volumeMounts:
+            - name: zonefile
+              mountPath: /opt/zonefiles
+              readOnly: true
+            - name: zonefile-copy
+              mountPath: /opt/zonefiles-copy
+      containers:
+        - name: coredns
+          image: ferlabcrsj/coredns:1.1.1
+          command: ["/coredns"]
+          args: ["-conf", "/opt/corefile/Corefile"]
+          volumeMounts:
+            - name: corefile
+              mountPath: /opt/corefile
+              readOnly: true
+            - name: zonefile-copy
+              mountPath: /opt/zonefiles
+              readOnly: true
