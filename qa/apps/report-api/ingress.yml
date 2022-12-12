@@ -16,4 +16,4 @@ spec:
         - path: /
           backend:
             serviceName: report-api
-            servicePort: 5000
+            servicePort: 4000
