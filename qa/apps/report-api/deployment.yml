@@ -26,7 +26,7 @@ spec:
         name: report-api
         env:
         - name: NODE_EXTRA_CA_CERTS
-          value: /opt/ca/ca.pem
+          value: /opt/ca-bundle/ca.pem
         envFrom:
         - configMapRef:
             name: report-api-customizations
