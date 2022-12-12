@@ -11,11 +11,6 @@ spec:
     name: cqdg-apps
     namespace: cqdg-qa-fluxcd
   prune: true
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: fhir-console
-      namespace: cqdg-qa
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
