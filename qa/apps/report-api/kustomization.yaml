@@ -20,6 +20,8 @@ configMapGenerator:
     options:
       disableNameSuffixHash: false
     literals:
+      - ES_HOST=http://elasticsearch-workers:9200
+      - PROJECT=CQDG
       - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-client
