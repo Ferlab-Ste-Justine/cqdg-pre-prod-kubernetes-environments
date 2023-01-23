@@ -1,0 +1,50 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-fhir-import
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: 9000
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: ferlabcrsj/cqdg-fhir-import:latest
+          name: etl-fhir-import
+          env:
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_ACCESS_KEY
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: s3-credentials
+                  key: S3_SECRET_KEY
+            - name: AWS_BUCKET_NAME
+              value: cqdg-prod-user-thibault-demalliard01
+            - name: AWS_ENDPOINT
+              value: https://s3.ops.cqdg.ferlab.bio
+            - name: FHIR_URL
+              value: https://fhir.qa.cqdg.ferlab.bio/fhir
+            - name: ID_SERVICE_HOST
+              value: https://idservice.qa.cqdg.ferlab.bio
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client-acl-credentials
+                  key: client-secret
+            - name: NANUQ_ENDPOINT
+              value: https://ces.genomequebec.com/nanuqMPS/ws/getRunInfo
+            - name: NANUQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nanuq-passord
+                  key: nanuq-password
+            - name: NANUQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: nanuq-username
+                  key: nanuq-username
