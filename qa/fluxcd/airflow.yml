@@ -1,411 +1,410 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: airflow
+  namespace: cqdg-qa-fluxcd
+spec:
+  interval: 10m
+  url: https://airflow.apache.org
 ---
-    apiVersion: source.toolkit.fluxcd.io/v1beta1
-    kind: HelmRepository
-    metadata:
-      name: airflow
-      namespace: cqdg-qa-fluxcd
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: airflow
+  namespace: cqdg-qa-fluxcd
+spec:
+  chart:
     spec:
-      interval: 10m
-      url: https://airflow.apache.org
-    ---
-    apiVersion: helm.toolkit.fluxcd.io/v2beta1
-    kind: HelmRelease
-    metadata:
-      name: airflow
-      namespace: cqdg-qa-fluxcd
-    spec:
-      chart:
-        spec:
-          chart: airflow
-          sourceRef:
-            kind: HelmRepository
-            name: airflow
-            namespace: cqdg-qa-fluxcd
-      interval: 30s
-      targetNamespace: cqdg-qa
-      postRenderers:
-        # Instruct helm-controller to use built-in "kustomize" post renderer.
-        - kustomize:
-            # Array of inline strategic merge patch definitions as YAML object.
-            # Note, this is a YAML object and not a string, to avoid syntax
-            # indention errors.
-            patchesStrategicMerge:
-              - kind: Deployment
-                apiVersion: apps/v1
-                metadata:
-                  name: cqdg-qa-airflow-webserver
+      chart: airflow
+      sourceRef:
+        kind: HelmRepository
+        name: airflow
+        namespace: cqdg-qa-fluxcd
+  interval: 30s
+  targetNamespace: cqdg-qa
+  postRenderers:
+    # Instruct helm-controller to use built-in "kustomize" post renderer.
+    - kustomize:
+        # Array of inline strategic merge patch definitions as YAML object.
+        # Note, this is a YAML object and not a string, to avoid syntax
+        # indention errors.
+        patchesStrategicMerge:
+          - kind: Deployment
+            apiVersion: apps/v1
+            metadata:
+              name: cqdg-qa-airflow-webserver
+            spec:
+              replicas: 2
+              template:
                 spec:
-                  replicas: 2
-                  template:
-                    spec:
-                      initContainers:
-                      - name: wait-for-airflow-migrations
-                        volumeMounts:
-                        - mountPath: /opt/ca
-                          name: ca-certificate
-                          readOnly: true
-              - kind: Deployment
-                apiVersion: apps/v1
-                metadata:
-                  name: cqdg-qa-airflow-scheduler
+                  initContainers:
+                  - name: wait-for-airflow-migrations
+                    volumeMounts:
+                    - mountPath: /opt/ca
+                      name: ca-certificate
+                      readOnly: true
+          - kind: Deployment
+            apiVersion: apps/v1
+            metadata:
+              name: cqdg-qa-airflow-scheduler
+            spec:
+              replicas: 2
+              template:
                 spec:
-                  replicas: 2
-                  template:
-                    spec:
-                      initContainers:
-                      - name: wait-for-airflow-migrations
-                        volumeMounts:
-                        - mountPath: /opt/ca
-                          name: ca-certificate
-                          readOnly: true
-              - kind: Deployment
-                apiVersion: apps/v1
-                metadata:
-                  name: cqdg-qa-airflow-triggerer 
+                  initContainers:
+                  - name: wait-for-airflow-migrations
+                    volumeMounts:
+                    - mountPath: /opt/ca
+                      name: ca-certificate
+                      readOnly: true
+          - kind: Deployment
+            apiVersion: apps/v1
+            metadata:
+              name: cqdg-qa-airflow-triggerer 
+            spec:
+              replicas: 2
+              template:
                 spec:
-                  replicas: 2
-                  template:
-                    spec:
-                      initContainers:
-                      - name: wait-for-airflow-migrations
-                        volumeMounts:
-                        - mountPath: /opt/ca
-                          name: ca-certificate
-                          readOnly: true
-      install:
-        disableWait: true
-      upgrade:
-        disableWait: true
-      values:
-        # config:
-        #    logging:
-        #      # Airflow can store logs remotely in AWS S3. Users must supply a remote
-        #      # location URL (starting with either 's3://...') and an Airflow connection
-        #      # id that provides access to the storage location.
-        #      remote_logging: 'True'
-        #      #colored_console_log : 'True'
-        #      remote_base_log_folder : 's3://cqdg-qa-app-airflow/logs'
-        #      # the following connection must be created in the airflow web ui
-        #      remote_log_conn_id : 'minio'
-        #      # Use server-side encryption for logs stored in S3
-        #      encrypt_s3_logs : 'False'
-        secret: 
-        # - envName: "AIRFLOW_CONN_MINIO"
-        #   secretName: "cqdg-qa-minio-app-airflow"
-        #   secretKey: "minio-app-airflow"
-        # - envName: "AIRFLOW_VAR_SLACK_HOOK_URL"
-        #   secretName: "cqdg-qa-airflow-slack-hook"
-        #   secretKey: "HOOK_URL"
-        extraEnv: |
-          - name: "AIRFLOW__WEBSERVER__LOG_FETCH_TIMEOUT_SEC"
-            value: "15"
-          - name: "AIRFLOW__LOGGING__LOGGING_LEVEL"
-            value: "INFO"
-          - name: AIRFLOW_VAR_ENVIRONMENT
-            value: "qa"
-          - name: AIRFLOW_VAR_BASE_URL
-            value: "https://jobs.cqdg.ca"
-          - name: AIRFLOW_VAR_KUBERNETES_NAMESPACE
-            value: "cqdg-qa"
-          - name: AIRFLOW_VAR_S3_CONN_ID
-            value: "minio"
-        # Default airflow tag to deploy
-        defaultAirflowTag: "2.3.3"
-        # Airflow version (Used to make some decisions based on Airflow Version being deployed)
-        airflowVersion: "2.3.3"
-        # Airflow executor
-        # One of: LocalExecutor, LocalKubernetesExecutor, CeleryExecutor, KubernetesExecutor, CeleryKubernetesExecutor
-        executor: "KubernetesExecutor"
-        ingress:
-          enabled: true
-          web: 
-            enabled: true
-            annotations: { nginx.ingress.kubernetes.io/ssl-redirect: "true"}
-            hosts:
-              - name: jobs.cqdg.ca
-                # configs for web Ingress TLS
-                tls:
-                  # Enable TLS termination for the web Ingress
-                  enabled: true
-                  # the name of a pre-created Secret containing a TLS private key and certificate
-                  secretName: letsencrypt-certificate
-        extraConfigMaps:
-          'airflow-create-user':
-            data: |
-              create_user.sh: |
-                #!/bin/sh
-                ADMIN_PASS=$(cat /opt/admin-password/admin-password)
-                airflow users create -r Admin -u admin -e ihannache@ferlab.bio -f admin -l admin -p $ADMIN_PASS
-        # Airflow create user job settings
-        createUserJob:
-          # Command to use when running the create user job (templated).
-          command: ~
-          # Args to use when running the create user job (templated).
-          args:
-            - "bash"
-            - "-c"
-            # The format below is necessary to get `helm lint` happy
-            - "/opt/bin/create_user.sh" 
-          # Mount additional volumes into user creation job
-          extraVolumes:
-            - name: create-user
-              configMap:
-                name: airflow-create-user
-                defaultMode: 0555
-            - name: admin-password
-              secret:
-                secretName: airflow-admin-password
-                defaultMode: 0400
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-          extraVolumeMounts:
-            - name: create-user
-              mountPath: /opt/bin
-              readOnly: true
-            - name: admin-password
-              mountPath: /opt/admin-password
-              readOnly: true
-            - name: ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-        # Git sync
-        dags:
-          gitSync:
-            enabled: true
-            # git repo clone url
-            # ssh examples ssh://git@github.com/apache/airflow.git
-            # git@github.com:apache/airflow.git
-            # https example: https://github.com/apache/airflow.git
-            repo: https://github.com/Ferlab-Ste-Justine/cqdg-dags.git
-            branch: main
-            rev: HEAD
-            depth: 1
-            # the number of consecutive failures allowed before aborting
-            maxFailures: 0
-            # subpath within the repo where dags are located
-            # should be "" if dags are at repo root
-            subPath: "dags"
-            wait: 60
-            containerName: git-sync
-            uid: 65533
-        # Airflow database & redis config
-        data:
-          # If secret names are provided, use those secrets
-          metadataSecretName: release-name-airflow-metadata
-          resultBackendSecretName: ~
-          brokerUrlSecretName: ~
-        # Airflow database migration job settings
-        migrateDatabaseJob:
-          enabled: true
-          # Mount additional volumes into database migration job
-          extraVolumes: 
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-          extraVolumeMounts:
-            - name: ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-        # Configuration for postgresql subchart
-        # Not recommended for production
-        postgresql:
-          enabled: false    
-        # Airflow scheduler settings
-        scheduler:
-          # Mount additional volumes into scheduler.
-          extraVolumes: 
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-          extraVolumeMounts:
-            - name: ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-        # Airflow webserver settings
-        webserver:
-          # Number of webservers
-          replicas: 2
-          # Mount additional volumes into scheduler.
-          extraVolumes: 
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-          extraVolumeMounts:
-            - name: ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-        # Airflow Triggerer Config
-        triggerer:
-          # Mount additional volumes into triggerer.
-          extraVolumes: 
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-          extraVolumeMounts:
-            - name: ca-certificate
-              mountPath: /opt/ca
-              readOnly: true
-        # Auth secret for a private registry
-        # This is used if pulling airflow images from a private registry
-        registry:
-          secretName: images-registry-credentials
-        # Enables selected built-in secrets that are set via environment variables by default.
-        # Those secrets are provided by the Helm Chart secrets by default but in some cases you
-        # might want to provide some of those variables with _CMD or _SECRET variable, and you should
-        # in this case disable setting of those variables by setting the relevant configuration to false.
-        enableBuiltInSecretEnvVars:
-          AIRFLOW__CORE__FERNET_KEY: false
-          # For Airflow <2.3, backward compatibility; moved to [database] in 2.3
-          AIRFLOW__CORE__SQL_ALCHEMY_CONN: true
-          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: true
-          AIRFLOW_CONN_AIRFLOW_DB: false
-          AIRFLOW__WEBSERVER__SECRET_KEY: true
-        # Airflow persistent storage
-        persistence:
-          ## @param persistence.enabled Enable persistence using PVC
-          ##
+                  initContainers:
+                  - name: wait-for-airflow-migrations
+                    volumeMounts:
+                    - mountPath: /opt/ca
+                      name: ca-certificate
+                      readOnly: true
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+  values:
+    # config:
+    #    logging:
+    #      # Airflow can store logs remotely in AWS S3. Users must supply a remote
+    #      # location URL (starting with either 's3://...') and an Airflow connection
+    #      # id that provides access to the storage location.
+    #      remote_logging: 'True'
+    #      #colored_console_log : 'True'
+    #      remote_base_log_folder : 's3://cqdg-qa-app-airflow/logs'
+    #      # the following connection must be created in the airflow web ui
+    #      remote_log_conn_id : 'minio'
+    #      # Use server-side encryption for logs stored in S3
+    #      encrypt_s3_logs : 'False'
+    secret: 
+    # - envName: "AIRFLOW_CONN_MINIO"
+    #   secretName: "cqdg-qa-minio-app-airflow"
+    #   secretKey: "minio-app-airflow"
+    # - envName: "AIRFLOW_VAR_SLACK_HOOK_URL"
+    #   secretName: "cqdg-qa-airflow-slack-hook"
+    #   secretKey: "HOOK_URL"
+    extraEnv: |
+      - name: "AIRFLOW__WEBSERVER__LOG_FETCH_TIMEOUT_SEC"
+        value: "15"
+      - name: "AIRFLOW__LOGGING__LOGGING_LEVEL"
+        value: "INFO"
+      - name: AIRFLOW_VAR_ENVIRONMENT
+        value: "qa"
+      - name: AIRFLOW_VAR_BASE_URL
+        value: "https://jobs.cqdg.ca"
+      - name: AIRFLOW_VAR_KUBERNETES_NAMESPACE
+        value: "cqdg-qa"
+      - name: AIRFLOW_VAR_S3_CONN_ID
+        value: "minio"
+    # Default airflow tag to deploy
+    defaultAirflowTag: "2.3.3"
+    # Airflow version (Used to make some decisions based on Airflow Version being deployed)
+    airflowVersion: "2.3.3"
+    # Airflow executor
+    # One of: LocalExecutor, LocalKubernetesExecutor, CeleryExecutor, KubernetesExecutor, CeleryKubernetesExecutor
+    executor: "KubernetesExecutor"
+    ingress:
+      enabled: true
+      web: 
+        enabled: true
+        annotations: { nginx.ingress.kubernetes.io/ssl-redirect: "true"}
+        hosts:
+          - name: jobs.cqdg.ca
+            # configs for web Ingress TLS
+            tls:
+              # Enable TLS termination for the web Ingress
+              enabled: true
+              # the name of a pre-created Secret containing a TLS private key and certificate
+              secretName: letsencrypt-certificate
+    extraConfigMaps:
+      'airflow-create-user':
+        data: |
+          create_user.sh: |
+            #!/bin/sh
+            ADMIN_PASS=$(cat /opt/admin-password/admin-password)
+            airflow users create -r Admin -u admin -e ihannache@ferlab.bio -f admin -l admin -p $ADMIN_PASS
+    # Airflow create user job settings
+    createUserJob:
+      # Command to use when running the create user job (templated).
+      command: ~
+      # Args to use when running the create user job (templated).
+      args:
+        - "bash"
+        - "-c"
+        # The format below is necessary to get `helm lint` happy
+        - "/opt/bin/create_user.sh" 
+      # Mount additional volumes into user creation job
+      extraVolumes:
+        - name: create-user
+          configMap:
+            name: airflow-create-user
+            defaultMode: 0555
+        - name: admin-password
+          secret:
+            secretName: airflow-admin-password
+            defaultMode: 0400
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      extraVolumeMounts:
+        - name: create-user
+          mountPath: /opt/bin
+          readOnly: true
+        - name: admin-password
+          mountPath: /opt/admin-password
+          readOnly: true
+        - name: ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+    # Git sync
+    dags:
+      gitSync:
+        enabled: true
+        # git repo clone url
+        # ssh examples ssh://git@github.com/apache/airflow.git
+        # git@github.com:apache/airflow.git
+        # https example: https://github.com/apache/airflow.git
+        repo: https://github.com/Ferlab-Ste-Justine/cqdg-dags.git
+        branch: main
+        rev: HEAD
+        depth: 1
+        # the number of consecutive failures allowed before aborting
+        maxFailures: 0
+        # subpath within the repo where dags are located
+        # should be "" if dags are at repo root
+        subPath: "dags"
+        wait: 60
+        containerName: git-sync
+        uid: 65533
+    # Airflow database & redis config
+    data:
+      # If secret names are provided, use those secrets
+      metadataSecretName: release-name-airflow-metadata
+      resultBackendSecretName: ~
+      brokerUrlSecretName: ~
+    # Airflow database migration job settings
+    migrateDatabaseJob:
+      enabled: true
+      # Mount additional volumes into database migration job
+      extraVolumes: 
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      extraVolumeMounts:
+        - name: ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+    # Configuration for postgresql subchart
+    # Not recommended for production
+    postgresql:
+      enabled: false    
+    # Airflow scheduler settings
+    scheduler:
+      # Mount additional volumes into scheduler.
+      extraVolumes: 
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      extraVolumeMounts:
+        - name: ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+    # Airflow webserver settings
+    webserver:
+      # Number of webservers
+      replicas: 2
+      # Mount additional volumes into scheduler.
+      extraVolumes: 
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      extraVolumeMounts:
+        - name: ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+    # Airflow Triggerer Config
+    triggerer:
+      # Mount additional volumes into triggerer.
+      extraVolumes: 
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+      extraVolumeMounts:
+        - name: ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+    # Auth secret for a private registry
+    # This is used if pulling airflow images from a private registry
+    registry:
+      secretName: images-registry-credentials
+    # Enables selected built-in secrets that are set via environment variables by default.
+    # Those secrets are provided by the Helm Chart secrets by default but in some cases you
+    # might want to provide some of those variables with _CMD or _SECRET variable, and you should
+    # in this case disable setting of those variables by setting the relevant configuration to false.
+    enableBuiltInSecretEnvVars:
+      AIRFLOW__CORE__FERNET_KEY: false
+      # For Airflow <2.3, backward compatibility; moved to [database] in 2.3
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: true
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: true
+      AIRFLOW_CONN_AIRFLOW_DB: false
+      AIRFLOW__WEBSERVER__SECRET_KEY: true
+    # Airflow persistent storage
+    persistence:
+      ## @param persistence.enabled Enable persistence using PVC
+      ##
+      enabled: false
+    logs:
+      persistence:
+        # Enable persistent volume for storing logs
+        enabled: false
+    # Airflow Worker Config
+    workers:
+      persistence:
+          # Enable persistent volumes
           enabled: false
-        logs:
-          persistence:
-            # Enable persistent volume for storing logs
-            enabled: false
-        # Airflow Worker Config
-        workers:
-          persistence:
-              # Enable persistent volumes
-              enabled: false
-        # Configuration for the redis provisioned by the chart
-        redis:
-          enabled: false
-          persistence:
-            # Enable persistent volumes
-            enabled: false
-        # Fernet key settings
-        # Note: fernetKey can only be set during install, not upgrade
-        fernetKeySecretName: release-name-fernet-key
-        # `podTemplate` is a templated string containing the contents of `pod_template_file.yaml` used for
-        # KubernetesExecutor workers. The default `podTemplate` will use normal `workers` configuration parameters
-        # (e.g. `workers.resources`). As such, you normally won't need to override this directly, however,
-        # you can still provide a completely custom `pod_template_file.yaml` if desired.
-        # If not set, a default one is created using `files/pod-template-file.kubernetes-helm-yaml`.
-        # podTemplate: ~
-        # The following example is NOT functional, but meant to be illustrative of how you can provide a custom
-        # `pod_template_file`. You're better off starting with the default in
-        # `files/pod-template-file.kubernetes-helm-yaml` and modifying from there.
-        # We will set `priorityClassName` in this example:
-        podTemplate: |
-          {{- $nodeSelector := or .Values.workers.nodeSelector .Values.nodeSelector }}
-          {{- $affinity := or .Values.workers.affinity .Values.affinity }}
-          {{- $tolerations := or .Values.workers.tolerations .Values.tolerations }}
-          {{- $topologySpreadConstraints := or .Values.workers.topologySpreadConstraints .Values.topologySpreadConstraints }}
-          {{- $securityContext := include "airflowSecurityContext" (list . .Values.workers) }}
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: dummy-name
-            labels:
-              tier: airflow
-              component: worker
-              release: {{ .Release.Name }}
-          {{- with .Values.labels }}
-          {{ toYaml . | indent 4 }}
+    # Configuration for the redis provisioned by the chart
+    redis:
+      enabled: false
+      persistence:
+        # Enable persistent volumes
+        enabled: false
+    # Fernet key settings
+    # Note: fernetKey can only be set during install, not upgrade
+    fernetKeySecretName: release-name-fernet-key
+    # `podTemplate` is a templated string containing the contents of `pod_template_file.yaml` used for
+    # KubernetesExecutor workers. The default `podTemplate` will use normal `workers` configuration parameters
+    # (e.g. `workers.resources`). As such, you normally won't need to override this directly, however,
+    # you can still provide a completely custom `pod_template_file.yaml` if desired.
+    # If not set, a default one is created using `files/pod-template-file.kubernetes-helm-yaml`.
+    # podTemplate: ~
+    # The following example is NOT functional, but meant to be illustrative of how you can provide a custom
+    # `pod_template_file`. You're better off starting with the default in
+    # `files/pod-template-file.kubernetes-helm-yaml` and modifying from there.
+    # We will set `priorityClassName` in this example:
+    podTemplate: |
+      {{- $nodeSelector := or .Values.workers.nodeSelector .Values.nodeSelector }}
+      {{- $affinity := or .Values.workers.affinity .Values.affinity }}
+      {{- $tolerations := or .Values.workers.tolerations .Values.tolerations }}
+      {{- $topologySpreadConstraints := or .Values.workers.topologySpreadConstraints .Values.topologySpreadConstraints }}
+      {{- $securityContext := include "airflowSecurityContext" (list . .Values.workers) }}
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: dummy-name
+        labels:
+          tier: airflow
+          component: worker
+          release: {{ .Release.Name }}
+      {{- with .Values.labels }}
+      {{ toYaml . | indent 4 }}
+      {{- end }}
+        {{- if .Values.airflowPodAnnotations }}
+        annotations:
+        {{- toYaml .Values.airflowPodAnnotations | nindent 4 }}
+        {{- end }}
+      spec:
+        {{- if or (and .Values.dags.gitSync.enabled (not .Values.dags.persistence.enabled)) .Values.workers.extraInitContainers }}
+        initContainers:
+          {{- if and .Values.dags.gitSync.enabled (not .Values.dags.persistence.enabled) }}
+          {{- include "git_sync_container" (dict "Values" .Values "is_init" "true") | nindent 4 }}
           {{- end }}
-            {{- if .Values.airflowPodAnnotations }}
-            annotations:
-            {{- toYaml .Values.airflowPodAnnotations | nindent 4 }}
-            {{- end }}
-          spec:
-            {{- if or (and .Values.dags.gitSync.enabled (not .Values.dags.persistence.enabled)) .Values.workers.extraInitContainers }}
-            initContainers:
-              {{- if and .Values.dags.gitSync.enabled (not .Values.dags.persistence.enabled) }}
-              {{- include "git_sync_container" (dict "Values" .Values "is_init" "true") | nindent 4 }}
-              {{- end }}
-              {{- if .Values.workers.extraInitContainers }}
-              {{- toYaml .Values.workers.extraInitContainers | nindent 4 }}
-              {{- end }}
-            {{- end }}
-            containers:
-              - envFrom:
-                {{- include "custom_airflow_environment_from" . | default "\n  []" | indent 6 }}
-                env:
-                  - name: AIRFLOW__CORE__EXECUTOR
-                    value: LocalExecutor
-          {{- include "standard_airflow_environment" . | indent 6}}
-          {{- include "custom_airflow_environment" . | indent 6 }}
-                image: {{ template "pod_template_image" . }}
-                imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
-                name: base
-                resources:
-          {{ toYaml .Values.workers.resources | indent 8 }}
-                volumeMounts:
-                  - name: ca-certificate
-                    mountPath: /opt/ca
-                    readOnly: true
-                  - mountPath: {{ template "airflow_logs" . }}
-                    name: logs
-                  - name: config
-                    mountPath: {{ template "airflow_config_path" . }}
-                    subPath: airflow.cfg
-                    readOnly: true
-          {{- if .Values.airflowLocalSettings }}
-                  - name: config
-                    mountPath: {{ template "airflow_local_setting_path" . }}
-                    subPath: airflow_local_settings.py
-                    readOnly: true
+          {{- if .Values.workers.extraInitContainers }}
+          {{- toYaml .Values.workers.extraInitContainers | nindent 4 }}
           {{- end }}
-          {{- if or .Values.dags.gitSync.enabled .Values.dags.persistence.enabled }}
-                  {{- include "airflow_dags_mount" . | nindent 8 }}
-          {{- end }}
-          {{- if .Values.workers.extraVolumeMounts }}
-          {{ toYaml .Values.workers.extraVolumeMounts | indent 8 }}
-          {{- end }}
-          {{- if .Values.workers.extraContainers }}
-          {{- toYaml .Values.workers.extraContainers | nindent 4 }}
-          {{- end }}
-            {{- if or .Values.registry.secretName .Values.registry.connection }}
-            imagePullSecrets:
-              - name: {{ template "registry_secret" . }}
-            {{- end }}
-            restartPolicy: Never
-            securityContext: {{ $securityContext | nindent 4 }}
-            nodeSelector: {{ toYaml $nodeSelector | nindent 4 }}
-            affinity: {{ toYaml $affinity | nindent 4 }}
-            tolerations: {{ toYaml $tolerations | nindent 4 }}
-            topologySpreadConstraints: {{ toYaml $topologySpreadConstraints | nindent 4 }}
-            serviceAccountName: {{ include "worker.serviceAccountName" . }}
-            volumes:
-            - name: ca-certificate
-              secret:
-                secretName: postgres-qa-ca-certificate
-                defaultMode: 0555
-            {{- if .Values.dags.persistence.enabled }}
-            - name: dags
-              persistentVolumeClaim:
-                claimName: {{ template "airflow_dags_volume_claim" . }}
-            {{- else if .Values.dags.gitSync.enabled }}
-            - name: dags
-              emptyDir: {}
-            {{- end }}
-            {{- if .Values.logs.persistence.enabled }}
-            - name: logs
-              persistentVolumeClaim:
-                claimName: {{ template "airflow_logs_volume_claim" . }}
-            {{- else }}
-            - emptyDir: {}
-              name: logs
-            {{- end }}
-            {{- if and  .Values.dags.gitSync.enabled  .Values.dags.gitSync.sshKeySecret }}
-            {{- include "git_sync_ssh_key_volume" . | nindent 2 }}
-            {{- end }}
-            - configMap:
-                name: {{ include "airflow_config" . }}
-              name: config
-            {{- if .Values.workers.extraVolumes }}
-            {{ toYaml .Values.workers.extraVolumes | nindent 2 }}
-            {{- end }}
+        {{- end }}
+        containers:
+          - envFrom:
+            {{- include "custom_airflow_environment_from" . | default "\n  []" | indent 6 }}
+            env:
+              - name: AIRFLOW__CORE__EXECUTOR
+                value: LocalExecutor
+      {{- include "standard_airflow_environment" . | indent 6}}
+      {{- include "custom_airflow_environment" . | indent 6 }}
+            image: {{ template "pod_template_image" . }}
+            imagePullPolicy: {{ .Values.images.airflow.pullPolicy }}
+            name: base
+            resources:
+      {{ toYaml .Values.workers.resources | indent 8 }}
+            volumeMounts:
+              - name: ca-certificate
+                mountPath: /opt/ca
+                readOnly: true
+              - mountPath: {{ template "airflow_logs" . }}
+                name: logs
+              - name: config
+                mountPath: {{ template "airflow_config_path" . }}
+                subPath: airflow.cfg
+                readOnly: true
+      {{- if .Values.airflowLocalSettings }}
+              - name: config
+                mountPath: {{ template "airflow_local_setting_path" . }}
+                subPath: airflow_local_settings.py
+                readOnly: true
+      {{- end }}
+      {{- if or .Values.dags.gitSync.enabled .Values.dags.persistence.enabled }}
+              {{- include "airflow_dags_mount" . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.workers.extraVolumeMounts }}
+      {{ toYaml .Values.workers.extraVolumeMounts | indent 8 }}
+      {{- end }}
+      {{- if .Values.workers.extraContainers }}
+      {{- toYaml .Values.workers.extraContainers | nindent 4 }}
+      {{- end }}
+        {{- if or .Values.registry.secretName .Values.registry.connection }}
+        imagePullSecrets:
+          - name: {{ template "registry_secret" . }}
+        {{- end }}
+        restartPolicy: Never
+        securityContext: {{ $securityContext | nindent 4 }}
+        nodeSelector: {{ toYaml $nodeSelector | nindent 4 }}
+        affinity: {{ toYaml $affinity | nindent 4 }}
+        tolerations: {{ toYaml $tolerations | nindent 4 }}
+        topologySpreadConstraints: {{ toYaml $topologySpreadConstraints | nindent 4 }}
+        serviceAccountName: {{ include "worker.serviceAccountName" . }}
+        volumes:
+        - name: ca-certificate
+          secret:
+            secretName: postgres-qa-ca-certificate
+            defaultMode: 0555
+        {{- if .Values.dags.persistence.enabled }}
+        - name: dags
+          persistentVolumeClaim:
+            claimName: {{ template "airflow_dags_volume_claim" . }}
+        {{- else if .Values.dags.gitSync.enabled }}
+        - name: dags
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.logs.persistence.enabled }}
+        - name: logs
+          persistentVolumeClaim:
+            claimName: {{ template "airflow_logs_volume_claim" . }}
+        {{- else }}
+        - emptyDir: {}
+          name: logs
+        {{- end }}
+        {{- if and  .Values.dags.gitSync.enabled  .Values.dags.gitSync.sshKeySecret }}
+        {{- include "git_sync_ssh_key_volume" . | nindent 2 }}
+        {{- end }}
+        - configMap:
+            name: {{ include "airflow_config" . }}
+          name: config
+        {{- if .Values.workers.extraVolumes }}
+        {{ toYaml .Values.workers.extraVolumes | nindent 2 }}
+        {{- end }}
