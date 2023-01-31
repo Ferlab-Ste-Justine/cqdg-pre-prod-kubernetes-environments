@@ -9,6 +9,7 @@ resources:
   - postgres-restores.yml
   - id-service.yml
   - report-api.yml
+  - etl-fhir-import.yml
   - fhir-server.yml
   - fhir-console.yml
   - docs.yml
