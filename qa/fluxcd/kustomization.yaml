@@ -28,3 +28,4 @@ resources:
   - spark.yml
   - users-api.yml
   - postgres-configuration.yml
+  - airflow.yml
