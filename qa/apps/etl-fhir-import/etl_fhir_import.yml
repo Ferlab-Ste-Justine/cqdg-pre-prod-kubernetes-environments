@@ -38,6 +38,8 @@ spec:
                 secretKeyRef:
                   name: keycloak-client-acl-credentials
                   key: client-secret
+            - name: KEYCLOAK_URL
+              value: http://keycloak-http/auth/
             - name: NANUQ_ENDPOINT
               value: https://ces.genomequebec.com/nanuqMPS/ws/getRunInfo
             - name: NANUQ_PASSWORD
