@@ -136,7 +136,6 @@ spec:
             #!/bin/sh
             ADMIN_PASS=$(cat /opt/admin-password/admin-password)
             airflow users create -r Admin -u admin -e ihannache@ferlab.bio -f admin -l admin -p $ADMIN_PASS
-            sleep infinity
     # Airflow create user job settings
     createUserJob:
       # Command to use when running the create user job (templated).
