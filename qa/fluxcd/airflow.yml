@@ -103,7 +103,7 @@ spec:
       - name: AIRFLOW_VAR_ENVIRONMENT
         value: "qa"
       - name: AIRFLOW_VAR_BASE_URL
-        value: "https://jobs.cqdg.ca"
+        value: "https://jobs.qa.cqdg.ferlab.bio"
       - name: AIRFLOW_VAR_KUBERNETES_NAMESPACE
         value: "cqdg-qa"
       - name: AIRFLOW_VAR_S3_CONN_ID
@@ -121,13 +121,13 @@ spec:
         enabled: true
         annotations: { nginx.ingress.kubernetes.io/ssl-redirect: "true"}
         hosts:
-          - name: jobs.cqdg.ca
+          - name: jobs.qa.cqdg.ferlab.bio
             # configs for web Ingress TLS
             tls:
               # Enable TLS termination for the web Ingress
               enabled: true
               # the name of a pre-created Secret containing a TLS private key and certificate
-              secretName: letsencrypt-certificate
+              secretName: cqdg-ingress-certificate
     extraConfigMaps:
       'airflow-create-user':
         data: |
