@@ -8,6 +8,7 @@ configMapGenerator:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-blue-qa:5432/fhir_qa?sslmode=verify-full&sslrootcert=/opt/ca/ca.pem
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
       - BIO_AUTH_SERVER_URL=https://auth.qa.cqdg.ferlab.bio/auth
+      - BIO_AUTH_INTERNAL_SERVER_URL=http://keycloak-http/auth
       - BIO_AUTH_REALM=CQDG
       - BIO_AUTH_ENABLED=true
       - BIO_AUTH_LEEWAY=120
