@@ -109,6 +109,8 @@ spec:
         value: "cqdg-qa"
       - name: AIRFLOW_VAR_S3_CONN_ID
         value: "minio"
+      - name: PYTHONPATH
+        value: /opt/airflow/dags/repo
     # Default airflow tag to deploy
     defaultAirflowTag: "2.3.3"
     # Airflow version (Used to make some decisions based on Airflow Version being deployed)
