@@ -30,3 +30,4 @@ resources:
   - users-api.yml
   - postgres-configuration.yml
   - airflow.yml
+  - spark-jobs-etl-index-task.yml
