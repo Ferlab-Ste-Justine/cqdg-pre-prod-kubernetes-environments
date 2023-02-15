@@ -77,22 +77,22 @@ spec:
   upgrade:
     disableWait: true
   values:
-    # config:
-    #    logging:
-    #      # Airflow can store logs remotely in AWS S3. Users must supply a remote
-    #      # location URL (starting with either 's3://...') and an Airflow connection
-    #      # id that provides access to the storage location.
-    #      remote_logging: 'True'
-    #      #colored_console_log : 'True'
-    #      remote_base_log_folder : 's3://cqdg-qa-app-airflow/logs'
-    #      # the following connection must be created in the airflow web ui
-    #      remote_log_conn_id : 'minio'
-    #      # Use server-side encryption for logs stored in S3
-    #      encrypt_s3_logs : 'False'
+    config:
+       logging:
+         # Airflow can store logs remotely in AWS S3. Users must supply a remote
+         # location URL (starting with either 's3://...') and an Airflow connection
+         # id that provides access to the storage location.
+         remote_logging: 'True'
+         #colored_console_log : 'True'
+         remote_base_log_folder : 's3://cqdg-qa-app-airflow/logs'
+         # the following connection must be created in the airflow web ui
+         remote_log_conn_id : 'minio'
+         # Use server-side encryption for logs stored in S3
+         encrypt_s3_logs : 'False'
     secret: 
-    # - envName: "AIRFLOW_CONN_MINIO"
-    #   secretName: "cqdg-qa-minio-app-airflow"
-    #   secretKey: "minio-app-airflow"
+    - envName: "AIRFLOW_CONN_MINIO"
+      secretName: "cqdg-qa-minio-app-airflow"
+      secretKey: "minio-app-airflow"
     # - envName: "AIRFLOW_VAR_SLACK_HOOK_URL"
     #   secretName: "cqdg-qa-airflow-slack-hook"
     #   secretKey: "HOOK_URL"
@@ -109,6 +109,8 @@ spec:
         value: "cqdg-qa"
       - name: AIRFLOW_VAR_S3_CONN_ID
         value: "minio"
+      - name: AIRFLOW_VAR_KUBERNETES_CONTEXT_DEFAULT
+        value: "airflow-cluster.qa.cqdg@cluster.qa.cqdg"
       - name: PYTHONPATH
         value: /opt/airflow/dags/repo
     # Default airflow tag to deploy
