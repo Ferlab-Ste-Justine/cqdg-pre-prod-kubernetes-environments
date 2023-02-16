@@ -15,5 +15,8 @@ data:
     spark.hadoop.fs.s3a.fast.upload=true
     spark.hadoop.fs.s3a.connection.ssl.enabled=false
     spark.hadoop.fs.s3a.path.style.access=true
+    spark.hadoop.fs.s3a.endpoint=https://s3.ops.cqdg.ferlab.bio
     spark.hadoop.hive.metastore.uris=thrift://hive-metastore:9083
     spark.sql.warehouse.dir=s3a://spark/wharehouse
+    spark.kubernetes.driver.secretKeyRef.S3_ACCESS_KEY=s3-fhir-import-credentials\:AWS_ACCESS_KEY
+    spark.kubernetes.driver.secretKeyRef.S3_SECRET_KEY=s3-fhir-import-credentials\:AWS_SECRET_KEY
