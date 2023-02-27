@@ -18,7 +18,7 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - LOGS_REQUEST_INTERCEPTOR="false"
-      - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
+      - KEYCLOAK_URL=http://keycloak-http/auth
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-client
       - SECURE="true"
