@@ -22,6 +22,7 @@ configMapGenerator:
       - KEYCLOAK_URL=https://auth.qa.cqdg.ferlab.bio/auth
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-acl
+      - ADMIN_ROLE_NAME=cqdg_administrator
   - name: users-api-db-connection
     options:
       disableNameSuffixHash: true
