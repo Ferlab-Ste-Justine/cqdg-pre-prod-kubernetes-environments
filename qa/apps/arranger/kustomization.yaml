@@ -20,6 +20,6 @@ configMapGenerator:
       - LOGS_REQUEST_INTERCEPTOR="false"
       - KEYCLOAK_URL=http://keycloak-http/auth
       - KEYCLOAK_REALM=CQDG
-      - KEYCLOAK_CLIENT=cqdg-client
+      - KEYCLOAK_CLIENT=cqdg-acl
       - SECURE="true"
       - PARTICIPANT_ID_KEY=participant_id
