@@ -9,7 +9,7 @@ spec:
       - name: images-pull
       containers:
       - name: keycloak
-        image: index.docker.io/ferlabcrsj/cqdg-keycloak:d3c58c95e7d4cd4635c52ac7444cac98f0d53dd4-1679589488 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
+        image: index.docker.io/ferlabcrsj/cqdg-keycloak:a3c13b4275bf7ff759d140c86a6f9eac7e5f567a-1679592109 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
         env:
         - name: HOME_URL
           value: 'https://portal.qa.cqdg.ferlab.bio'
