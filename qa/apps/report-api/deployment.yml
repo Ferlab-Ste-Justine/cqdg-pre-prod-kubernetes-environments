@@ -22,7 +22,7 @@ spec:
           secretName: report-api-ca-certificate
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/api-portal-reports:a06cff83def0877c355f5ee94d065a10f64303ee-1679690755 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
+      - image: index.docker.io/ferlabcrsj/api-portal-reports:d2edd009ccfb17790e0e59831a537cd3628729ec-1679691313 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
         name: report-api
         env:
         - name: NODE_EXTRA_CA_CERTS
