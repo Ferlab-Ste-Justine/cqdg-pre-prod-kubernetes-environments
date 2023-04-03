@@ -13,7 +13,7 @@ spec:
         - report-api.qa.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: report-api.qa.cqdg.ferlab.bio
+    - host: report-api.qa.cqdg.ferlab.biotet
       http:
         paths:
         - path: /
