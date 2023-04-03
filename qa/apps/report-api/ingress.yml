@@ -4,6 +4,9 @@ metadata:
   name: report-api
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Access-Control-Expose-Headers: Content-Disposition";
+
 spec:
   tls:
     - hosts:
