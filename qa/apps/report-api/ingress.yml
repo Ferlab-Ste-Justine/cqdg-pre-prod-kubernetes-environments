@@ -4,6 +4,7 @@ metadata:
   name: report-api
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-expose-headers: "Content-Disposition"
 
 spec:
