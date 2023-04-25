@@ -18,7 +18,7 @@ spec:
             - name: images-registry-credentials
           restartPolicy: Never
           containers:
-            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+            - image: ferlabcrsj/postgres-backup:1f6d837cdc4e6cea736facb8664f9925c5baba6f
               name: fhir-backup-pruning
               command:
                 - python3

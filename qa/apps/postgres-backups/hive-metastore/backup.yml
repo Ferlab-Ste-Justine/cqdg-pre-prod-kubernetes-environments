@@ -4,12 +4,12 @@ kind: CronJob
 metadata:
   name: hive-metastore-backup
 spec:
-  schedule: "0 */4 * * *"
+  schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
     spec:
-      activeDeadlineSeconds: 1800
+      activeDeadlineSeconds: 3600
       backoffLimit: 2
       template:
         spec:
@@ -17,7 +17,7 @@ spec:
             - name: images-pull
           restartPolicy: Never
           containers:
-            - image: ferlabcrsj/postgres-backup:9bb43092f76e95f17cd09f03a27c65d84112a3cd
+            - image: ferlabcrsj/postgres-backup:1f6d837cdc4e6cea736facb8664f9925c5baba6f
               name: hive-metastore-backup
               command:
                 - python3
