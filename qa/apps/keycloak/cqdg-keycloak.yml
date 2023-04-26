@@ -17,6 +17,8 @@ spec:
           value: 'https://docs.qa.cqdg.ferlab.bio'
         - name: ORCID_URL
           value: 'https://sandbox.orcid.org'
+        - name: REACT_APP_USERS_API_URL
+          value: 'https://users.qa.cqdg.ferlab.bio'
         - name: DB_USER
           valueFrom:
             secretKeyRef:
