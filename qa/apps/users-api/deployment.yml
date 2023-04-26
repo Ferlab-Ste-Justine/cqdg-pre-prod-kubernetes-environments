@@ -17,7 +17,7 @@ spec:
       imagePullSecrets:
       - name: images-registry-credentials
       containers:
-      - image: index.docker.io/ferlabcrsj/users-api:0521f5a3fcd5c4e015d25be0d081d2bbe3e1aff2-1682010334 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+      - image: index.docker.io/ferlabcrsj/users-api:0c8fd4a994ce420fe15007ac3f5e4446dca81371-1682537338 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
         name: users-api
         resources:
           requests:
