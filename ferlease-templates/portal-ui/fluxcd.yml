@@ -1,0 +1,72 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: {{.Service}}-release-{{.Release}}
+spec:
+  serviceAccountName: fluxcd
+  interval: 1m
+  path: "./{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+    namespace: cqdg-{{.Environment}}-fluxcd
+  prune: true
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: {{.Service}}-release-{{.Release}}
+      namespace: cqdg-{{.Environment}}
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: {{.Service}}-release-{{.Release}}
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: main
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: {{.Service}}-release-{{.Release}}
+spec:
+  image: index.docker.io/ferlabcrsj/clin-{{.Service}}
+  interval: 1m
+  secretRef:
+    name: images-registry-credentials
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: cqdg-{{.Environment}}-fluxcd
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: {{.Service}}-release-{{.Release}}
+spec:
+  imageRepositoryRef:
+    name: {{.Service}}-release-{{.Release}}
+    namespace: cqdg-{{.Environment}}-fluxcd
+  filterTags:
+    pattern: '^feature-{{.Release}}-.*-(?P<ts>[1-9][0-9]*)$'
+    extract: '$ts'
+  policy:
+     numerical:
+      order: asc

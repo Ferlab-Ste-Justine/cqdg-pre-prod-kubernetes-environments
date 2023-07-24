@@ -1,0 +1,3 @@
+naming: {{.Service}}-release-{{.Release}}
+fluxcd_directory: {{.Environment}}/fluxcd/{{.Service}}-releases
+apps_directory: {{.Environment}}/apps
