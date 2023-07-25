@@ -47,7 +47,7 @@ kind: ImageRepository
 metadata:
   name: {{.Service}}-release-{{.Release}}
 spec:
-  image: index.docker.io/ferlabcrsj/clin-{{.Service}}
+  image: index.docker.io/ferlabcrsj/cqdg-{{.Service}}
   interval: 1m
   secretRef:
     name: images-registry-credentials
