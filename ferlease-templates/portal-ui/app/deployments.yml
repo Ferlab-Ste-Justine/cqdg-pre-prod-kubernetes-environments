@@ -15,7 +15,14 @@ spec:
         app: {{.Service}}-release-{{.Release}}
     spec:
       imagePullSecrets:
-      - name: images-registry-credentials
+      - name: images-pull
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-{{.Service}}:qa-f0772b72b4252eaa87692b752a77b21986e66a40-1680277718 # {"$imagepolicy": "cqdg-{{.Environment}}-fluxcd:{{.Service}}-release-{{.Release}}"}
         name: {{.Service}}-release-{{.Release}}
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: '0.50'
+          limits:
+            memory: "512Mi"
+            cpu: '1.00'

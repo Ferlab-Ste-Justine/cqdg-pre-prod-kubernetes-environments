@@ -7,8 +7,8 @@ metadata:
   name: {{.Service}}-release-{{.Release}}
 spec:
   ports:
-  - port: 80
+  - port: 3000
     protocol: TCP
-    targetPort: 80
+    targetPort: 3000
   selector:
     app: {{.Service}}-release-{{.Release}}
