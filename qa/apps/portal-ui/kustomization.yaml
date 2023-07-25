@@ -7,3 +7,6 @@ resources:
   - deployments.yml
   - ingresses.yml
   - services.yml
+  
+commonLabels:
+  group: portal-ui
