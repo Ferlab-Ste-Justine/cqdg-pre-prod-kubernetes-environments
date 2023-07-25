@@ -31,3 +31,4 @@ resources:
   - postgres-configuration.yml
   - airflow.yml
   - spark-jobs-etl-index-task.yml
+  - portal-ui-releases
