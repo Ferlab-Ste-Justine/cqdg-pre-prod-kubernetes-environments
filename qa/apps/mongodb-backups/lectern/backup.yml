@@ -1,0 +1,44 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: lectern-backup
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3600
+      backoffLimit: 2
+      template:
+        spec:
+          imagePullSecrets:
+            - name: images-pull
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/mongodb-backup:15792ae0d1bba20ac4de541192435462bfc154cf
+              name: lectern-backup
+              command:
+                - python3
+                - /opt/backup.py
+              env:
+                - name: DB_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: lectern-db-credentials
+                      key: username
+                - name: DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: lectern-db-credentials
+                      key: password
+                - name: MONGO_URL
+                  value: mongodb://${DB_USERNAME}:${DB_PASSWORD}@mongodb-replicaset-lectern-qa-1:27017,mongodb-replicaset-lectern-qa-2:27017,mongodb-replicaset-lectern-qa-3:27017/?authSource=admin&tls=false&replicaSet=replicaset-lectern-qa
+                - name: MONGO_DATABASE
+                  value: lectern
+              envFrom:
+                - secretRef:
+                    name: s3-lectern-credentials
+                - configMapRef:
+                    name: lectern-s3-backups
