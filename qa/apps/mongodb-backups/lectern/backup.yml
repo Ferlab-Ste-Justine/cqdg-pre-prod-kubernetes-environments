@@ -17,7 +17,7 @@ spec:
             - name: images-pull
           restartPolicy: Never
           containers:
-            - image: ferlabcrsj/mongodb-backup:15792ae0d1bba20ac4de541192435462bfc154cf
+            - image: ferlabcrsj/mongodb-backup:d05e52f88c8f7045ba0901e1235542dce30f4c31
               name: lectern-backup
               command:
                 - python3
