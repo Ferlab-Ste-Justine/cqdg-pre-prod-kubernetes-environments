@@ -8,3 +8,4 @@ resources:
   - deployments.yml
   - services.yml
   - ingress.yml
+  - troubleshoot-mongodb.yml
