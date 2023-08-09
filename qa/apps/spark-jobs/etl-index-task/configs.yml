@@ -14,4 +14,4 @@ data:
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
     spark.executor.instances=1
     spark.executor.memory=8g
-    spark.executor.cores=1
+    spark.executor.cores=0.5
