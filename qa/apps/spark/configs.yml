@@ -18,5 +18,5 @@ data:
     spark.hadoop.fs.s3a.endpoint=https://s3.ops.cqdg.ferlab.bio
     spark.hadoop.hive.metastore.uris=thrift://hive-metastore:9083
     spark.sql.warehouse.dir=s3a://cqdg-qa-app-datalake/hive
-    spark.eventLog.enabled=true
-    spark.eventLog.dir=s3a://cqdg-qa-app-datalake/spark-logs
+#    spark.eventLog.enabled=true
+#    spark.eventLog.dir=s3a://cqdg-qa-app-datalake/spark-logs
