@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: notebook
@@ -18,6 +18,9 @@ spec:
       http:
         paths:
         - path: /
+          pathType: Prefix
           backend:
-            serviceName: zeppelin
-            servicePort: 8080
+            service:
+              name: zeppelin
+              port:
+                number: 8080
