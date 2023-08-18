@@ -58,7 +58,7 @@ spec:
         - name: zonefile-copy
           mountPath: /opt/zonefiles
           readOnly: true
-      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:c11a57a365991666cd9ca179a283812ccf07c281-1692370545 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:ebdaa852fe8d1855c93233ddb128553775123e80-1692385217 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: arranger
         env:
         - name: NODE_EXTRA_CA_CERTS
