@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-lectern-mongodb-user
+data:
+  create-user.sh: |
+    #!/usr/bin/env sh
+    mongo --tls --tlsCAFile=/opt/mongodb-ca/ca.crt --eval "var lectern_password = '$LECTERN_MONGODB_PASSWORD'" $MONGO_URL /opt/lectern/create-user.js
+  create-user.js: |
+    db = db.getSiblingDB('lectern')
+    db.createUser({
+      user: "lectern",
+      pwd: lectern_password,
+      roles: ["readWrite", "dbAdmin"]
+    },
+    { 
+      w: "majority",
+      wtimeout: 5000
+    })
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-lectern-mongodb-user
+spec:
+  backoffLimit: 4
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      containers:
+      - name: create-lectern-mongodb-qa-user
+        image: mongo:4.4.18
+        workingDir: /opt/lectern
+        command:
+          - ./create-user.sh
+        envFrom:
+          - secretRef:
+              name: mongodb-admin-connection
+          - secretRef:
+              name: lectern-mongodb-password
+        volumeMounts:
+          - name: mongodb-ca-cert
+            mountPath: /opt/mongodb-ca
+            readOnly: true
+          - name: create-lectern-mongodb-user
+            mountPath: /opt/lectern
+            readOnly: true
+      restartPolicy: Never
+      volumes:
+        - name: mongodb-ca-cert
+          secret:
+            secretName: mongodb-ca-certificate
+            defaultMode: 0555
+        - name: create-lectern-mongodb-user
+          configMap:
+            name: create-lectern-mongodb-user
+            defaultMode: 0555

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: clinical-data
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  tls:
+    - hosts:
+        - clinical-data-api.qa.juno.cqdg.ferlab.bio
+      secretName: cqdg-ingress-certificate
+  rules:
+    - host: clinical-data-api.qa.juno.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clinical-data
+                port:
+                  number: 4000

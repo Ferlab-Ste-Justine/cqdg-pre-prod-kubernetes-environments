@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: lectern
+  name: lectern
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lectern
+  template:
+    metadata:
+      labels:
+        app: lectern
+    spec:
+      containers:
+        - image: index.docker.io/ferlabcrsj/lectern:268b4472182422f22553da033db681d6ddd90ce7-1693410559 # {"$imagepolicy": "cqdg-qa-fluxcd:lectern"}
+          name: lectern
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: '0.50'
+            limits:
+              memory: "256Mi"
+              cpu: '1.00'
+          env:
+            - name: MONGO_TLS
+              value: "true"
+            - name: MONGO_TLS_CA_FILE
+              value: /opt/mongodb-ca/ca.crt
+            - name: NODE_ENV
+              value: production
+          envFrom:
+            - secretRef:
+                name: lectern-mongodb-connection
+          volumeMounts:
+            - name: mongodb-ca-cert
+              mountPath: "/opt/mongodb-ca"
+              readOnly: true
+      volumes:
+        - name: mongodb-ca-cert
+          secret:
+            secretName: mongodb-ca-certificate
+            defaultMode: 0555

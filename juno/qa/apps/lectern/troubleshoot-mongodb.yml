@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: troubleshoot-mongodb
+  name: troubleshoot-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: troubleshoot-mongodb
+  template:
+    metadata:
+      labels:
+        app: troubleshoot-mongodb
+    spec:
+      containers:
+        - image: mongo:4.4.18
+          name: troubleshoot-mongodb
+          command: ["sleep", "infinity"]
+          envFrom:
+            - secretRef:
+                name: mongodb-admin-connection
+          volumeMounts:
+            - name: mongodb-ca-cert
+              mountPath: "/opt/mongodb-ca"
+              readOnly: true
+      volumes:
+        - name: mongodb-ca-cert
+          secret:
+            secretName: mongodb-ca-certificate
+            defaultMode: 0555

@@ -1,0 +1,49 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: fhir-backup
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: postgres-ca-certificate
+              secret:
+                secretName: postgres-qa-ca-certificate
+                defaultMode: 0555
+          containers:
+            - image: ferlabcrsj/postgres-backup:dcf7f735196178e930e30e3c84589bb268a7ed22
+              name: fhir-backup
+              command:
+                - python3
+                - /opt/backup.py
+              env:
+                - name: PGDATABASE
+                  value: fhir_qa
+                - name: PGHOST
+                  value: postgres-server-qa
+                - name: PGSSLMODE
+                  value: verify-full
+                - name: PGSSLROOTCERT
+                  value: /opt/ca/ca.pem
+                - name: NODE_EXTRA_CA_CERTS
+                  value: /opt/ca/ca.pem
+              envFrom:
+                - secretRef:
+                    name: postgres-qa-fhir-credentials
+                - secretRef:
+                    name: s3-fhir-credentials
+                - configMapRef:
+                    name: fhir-s3-backups
+              volumeMounts:
+                - name: postgres-ca-certificate
+                  mountPath: /opt/ca
+                  readOnly: true

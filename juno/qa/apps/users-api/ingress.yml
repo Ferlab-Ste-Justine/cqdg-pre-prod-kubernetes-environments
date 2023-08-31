@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: users-api
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      http2_max_header_size 100k;
+      http2_max_field_size 8k;
+      client_header_buffer_size 100k;
+      large_client_header_buffers 4 100k;
+spec:
+  tls:
+    - hosts:
+        - users.qa.juno.cqdg.ferlab.bio
+      secretName: cqdg-ingress-certificate
+  rules:
+    - host: users.qa.juno.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: users-api
+                port:
+                  number: 1212

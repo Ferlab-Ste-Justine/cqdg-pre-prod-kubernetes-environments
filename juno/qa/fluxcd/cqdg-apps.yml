@@ -1,0 +1,30 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: common-orchestrations-master
+spec:
+  interval: 1m
+  timeout: 30s
+  recurseSubmodules: false
+  url: https://github.com/Ferlab-Ste-Justine/cqdg-orchestrations.git
+  ref:
+    branch: master
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: cqdg-apps
+spec:
+  interval: 1m
+  timeout: 30s
+  recurseSubmodules: false
+  url: ssh://git@github.com/Ferlab-Ste-Justine/cqdg-pre-prod-kubernetes-environments.git
+  secretRef:
+    name: fluxcd-key
+  ref:
+    branch: main
+  include:
+    - repository:
+        name: common-orchestrations-master
+      toPath: juno/qa/cqdg-orchestrations

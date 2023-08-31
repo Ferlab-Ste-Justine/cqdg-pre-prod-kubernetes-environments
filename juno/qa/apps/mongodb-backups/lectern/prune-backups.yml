@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: lectern-backups-prune
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/mongodb-backup:e5aadcf79bd43dd8b299f6326fc0e31411036f8b
+              name: lectern-backups-prune
+              command:
+                - python3
+                - /opt/prune-backups.py
+              envFrom:
+                - secretRef:
+                    name: s3-lectern-credentials
+                - configMapRef:
+                    name: lectern-s3-backups

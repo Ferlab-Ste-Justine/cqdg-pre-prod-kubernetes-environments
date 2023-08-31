@@ -1,0 +1,65 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: docs
+spec:
+  serviceAccountName: fluxcd
+  interval: 1m
+  path: "./juno/qa/apps/docs"
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+    namespace: cqdg-qa-fluxcd
+  prune: true
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: docs
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./juno/qa/apps/docs"
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd      
+    push:
+      branch: main
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: docs
+spec:
+  image: index.docker.io/ferlabcrsj/cqdg-docs
+  interval: 1m
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: cqdg-qa-fluxcd
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: docs
+spec:
+  imageRepositoryRef:
+    name: docs
+    namespace: cqdg-qa-fluxcd
+  filterTags:
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+     numerical:
+      order: asc

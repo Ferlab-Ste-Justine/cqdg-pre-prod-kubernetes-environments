@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fhir-console
+spec:
+  template:
+    spec:
+      containers:
+        - image: index.docker.io/ferlabcrsj/fhir-console:5f897cbc6ff62c46b784a930f7f92db0a5210878-1678978832 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-console"}
+          name: fhir-console

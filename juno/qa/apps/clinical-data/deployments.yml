@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clinical-data
+  name: clinical-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clinical-data
+  template:
+    metadata:
+      labels:
+        app: clinical-data
+    spec:
+      volumes:
+      - name: postgres-ca-certificate
+        secret:
+          secretName: postgres-qa-ca-certificate
+          defaultMode: 0555
+      - name: ingress-ca-certificate
+        secret:
+          secretName: cqdg-ingress-ca-certificate
+          defaultMode: 0555
+      containers:
+      - image: index.docker.io/ferlabcrsj/cqdg-clinical-data-service:66d815f1e68f28ef72f19c2a3902a864decfb2ca-1679589490 # {"$imagepolicy": "cqdg-qa-fluxcd:clinical-data"}
+        name: clinical-data
+        env:
+        - name: LOG_LEVEL
+          value: debug
+        - name: TYPEORM_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-qa-clinical-data-service-credentials
+              key: username
+        - name: TYPEORM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-qa-clinical-data-service-credentials
+              key: password
+        envFrom:
+        - configMapRef:
+            name: clinical-data-configs
+        - configMapRef:
+            name: clinical-data-service-db-connection
+        - configMapRef:
+            name: clinical-data-service-db-connection-tls
+        - secretRef:
+            name: s3-clinical-data-service-credentials
+        - secretRef:
+            name: clinical-data-keycloak-credentials
+        - secretRef:
+            name: clinical-data-lectern-credentials
+        - secretRef:
+            name: clinical-data-monitor-credentials
+        volumeMounts:
+        - name: postgres-ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: '1.0'
+          limits:
+            memory: "4Gi"
+            cpu: '2.0'

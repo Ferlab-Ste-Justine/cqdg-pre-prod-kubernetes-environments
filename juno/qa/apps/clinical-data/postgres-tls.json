@@ -1,0 +1,6 @@
+{
+  "ssl": {
+    "sslmode": "verify-full", 
+    "sslca": "/opt/ca/ca.pem" 
+  }
+}

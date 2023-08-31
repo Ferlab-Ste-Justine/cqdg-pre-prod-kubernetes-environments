@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fhir-server
+  name: fhir-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fhir-server
+  template:
+    metadata:
+      labels:
+        app: fhir-server
+    spec:
+      volumes:
+      - name: postgres-ca-certificate
+        secret:
+          secretName: postgres-qa-ca-certificate
+          defaultMode: 0555
+      - name: ingress-ca-certificate
+        secret:
+          secretName: cqdg-ingress-ca-certificate
+          defaultMode: 0555
+      - name: entrypoint
+        configMap:
+          name: fhir-entrypoint
+          defaultMode: 0555
+      containers:
+      - image: index.docker.io/ferlabcrsj/cqdg-fhir-server:59bf963f4d921a466cdae516754ea9ccae132d01-1679589560 # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-server"}
+        name: fhir-server
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: "1.00"
+          limits:
+            memory: "4096Mi"
+            cpu: "2.00"
+        command: ["/opt/entrypoint/entrypoint.sh"]
+        env:
+          - name: SPRING_DATASOURCE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: postgres-qa-fhir-credentials
+                key: PGUSER
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-qa-fhir-credentials
+                key: PGPASSWORD
+          - name: BIO_AUTH_AUTHORIZATION_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-client-acl-credentials
+                key: client-secret
+        envFrom:
+          - configMapRef:
+              name: fhir-server
+        volumeMounts:
+          - name: postgres-ca-certificate
+            mountPath: /opt/ca
+            readOnly: true
+          - name: ingress-ca-certificate
+            mountPath: /opt/ingress-ca
+            readOnly: true
+          - name: entrypoint
+            mountPath: /opt/entrypoint

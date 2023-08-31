@@ -1,0 +1,13 @@
+.:53 {
+    bind 127.0.0.1
+    auto {
+        directory /opt/zonefiles (.*) {1}
+        reload 5s
+    }
+    alternate original SERVFAIL . 169.254.25.10:53
+    reload 5s
+    loop
+    nsid I am a coredns sidecar
+    errors
+    log
+}

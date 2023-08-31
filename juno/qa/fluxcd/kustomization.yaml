@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cqdg-qa-fluxcd
+
+resources:
+  - airflow.yml
+  - arranger.yml
+  - clinical-data.yml
+  - cqdg-apps.yml
+  - datagrid-service.yml
+  - docs.yml
+  - fhir-console.yml
+  - fhir-server.yml
+  - hive-metastore.yml
+  - id-service.yml
+  - keycloak.yml
+  - keycloak-configuration.yml
+  - lectern.yml
+  # - mongodb-backups.yml  # lectern db has no data
+  # - postgres-backups.yml
+  - postgres-configuration.yml
+  - portal-ui.yml
+  - report-api.yml
+  - spark-jobs-etl-index-task.yml
+  - users-api.yml
+  - spark-core.yml
+  - zeppelin.yml
+  - opensearch.yml
+  - opensearch-configuration.yml
+  - coredns.yml

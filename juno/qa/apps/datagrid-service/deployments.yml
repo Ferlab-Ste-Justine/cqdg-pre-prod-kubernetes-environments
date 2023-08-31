@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datagrid-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: datagrid-service
+  template:
+    metadata:
+      labels:
+        app: datagrid-service
+    spec:
+      volumes:
+      - name: postgres-ca-certificate
+        secret:
+          secretName: postgres-qa-ca-certificate
+          defaultMode: 0555
+      containers:
+      - name: datagrid-service
+        image: index.docker.io/ferlabcrsj/datagrid-service:a6afb414748c3eea21110aaf2075732573282f1e-1679589502 # {"$imagepolicy": "cqdg-qa-fluxcd:datagrid-service"}
+        env:
+        - name: PORT
+          value: "5000"
+        - name: LOGS_REQUEST_INTERCEPTOR
+          value: "true"
+        - name: SESSION_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: datagrid-service-session-secret
+              key: SESSION_SECRET
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-qa-datagrid-service-credentials
+              key: username
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-qa-datagrid-service-credentials
+              key: password
+        envFrom:
+        - configMapRef:
+            name: datagrid-service-db-connection
+        - configMapRef:
+            name: datagrid-service-db-connection-tls
+        - configMapRef:
+            name: datagrid-service-keycloak-access
+        - configMapRef:
+            name: datagrid-service-customizations
+        volumeMounts:
+        - name: postgres-ca-certificate
+          mountPath: /opt/ca
+          readOnly: true
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: '0.25'
+            limits:
+              memory: "128Mi"
+              cpu: '0.50'
+

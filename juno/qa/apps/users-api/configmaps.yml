@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-api-keycloak
+data:
+  KEYCLOAK_URL: https://auth.qa.juno.cqdg.ferlab.bio/auth
+  KEYCLOAK_REALM: CQDG
+  KEYCLOAK_CLIENT: cqdg-acl
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-api-db-connection
+data:
+  PGHOST: postgres-server-qa
+  PGPORT: "5432"
+  PGDATABASE: users_api_qa
+  PGSSLMODE: verify-full
+  PGSSLROOTCERT: /opt/ca/ca.pem

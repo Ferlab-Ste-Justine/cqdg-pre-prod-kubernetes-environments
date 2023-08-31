@@ -1,0 +1,47 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: users-api-backup
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: postgres-ca-certificate
+              secret:
+                secretName: postgres-qa-ca-certificate
+                defaultMode: 0555
+          containers:
+            - image: ferlabcrsj/postgres-backup:dcf7f735196178e930e30e3c84589bb268a7ed22
+              name: users-api-backup
+              command:
+                - python3
+                - /opt/backup.py
+              env:
+                - name: PGSSLMODE
+                  value: verify-full
+                - name: PGSSLROOTCERT
+                  value: /opt/ca/ca.pem
+                - name: PGHOST
+                  value: postgres-server-qa
+                - name: PGDATABASE
+                  value: users_api_qa
+              envFrom:
+                - secretRef:
+                    name: postgres-users-api-credentials
+                - secretRef:
+                    name: s3-users-api-credentials
+                - configMapRef:
+                    name: users-api-s3-backups
+              volumeMounts:
+                - name: postgres-ca-certificate
+                  mountPath: /opt/ca
+                  readOnly: true

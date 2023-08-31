@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arranger
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - data-api.qa.juno.cqdg.ferlab.bio
+      secretName: cqdg-ingress-certificate
+  rules:
+    - host: data-api.qa.juno.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: arranger
+                port:
+                  number: 5050

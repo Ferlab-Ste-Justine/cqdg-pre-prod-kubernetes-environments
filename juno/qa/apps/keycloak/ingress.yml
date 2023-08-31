@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "24k"
+spec:
+  tls:
+    - hosts:
+      - auth.qa.juno.cqdg.ferlab.bio
+      secretName: cqdg-ingress-certificate
+  rules:
+    - host: auth.qa.juno.cqdg.ferlab.bio
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keycloak-http
+                port:
+                  number: 80

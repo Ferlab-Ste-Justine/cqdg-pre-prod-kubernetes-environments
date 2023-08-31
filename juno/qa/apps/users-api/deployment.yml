@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: users-api
+  name: users-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      volumes:
+      - name: postgres-ca-certificate
+        secret:
+          secretName: postgres-qa-ca-certificate
+          defaultMode: 0555
+      containers:
+      - image: index.docker.io/ferlabcrsj/users-api:491279c6f30b94b98a2e105eb59cd24464997471-1693419058 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+        name: users-api
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: "1.00"
+          limits:
+            memory: "4096Mi"
+            cpu: "2.00"
+        env:
+        - name: NODE_EXTRA_CA_CERTS
+          value: /opt/ca/ca.pem
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-users-api-credentials
+              key: PGUSER
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-users-api-credentials
+              key: PGPASSWORD
+        envFrom:
+        - configMapRef:
+            name: users-api-keycloak
+        - configMapRef:
+            name: users-api-db-connection
+        volumeMounts:
+        - name: postgres-ca-certificate
+          mountPath: /opt/ca
+          readOnly: true

@@ -1,0 +1,27 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: id-service-backups-prune
+spec:
+  schedule: "0 */4 * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 1800
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - image: ferlabcrsj/postgres-backup:dcf7f735196178e930e30e3c84589bb268a7ed22
+              name: id-service-backups-prune
+              command:
+                - python3
+                - /opt/prune-backups.py
+              envFrom:
+                - secretRef:
+                    name: s3-id-service-credentials
+                - configMapRef:
+                    name: id-service-s3-backups

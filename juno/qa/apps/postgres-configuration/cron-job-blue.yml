@@ -1,0 +1,69 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-blue-configuration
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: github-credentials
+              secret:
+                secretName: terraform-configs-repo-access
+                defaultMode: 0400
+            - name: etcd-backend-credentials
+              secret:
+                secretName: terraform-postgres-configs-backend-credentials
+                defaultMode: 0400
+            - name: terraform-backend
+              configMap:
+                name: terraform-postgres-blue-configs-backend
+                defaultMode: 0555
+            - name: terracd-configuration
+              configMap:
+                name: postgres-blue-configuration-terracd-configs
+                defaultMode: 0555
+            - name: backend-service-config
+              configMap:
+                name: etcd-backend-service-config
+                defaultMode: 0555
+            - name: db-ca-certificate
+              secret:
+                secretName: postgres-qa-ca-certificate
+                defaultMode: 0555
+          containers:
+            - image: ferlabcrsj/terraform-backend-etcd:0.4.1
+              name: etcd-backend-service
+              env:
+                - name: ETCD_BACKEND_CONFIG_FILE
+                  value: /opt/config/config.yml
+              volumeMounts:
+                - name: etcd-backend-credentials
+                  mountPath: /opt/certs
+                - name: backend-service-config
+                  mountPath: /opt/config
+            - image: ferlabcrsj/terracd:0.13.0
+              name: postgres-blue-configuration
+              envFrom:
+                - secretRef:
+                    name: postgres-configs-terraform-variables
+              env:
+                - name: TERRACD_CONFIG_FILE
+                  value: /opt/terracd-configuration/config.yml
+              volumeMounts:
+                - name: github-credentials
+                  mountPath: /opt/github-ssh
+                - name: terraform-backend
+                  mountPath: /opt/backend
+                - name: terracd-configuration
+                  mountPath: /opt/terracd-configuration
+                - name: db-ca-certificate
+                  mountPath: /opt/postgres-ca
+                  readOnly: true
