@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: configure-arranger-2021-03-10-take5
+  name: configure-arranger
 spec:
   backoffLimit: 4
   template:
@@ -12,19 +12,19 @@ spec:
       restartPolicy: Never
       containers:
         - name: configure-arranger
-          image: curlimages/curl
+          image: curlimages/curl:8.2.1
           command:
             - /bin/sh
             - -c
             - -e
             - |
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XPUT "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
-              curl --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPUT "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
+              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
           volumeMounts:
             - name: cqdg-entry
               mountPath: /opt/curl-bodies/cqdg-entry
