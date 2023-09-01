@@ -19,14 +19,14 @@ spec:
             - -e
             - |
               CURL_URL="https://workers.search.qa.juno.cqdg.ferlab.bio:9200"
-              CURL_ARGS="--fail-with-body --cacert /opt/opensearch-creds/ca.crt --cert /opt/opensearch-creds/admin.crt --key /opt/opensearch-creds/admin.key -vvv"
+              CURL_ARGS="--cacert /opt/opensearch-creds/ca.crt --cert /opt/opensearch-creds/admin.crt --key /opt/opensearch-creds/admin.key -vvv"
               curl $CURL_ARGS -XDELETE "$CURL_URL/arranger-projects";
               curl $CURL_ARGS -XDELETE "$CURL_URL/arranger-projects-cqdg";
-              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
-              curl $CURL_ARGS -XPUT "$CURL_URL/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
-              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
-              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
-              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
+              curl $CURL_ARGS --fail-with-body -XPOST "$CURL_URL/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
+              curl $CURL_ARGS --fail-with-body -XPUT "$CURL_URL/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
+              curl $CURL_ARGS --fail-with-body -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
+              curl $CURL_ARGS --fail-with-body -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
+              curl $CURL_ARGS --fail-with-body -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
           volumeMounts:
             - name: cqdg-entry
               mountPath: /opt/curl-bodies/cqdg-entry
