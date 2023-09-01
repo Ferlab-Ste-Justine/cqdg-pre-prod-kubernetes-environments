@@ -22,9 +22,9 @@ spec:
               secret:
                 secretName: terraform-opensearch-configs-backend-credentials
                 defaultMode: 0400
-            - name: terraform-provider-credentials
+            - name: terraform-opensearch-credentials
               secret:
-                secretName: terraform-opensearch-configs-provider-credentials
+                secretName: opensearch-admin-credentials
                 defaultMode: 0400
             - name: terraform-backend
               configMap:
@@ -68,7 +68,7 @@ spec:
               volumeMounts:
                 - name: github-credentials
                   mountPath: /opt/github-ssh
-                - name: terraform-provider-credentials
+                - name: terraform-opensearch-credentials
                   mountPath: /opt/certs
                 - name: terraform-backend
                   mountPath: /opt/backend
