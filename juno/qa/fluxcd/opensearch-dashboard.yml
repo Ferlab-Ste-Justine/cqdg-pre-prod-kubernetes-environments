@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: opensearch
+  name: opensearch-dashboard
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa/apps/opensearch"
+  path: "./juno/qa/apps/opensearch-dashboard"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps

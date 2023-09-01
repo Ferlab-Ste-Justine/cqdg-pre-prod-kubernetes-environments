@@ -1,23 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: opensearch
+  name: opensearch-dashboard
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "24k"
 spec:
   tls:
     - hosts:
-        - search.qa.juno.cqdg.ferlab.bio
+        - search-dashboard.qa.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: search.qa.juno.cqdg.ferlab.bio
+    - host: search-dashboard.qa.juno.cqdg.ferlab.bio
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: opensearch-workers
+                name: opensearch-dashboard
                 port:
-                  number: 9200
+                  number: 5601

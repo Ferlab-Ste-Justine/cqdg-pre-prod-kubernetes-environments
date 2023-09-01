@@ -26,6 +26,6 @@ resources:
   - users-api.yml
   - spark-core.yml
   - zeppelin.yml
-  - opensearch.yml
   - opensearch-configuration.yml
+  - opensearch-dashboard.yml
   - coredns.yml
