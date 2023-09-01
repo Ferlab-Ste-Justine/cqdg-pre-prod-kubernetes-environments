@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - configmaps.yml
   - deployment.yml
   - ingress.yml
   - services.yml
@@ -13,6 +12,28 @@ resources:
 
 patchesStrategicMerge:
   - dns-overrides.yml
-  
+
+configMapGenerator:
+  - name: fhir-server
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - BIO_SERVICE_REQUEST_ROUTING_ENABLED="false"
+      - BIO_NANUQ_REINDEX=hash
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-server-qa:5432/fhir_qa?sslmode=verify-full&sslrootcert=/opt/ca/ca.pem
+      - BIO_AUTH_SERVER_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+      - HAPI_FHIR_SERVER_ADDRESS=https://fhir.qa.juno.cqdg.ferlab.bio/fhir/
+      - JAVA_OPTS="-server -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseContainerSupport"
+      - BIO_AUTH_REALM=CQDG
+      - BIO_AUTH_ENABLED="true"
+      - BIO_AUTH_LEEWAY="120"
+      - BIO_AUTH_DISABLE_SSL_VALIDATION="false"
+      - BIO_AUTH_AUTHORIZATION_ENABLED="true"
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQL95Dialect
+      - NODE_EXTRA_CA_CERTS=/opt/ca/ca.pem
+      - BIO_TAGGING_ENABLED="true"
+      - HAPI_FHIR_GRAPHQL_ENABLED="true"
+      - HAPI_FHIR_ALLOW_MULTIPLE_DELETE="true"
+
 commonLabels:
   group: fhir-server

@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: hive-metastore
-data:
-  S3_ENDPOINT: https://objets.juno.calculquebec.ca

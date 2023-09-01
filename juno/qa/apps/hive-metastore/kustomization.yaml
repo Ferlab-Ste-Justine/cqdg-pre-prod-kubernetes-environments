@@ -5,8 +5,14 @@ namespace: cqdg-qa
 
 resources:
   - ../../cqdg-orchestrations/hive-metastore
-  - configs.yml
 
 patchesStrategicMerge:
   - deployments.yml
   - service.yml
+
+configMapGenerator:
+  - name: hive-metastore
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - S3_ENDPOINT=https://objets.juno.calculquebec.ca

@@ -9,3 +9,21 @@ resources:
   - ingress.yml
   - deployment.yml
   - service.yml
+
+configMapGenerator:
+  - name: users-api-keycloak
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+      - KEYCLOAK_REALM=CQDG
+      - KEYCLOAK_CLIENT=cqdg-acl
+  - name: users-api-db-connection
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - PGHOST=postgres-server-qa
+      - PGPORT="5432"
+      - PGDATABASE=users_api_qa
+      - PGSSLMODE=verify-full
+      - PGSSLROOTCERT=/opt/ca/ca.pem
