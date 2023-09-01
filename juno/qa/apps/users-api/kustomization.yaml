@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - configmaps.yml
   - ingress.yml
   - deployment.yml
   - service.yml
