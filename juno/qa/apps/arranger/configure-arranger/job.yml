@@ -18,13 +18,15 @@ spec:
             - -c
             - -e
             - |
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XDELETE "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPUT "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
-              curl --fail-with-body --cacert /opt/opensearch-ca/ca.pem -vvv -XPOST "https://workers.search.qa.juno.cqdg.ferlab.bio:9200/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
+              CURL_URL="https://workers.search.qa.juno.cqdg.ferlab.bio:9200"
+              CURL_ARGS="--fail-with-body --cacert /opt/opensearch-creds/ca.crt --cert /opt/opensearch-creds/admin.crt --key /opt/opensearch-creds/admin.key -vvv"
+              curl $CURL_ARGS -XDELETE "$CURL_URL/arranger-projects";
+              curl $CURL_ARGS -XDELETE "$CURL_URL/arranger-projects-cqdg";
+              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects/_doc/cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-entry/cqdg-entry.json";
+              curl $CURL_ARGS -XPUT "$CURL_URL/arranger-projects-cqdg" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/cqdg-mappings/cqdg-mappings.json";
+              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/studies" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/studies-index/studies-index.json";
+              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/donors" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/donors-index/donors-index.json";
+              curl $CURL_ARGS -XPOST "$CURL_URL/arranger-projects-cqdg/_doc/files" -H 'Content-Type: application/json' --data "@/opt/curl-bodies/files-index/files-index.json";
           volumeMounts:
             - name: cqdg-entry
               mountPath: /opt/curl-bodies/cqdg-entry
@@ -41,8 +43,8 @@ spec:
             - name: studies-index
               mountPath: /opt/curl-bodies/studies-index
               readOnly: true
-            - name: opensearch-ca-cert
-              mountPath: /opt/opensearch-ca
+            - name: opensearch-creds
+              mountPath: /opt/opensearch-creds
               readOnly: true
       volumes:
         - name: cqdg-entry
@@ -60,7 +62,7 @@ spec:
         - name: studies-index
           configMap:
             name: studies-index
-        - name: opensearch-ca-cert
+        - name: opensearch-creds
           secret:
-            secretName: opensearch-ca-certificate
-            defaultMode: 0555
+            secretName: opensearch-admin-credentials
+            defaultMode: 0400
