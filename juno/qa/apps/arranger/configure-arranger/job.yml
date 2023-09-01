@@ -65,4 +65,4 @@ spec:
         - name: opensearch-creds
           secret:
             secretName: opensearch-admin-credentials
-            defaultMode: 0400
+            defaultMode: 0444
