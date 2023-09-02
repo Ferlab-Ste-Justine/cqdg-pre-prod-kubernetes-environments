@@ -29,3 +29,4 @@ resources:
   - opensearch-configuration.yml
   - opensearch-dashboard.yml
   - coredns.yml
+  - reloader.yml
