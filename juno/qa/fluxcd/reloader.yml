@@ -1,13 +1,30 @@
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: stakater
+  namespace: cqdg-qa-fluxcd
+spec:
+  interval: 10m
+  url: https://stakater.github.io/stakater-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
 metadata:
   name: reloader
+  namespace: cqdg-qa-fluxcd
 spec:
-  serviceAccountName: fluxcd
-  interval: 1m
-  path: "./juno/qa/apps/reloader"
-  sourceRef:
-    kind: GitRepository
-    name: cqdg-apps
-    namespace: cqdg-qa-fluxcd
-  prune: true
+  releaseName: reloader
+  chart:
+    spec:
+      chart: reloader
+      sourceRef:
+        kind: HelmRepository
+        name: stakater
+        namespace: cqdg-qa-fluxcd
+  interval: 30s
+  targetNamespace: cqdg-qa
+  install:
+    disableWait: true
+    createNamespace: true
+  upgrade:
+    disableWait: true
