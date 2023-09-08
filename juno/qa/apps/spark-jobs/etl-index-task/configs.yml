@@ -13,7 +13,7 @@ data:
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
     spark.driver.memory=15g
-    spark.driver.cores=6
+    spark.driver.cores=3
     spark.executor.instances=4
     spark.executor.memory=15g
-    spark.executor.cores=6
+    spark.executor.cores=3
