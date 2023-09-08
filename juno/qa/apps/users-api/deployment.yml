@@ -20,7 +20,7 @@ spec:
           secretName: postgres-qa-ca-certificate
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/users-api:32aaa4cc2774b704a853ffbd8f3b21e745f743ec-1694183660 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+      - image: index.docker.io/ferlabcrsj/users-api:9f3a6e11ffd23ad17361533a3f8ea439ac78b754-1694198231 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
         name: users-api
         resources:
           requests:
