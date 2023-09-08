@@ -30,3 +30,4 @@ resources:
   - opensearch-dashboard.yml
   - coredns.yml
   - reloader.yml
+  - metrics-server.yml
