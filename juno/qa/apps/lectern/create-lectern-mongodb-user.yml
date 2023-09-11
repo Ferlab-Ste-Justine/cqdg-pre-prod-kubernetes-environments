@@ -8,15 +8,17 @@ data:
     mongo --tls --tlsCAFile=/opt/mongodb-ca/ca.crt --eval "var lectern_password = '$LECTERN_MONGODB_PASSWORD'" $MONGO_URL /opt/lectern/create-user.js
   create-user.js: |
     db = db.getSiblingDB('lectern')
-    db.createUser({
-      user: "lectern",
-      pwd: lectern_password,
-      roles: ["readWrite", "dbAdmin"]
-    },
-    { 
-      w: "majority",
-      wtimeout: 5000
-    })
+    if (db.getUser("lectern") == null) {
+      db.createUser({
+        user: "lectern",
+        pwd: lectern_password,
+        roles: ["readWrite", "dbAdmin"]
+      },
+      {
+        w: "majority",
+        wtimeout: 5000
+      })
+    }
 ---
 apiVersion: batch/v1
 kind: Job
