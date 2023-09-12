@@ -20,5 +20,5 @@ data:
     spark.sql.warehouse.dir=s3a://cqdg-qa-app-datalake/hive
     spark.eventLog.enabled=true
     spark.eventLog.dir=s3a://cqdg-qa-app-datalake/spark-logs
-    es.net.http.auth.user=${ES_USERNAME}
-    es.net.http.auth.pass=${ES_PASSWORD}
+    spark.es.net.http.auth.user=${ES_USERNAME}
+    spark.es.net.http.auth.pass=${ES_PASSWORD}
