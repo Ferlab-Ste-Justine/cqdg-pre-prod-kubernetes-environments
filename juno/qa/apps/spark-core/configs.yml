@@ -20,7 +20,5 @@ data:
     spark.sql.warehouse.dir=s3a://cqdg-qa-app-datalake/hive
     spark.eventLog.enabled=true
     spark.eventLog.dir=s3a://cqdg-qa-app-datalake/spark-logs
-    spark.es.net.http.auth.user=opensearch-dags-credentials\:username
-    spark.es.net.http.auth.pass=opensearch-dags-credentials\:password
-    es.net.http.auth.user=opensearch-dags-credentials\:username
-    es.net.http.auth.pass=opensearch-dags-credentials\:password
+    spark.kubernetes.driver.secretKeyRef.ES_USERNAME=opensearch-dags-credentials\:username
+    spark.kubernetes.driver.secretKeyRef.ES_PASSWORD=opensearch-dags-credentials\:password
