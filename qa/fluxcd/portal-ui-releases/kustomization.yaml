@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: cqdg-qa-fluxcd
 
 resources: 
-  - portal-ui-release-cqdg-279.yml
   - portal-ui-release-cqdg-282.yml
   - portal-ui-release-cqdg-308.yml
   - portal-ui-release-cqdg-328.yml
