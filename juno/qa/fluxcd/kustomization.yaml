@@ -20,6 +20,7 @@ resources:
   # - mongodb-backups.yml  # lectern db has no data
   # - postgres-backups.yml
   - postgres-configuration.yml
+  - postgres-logs.yml
   - portal-ui.yml
   - report-api.yml
   - spark-jobs-etl-index-task.yml
