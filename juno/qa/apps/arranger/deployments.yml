@@ -20,7 +20,7 @@ spec:
             secretName: opensearch-ca-certificate
             defaultMode: 0555
       containers:
-        - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:95c1eb51f89df783764bf6846e1de23e6424b9e5-1693237572 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+        - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:aaf18638944a7a270cd29bb0274cb897ffb3d279-1695219607 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
           name: arranger
           resources:
             requests:
