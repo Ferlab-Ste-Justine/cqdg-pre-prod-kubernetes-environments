@@ -107,7 +107,7 @@ spec:
       - name: AIRFLOW_VAR_KUBERNETES_NAMESPACE
         value: "cqdg-qa"
       - name: AIRFLOW_VAR_S3_CONN_ID
-        value: "ceph"
+        value: "minio"
       - name: AIRFLOW_VAR_KUBERNETES_CONTEXT_DEFAULT
         value: "airflow-cluster.qa.cqdg@cluster.qa.cqdg"
       - name: PYTHONPATH
