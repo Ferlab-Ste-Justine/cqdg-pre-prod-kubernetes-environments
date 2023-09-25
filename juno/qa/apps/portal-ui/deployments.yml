@@ -15,7 +15,7 @@ spec:
         app: portal-ui
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:test-v2
+      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:test-v4
         name: portal-ui
         command: ["/usr/sbin/nginx"]
         args: ["-g", "daemon off;"]
