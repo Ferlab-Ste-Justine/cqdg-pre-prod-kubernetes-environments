@@ -17,6 +17,8 @@ spec:
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:test-v2
         name: portal-ui
+        command: ["/usr/sbin/nginx"]
+        args: ["-g", "daemon off;"]
         resources:
           requests:
             memory: "512Mi"
