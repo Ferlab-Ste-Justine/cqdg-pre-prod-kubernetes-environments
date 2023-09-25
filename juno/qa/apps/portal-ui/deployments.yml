@@ -17,7 +17,7 @@ spec:
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:test-v2
         name: portal-ui
-        command: ["/bin/sh"]
+        command: ["/bin/bash"]
         args: ["-c", "while true; do sleep 3600; done"]
         resources:
           requests:
