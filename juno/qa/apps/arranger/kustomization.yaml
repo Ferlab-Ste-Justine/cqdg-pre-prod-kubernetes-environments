@@ -9,6 +9,10 @@ resources:
   - services.yml
   - deployments.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+  
 configMapGenerator:
   - name: arranger-configs
     options:

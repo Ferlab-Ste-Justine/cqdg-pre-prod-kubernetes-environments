@@ -8,6 +8,10 @@ resources:
   - deployments.yml
   - services.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+  
 configMapGenerator:
   - name: clinical-data-service-db-connection
     options:

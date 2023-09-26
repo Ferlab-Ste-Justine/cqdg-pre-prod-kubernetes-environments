@@ -10,6 +10,10 @@ resources:
   - configs.yml
   - services.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+  
 configMapGenerator:
   - name: datagrid-service-customizations
     options:
