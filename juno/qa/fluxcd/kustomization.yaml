@@ -24,7 +24,7 @@ resources:
   - portal-ui.yml
   - report-api.yml
   - spark-jobs-etl-index-task.yml
-  - users-api.yml
+  # - users-api.yml
   - spark-core.yml
   - zeppelin.yml
   - opensearch-configuration.yml
