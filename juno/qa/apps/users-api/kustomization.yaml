@@ -9,20 +9,29 @@ resources:
   - deployment.yml
   - service.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+
+commonLabels:
+  group: cqdg-users-api
+
 configMapGenerator:
   - name: users-api-keycloak
     options:
-      disableNameSuffixHash: false
+      disableNameSuffixHash: true
     literals:
       - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-acl
+      - ADMIN_ROLE_NAME=cqdg_administrator
   - name: users-api-db-connection
     options:
-      disableNameSuffixHash: false
+      disableNameSuffixHash: true
     literals:
       - PGHOST=postgres-server-qa
       - PGPORT="5432"
       - PGDATABASE=users_api_qa
       - PGSSLMODE=verify-full
       - PGSSLROOTCERT=/opt/ca/ca.pem
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
