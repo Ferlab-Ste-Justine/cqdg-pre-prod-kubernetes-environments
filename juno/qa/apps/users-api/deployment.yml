@@ -14,11 +14,6 @@ spec:
       labels:
         app: users-api
     spec:
-      volumes:
-      - name: postgres-ca-certificate
-        secret:
-          secretName: postgres-qa-ca-certificate
-          defaultMode: 0555
       containers:
       - image: index.docker.io/ferlabcrsj/users-api:740cb54db337a3189de6e6ffa417cf17d2784888-1694546514 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
         name: users-api
@@ -30,8 +25,6 @@ spec:
             memory: "4096Mi"
             cpu: "2.00"
         env:
-        - name: NODE_EXTRA_CA_CERTS
-          value: /opt/ca/ca.pem
         - name: PGUSER
           valueFrom:
             secretKeyRef:
@@ -50,4 +43,7 @@ spec:
         volumeMounts:
         - name: postgres-ca-certificate
           mountPath: /opt/ca
+          readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
           readOnly: true

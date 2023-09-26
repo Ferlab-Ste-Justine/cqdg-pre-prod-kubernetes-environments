@@ -9,9 +9,9 @@ resources:
   - deployment.yml
   - service.yml
 
-# patchesStrategicMerge:
-#   - dns-overrides.yml
-#   - certificate-bundle-overrides.yml
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
 
 commonLabels:
   group: cqdg-users-api
