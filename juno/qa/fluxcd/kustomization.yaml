@@ -32,3 +32,4 @@ resources:
   - coredns.yml
   - reloader.yml
   - metrics-server.yml
+  - kubernetes-lbs-logs.yml
