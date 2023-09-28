@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: postgres-blue-configuration
 spec:
-  schedule: "*/1 * * * *"
+  schedule: "*/2 * * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
