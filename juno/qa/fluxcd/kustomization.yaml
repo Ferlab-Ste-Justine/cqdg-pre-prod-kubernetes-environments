@@ -33,3 +33,4 @@ resources:
   - reloader.yml
   - metrics-server.yml
   - kubernetes-lbs-logs.yml
+  - zeppelin-logs.yml
