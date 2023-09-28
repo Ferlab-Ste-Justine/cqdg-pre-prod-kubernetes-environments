@@ -15,7 +15,7 @@ spec:
         app: users-api
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/users-api:b861bdf43966c25c9c4b5b70dc6005eace478a68-1695845661 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
+      - image: index.docker.io/ferlabcrsj/users-api:ad16ffa331d5badb35448735da87d4fc90e988e1-1695908687 # {"$imagepolicy": "cqdg-qa-fluxcd:users-api"}
         name: users-api
         resources:
           requests:
