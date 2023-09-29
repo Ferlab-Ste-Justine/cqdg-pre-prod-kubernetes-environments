@@ -97,6 +97,13 @@ CREATE SEQUENCE IF NOT EXISTS family_history_seq
     NO MAXVALUE
     CACHE 1;
 
+CREATE SEQUENCE family_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1
+    NO MAXVALUE
+    CACHE 1;
+
 CREATE SEQUENCE IF NOT EXISTS sequencing_experiment_seq
     START WITH 1
     INCREMENT BY 1
