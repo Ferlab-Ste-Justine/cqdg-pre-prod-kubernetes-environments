@@ -13,7 +13,7 @@ resources:
   - fhir-console.yml
   - fhir-server.yml
   - hive-metastore.yml
-#  - id-service.yml
+  - id-service.yml
   - keycloak.yml
   - keycloak-configuration.yml
   - lectern.yml
