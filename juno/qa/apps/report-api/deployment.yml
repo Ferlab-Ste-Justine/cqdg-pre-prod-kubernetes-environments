@@ -20,7 +20,7 @@ spec:
             secretName: opensearch-ca-certificate
             defaultMode: 0555
       containers:
-        - image: index.docker.io/ferlabcrsj/api-portal-reports:d2003baebcb4460d93fcf5765f66afbd64f234d0-1696277345 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
+        - image: index.docker.io/ferlabcrsj/api-portal-reports:55168421666bed5a2b50f3f2e93336b0e62bbb94-1696284980 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
           name: report-api
           resources:
             requests:
