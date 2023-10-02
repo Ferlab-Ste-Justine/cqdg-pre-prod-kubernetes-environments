@@ -2,7 +2,7 @@ terraform_path: /bin/terraform
 command: apply
 sources:
   - repo:
-      url: git@github.com:Ferlab-Ste-Justine/cqdg-pre-prod-service-configurations.git
+      url: git@github.com:Ferlab-Ste-Justine-Ops/cqdg-pre-prod-service-configurations.git
       ref: main
       path: keycloak/qa
       auth:
