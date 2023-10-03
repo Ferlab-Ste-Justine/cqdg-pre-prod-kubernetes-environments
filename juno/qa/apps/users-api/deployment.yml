@@ -44,3 +44,6 @@ spec:
         - name: postgres-ca-certificate
           mountPath: /opt/ca
           readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
+          readOnly: true
