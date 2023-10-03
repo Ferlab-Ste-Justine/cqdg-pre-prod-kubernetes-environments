@@ -20,3 +20,4 @@ configMapGenerator:
       - SECURE="true"
       - PARTICIPANT_ID_KEY=participant_id
       - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200
+      - USERS_API_URL=https://users.qa.juno.cqdg.ferlab.bio
