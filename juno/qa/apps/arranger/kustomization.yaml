@@ -20,4 +20,4 @@ configMapGenerator:
       - KEYCLOAK_CLIENT=cqdg-acl
       - SECURE="true"
       - PARTICIPANT_ID_KEY=participant_id
-      - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200/
+      - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200
