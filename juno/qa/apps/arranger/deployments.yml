@@ -15,29 +15,74 @@ spec:
         app: arranger
     spec:
       volumes:
-        - name: opensearch-ca-cert
-          secret:
-            secretName: opensearch-ca-certificate
-            defaultMode: 0555
+      - name: ingress-ca-certificate
+        secret:
+          secretName: cqdg-ingress-ca-certificate
+          defaultMode: 0555
+      - name: corefile
+        configMap:
+          name: coredns-zonefiles-corefile
+          defaultMode: 0444
+      - name: zonefile
+        configMap:
+          name: qa-domain-zonefile
+          defaultMode: 0444
+      - name: zonefile-copy
+        emptyDir: {}
+      dnsPolicy: None
+      dnsConfig:
+        nameservers:
+          - 127.0.0.1
+        searches:
+          - search
+          - cqdg-qa.svc.cluster.qa.cqdg
+          - svc.cluster.qa.cqdg
+          - cluster.qa.cqdg
+          - juno
+        options:
+        - name: ndots
+          value: "5"
+      initContainers:
+      - name: copy-zonefile
+        image: alpine:3.13.6
+        command: ["sh"]
+        args: ["-c", "cp /opt/zonefiles/* /opt/zonefiles-copy/"]
+        volumeMounts:
+        - name: zonefile
+          mountPath: /opt/zonefiles
+          readOnly: true
+        - name: zonefile-copy
+          mountPath: /opt/zonefiles-copy
       containers:
-        - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:aaf18638944a7a270cd29bb0274cb897ffb3d279-1695219607 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
-          name: arranger
-          resources:
-            requests:
-              memory: "512Mi"
-              cpu: '1'
-            limits:
-              memory: "1024Mi"
-              cpu: '2'
-          env:
-            - name: NODE_EXTRA_CA_CERTS
-              value: /opt/opensearch-ca/ca.pem
-          envFrom:
-            - configMapRef:
-                name: arranger-configs
-            - secretRef:
-                name: arranger-keycloak-credentials
-          volumeMounts:
-            - name: opensearch-ca-cert
-              mountPath: /opt/opensearch-ca
-              readOnly: true
+      - name: coredns
+        image: ferlabcrsj/coredns:1.1.1
+        command: ["/coredns"]
+        args: ["-conf", "/opt/corefile/Corefile"]
+        volumeMounts:
+        - name: corefile
+          mountPath: /opt/corefile
+          readOnly: true
+        - name: zonefile-copy
+          mountPath: /opt/zonefiles
+          readOnly: true
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:aaf18638944a7a270cd29bb0274cb897ffb3d279-1695219607 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+        name: arranger
+        env:
+        - name: NODE_EXTRA_CA_CERTS
+          value: /opt/ca-bundle/ca.pem
+        envFrom:
+          - configMapRef:
+              name: arranger-configs
+          - secretRef:
+              name: arranger-keycloak-credentials
+        volumeMounts:
+        - name: ingress-ca-certificate
+          mountPath: /opt/ca-bundle
+          readOnly: true
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: '2'
+          limits:
+            memory: "4096Mi"
+            cpu: '2'
