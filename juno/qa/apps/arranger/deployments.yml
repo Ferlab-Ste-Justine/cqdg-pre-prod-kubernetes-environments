@@ -72,8 +72,8 @@ spec:
       - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:aaf18638944a7a270cd29bb0274cb897ffb3d279-1695219607 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: arranger
         env:
-        - name: NODE_EXTRA_CA_CERTS
-          value: /opt/ca-bundle/ca.pem
+          - name: NODE_EXTRA_CA_CERTS
+            value: /opt/opensearch-ca/ca.pem
         envFrom:
           - configMapRef:
               name: arranger-configs
