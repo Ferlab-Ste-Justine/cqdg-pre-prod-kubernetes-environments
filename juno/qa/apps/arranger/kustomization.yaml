@@ -24,5 +24,5 @@ configMapGenerator:
       - KEYCLOAK_CLIENT=cqdg-acl
       - SECURE="true"
       - PARTICIPANT_ID_KEY=participant_id
-      - USERS_API_URL=http://users-api:1212
+      - USERS_API_URL=https://users.qa.juno.cqdg.ferlab.bio
       - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200/
