@@ -5,7 +5,6 @@ namespace: cqdg-qa
 
 resources:
   - ingress.yml
-  - configure-arranger
   - services.yml
   - deployments.yml
   
