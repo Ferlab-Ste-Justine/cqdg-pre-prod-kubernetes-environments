@@ -36,13 +36,13 @@ spec:
       dnsPolicy: None
       dnsConfig:
         nameservers:
-          - 127.0.0.1
+        - 127.0.0.1
         searches:
-          - search
-          - cqdg-qa.svc.cluster.qa.cqdg
-          - svc.cluster.qa.cqdg
-          - cluster.qa.cqdg
-          - juno
+        - search
+        - cqdg-qa.svc.cluster.qa.cqdg
+        - svc.cluster.qa.cqdg
+        - cluster.qa.cqdg
+        - juno
         options:
         - name: ndots
           value: "5"
@@ -69,16 +69,16 @@ spec:
         - name: zonefile-copy
           mountPath: /opt/zonefiles
           readOnly: true
-      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:aaf18638944a7a270cd29bb0274cb897ffb3d279-1695219607 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:746eb20c880f6be193186b10ce0b30b0ee54a296-1696362431 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: arranger
         env:
-          - name: NODE_EXTRA_CA_CERTS
-            value: /opt/opensearch-ca/ca.pem
+        - name: NODE_EXTRA_CA_CERTS
+          value: /opt/opensearch-ca/ca.pem
         envFrom:
-          - configMapRef:
-              name: arranger-configs
-          - secretRef:
-              name: arranger-keycloak-credentials
+        - configMapRef:
+            name: arranger-configs
+        - secretRef:
+            name: arranger-keycloak-credentials
         volumeMounts:
         - name: ingress-ca-certificate
           mountPath: /opt/ca-bundle
