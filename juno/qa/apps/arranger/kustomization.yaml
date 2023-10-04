@@ -7,6 +7,10 @@ resources:
   - ingress.yml
   - services.yml
   - deployments.yml
+
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
   
 configMapGenerator:
   - name: arranger-configs
@@ -21,3 +25,4 @@ configMapGenerator:
       - PARTICIPANT_ID_KEY=participant_id
       - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200/
       - USERS_API_URL=https://users.qa.juno.cqdg.ferlab.bio
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
