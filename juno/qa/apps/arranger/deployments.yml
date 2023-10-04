@@ -17,6 +17,17 @@ spec:
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:bfa09dcf46ad63cd37bc75a918043bb88fcf8c23-1696441765 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: arranger
+        env:
+        - name: ES_USER
+          valueFrom:
+            secretKeyRef:
+              name: opensearch-dev-credentials
+              key: username
+        - name: ES_PASS
+          valueFrom:
+            secretKeyRef:
+              name: opensearch-dev-credentials
+              key: password
         envFrom:
         - configMapRef:
             name: arranger-configs
