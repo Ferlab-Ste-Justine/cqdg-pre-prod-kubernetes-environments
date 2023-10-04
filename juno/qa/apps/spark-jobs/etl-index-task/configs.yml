@@ -17,7 +17,8 @@ data:
     spark.executor.instances=20
     spark.executor.memory=70g
     spark.executor.cores=12
-    spark.kubernetes.driver.ephemeralStorage=50Gi
-    spark.kubernetes.executor.ephemeralStorage=50Gi
+    spark.kubernetes.driver.volumes.emptyDir.ephemeral-storage.options.sizeLimit=10Gi
+    spark.kubernetes.executor.volumes.emptyDir.ephemeral-storage.options.sizeLimit=10Gi
     spark.kubernetes.driver.volumes.emptyDir.ephemeral-storage.mount.path=/ephemeral
     spark.kubernetes.executor.volumes.emptyDir.ephemeral-storage.mount.path=/ephemeral
+    spark.local.dir=/ephemeral
