@@ -8,6 +8,10 @@ resources:
   - service.yml
   - ingress.yml
 
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+  
 commonLabels:
   group: cqdg-report-api
 
