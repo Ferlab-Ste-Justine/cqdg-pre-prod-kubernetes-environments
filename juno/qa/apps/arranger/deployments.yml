@@ -22,6 +22,13 @@ spec:
             name: arranger-configs
         - secretRef:
             name: arranger-keycloak-credentials
+        volumeMounts:
+        - name: opensearch-ca-cert
+          mountPath: /opt/opensearch-ca
+          readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
+          readOnly: true
         resources:
           requests:
             memory: "2048Mi"
