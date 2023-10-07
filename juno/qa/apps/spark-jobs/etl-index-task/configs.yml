@@ -15,9 +15,11 @@ data:
     spark.driver.memory=70g
     spark.driver.cores=12
     spark.executor.instances=20
-    spark.executor.memory=70g
+    spark.executor.memory=64g
     spark.executor.cores=12
     spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.options.sizeLimit=350Gi
     spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.mount.path=/data
     spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.mount.readOnly=false
+    spark.memory.fraction=0.9
+    spark.memory.storageFraction=0.1
     
