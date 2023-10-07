@@ -12,10 +12,12 @@ data:
     spark.sql.shuffle.partitions=500
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
-    spark.driver.memory=40g
+    spark.driver.memory=70g    
     spark.driver.cores=12
     spark.executor.instances=20
     spark.executor.memory=64g
+    spark.memory.fraction=0.9
+    spark.memory.storageFraction=0.1    
     spark.executor.cores=12
     spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.options.sizeLimit=350Gi
     spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.mount.path=/data
