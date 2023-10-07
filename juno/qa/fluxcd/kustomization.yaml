@@ -39,3 +39,4 @@ resources:
   - kubernetes-lbs-logs.yml
   - kubernetes-masters-logs.yml
   - kubernetes-workers-logs.yml
+  - spark-history-server.yml
