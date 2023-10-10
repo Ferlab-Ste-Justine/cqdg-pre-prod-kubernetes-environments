@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spark-history-server
+  labels:
+    name: spark
+data:
+  spark-ceph.conf: |
+    spark.app.name=spark-history-server
+    spark.history.fs.logDirectory=s3a://cqdg-qa-app-datalake/spark-logs

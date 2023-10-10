@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-history-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spark-history-server
+  template:
+    metadata:
+      labels:
+        app: spark-history-server
+    spec:
+      volumes:
+      - name: spark-defaults
+        configMap:
+          name: spark-defaults
+      - name: spark-history-server
+        configMap:
+          name: spark-history-server
+      - name: spark-s3-credentials
+        secret:
+          secretName: spark-s3-credentials
+      containers:
+      - name: spark-history-server
+        image: ferlabcrsj/spark:3.1.2
+        imagePullPolicy: Always
+        env:
+          - name: SPARK_CLIENT_POD_NAME
+            value: spark-history-server
+        volumeMounts:
+          - name: spark-defaults
+            mountPath: /opt/spark-configs/defaults
+            readOnly: true
+          - name: spark-history-server
+            mountPath: /opt/spark-configs/spark-history-server
+            readOnly: true
+          - name: spark-s3-credentials
+            mountPath: /opt/spark-configs/s3-credentials
+            readOnly: true
+        command: [ "/opt/start-history-server.sh" ]
