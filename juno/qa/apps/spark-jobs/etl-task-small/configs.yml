@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: etl-task-small
+  labels:
+    name: spark
+data:
+  spark-ceph.conf: |
+    spark.app.name=etl-task-small
+    spark.kubernetes.container.image=ferlabcrsj/spark:3.3.1
+    spark.sql.shuffle.partitions=1000
+    spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
+    spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
+    spark.driver.memory=16g    
+    spark.driver.cores=6
+    spark.executor.instances=20
+    spark.executor.memory=16g
+    spark.memory.fraction=0.9
+    spark.memory.storageFraction=0.1
+    spark.executor.cores=12
+    spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.options.sizeLimit=350Gi
+    spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.mount.path=/data
+    spark.kubernetes.executor.volumes.emptyDir.spark-local-dir-1.mount.readOnly=false
+    

@@ -2,19 +2,19 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: etl-index-task
+  name: etl-task-medium
   labels:
     name: spark
 data:
   spark-ceph.conf: |
-    spark.app.name=etl-index-task
+    spark.app.name=etl-task-medium
     spark.kubernetes.container.image=ferlabcrsj/spark:3.3.1
     spark.sql.shuffle.partitions=1000
     spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
     spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog
     spark.driver.memory=70g    
     spark.driver.cores=12
-    spark.executor.instances=20
+    spark.executor.instances=12
     spark.executor.memory=64g
     spark.memory.fraction=0.9
     spark.memory.storageFraction=0.1
