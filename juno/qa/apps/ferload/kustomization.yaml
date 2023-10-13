@@ -13,7 +13,7 @@ patchesStrategicMerge:
   - certificate-bundle-overrides.yml
   
 configMapGenerator:
-  - name: arranger-configs
+  - name: ferload-configs
     options:
       disableNameSuffixHash: false
     literals:

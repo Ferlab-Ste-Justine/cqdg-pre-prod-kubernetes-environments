@@ -15,7 +15,7 @@ spec:
         app: ferload
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:880df74ce33babaddf0ece9c87d0d34ac8514dc2-1697146218 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/ferload:d473084162d3de2c2df3985c9b5479af0defad2c-1697147564 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
         name: ferload
         env:
         - name: AUTH_CLIENT_SECRET
