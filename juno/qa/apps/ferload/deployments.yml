@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ferload
   annotations:
-    secret.reloader.stakater.com/reload: "ferload-keycloak-credentials"
+    secret.reloader.stakater.com/reload: "keycloak-client-resource-server-credentials"
 spec:
   replicas: 2
   selector:
@@ -15,12 +15,21 @@ spec:
         app: ferload
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/d473084162d3de2c2df3985c9b5479af0defad2c-1697147564 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/ferload:d473084162d3de2c2df3985c9b5479af0defad2c-1697147564 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: ferload
+        env:
+        - name: AUTH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-client-resource-server-credentials
+              key: client-secret
         envFrom:
         - configMapRef:
             name: ferload-configs
-
+        - secretRef:
+            name: ferload-s3-credentials
+        - secretRef:
+            name: ferload-s3-credentials
         volumeMounts:
         - name: opensearch-ca-cert
           mountPath: /opt/opensearch-ca
