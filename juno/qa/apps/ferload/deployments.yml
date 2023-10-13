@@ -28,8 +28,6 @@ spec:
             name: ferload-configs
         - secretRef:
             name: ferload-s3-credentials
-        - secretRef:
-            name: ferload-s3-credentials
         volumeMounts:
         - name: opensearch-ca-cert
           mountPath: /opt/opensearch-ca
