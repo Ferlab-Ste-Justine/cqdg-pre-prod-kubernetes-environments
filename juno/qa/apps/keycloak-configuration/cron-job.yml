@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: keycloak-configuration
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/1 * * * *"
   concurrencyPolicy: Forbid
   startingDeadlineSeconds: 15
   jobTemplate:
