@@ -42,3 +42,4 @@ resources:
   - kubernetes-masters-logs.yml
   - kubernetes-workers-logs.yml
   - spark-history-server.yml
+  - ferload.yml
