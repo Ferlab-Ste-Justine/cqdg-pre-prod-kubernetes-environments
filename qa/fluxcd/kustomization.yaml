@@ -19,7 +19,7 @@ resources:
   - lectern.yml
   - git-autosync.yml
   - keycloak.yml
-  - keycloak-configuration.yml
+#  - keycloak-configuration.yml
   - coredns.yml
   - arranger.yml
   - datagrid-service.yml
