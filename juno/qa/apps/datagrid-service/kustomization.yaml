@@ -27,5 +27,5 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - AUTH_CLIENT_ID=cqdg-client
-      - AUTH_SERVER_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+      - AUTH_SERVER_URL=https://auth.qa.juno.cqdg.ferlab.bio
       - AUTH_REALM=CQDG

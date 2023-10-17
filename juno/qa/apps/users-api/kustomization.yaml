@@ -21,7 +21,7 @@ configMapGenerator:
     options:
       disableNameSuffixHash: true
     literals:
-      - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+      - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-acl
       - ADMIN_ROLE_NAME=cqdg_administrator

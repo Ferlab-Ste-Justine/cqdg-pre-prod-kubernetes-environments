@@ -18,7 +18,7 @@ configMapGenerator:
       disableNameSuffixHash: false
     literals:
       - LOG_LEVEL="DEBUG"
-      - AUTH_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+      - AUTH_URL=https://auth.qa.juno.cqdg.ferlab.bio
       - AUTH_REALM=CQDG
       - AUTH_CLIENT_ID=cqdg-resource-server
       - FERLOAD_CLIENT_METHOD="token"
