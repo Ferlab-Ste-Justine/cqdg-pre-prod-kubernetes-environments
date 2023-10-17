@@ -22,7 +22,7 @@ configMapGenerator:
     - PROJECT=CQDG
     - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
     - KEYCLOAK_REALM=CQDG
-    - KEYCLOAK_CLIENT=cqdg-acl
+    - KEYCLOAK_CLIENT=cqdg-client
     - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
 
 generatorOptions:
