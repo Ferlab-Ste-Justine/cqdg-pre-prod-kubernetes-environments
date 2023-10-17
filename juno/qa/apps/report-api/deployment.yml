@@ -26,7 +26,7 @@ spec:
               cpu: '2.00'
           env:
             - name: NODE_EXTRA_CA_CERTS
-              value: /opt/opensearch-ca/ca.pem
+              value: /opt/ca-bundle/ca.pem
             - name: ES_USER
               valueFrom:
                 secretKeyRef:
