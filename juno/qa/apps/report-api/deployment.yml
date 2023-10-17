@@ -31,6 +31,9 @@ spec:
             - configMapRef:
                 name: report-api-customizations
           volumeMounts:
+            - name: ingress-ca-certificate
+              mountPath: /opt/ca
+              readOnly: true
             - name: opensearch-ca-cert
               mountPath: /opt/opensearch-ca
               readOnly: true
