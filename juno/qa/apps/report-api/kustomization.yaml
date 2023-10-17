@@ -20,7 +20,7 @@ configMapGenerator:
   literals:
     - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200
     - PROJECT=CQDG
-    - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio/auth
+    - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio
     - KEYCLOAK_REALM=CQDG
     - KEYCLOAK_CLIENT=cqdg-client
     - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
