@@ -46,7 +46,7 @@ spec:
             - name: DB_DATABASE
               value: keycloak_qa
             - name: KC_DB_URL_DATABASE
-              value: keycloak
+              value: keycloak_qa
             - name: JDBC_PARAMS
               value: 'sslmode=verify-full&sslrootcert=/opt/ca/ca.pem'
             - name: KC_PROXY
