@@ -23,7 +23,7 @@ resources:
   - postgres-configuration.yml
   - postgres-logs.yml
   - portal-ui.yml
-#  - report-api.yml
+  - report-api.yml
   - spark-jobs-etl-task-large.yml
   - spark-jobs-etl-task-medium.yml
   - spark-jobs-etl-task-small.yml
