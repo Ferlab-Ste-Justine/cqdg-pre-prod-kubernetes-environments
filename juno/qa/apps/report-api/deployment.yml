@@ -27,6 +27,16 @@ spec:
           env:
             - name: NODE_EXTRA_CA_CERTS
               value: /opt/opensearch-ca/ca.pem
+            - name: ES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: opensearch-dev-credentials
+                  key: username
+            - name: ES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: opensearch-dev-credentials
+                  key: password
           envFrom:
             - configMapRef:
                 name: report-api-customizations
