@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: index.docker.io/ferlabcrsj/cqdg-keycloak:62fd836a4ac952a7787102c418ddd4ed7ff843a5-1695908311 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
+          image: index.docker.io/ferlabcrsj/cqdg-keycloak:4badb508360c547d1153630069febe8e7479bfa2-1697556917 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
           args: ["start --optimized"]
           env:
             - name: KC_DB_USERNAME
@@ -61,7 +61,6 @@ spec:
               port: http
             initialDelaySeconds: 300
             timeoutSeconds: 5
-
           readinessProbe:
             httpGet:
               path: /health/ready
