@@ -34,6 +34,7 @@ resources:
   - opensearch-configuration.yml
   - opensearch-dashboard.yml
   - opensearch-masters-logs.yml
+  - opensearch-workers.yml
   - opensearch-workers-logs.yml
   - coredns.yml
   - reloader.yml
