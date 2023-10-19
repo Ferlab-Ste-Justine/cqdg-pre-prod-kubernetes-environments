@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-lbs-fluentd
+spec:
+  type: NodePort
+  ports:
+  - port: 4443
+    protocol: TCP
+    targetPort: 4443
+    nodePort: 30709
+  selector:
+    app: postgres-lbs-fluentd

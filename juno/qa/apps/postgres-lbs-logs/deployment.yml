@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgres-lbs-fluentd
+  name: postgres-lbs-fluentd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-lbs-fluentd
+  template:
+    metadata:
+      labels:
+        app: postgres-lbs-fluentd
+    spec:
+      volumes:
+        - name: fluentd-conf
+          configMap:
+            name: postgres-lbs-fluentd-config
+            defaultMode: 0555
+        - name: workers-certificate
+          secret:
+            secretName: fluentd-k8-workers-certificate
+            defaultMode: 0555
+      containers:
+        - image: index.docker.io/ferlabcrsj/fluentd:4394e5551f8a8befce616f0d37e6a9923ec86fe9-1679671004
+          name: postgres-lbs-fluentd
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "0.25"
+            limits:
+              memory: "256Mi"
+              cpu: "0.50"
+          env:
+            - name: FLUENTD_CONF
+              value: fluentd.conf
+          envFrom:
+            - secretRef:
+                name: fluentd-shared-key
+          volumeMounts:
+            - name: fluentd-conf
+              mountPath: /fluentd/etc
+              readOnly: true
+            - name: workers-certificate
+              mountPath: /opt/forward-cert/
+              readOnly: true
