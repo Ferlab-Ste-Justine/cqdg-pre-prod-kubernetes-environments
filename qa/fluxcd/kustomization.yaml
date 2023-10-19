@@ -8,7 +8,7 @@ resources:
   - mongodb-backups.yml
   - postgres-backups.yml
   - postgres-restores.yml
-  - id-service.yml
+#  - id-service.yml
   - report-api.yml
   - etl-fhir-import.yml
   - fhir-server.yml
