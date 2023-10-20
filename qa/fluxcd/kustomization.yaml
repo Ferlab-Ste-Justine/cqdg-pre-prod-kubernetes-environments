@@ -21,7 +21,7 @@ resources:
   - keycloak.yml
 #  - keycloak-configuration.yml
   - coredns.yml
-  - arranger.yml
+#  - arranger.yml
   - datagrid-service.yml
   - clinical-data.yml
   - elasticsearch.yml
