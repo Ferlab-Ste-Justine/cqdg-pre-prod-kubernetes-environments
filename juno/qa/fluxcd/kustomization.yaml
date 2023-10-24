@@ -21,7 +21,6 @@ resources:
   - mongodb-logs.yml
   - postgres-backups.yml
   - postgres-configuration.yml
-  - postgres-logs.yml
   - postgres-lbs-logs.yml
   - postgres-servers-logs.yml
   - portal-ui.yml
