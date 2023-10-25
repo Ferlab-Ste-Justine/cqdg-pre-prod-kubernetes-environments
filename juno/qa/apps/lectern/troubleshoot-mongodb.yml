@@ -18,6 +18,12 @@ spec:
         - image: mongo:4.4.18
           name: troubleshoot-mongodb
           command: ["sleep", "infinity"]
+          env:
+            - name: MONGO_LECTERN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lectern-mongodb-connection
+                  key: MONGO_URL
           envFrom:
             - secretRef:
                 name: mongodb-admin-connection
