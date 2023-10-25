@@ -10,7 +10,7 @@ spec:
     spec:
       activeDeadlineSeconds: 300
       backoffLimit: 0
-      template:g
+      template:
         spec:
           restartPolicy: Never
           volumes:
