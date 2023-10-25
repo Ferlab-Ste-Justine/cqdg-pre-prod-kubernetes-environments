@@ -4,6 +4,9 @@ kind: Kustomization
 namespace: cqdg-qa-fluxcd
 
 resources:
-  # - airflow.yml
+  - airflow.yml
+  - spark-jobs-etl-task-large.yml
+  - spark-jobs-etl-task-medium.yml
+  - spark-jobs-etl-task-small.yml
   - spark-core.yml
-  # - spark-history-server.yml
+  - spark-history-server.yml

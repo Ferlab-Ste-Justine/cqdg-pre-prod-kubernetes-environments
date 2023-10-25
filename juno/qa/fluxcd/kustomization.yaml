@@ -40,8 +40,3 @@ resources:
   - kubernetes-masters-logs.yml
   - kubernetes-workers-logs.yml
   - ferload.yml
-  # - spark-jobs-etl-task-large.yml
-  # - spark-jobs-etl-task-medium.yml
-  # - spark-jobs-etl-task-small.yml
-  # - spark-core.yml
-  # - spark-history-server.yml

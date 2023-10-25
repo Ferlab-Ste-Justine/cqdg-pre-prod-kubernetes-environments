@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa/apps/spark-history-server"
+  path: "./juno/qa-etl/apps/spark-history-server"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
