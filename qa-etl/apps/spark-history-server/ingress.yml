@@ -13,10 +13,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - spark-history.qa.juno.cqdg.ferlab.bio
+        - spark-history-qa.etl.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: spark-history.qa.juno.cqdg.ferlab.bio
+    - host: spark-history-qa.etl.juno.cqdg.ferlab.bio
       http:
         paths:
           - path: /
