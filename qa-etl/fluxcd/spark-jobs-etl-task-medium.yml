@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa-etl/apps/spark-jobs/etl-task-medium"
+  path: "./qa-etl/apps/spark-jobs/etl-task-medium"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
