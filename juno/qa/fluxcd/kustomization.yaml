@@ -14,7 +14,7 @@ resources:
   # - fhir-server.yml
   # - hive-metastore.yml
   # - id-service.yml
-  # - keycloak.yml
+  - keycloak.yml
   # - keycloak-configuration.yml
   # - lectern.yml
   # - mongodb-backups.yml  # lectern db has no data
