@@ -31,6 +31,16 @@ spec:
                 secretKeyRef:
                   name: postgres-qa-keycloak-credentials
                   key: password
+            - name: KEYCLOAK_ADMIN
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-credentials
+                  key: username
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-credentials
+                  key: password
             - name: DB_VENDOR
               value: postgres
             - name: KC_DB
