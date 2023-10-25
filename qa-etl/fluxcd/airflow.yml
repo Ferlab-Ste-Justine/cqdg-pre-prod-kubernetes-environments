@@ -132,7 +132,7 @@ spec:
               # Enable TLS termination for the web Ingress
               enabled: true
               # the name of a pre-created Secret containing a TLS private key and certificate
-              secretName: cqdg-etl-ingress-certificate
+              secretName: letsencrypt-certificate
     extraConfigMaps:
       'airflow-create-user':
         data: |
