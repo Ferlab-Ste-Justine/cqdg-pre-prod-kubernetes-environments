@@ -109,7 +109,7 @@ spec:
       - name: AIRFLOW_VAR_S3_CONN_ID
         value: "minio"
       - name: AIRFLOW_VAR_KUBERNETES_CONTEXT_DEFAULT
-        value: "airflow-cluster.qa.cqdg@cluster.qa.cqdg"
+        value: "airflow-cluster.etl.cqdg@cluster.etl.cqdg"
       - name: PYTHONPATH
         value: /opt/airflow/dags/repo
     # Default airflow tag to deploy
@@ -132,7 +132,7 @@ spec:
               # Enable TLS termination for the web Ingress
               enabled: true
               # the name of a pre-created Secret containing a TLS private key and certificate
-              secretName: cqdg-ingress-certificate
+              secretName: cqdg-etl-ingress-certificate
     extraConfigMaps:
       'airflow-create-user':
         data: |
