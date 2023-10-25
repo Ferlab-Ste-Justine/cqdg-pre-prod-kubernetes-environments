@@ -103,7 +103,7 @@ spec:
       - name: AIRFLOW_VAR_ENVIRONMENT
         value: "qa"
       - name: AIRFLOW_VAR_BASE_URL
-        value: "https://jobs.qa.etl.juno.cqdg.ferlab.bio"
+        value: "https://jobs-qa.etl.juno.cqdg.ferlab.bio"
       - name: AIRFLOW_VAR_KUBERNETES_NAMESPACE
         value: "cqdg-qa"
       - name: AIRFLOW_VAR_S3_CONN_ID
@@ -126,7 +126,7 @@ spec:
         annotations: { nginx.ingress.kubernetes.io/ssl-redirect: "true"}
         pathType: "Prefix"
         hosts:
-          - name: jobs.qa.etl.juno.cqdg.ferlab.bio
+          - name: jobs-qa.etl.juno.cqdg.ferlab.bio
             # configs for web Ingress TLS
             tls:
               # Enable TLS termination for the web Ingress
