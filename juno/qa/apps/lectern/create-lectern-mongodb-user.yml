@@ -23,7 +23,7 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: create-lectern-mongodb-user
+  name: create-lectern-mongodb-user-rerun
 spec:
   backoffLimit: 4
   activeDeadlineSeconds: 600
