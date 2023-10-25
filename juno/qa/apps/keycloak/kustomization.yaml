@@ -8,6 +8,4 @@ resources:
   - ingress.yml
 
 patchesStrategicMerge:
-  - dns-overrides.yml
-  - certificate-bundle-overrides.yml
   - cqdg-keycloak.yml
