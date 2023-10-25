@@ -61,6 +61,8 @@ spec:
               value: 'sslmode=verify-full&sslrootcert=/opt/ca/ca.pem'
             - name: KC_PROXY
               value: edge
+            - name: KC_HOSTNAME_STRICT
+              value: "false"
           volumeMounts:
             - name: ca-certificate
               mountPath: /opt/ca
