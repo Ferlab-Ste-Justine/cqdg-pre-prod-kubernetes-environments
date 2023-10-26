@@ -14,7 +14,7 @@ spec:
             name: id-service-schema
         - name: postgres-ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       containers:
       - name: initialize-id-service-db
