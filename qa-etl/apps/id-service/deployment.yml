@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: postgres-ca-certificate
         secret:
-          secretName: postgres-qa-ca-certificate
+          secretName: postgres-ca-certificate
           defaultMode: 0555
       containers:
       - image: index.docker.io/ferlabcrsj/id-service:6fda4d18f207db870b14f17ae9a5ab2505888e6a-1679589497 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
