@@ -3,7 +3,13 @@ kind: Deployment
 metadata:
   name: ceph-rclone
 spec:
+  selector:
+    matchLabels:
+      app: ceph-rclone
   template:
+    metadata:
+      labels:
+        app: ceph-rclone
     spec:
       containers:
       - name: ceph-rclone
