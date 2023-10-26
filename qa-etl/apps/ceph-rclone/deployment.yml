@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: ceph-rclone
+  name: ceph-rclone
+spec:
+  template:
+    spec:
+      containers:
+      - name: ceph-rclone
+        image: rclone/rclone:1.64.2
+        volumeMounts:
+          - name: ceph-s3-credentials
+            mountPath: /opt/s3-credentials
+            readOnly: true
+        command:
+          - sleep
+          - infinity
+      volumes:
+        - name: ceph-s3-credentials
+          secret:
+            secretName: ceph-s3-credentials

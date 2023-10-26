@@ -5,6 +5,7 @@ namespace: cqdg-qa-fluxcd
 
 resources:
   - airflow.yml
+  - ceph-rclone.yml
   - certificates.yml
   - cqdg-apps.yml
   - id-service.yml
