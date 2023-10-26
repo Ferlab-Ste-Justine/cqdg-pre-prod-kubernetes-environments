@@ -162,7 +162,7 @@ spec:
             defaultMode: 0400
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       extraVolumeMounts:
         - name: create-user
@@ -207,7 +207,7 @@ spec:
       extraVolumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       extraVolumeMounts:
         - name: ca-certificate
@@ -223,7 +223,7 @@ spec:
       extraVolumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       extraVolumeMounts:
         - name: ca-certificate
@@ -237,7 +237,7 @@ spec:
       extraVolumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       extraVolumeMounts:
         - name: ca-certificate
@@ -249,7 +249,7 @@ spec:
       extraVolumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
       extraVolumeMounts:
         - name: ca-certificate
@@ -395,7 +395,7 @@ spec:
         volumes:
         - name: ca-certificate
           secret:
-            secretName: postgres-qa-ca-certificate
+            secretName: postgres-ca-certificate
             defaultMode: 0555
         {{- if .Values.dags.persistence.enabled }}
         - name: dags
