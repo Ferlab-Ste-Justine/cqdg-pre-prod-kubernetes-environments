@@ -27,4 +27,4 @@ spec:
   include:
     - repository:
         name: common-orchestrations-master
-      toPath: juno/qa/cqdg-orchestrations
+      toPath: qa-etl/cqdg-orchestrations
