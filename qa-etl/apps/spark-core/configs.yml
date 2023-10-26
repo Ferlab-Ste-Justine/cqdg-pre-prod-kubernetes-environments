@@ -7,7 +7,7 @@ metadata:
     name: spark
 data:
   spark-defaults.conf: |
-    spark.master=k8s://https://kubernetes.default.svc.cluster.qa.cqdg
+    spark.master=k8s://https://kubernetes.default.svc.cluster.etl.cqdg
     spark.submit.deployMode=cluster
     spark.kubernetes.namespace=cqdg-qa
     spark.kubernetes.authenticate.driver.serviceAccountName=spark
