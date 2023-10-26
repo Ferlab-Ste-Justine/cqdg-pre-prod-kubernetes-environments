@@ -6,9 +6,11 @@ metadata:
     app: fhir-server
   name: fhir-server
 spec:
+  type: NodePort
   ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 31000
   selector:
     app: fhir-server
