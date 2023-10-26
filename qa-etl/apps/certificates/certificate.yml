@@ -22,3 +22,4 @@ spec:
     size: 4096
   dnsNames:
     - jobs-qa.etl.juno.cqdg.ferlab.bio
+    - spark-history-qa.etl.juno.cqdg.ferlab.bio
