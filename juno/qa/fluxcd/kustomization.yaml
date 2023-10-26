@@ -12,7 +12,6 @@ resources:
   - docs.yml
   - fhir-console.yml
   - fhir-server.yml
-  #- hive-metastore.yml
   - keycloak.yml
   - keycloak-configuration.yml
   - lectern.yml
