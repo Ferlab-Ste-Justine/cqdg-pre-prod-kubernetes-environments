@@ -47,13 +47,13 @@ spec:
         - name: S3_ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: s3-hive-metastore-credentials
-              key: S3_ACCESS_KEY
+              name: ceph-s3-credentials
+              key: access
         - name: S3_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: s3-hive-metastore-credentials
-              key: S3_SECRET_KEY
+              name: ceph-s3-credentials
+              key: secret
         volumeMounts:
         - name: postgres-ca-certificate
           mountPath: /opt/ca
