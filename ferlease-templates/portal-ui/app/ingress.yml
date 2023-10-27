@@ -8,10 +8,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{.Service}}-{{.Release}}.{{.Environment}}.cqdg.ferlab.bio
+        - {{.Service}}-{{.Release}}.{{.Environment}}.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: {{.Service}}-{{.Release}}.{{.Environment}}.cqdg.ferlab.bio
+    - host: {{.Service}}-{{.Release}}.{{.Environment}}.juno.cqdg.ferlab.bio
       http:
         paths:
         - path: /

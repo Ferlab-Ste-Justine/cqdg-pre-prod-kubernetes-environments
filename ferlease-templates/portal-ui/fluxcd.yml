@@ -5,7 +5,7 @@ metadata:
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
+  path: "./juno/{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
@@ -28,7 +28,7 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
+    path: "./juno/{{.Environment}}/apps/{{.Service}}-release-{{.Release}}"
   git:
     checkout:
       ref:
