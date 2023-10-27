@@ -38,3 +38,4 @@ resources:
   - kubernetes-masters-logs.yml
   - kubernetes-workers-logs.yml
   - ferload.yml
+  # - portal-ui-releases
