@@ -8,6 +8,10 @@ metadata:
 data:
   spark-defaults.conf: |
     spark.master=k8s://https://kubernetes.default.svc.cluster.etl.cqdg
+    spark.kubernetes.container.image=ferlabcrsj/spark:643b8d8dd3e62ff0d281a432673da6681bf7b88b
+    spark.sql.shuffle.partitions=1000
+    spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension
+    spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog    
     spark.submit.deployMode=cluster
     spark.kubernetes.namespace=cqdg-qa
     spark.kubernetes.authenticate.driver.serviceAccountName=spark
