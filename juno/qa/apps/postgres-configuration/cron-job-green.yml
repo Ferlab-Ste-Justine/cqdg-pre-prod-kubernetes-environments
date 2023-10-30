@@ -53,7 +53,7 @@ spec:
               name: postgres-green-configuration
               envFrom:
                 - secretRef:
-                    name: postgres-green-configs-terraform-variables
+                    name: postgres-configs-terraform-variables
               env:
                 - name: TERRACD_CONFIG_FILE
                   value: /opt/terracd-configuration/config.yml
