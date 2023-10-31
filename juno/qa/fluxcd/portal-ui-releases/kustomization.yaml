@@ -5,4 +5,5 @@ namespace: cqdg-qa-fluxcd
 
 resources: 
   - portal-ui-release-cqdg-426.yml
+  - portal-ui-release-cqdg-436.yml
   - portal-ui-release-cqdg-437.yml
