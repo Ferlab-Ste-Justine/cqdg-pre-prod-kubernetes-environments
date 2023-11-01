@@ -183,7 +183,7 @@ spec:
         # git@github.com:apache/airflow.git
         # https example: https://github.com/apache/airflow.git
         repo: https://github.com/Ferlab-Ste-Justine/cqdg-dags.git
-        branch: fix/CQDG-00_change_s3_secret
+        branch: main
         rev: HEAD
         depth: 1
         # the number of consecutive failures allowed before aborting
