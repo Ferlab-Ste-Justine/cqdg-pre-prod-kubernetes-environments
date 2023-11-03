@@ -39,3 +39,4 @@ resources:
   - kubernetes-workers-logs.yml
   - ferload.yml
   - portal-ui-releases
+  - ceph-configuration.yml
