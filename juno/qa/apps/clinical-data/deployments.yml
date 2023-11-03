@@ -56,10 +56,10 @@ spec:
             name: clinical-data-monitor-credentials
         volumeMounts:
         - name: postgres-ca-certificate
-          mountPath: /opt/postgres-ca
+          mountPath: /opt/ca
           readOnly: true
-        - name: ca-bundle
-          mountPath: /opt/ca-bundle
+        - name: cqdg-ingress-ca-certificate
+          mountPath: /opt/ingress-ca
           readOnly: true
         resources:
           requests:
