@@ -1,7 +1,5 @@
 terraform_path: /bin/terraform
-command: wait
-timeouts:
-  wait: "600s"
+command: apply
 sources:
   - repo:
       url: git@github.com:Ferlab-Ste-Justine-Ops/cqdg-pre-prod-service-configurations.git
