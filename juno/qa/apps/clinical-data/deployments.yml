@@ -58,7 +58,7 @@ spec:
         - name: postgres-ca-certificate
           mountPath: /opt/ca
           readOnly: true
-        - name: cqdg-ingress-ca-certificate
+        - name: ingress-ca-certificate
           mountPath: /opt/ingress-ca
           readOnly: true
         resources:
