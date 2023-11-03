@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: cqdg-qa-fluxcd
 
 resources:
-  # - airflow.yml
   - arranger.yml
   - clinical-data.yml
   - cqdg-apps.yml
@@ -15,7 +14,7 @@ resources:
   - keycloak.yml
   - keycloak-configuration.yml
   - lectern.yml
-  # - mongodb-backups.yml  # lectern db has no data
+  - mongodb-backups.yml
   - mongodb-logs.yml
   - postgres-backups.yml
   - postgres-configuration.yml
