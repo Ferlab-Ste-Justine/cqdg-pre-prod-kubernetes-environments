@@ -35,7 +35,7 @@ configMapGenerator:
     literals:
       - AUTH_ENABLED=true
       - AUTH_CLIENT_ID=cqdg-system
-      - AUTH_SERVER_URL=http://keycloak-http
+      - AUTH_SERVER_URL=https://auth.qa.juno.cqdg.ferlab.bio
       - AUTH_REALM=CQDG
       - LECTERN_SERVER_URL=http://lectern:3000
       - LECTERN_DICTIONARY_NAME="CQDG Data Dictionary"
