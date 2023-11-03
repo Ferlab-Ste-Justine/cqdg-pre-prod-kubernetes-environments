@@ -8,7 +8,7 @@ resources:
   - ceph-rclone.yml
   - certificates.yml
   - cqdg-apps.yml
-#  - id-service.yml
+  - id-service.yml
   - hive-metastore.yml
   - spark-jobs-etl-task-large.yml
   - spark-jobs-etl-task-medium.yml
