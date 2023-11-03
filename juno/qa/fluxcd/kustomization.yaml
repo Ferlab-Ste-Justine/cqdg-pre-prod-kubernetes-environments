@@ -6,7 +6,7 @@ namespace: cqdg-qa-fluxcd
 resources:
   # - airflow.yml
   - arranger.yml
-#  - clinical-data.yml
+  - clinical-data.yml
   - cqdg-apps.yml
   - datagrid-service.yml
   - docs.yml
