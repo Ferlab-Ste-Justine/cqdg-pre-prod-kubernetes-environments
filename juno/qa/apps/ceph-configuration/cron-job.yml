@@ -1,0 +1,76 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ceph-configuration
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 15
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      backoffLimit: 0
+      template:
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: github-credentials
+              secret:
+                secretName: terraform-configs-repo-access
+                defaultMode: 0400
+            - name: etcd-backend-credentials
+              secret:
+                secretName: terraform-opensearch-configs-backend-credentials
+                defaultMode: 0400
+            - name: terraform-opensearch-credentials
+              secret:
+                secretName: opensearch-admin-credentials
+                defaultMode: 0400
+            - name: terraform-backend
+              configMap:
+                name: terraform-opensearch-configs-backend
+                defaultMode: 0555
+            - name: terracd-configuration
+              configMap:
+                name: opensearch-configuration-terracd-configs
+                defaultMode: 0555
+            - name: backend-service-config
+              configMap:
+                name: etcd-backend-service-config
+                defaultMode: 0555
+          containers:
+            - image: ferlabcrsj/terraform-backend-etcd:0.4.1
+              name: etcd-backend-service
+              env:
+                - name: ETCD_BACKEND_CONFIG_FILE
+                  value: /opt/config/config.yml
+              volumeMounts:
+                - name: etcd-backend-credentials
+                  mountPath: /opt/certs
+                - name: backend-service-config
+                  mountPath: /opt/config
+            - image: ferlabcrsj/terracd:0.13.0
+              name: opensearch-configuration
+              env:
+                - name: TERRACD_CONFIG_FILE
+                  value: /opt/terracd-configuration/config.yml
+                - name: OPENSEARCH_ENDPOINTS
+                  value: https://workers.search.qa.juno.cqdg.ferlab.bio:9200
+                - name: OPENSEARCH_CACERT
+                  value: /opt/certs/ca.crt
+                - name: OPENSEARCH_CERT
+                  value: /opt/certs/admin.crt
+                - name: OPENSEARCH_KEY
+                  value: /opt/certs/admin.key
+              envFrom:
+                - secretRef:
+                    name: terraform-opensearch-configs-variables
+              volumeMounts:
+                - name: github-credentials
+                  mountPath: /opt/github-ssh
+                - name: terraform-opensearch-credentials
+                  mountPath: /opt/certs
+                - name: terraform-backend
+                  mountPath: /opt/backend
+                - name: terracd-configuration
+                  mountPath: /opt/terracd-configuration

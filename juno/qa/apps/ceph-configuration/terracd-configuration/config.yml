@@ -1,0 +1,18 @@
+terraform_path: /bin/terraform
+command: wait
+timeouts:
+  wait: "1600s"
+sources:
+  - repo:
+      url: git@github.com:Ferlab-Ste-Justine-Ops/cqdg-pre-prod-service-configurations.git
+      ref: main
+      path: ceph/qa
+      auth:
+        ssh_key_path: /opt/github-ssh/id_rsa
+        known_hosts_path: /opt/github-ssh/known_hosts
+  - dir: /opt/backend
+termination_hooks:
+  always:
+    http_call:
+      method: POST
+      endpoint: "http://127.0.0.1:14443/termination"
