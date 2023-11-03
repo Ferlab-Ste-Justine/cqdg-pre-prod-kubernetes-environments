@@ -14,15 +14,15 @@ spec:
       labels:
         app: clinical-data
     spec:
-      volumes:
-      - name: postgres-ca-certificate
-        secret:
-          secretName: postgres-qa-ca-certificate
-          defaultMode: 0555
-      - name: ingress-ca-certificate
-        secret:
-          secretName: cqdg-ingress-ca-certificate
-          defaultMode: 0555
+#      volumes:
+#      - name: postgres-ca-certificate
+#        secret:
+#          secretName: postgres-qa-ca-certificate
+#          defaultMode: 0555
+#      - name: ingress-ca-certificate
+#        secret:
+#          secretName: cqdg-ingress-ca-certificate
+#          defaultMode: 0555
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-clinical-data-service:79fb6843bf65deffc29aa2204818af196dc4c728-1698689713 # {"$imagepolicy": "cqdg-qa-fluxcd:clinical-data"}
         name: clinical-data
@@ -56,7 +56,10 @@ spec:
             name: clinical-data-monitor-credentials
         volumeMounts:
         - name: postgres-ca-certificate
-          mountPath: /opt/ca
+          mountPath: /opt/postgres-ca
+          readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
           readOnly: true
         resources:
           requests:
