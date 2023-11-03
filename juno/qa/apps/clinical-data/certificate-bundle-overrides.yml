@@ -20,10 +20,10 @@ spec:
         - name: ca-bundler
           image: alpine:3.13.6
           command: ["sh"]
-          args: ["-c", "cat /opt/postgres-ca/ca.pem /opt/ingress-ca/ca.pem > /opt/ca-bundle/ca.pem"]
+          args: ["-c", "cat /opt/ca/ca.pem /opt/ingress-ca/ca.pem > /opt/ca-bundle/ca.pem"]
           volumeMounts:
             - name: postgres-ca-certificate
-              mountPath: /opt/postgres-ca
+              mountPath: /opt/ca
               readOnly: true
             - name: ingress-ca-certificate
               mountPath: /opt/ingress-ca
