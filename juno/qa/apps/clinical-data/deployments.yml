@@ -55,7 +55,7 @@ spec:
         - secretRef:
             name: clinical-data-monitor-credentials
         volumeMounts:
-        - name: postgres-ca-certificate
+        - name: postgres-qa-ca-certificate
           mountPath: /opt/ca
           readOnly: true
         resources:
