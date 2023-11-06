@@ -4,9 +4,5 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - users-api
-  - datagrid-service
-  - clinical-data
-  - hive-metastore
-  - keycloak
-  - fhir
+  - airflow
+  - id-service
