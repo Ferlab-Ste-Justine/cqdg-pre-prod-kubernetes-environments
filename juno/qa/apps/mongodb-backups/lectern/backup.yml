@@ -21,6 +21,8 @@ spec:
                 - python3
                 - /opt/backup.py
               env:
+                - name: MONGO_URL
+                  value: "$(MONGO_URL)&authSource=admin&tls=true&tlsCAFile=/opt/mongodb-ca/ca.crt"
                 - name: MONGO_DATABASE
                   value: lectern
               envFrom:
@@ -30,3 +32,11 @@ spec:
                     name: s3-lectern-credentials
                 - configMapRef:
                     name: lectern-s3-backups
+              volumeMounts:
+                - name: mongodb-ca-cert
+                  mountPath: /opt/mongodb-ca
+                  readOnly: true
+          volumes:
+            - name: mongodb-ca-cert
+              secret:
+                secretName: mongodb-ca-certificate
