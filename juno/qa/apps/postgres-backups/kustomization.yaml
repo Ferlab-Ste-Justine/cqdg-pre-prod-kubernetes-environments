@@ -7,6 +7,5 @@ resources:
   - users-api
   - datagrid-service
   - clinical-data
-  - hive-metastore
   - keycloak
   - fhir
