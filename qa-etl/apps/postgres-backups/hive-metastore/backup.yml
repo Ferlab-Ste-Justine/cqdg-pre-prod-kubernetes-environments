@@ -17,7 +17,7 @@ spec:
           volumes:
             - name: postgres-ca-certificate
               secret:
-                secretName: postgres-qa-ca-certificate
+                secretName: postgres-ca-certificate
                 defaultMode: 0555
           containers:
             - image: ferlabcrsj/postgres-backup:dcf7f735196178e930e30e3c84589bb268a7ed22
