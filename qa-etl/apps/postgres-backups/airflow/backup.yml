@@ -36,7 +36,7 @@ spec:
                   value: airflow_qa
               envFrom:
                 - secretRef:
-                    name: cqdg-qa-airflow-db-credentials
+                    name: postgres-airflow-credentials
                 - secretRef:
                     name: s3-airflow-credentials
                 - configMapRef:
