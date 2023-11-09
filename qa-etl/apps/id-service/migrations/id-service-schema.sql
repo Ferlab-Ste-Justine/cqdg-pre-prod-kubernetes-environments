@@ -120,5 +120,3 @@ CREATE SEQUENCE IF NOT EXISTS file_seq
 
 CREATE INDEX IF NOT EXISTS id_map_entity_type_hash_index
 ON id_map (entity_type, hash);
-
-DELETE FROM id_map WHERE entity_type='family_relationship';
