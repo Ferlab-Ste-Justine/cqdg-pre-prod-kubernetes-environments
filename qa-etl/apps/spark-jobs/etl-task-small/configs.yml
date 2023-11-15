@@ -10,7 +10,7 @@ data:
     spark.app.name=etl-task-small
     spark.driver.memory=16g    
     spark.driver.cores=6
-    spark.executor.instances=20
+    spark.executor.instances=1
     spark.executor.memory=16g
     spark.memory.fraction=0.9
     spark.memory.storageFraction=0.1
