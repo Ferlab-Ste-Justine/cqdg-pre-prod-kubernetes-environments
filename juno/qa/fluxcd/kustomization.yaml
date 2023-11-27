@@ -10,7 +10,7 @@ resources:
   - datagrid-service.yml
   - docs.yml
   - fhir-console.yml
-#  - fhir-server.yml
+  - fhir-server.yml
   - keycloak.yml
   - keycloak-configuration.yml
   - lectern.yml
