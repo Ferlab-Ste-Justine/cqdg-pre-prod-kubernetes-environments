@@ -17,4 +17,3 @@ resources:
   - spark-core.yml
   - spark-history-server.yml
   - external-secrets-crs.yml
-  - external-secret-operator.yml
