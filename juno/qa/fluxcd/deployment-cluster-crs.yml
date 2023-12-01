@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: external-secrets-cluster-crs
+spec:
+  dependsOn:
+    - name: external-secrets-crds
+  serviceAccountName: fluxcd
+  interval: 1m
+  path: "./qa/apps/external-secrets/cluster-crs"
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+    namespace: cqdg-qa-fluxcd
+  prune: true
