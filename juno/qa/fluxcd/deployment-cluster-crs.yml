@@ -8,7 +8,7 @@ spec:
     - name: external-secrets-crds
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./qa/apps/external-secrets/cluster-crs"
+  path: "./juno/qa/apps/external-secrets/cluster-crs"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps

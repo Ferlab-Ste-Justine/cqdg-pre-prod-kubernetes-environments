@@ -6,7 +6,7 @@ metadata:
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./qa/apps/external-secrets/crds"
+  path: "./juno/qa/apps/external-secrets/crds"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
