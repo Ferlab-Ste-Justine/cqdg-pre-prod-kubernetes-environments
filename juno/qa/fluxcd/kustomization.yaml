@@ -21,7 +21,7 @@ resources:
   - postgres-lbs-logs.yml
   - postgres-servers-logs.yml
   - portal-ui.yml
-  - prometheus.yml
+  - prometheus-federated.yml
   - report-api.yml
   - users-api.yml
   - zeppelin.yml
