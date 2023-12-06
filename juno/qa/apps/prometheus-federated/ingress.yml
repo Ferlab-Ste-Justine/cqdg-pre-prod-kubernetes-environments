@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - prometheus-federated.qa.juno.cqdg.ferlab.bio
+        - k8-prometheus.qa.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: prometheus-federated.qa.juno.cqdg.ferlab.bio
+    - host: k8-prometheus.qa.juno.cqdg.ferlab.bio
       http:
         paths:
           - path: /
