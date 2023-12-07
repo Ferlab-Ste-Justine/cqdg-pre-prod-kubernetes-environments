@@ -15,7 +15,7 @@ spec:
         app: arranger
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:d12f81875ef0cbd0e142358425661d82223b48c2-1698936552 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:ebe903c546e3ffc1a26692e4061d719ff3d0b069-1701980313 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         name: arranger
         env:
         - name: ES_USER
