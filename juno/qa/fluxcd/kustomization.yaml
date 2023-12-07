@@ -11,6 +11,7 @@ resources:
   - docs.yml
   - fhir-console.yml
   - fhir-server.yml
+  - k8-prometheus.yml
   - keycloak.yml
   - keycloak-configuration.yml
   - lectern.yml
@@ -21,7 +22,6 @@ resources:
   - postgres-lbs-logs.yml
   - postgres-servers-logs.yml
   - portal-ui.yml
-  - prometheus-federated.yml
   - report-api.yml
   - users-api.yml
   - zeppelin.yml
