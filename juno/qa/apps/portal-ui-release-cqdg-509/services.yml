@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: portal-ui-release-cqdg-509
+  name: portal-ui-release-cqdg-509
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: portal-ui-release-cqdg-509
