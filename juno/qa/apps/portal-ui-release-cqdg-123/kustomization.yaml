@@ -8,6 +8,6 @@ resources:
   - deployments.yml
   - services.yml
   - ingress.yml
-  - configs.yml
+
 commonLabels:
   group: portal-ui-release-cqdg-123
