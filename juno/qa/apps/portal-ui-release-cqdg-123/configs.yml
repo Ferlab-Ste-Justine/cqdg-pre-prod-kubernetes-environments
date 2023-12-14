@@ -15,4 +15,4 @@ data:
   REACT_APP_CQDG_WEB_SITE: https://cqdg.ca
   REACT_APP_CQDG_DOCUMENTATION: hhttps://docs.qa.juno.cqdg.ferlab.bio
   REACT_APP_REPORTS_API_URL: https://report-api.qa.juno.cqdg.ferlab.bio
-  REACT_APP_IS_BETA: true
+  REACT_APP_IS_BETA: "true"
