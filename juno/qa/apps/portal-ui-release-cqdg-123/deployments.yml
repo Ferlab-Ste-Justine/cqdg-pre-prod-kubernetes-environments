@@ -26,3 +26,6 @@ spec:
           limits:
             memory: "512Mi"
             cpu: '1.00'
+        envFrom:
+          - configMapRef:
+              name: portail-ui-configs
