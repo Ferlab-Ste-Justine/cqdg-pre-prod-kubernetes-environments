@@ -15,7 +15,7 @@ spec:
         app: portal-ui
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:qa-f364d19dbaca3397d80ca7e1874fb1de53737635-1704988767 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui"}
+      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:qa-a09de3b6a882ebee3799b02d66e775cd4a2fb5bf-1704998642 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui"}
         name: portal-ui
         resources:
           requests:
