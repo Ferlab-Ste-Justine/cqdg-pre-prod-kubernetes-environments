@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: cqdg-qa-fluxcd
 
 resources:
-#  - arranger.yml
+  - arranger.yml
   - clinical-data.yml
   - cqdg-apps.yml
   - datagrid-service.yml
