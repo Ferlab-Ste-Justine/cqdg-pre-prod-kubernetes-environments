@@ -17,7 +17,7 @@ spec:
       imagePullSecrets:
       - name: images-pull
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:feature-cqdg-510-27c9bdb-1705614665 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui-release-cqdg-510"}
+      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:feature-cqdg-510-1a91fc9-1705939130 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui-release-cqdg-510"}
         name: portal-ui-release-cqdg-510
         resources:
           requests:
