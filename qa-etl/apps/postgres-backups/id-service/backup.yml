@@ -26,16 +26,6 @@ spec:
                 - python3
                 - /opt/backup.py
               env:
-                - name: PGUSER
-                  valueFrom:
-                    secretKeyRef:
-                      name: postgres-id-service-credentials
-                      key: username
-                - name: PGPASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: postgres-id-service-credentials
-                      key: password
                 - name: PGSSLMODE
                   value: verify-full
                 - name: PGSSLROOTCERT
@@ -45,6 +35,8 @@ spec:
                 - name: PGDATABASE
                   value: id_service_qa
               envFrom:
+                - secretRef:
+                    name: postgres-id-service-credentials
                 - secretRef:
                     name: s3-id-service-credentials
                 - configMapRef:
