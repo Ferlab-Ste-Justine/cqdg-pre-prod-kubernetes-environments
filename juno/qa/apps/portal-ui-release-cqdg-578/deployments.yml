@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: portal-ui-release-cqdg-578
+  name: portal-ui-release-cqdg-578
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: portal-ui-release-cqdg-578
+  template:
+    metadata:
+      labels:
+        app: portal-ui-release-cqdg-578
+    spec:
+      imagePullSecrets:
+      - name: images-pull
+      containers:
+      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:qa-8a76eefbfbbb6a835dd2d685edeaf5a3d3fa31a3-1698852535 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui-release-cqdg-578"}
+        name: portal-ui-release-cqdg-578
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: '0.50'
+          limits:
+            memory: "512Mi"
+            cpu: '1.00'
