@@ -19,7 +19,7 @@ spec:
   interval: 1m
   timeout: 30s
   recurseSubmodules: false
-  url: ssh://git@github.com/Ferlab-Ste-Justine-Ops/cqdg-pre-prod-kubernetes-environments.git
+  url: ssh://git@github.com/Ferlab-Ste-Justine/cqdg-pre-prod-kubernetes-environments.git
   secretRef:
     name: fluxcd-key
   ref:
