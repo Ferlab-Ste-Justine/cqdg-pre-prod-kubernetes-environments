@@ -4,7 +4,7 @@ timeouts:
   wait: "1600s"
 sources:
   - repo:
-      url: git@github.com:Ferlab-Ste-Justine-Ops/cqdg-pre-prod-service-configurations.git
+      url: git@github.com:Ferlab-Ste-Justine/cqdg-pre-prod-service-configurations.git
       ref: main
       path: ceph/qa
       auth:
