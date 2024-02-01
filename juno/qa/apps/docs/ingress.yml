@@ -8,20 +8,9 @@ spec:
   tls:
     - hosts:
       - dict.qa.juno.cqdg.ferlab.bio
-      - docs.qa.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
     - host: dict.qa.juno.cqdg.ferlab.bio
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: docs
-                port:
-                  number: 8080
-    - host: docs.qa.juno.cqdg.ferlab.bio
       http:
         paths:
           - path: /

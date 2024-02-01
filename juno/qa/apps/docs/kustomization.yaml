@@ -10,3 +10,11 @@ resources:
 
 commonLabels:
   group: cqdg-docs
+
+configMapGenerator:
+  - name: docs-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - CQDG_PORTAL_URL=https://portail.qa.juno.cqdg.ferlab.bio
+      - CQDG_DOCS_URL=https://docs.cqdg.ca
