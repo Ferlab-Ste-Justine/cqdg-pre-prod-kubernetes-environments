@@ -18,7 +18,7 @@ spec:
         app: docs
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-docs:d30cc89e0e2eb474abb24afdb44630c1dc740a7c-1707171276 # {"$imagepolicy": "cqdg-qa-fluxcd:docs"}
+      - image: index.docker.io/ferlabcrsj/cqdg-docs:6907402c36810090847aac4580e5385252ce9bd1-1708633665 # {"$imagepolicy": "cqdg-qa-fluxcd:docs"}
         name: docs
         resources:
           requests:
