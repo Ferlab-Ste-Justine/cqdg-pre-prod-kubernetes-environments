@@ -15,7 +15,7 @@ spec:
         app: report-api
     spec:
       containers:
-        - image: index.docker.io/ferlabcrsj/api-portal-reports:913e19b597e80a5786c2201577aa202f73802ba2-1708372713 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
+        - image: index.docker.io/ferlabcrsj/api-portal-reports:592c34b49712a83816007370431e790de33d5d39-1708721566 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
           name: report-api
           resources:
             requests:
