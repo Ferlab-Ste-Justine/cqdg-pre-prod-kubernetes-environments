@@ -14,8 +14,8 @@ metadata:
   name: spark
 rules:
   - apiGroups: ['']
-    resources: ['pods', 'services', 'configmaps']
-    verbs: ['get', 'list', 'watch', 'create', 'edit', 'delete']
+    resources: ['pods', 'services', 'configmaps', 'persistentvolumeclaims']
+    verbs: ['get', 'list', 'watch', 'create', 'edit', 'delete', 'deletecollection']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
