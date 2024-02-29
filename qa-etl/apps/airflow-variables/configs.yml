@@ -6,5 +6,5 @@ metadata:
   labels:
     name: cqdg-airflow-variables
 data:
-  hello: 'world'
-  test: 'test'
+  AIRFLOW_VAR_HELLO: 'world 2' # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+  AIRFLOW_VAR_TEST: 'test'
