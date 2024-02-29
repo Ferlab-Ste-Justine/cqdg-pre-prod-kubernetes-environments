@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
@@ -16,6 +17,7 @@ spec:
   chart:
     spec:
       chart: airflow
+      version: 1.11.0
       sourceRef:
         kind: HelmRepository
         name: airflow
