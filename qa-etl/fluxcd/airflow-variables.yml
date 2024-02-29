@@ -11,28 +11,28 @@ spec:
     name: cqdg-apps
     namespace: cqdg-qa-fluxcd
   prune: true
-#---
-#apiVersion: image.toolkit.fluxcd.io/v1beta1
-#kind: ImageUpdateAutomation
-#metadata:
-#  name: id-service-airflow-variables
-#spec:
-#  sourceRef:
-#    kind: GitRepository
-#    name: cqdg-apps
-#  interval: 1m
-#  update:
-#    strategy: Setters
-#    path: "./qa-etl/apps/airflow-variables"
-#  git:
-#    checkout:
-#      ref:
-#        branch: main
-#    commit:
-#      author:
-#        name: ferlab-automation
-#        email: automation@ferlab.bio
-#      messageTemplate: |
-#        Auto-release from fluxcd
-#    push:
-#      branch: main
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: id-service-airflow-variables
+spec:
+  sourceRef:
+    kind: GitRepository
+    name: cqdg-apps
+  interval: 1m
+  update:
+    strategy: Setters
+    path: "./qa-etl/apps/airflow-variables"
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: ferlab-automation
+        email: automation@ferlab.bio
+      messageTemplate: |
+        Auto-release from fluxcd
+    push:
+      branch: main
