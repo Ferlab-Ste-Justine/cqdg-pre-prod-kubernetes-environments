@@ -113,9 +113,9 @@ spec:
       - name: PYTHONPATH
         value: /opt/airflow/dags/repo
     # Default airflow tag to deploy
-    defaultAirflowTag: "2.5.3"
+    defaultAirflowTag: "2.7.1"
     # Airflow version (Used to make some decisions based on Airflow Version being deployed)
-    airflowVersion: "2.5.3"
+    airflowVersion: "2.7.1"
     # Airflow executor
     # One of: LocalExecutor, LocalKubernetesExecutor, CeleryExecutor, KubernetesExecutor, CeleryKubernetesExecutor
     executor: "KubernetesExecutor"
@@ -245,6 +245,10 @@ spec:
           readOnly: true
     # Airflow Triggerer Config
     triggerer:
+      enabled: true
+      persistence:
+        # Enable persistent volumes
+        enabled: false
       # Mount additional volumes into triggerer.
       extraVolumes:
         - name: ca-certificate
