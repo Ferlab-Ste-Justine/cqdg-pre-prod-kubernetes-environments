@@ -1,4 +1,3 @@
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,5 +5,5 @@ metadata:
   labels:
     name: cqdg-airflow-variables
 data:
-  AIRFLOW_VAR_HELLO: 'world 2' # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+  AIRFLOW_VAR_HELLO: 'index.docker.io/ferlabcrsj/id-service:6fda4d18f207db870b14f17ae9a5ab2505888e6a-1679589497' # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
   AIRFLOW_VAR_TEST: 'test'
