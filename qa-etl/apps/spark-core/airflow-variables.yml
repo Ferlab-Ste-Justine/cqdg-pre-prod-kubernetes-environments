@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cqdg-airflow-variables
+  labels:
+    name: cqdg-airflow-variables
+data:
+  hello: 'world'
+  test: 'test'

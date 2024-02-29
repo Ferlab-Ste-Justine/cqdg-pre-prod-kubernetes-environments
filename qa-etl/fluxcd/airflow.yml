@@ -114,6 +114,9 @@ spec:
         value: "airflow-cluster.etl.cqdg@cluster.etl.cqdg"
       - name: PYTHONPATH
         value: /opt/airflow/dags/repo
+    extraEnvFrom: |
+      - configMapRef:
+          name: cqdg-airflow-variables
     # Default airflow tag to deploy
     defaultAirflowTag: "2.7.1"
     # Airflow version (Used to make some decisions based on Airflow Version being deployed)
