@@ -17,3 +17,4 @@ resources:
   - spark-core.yml
   - spark-history-server.yml
   - external-secrets-crs.yml
+  - airflow-variables.yml
