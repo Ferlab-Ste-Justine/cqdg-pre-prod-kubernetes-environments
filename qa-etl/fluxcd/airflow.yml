@@ -224,6 +224,8 @@ spec:
       enabled: false
     # Airflow scheduler settings
     scheduler:
+      annotations: 
+        configmap.reloader.stakater.com/reload: "cqdg-airflow-variables"
       podAnnotations: 
         configmap.reloader.stakater.com/reload: "cqdg-airflow-variables"
       # Mount additional volumes into scheduler.
