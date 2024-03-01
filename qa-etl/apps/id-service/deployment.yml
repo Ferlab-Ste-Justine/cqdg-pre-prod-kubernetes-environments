@@ -20,7 +20,7 @@ spec:
           secretName: postgres-ca-certificate
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/id-service:b732a79406818e2dddcd96ea317f16e96666ed69-1709332531 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
+      - image: index.docker.io/ferlabcrsj/id-service:023e8143f171cdf7adccccabf5d4c1d613b38ca4-1709332733 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
         name: id-service
         env:
         - name: PGUSER
