@@ -20,4 +20,5 @@ resources:
   - airflow-variables.yml
   - fhavro-export.yml
   - arranger.yml
+  - fhir-import.yml
   - reloader.yml
