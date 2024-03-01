@@ -5,5 +5,5 @@ metadata:
   labels:
     name: cqdg-airflow-variables
 data:
-  AIRFLOW_VAR_ES_URL: 'https://workers.search.qa.juno.cqdg.ferlab.bio'
+  AIRFLOW_VAR_ES_URL: 'https://workers.search.qa.juno.cqdg.ferlab.bio' #URL of ES
   AIRFLOW_VAR_ID_SERVICE_IMAGE: 'index.docker.io/ferlabcrsj/id-service:6fda4d18f207db870b14f17ae9a5ab2505888e6a-1679589497' # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
