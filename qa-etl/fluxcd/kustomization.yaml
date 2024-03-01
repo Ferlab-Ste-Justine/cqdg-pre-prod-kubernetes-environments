@@ -18,3 +18,4 @@ resources:
   - spark-history-server.yml
   - external-secrets-crs.yml
   - airflow-variables.yml
+  - reloader.yml
