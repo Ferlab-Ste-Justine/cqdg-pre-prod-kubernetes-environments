@@ -10,4 +10,4 @@ data:
   AIRFLOW_VAR_FHIR_URL: 'http://fhir-server:8080/fhir'
   AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:86852f678cf568d453d6600ce56735c76ef946d2-1708714675' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
   AIRFLOW_VAR_ARRANGER_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-api-arranger:0072a35c3d0b1e7ff3e001e18600e4fb98a6e298-1708033157' # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
-  AIRFLOW_VAR_FHIR_IMPORT_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-api-arranger:0072a35c3d0b1e7ff3e001e18600e4fb98a6e298-1708033157' # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-import"}
+  AIRFLOW_VAR_FHIR_IMPORT_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-fhir-import' # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-import"}
