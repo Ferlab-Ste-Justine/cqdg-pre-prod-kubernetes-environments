@@ -19,4 +19,5 @@ resources:
   - external-secrets-crs.yml
   - airflow-variables.yml
   - fhavro-export.yml
+  - arranger.yml
   - reloader.yml
