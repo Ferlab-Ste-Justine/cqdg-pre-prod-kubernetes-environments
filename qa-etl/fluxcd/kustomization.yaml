@@ -18,4 +18,5 @@ resources:
   - spark-history-server.yml
   - external-secrets-crs.yml
   - airflow-variables.yml
+  - fhavro-export.yml
   - reloader.yml
