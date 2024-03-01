@@ -8,4 +8,4 @@ data:
   AIRFLOW_VAR_ES_URL: 'https://workers.search.qa.juno.cqdg.ferlab.bio'
   AIRFLOW_VAR_KEYCLOAK_URL: 'http://keycloak-http'
   AIRFLOW_VAR_FHIR_URL: 'http://fhir-server:8080/fhir'
-  AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/id-service:6fda4d18f207db870b14f17ae9a5ab2505888e6a-1679589497' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
+  AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:86852f678cf568d453d6600ce56735c76ef946d2-1708714675' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
