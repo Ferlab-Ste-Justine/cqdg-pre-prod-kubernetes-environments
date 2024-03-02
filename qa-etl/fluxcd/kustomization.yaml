@@ -21,4 +21,5 @@ resources:
   - fhavro-export.yml
   - arranger.yml
   - fhir-import.yml
+  - etl.yml
   - reloader.yml
