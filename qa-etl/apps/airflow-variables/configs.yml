@@ -7,6 +7,7 @@ metadata:
 data:
   AIRFLOW_VAR_ES_URL: 'https://workers.search.qa.juno.cqdg.ferlab.bio'
   AIRFLOW_VAR_IMAGE_PULL_SECRETS_NAME: 'images-registry-credentials'
+  AIRFLOW_VAR_SPARK_SERVICE_ACCOUNT_NAME: 'spark'
   AIRFLOW_VAR_KEYCLOAK_URL: 'http://keycloak-http'
   AIRFLOW_VAR_FHIR_URL: 'http://fhir-server:8080/fhir'
   AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:49031856e45fbc1b1cd2babad564429f9eb0830b-1709416874' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
