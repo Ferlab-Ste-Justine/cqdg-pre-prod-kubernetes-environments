@@ -9,7 +9,13 @@ data:
   AIRFLOW_VAR_K8S_SERVICE_ACCOUNT_NAME: 'spark'
   AIRFLOW_VAR_K8S_IMAGE_PULL_SECRETS_NAME: 'images-registry-credentials'
   AIRFLOW_VAR_KEYCLOAK_URL: 'http://keycloak-http'
+  AIRFLOW_OBJECT_STORE_URL: 'https://objets.juno.calculquebec.ca'
+  AIRFLOW_HIVE_METASTORE_URI: 'thrift://hive-metastore:9083'
+  AIRFLOW_VAR_DATALAKE_BUCKET: 'cqdg-qa-app-datalake'
+  AIRFLOW_VAR_CLINICAL_DATA_BUCKET: 'cqdg-qa-app-clinical-data-service'
+  AIRFLOW_VAR_FILE_IMPORT_BUCKET_BUCKET: 'cqdg-qa-app-file-import'
   AIRFLOW_VAR_FHIR_URL: 'http://fhir-server:8080/fhir'
+  AIRFLOW_VAR_ID_SERVICE_URL: 'http://id-service:5000'
   AIRFLOW_VAR_ETL_IMAGE: 'index.docker.io/ferlabcrsj/etl-cqdg-portal:20b374cc6e4fe8bd4fac7f22cdc94525c48e7864-1709426502' # {"$imagepolicy": "cqdg-qa-fluxcd:etl"}
   AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:20b374cc6e4fe8bd4fac7f22cdc94525c48e7864-1709426529' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
   AIRFLOW_VAR_ARRANGER_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-api-arranger:0072a35c3d0b1e7ff3e001e18600e4fb98a6e298-1708033157' # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
