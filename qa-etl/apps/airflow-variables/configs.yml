@@ -6,7 +6,6 @@ metadata:
     name: cqdg-airflow-variables
 data:
   AIRFLOW_VAR_ES_URL: 'https://workers.search.qa.juno.cqdg.ferlab.bio'
-#  AIRFLOW_VAR_K8S_NAMESPACE: 'cqdg-qa'
   AIRFLOW_VAR_K8S_SERVICE_ACCOUNT_NAME: 'spark'
   AIRFLOW_VAR_K8S_IMAGE_PULL_SECRETS_NAME: 'images-registry-credentials'
   AIRFLOW_VAR_KEYCLOAK_URL: 'http://keycloak-http'
