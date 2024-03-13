@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: nextflow
+  name: nextflow
+spec:
+    serviceAccountName: nextflow
+    volumes:
+        - name: nextflow
+          configMap:
+            name: nextflow
+    containers:
+    - name: nextflow
+      image: nextflow/nextflow
+      env:
+        - name: NXF_WORK
+          value: s3://cqdg-qa-file-import/nextflow/scratch
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: ceph-s3-credentials
+              key: access
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ceph-s3-credentials
+              key: secret
+      command:
+        - "/bin/bash"
+        - "-c"
+        - "while true; do sleep 30; done;"
+      volumeMounts:
+        - name: nextflow
+          mountPath: /root/nextflow/config
