@@ -90,7 +90,7 @@ data:
 
     aws {
       client {
-      endpoint = 'https://objets.juno.calculquebec.ca'
-      s3PathStyleAccess = true
-    }
-  }
+        endpoint = 'https://objets.juno.calculquebec.ca'
+        s3PathStyleAccess = true
+      }
+    } 
