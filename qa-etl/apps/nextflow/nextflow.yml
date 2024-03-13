@@ -12,7 +12,7 @@ spec:
             name: nextflow
     containers:
     - name: nextflow
-      image: nextflow/nextflow
+      image: nextflow/nextflow:24.01.0-edge
       env:
         - name: NXF_WORK
           value: s3://cqdg-qa-file-import/nextflow/scratch
