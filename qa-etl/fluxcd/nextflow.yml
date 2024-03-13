@@ -4,7 +4,7 @@ metadata:
   name: nextflow
 spec:
   dependsOn:
-    - name: nexflow-access
+    - name: nextflow-access
   serviceAccountName: fluxcd
   interval: 1m
   path: "./qa-etl/apps/nextflow"
