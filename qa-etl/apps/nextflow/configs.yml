@@ -93,4 +93,4 @@ data:
         endpoint = 'https://objets.juno.calculquebec.ca'
         s3PathStyleAccess = true
       }
-    } 
+    }
