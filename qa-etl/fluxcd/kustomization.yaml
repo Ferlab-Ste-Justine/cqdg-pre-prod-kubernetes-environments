@@ -24,4 +24,5 @@ resources:
   - etl.yml
   - reloader.yml
   - obo-parser.yml
+  - nextflow-access.yml
   - nextflow.yml

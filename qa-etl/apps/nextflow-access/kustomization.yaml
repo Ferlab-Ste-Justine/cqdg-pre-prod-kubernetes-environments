@@ -4,5 +4,4 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - configs.yml
-  - nextflow.yml
+  - access.yml
