@@ -1,0 +1,26 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: obo-parser
+spec:
+  image: index.docker.io/ferlabcrsj/obo-parser
+  interval: 1m
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: cqdg-qa-fluxcd
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: obo-parser
+spec:
+  imageRepositoryRef:
+    name: obo-parser
+    namespace: cqdg-qa-fluxcd
+  filterTags:
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc

@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextflow
+  labels:
+    name: nextflow
+data:
+  nextflow.config: |
+    params {
+      sampleFile = 's3://cqdg-qa-file-import/nextflow/input/samples-study-test.txt'
+      outputDir = 's3://cqdg-qa-file-import/nextflow/output/study-test/'
+      referenceGenome = 's3://cqdg-qa-file-import/nextflow/reference'
+      broad = 's3://cqdg-qa-file-import/nextflow/broad'
+      vepCache = 's3://cqdg-qa-file-import/nextflow/vep'
+      vepCpu = 4
+      intervalsFile = 'interval_long_local.list'
+      TSfilter = '99.0'
+    }
+  
+    wave {
+      enabled = true
+    }
+  
+    fusion {
+      enabled = true
+      exportStorageCredentials = true
+    }
+  
+    process {
+      container = 'ubuntu'
+      executor = 'k8s'
+      disk = 30.GB
+      pod = [ [emptyDir: [:], mountPath: '/scratch'] ]
+      scratch = '/scratch'
+      withName: 'excludeMNPs|splitMultiAllelics' {
+        container = 'staphb/bcftools:1.19'
+      }
+      withName: 'importGVCF|genotypeGVCF|variantRecalibratorSNP|variantRecalibratorIndel|applyVQSRIndel|applyVQSRSNP' {
+        container = 'broadinstitute/gatk:4.5.0.0'
+      }
+      withName: 'importGVCF' {
+        disk = 70.GB
+      }
+      withName: vep {
+        container = 'ensemblorg/ensembl-vep:release_111.0'
+      }
+      withName: tabix {
+        container = 'staphb/htslib:1.19'
+      }
+      withLabel: 'tiny' {
+        time = 1.h
+        cpus = 1
+        memory = 2.GB
+      }
+      withLabel: 'small' {
+        time = 1.h
+        cpus = 2
+        memory = 2.GB
+      }
+  
+      withLabel: 'medium' {
+        time = 24.h
+        cpus =  2
+        memory = 10.GB
+      }
+  
+      withLabel: 'geno' {
+        time =  24.h
+        cpus =  2
+        memory = 10.GB
+      }
+  
+      withLabel: 'vep' {
+        time = 24.h
+        cpus =  "${params.vepCpu}"
+        memory = 32.GB
+      }
+    }
+
+    executor {
+      queueSize = 150
+      pollInterval = '60 sec'
+      submitRateLimit = '20/1min'
+    }
+
+    k8s {
+      namespace = 'cqdg-qa'
+      serviceAccount = 'nextflow'
+    }
+
+    aws {
+      client {
+        endpoint = 'https://objets.juno.calculquebec.ca'
+        s3PathStyleAccess = true
+      }
+    }

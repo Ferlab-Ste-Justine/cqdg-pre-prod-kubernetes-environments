@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spark-driver
+spec:
+  containers:
+    - name: spark
+      image: busybox:1.28 #will be overriden by spark
+#      command: ['sh', '-c', 'keytool -list -keystore /opt/keystores/truststore.jks -storepass changeit -rfc -alias es']
+      volumeMounts:
+        - mountPath: /opt/keystores
+          name: keystore-volume
+  initContainers:
+    - name: init-es-certificate
+      image: amazoncorretto:11
+      command: ['sh', '-c', "keytool -importkeystore -noprompt -srckeystore /etc/pki/java/cacerts -destkeystore /opt/keystores/truststore.p12 -srcstoretype PKCS12 -deststoretype PKCS12 -srcstorepass changeit -storepass changeit && keytool -import -noprompt -keystore /opt/keystores/truststore.p12 -file /opt/es-ca/ca.crt -storepass changeit -alias es"]
+      volumeMounts:
+        - mountPath: /opt/keystores
+          name: keystore-volume
+        - name: es-ca-cert
+          mountPath: /opt/es-ca
+          readOnly: true
+  volumes:
+    - name: keystore-volume
+      emptyDir: {}
+    - name: es-ca-cert
+      secret:
+        secretName: opensearch-ca-certificate
+        defaultMode: 0555

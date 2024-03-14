@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: portal-ui-release-cqdg-608
-  name: portal-ui-release-cqdg-608
+    app: portal-ui-release-cqdg-591
+  name: portal-ui-release-cqdg-591
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: portal-ui-release-cqdg-608
+      app: portal-ui-release-cqdg-591
   template:
     metadata:
       labels:
-        app: portal-ui-release-cqdg-608
+        app: portal-ui-release-cqdg-591
     spec:
       imagePullSecrets:
       - name: images-pull
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:feature-cqdg-608-633e82f-1708026877 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui-release-cqdg-608"}
-        name: portal-ui-release-cqdg-608
+      - image: index.docker.io/ferlabcrsj/cqdg-portal-ui:feature-cqdg-591-ad07e4c-1709759646 # {"$imagepolicy": "cqdg-qa-fluxcd:portal-ui-release-cqdg-591"}
+        name: portal-ui-release-cqdg-591
         resources:
           requests:
             memory: "256Mi"

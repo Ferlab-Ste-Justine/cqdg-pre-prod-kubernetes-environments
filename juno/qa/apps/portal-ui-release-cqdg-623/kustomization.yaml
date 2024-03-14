@@ -10,4 +10,4 @@ resources:
   - ingress.yml
 
 commonLabels:
-  group: portal-ui-release-cqdg-595
+  group: portal-ui-release-cqdg-623

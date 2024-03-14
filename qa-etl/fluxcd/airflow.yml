@@ -1,3 +1,4 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
@@ -16,6 +17,7 @@ spec:
   chart:
     spec:
       chart: airflow
+      version: 1.11.0
       sourceRef:
         kind: HelmRepository
         name: airflow
@@ -112,10 +114,13 @@ spec:
         value: "airflow-cluster.etl.cqdg@cluster.etl.cqdg"
       - name: PYTHONPATH
         value: /opt/airflow/dags/repo
+    extraEnvFrom: |
+      - configMapRef:
+          name: cqdg-airflow-variables
     # Default airflow tag to deploy
-    defaultAirflowTag: "2.5.3"
+    defaultAirflowTag: "2.7.1"
     # Airflow version (Used to make some decisions based on Airflow Version being deployed)
-    airflowVersion: "2.5.3"
+    airflowVersion: "2.7.1"
     # Airflow executor
     # One of: LocalExecutor, LocalKubernetesExecutor, CeleryExecutor, KubernetesExecutor, CeleryKubernetesExecutor
     executor: "KubernetesExecutor"
@@ -219,6 +224,8 @@ spec:
       enabled: false
     # Airflow scheduler settings
     scheduler:
+      annotations: 
+        configmap.reloader.stakater.com/reload: "cqdg-airflow-variables"
       # Mount additional volumes into scheduler.
       extraVolumes:
         - name: ca-certificate
@@ -245,6 +252,10 @@ spec:
           readOnly: true
     # Airflow Triggerer Config
     triggerer:
+      enabled: true
+      persistence:
+        # Enable persistent volumes
+        enabled: false
       # Mount additional volumes into triggerer.
       extraVolumes:
         - name: ca-certificate

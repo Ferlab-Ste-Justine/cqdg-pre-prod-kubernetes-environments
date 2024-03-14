@@ -24,7 +24,7 @@ spec:
           name: ferload-entrypoint
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/ferload:d473084162d3de2c2df3985c9b5479af0defad2c-1697147564 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
+      - image: index.docker.io/ferlabcrsj/ferload:1c104095dd28131ced1744a3c4485a1944b75319-1708638949 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
         name: ferload
         command: ["/opt/entrypoint/entrypoint.sh"]
         env:
@@ -39,11 +39,11 @@ spec:
         - secretRef:
             name: ferload-s3-credentials
         volumeMounts:
-          - name: ingress-ca-certificate
-            mountPath: /opt/ingress-ca
-            readOnly: true
-          - name: entrypoint
-            mountPath: /opt/entrypoint
+        - name: ingress-ca-certificate
+          mountPath: /opt/ingress-ca
+          readOnly: true
+        - name: entrypoint
+          mountPath: /opt/entrypoint
         resources:
           requests:
             memory: "2048Mi"

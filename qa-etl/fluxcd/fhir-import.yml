@@ -1,0 +1,26 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: fhir-import
+spec:
+  image: index.docker.io/ferlabcrsj/cqdg-fhir-import
+  interval: 1m
+  accessFrom:
+    namespaceSelectors:
+      - matchLabels:
+          kubernetes.io/metadata.name: cqdg-qa-fluxcd
+---
+kind: ImagePolicy
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+metadata:
+  name: fhir-import
+spec:
+  imageRepositoryRef:
+    name: fhir-import
+    namespace: cqdg-qa-fluxcd
+  filterTags:
+    pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc

@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: portal-ui-release-cqdg-608
+  name: portal-ui-release-cqdg-591
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa/apps/portal-ui-release-cqdg-608"
+  path: "./juno/qa/apps/portal-ui-release-cqdg-591"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
@@ -14,13 +14,13 @@ spec:
   healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
-      name: portal-ui-release-cqdg-608
+      name: portal-ui-release-cqdg-591
       namespace: cqdg-qa
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: portal-ui-release-cqdg-608
+  name: portal-ui-release-cqdg-591
 spec:
   sourceRef:
     kind: GitRepository
@@ -28,7 +28,7 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./juno/qa/apps/portal-ui-release-cqdg-608"
+    path: "./juno/qa/apps/portal-ui-release-cqdg-591"
   git:
     checkout:
       ref:
@@ -45,7 +45,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: portal-ui-release-cqdg-608
+  name: portal-ui-release-cqdg-591
 spec:
   image: index.docker.io/ferlabcrsj/cqdg-portal-ui
   interval: 1m
@@ -59,13 +59,13 @@ spec:
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 metadata:
-  name: portal-ui-release-cqdg-608
+  name: portal-ui-release-cqdg-591
 spec:
   imageRepositoryRef:
-    name: portal-ui-release-cqdg-608
+    name: portal-ui-release-cqdg-591
     namespace: cqdg-qa-fluxcd
   filterTags:
-    pattern: '^feature-cqdg-608-.*-(?P<ts>[1-9][0-9]*)$'
+    pattern: '^feature-cqdg-591-.*-(?P<ts>[1-9][0-9]*)$'
     extract: '$ts'
   policy:
      numerical:
