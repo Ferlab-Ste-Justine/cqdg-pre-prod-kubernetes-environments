@@ -5,7 +5,7 @@ namespace: cqdg-qa-fluxcd
 
 resources:
   - arranger.yml
-  - arranger-next.yml
+#  - arranger-next.yml
   - clinical-data.yml
   - cqdg-apps.yml
   - datagrid-service.yml
