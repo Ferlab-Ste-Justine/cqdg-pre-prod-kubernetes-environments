@@ -1,0 +1,28 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cqdg-qa
+
+resources:
+  - ingress.yml
+  - services.yml
+  - deployments.yml
+
+patchesStrategicMerge:
+  - dns-overrides.yml
+  - certificate-bundle-overrides.yml
+  
+configMapGenerator:
+  - name: arranger-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - LOGS_REQUEST_INTERCEPTOR="false"
+      - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio
+      - KEYCLOAK_REALM=CQDG
+      - KEYCLOAK_CLIENT=cqdg-acl
+      - SECURE="true"
+      - PARTICIPANT_ID_KEY=participant_id
+      - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200/
+      - USERS_API_URL=https://users.qa.juno.cqdg.ferlab.bio
+      - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arranger-next
+  annotations:
+    secret.reloader.stakater.com/reload: "arranger-keycloak-credentials"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: arranger-next
+  template:
+    metadata:
+      labels:
+        app: arranger-next
+    spec:
+      containers:
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:1.3.7 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+        name: arranger-next
+        env:
+        - name: ES_USER
+          valueFrom:
+            secretKeyRef:
+              name: opensearch-dev-credentials
+              key: username
+        - name: ES_PASS
+          valueFrom:
+            secretKeyRef:
+              name: opensearch-dev-credentials
+              key: password
+        envFrom:
+        - configMapRef:
+            name: arranger-configs
+        - secretRef:
+            name: arranger-keycloak-credentials
+        volumeMounts:
+        - name: opensearch-ca-cert
+          mountPath: /opt/opensearch-ca
+          readOnly: true
+        - name: ca-bundle
+          mountPath: /opt/ca-bundle
+          readOnly: true
+        resources:
+          requests:
+            memory: "2048Mi"
+            cpu: '2'
+          limits:
+            memory: "4096Mi"
+            cpu: '2'
