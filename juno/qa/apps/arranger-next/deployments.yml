@@ -15,7 +15,8 @@ spec:
         app: arranger-next
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:2.0.2 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+      - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:2.0.0 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
+        imagePullPolicy: Always
         name: arranger-next
         env:
         - name: ES_USER
