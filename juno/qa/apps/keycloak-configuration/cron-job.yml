@@ -50,6 +50,10 @@ spec:
               secret:
                 secretName: keycloak-client-resource-server-credentials
                 defaultMode: 0555
+            - name: keycloak-microsoft-client-crendentials
+              secret:
+                secretName: keycloak-microsoft-client
+                defaultMode: 0555
           containers:
             - image: ferlabcrsj/terraform-backend-etcd:0.4.1
               name: etcd-backend-service
@@ -87,4 +91,7 @@ spec:
                   readOnly: true
                 - name: keycloak-client-resource-server
                   mountPath: /opt/keycloak/resource-server
+                  readOnly: true
+                - name: keycloak-microsoft-client-crendentials
+                  mountPath: /opt/keycloak/microsoft-client
                   readOnly: true
