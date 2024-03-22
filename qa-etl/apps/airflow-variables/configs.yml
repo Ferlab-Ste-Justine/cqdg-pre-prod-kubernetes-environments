@@ -20,4 +20,4 @@ data:
   AIRFLOW_VAR_ETL_IMAGE: 'index.docker.io/ferlabcrsj/etl-cqdg-portal:411a3900ffdccf9ab8747aaae8996e9eb71e5944-1711046999' # {"$imagepolicy": "cqdg-qa-fluxcd:etl"}
   AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:411a3900ffdccf9ab8747aaae8996e9eb71e5944-1711047025' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
   AIRFLOW_VAR_ARRANGER_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-api-arranger:0072a35c3d0b1e7ff3e001e18600e4fb98a6e298-1708033157' # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
-  AIRFLOW_VAR_FHIR_IMPORT_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-fhir-import:09cbafcce6292410d7b9937d16b528fc1713c4ef-1710446092' # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-import"}
+  AIRFLOW_VAR_FHIR_IMPORT_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-fhir-import:62addc285ab0225dc916ebe040a394f7c9ad757f-1711138020' # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-import"}
