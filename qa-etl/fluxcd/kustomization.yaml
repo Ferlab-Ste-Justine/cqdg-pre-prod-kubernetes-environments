@@ -19,6 +19,7 @@ resources:
   - external-secrets-crs.yml
   - airflow-variables.yml
   - fhavro-export.yml
+  - ferload-drs-import.yml
   - arranger.yml
   - fhir-import.yml
   - etl.yml
