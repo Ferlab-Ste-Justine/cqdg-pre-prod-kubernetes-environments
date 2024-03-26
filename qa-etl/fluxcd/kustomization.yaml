@@ -27,3 +27,4 @@ resources:
   - obo-parser.yml
   - nextflow-access.yml
   - nextflow.yml
+  - troubleshoot.yml
