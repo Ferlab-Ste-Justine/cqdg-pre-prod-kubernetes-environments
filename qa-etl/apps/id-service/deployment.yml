@@ -23,16 +23,6 @@ spec:
       - image: index.docker.io/ferlabcrsj/id-service:af0b46b7194a59b8c941814507a6a36d1913062e-1709333079 # {"$imagepolicy": "cqdg-qa-fluxcd:id-service"}
         name: id-service
         env:
-        - name: PGUSER
-          valueFrom:
-            secretKeyRef:
-              name: postgres-id-service-credentials
-              key: username
-        - name: PGPASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-id-service-credentials
-              key: password
         - name: PGDATABASE
           value: id_service_qa
         - name: PGHOST
@@ -44,6 +34,8 @@ spec:
         - name: NODE_EXTRA_CA_CERTS
           value: /opt/ca/ca.pem
         envFrom:
+        - secretRef:
+            name: postgres-id-service-credentials
         - configMapRef:
             name: id-service-customizations
         volumeMounts:
