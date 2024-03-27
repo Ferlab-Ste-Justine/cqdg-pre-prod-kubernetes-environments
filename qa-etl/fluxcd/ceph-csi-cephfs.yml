@@ -35,9 +35,12 @@ spec:
           - "10.65.0.10:6789"
           - "10.65.0.11:6789"
           - "10.65.0.12:6789"
+    nodeplugin:
+      httpMetrics:
+        enabled: false
 
     provisioner:
-      replicaCount: 1
+      replicaCount: 2
 
     readAffinity:
       enabled: true
@@ -50,7 +53,7 @@ spec:
       name: csi-cephfs-sc
       clusterID: "cephfs-qa"
       fsName: "cephfs_4_2"
-      mounter: "fuse"  # Assuming kernel, adjust if using fuse
+      mounter: "fuse"
       provisionerSecretName: "csi-cephfs-secret"
       provisionerSecretNamespace: "cqdg-qa"
       controllerExpandSecretName: "csi-cephfs-secret"
