@@ -28,3 +28,4 @@ resources:
   - nextflow-access.yml
   - nextflow.yml
   - troubleshoot.yml
+  - ceph-csi-cephfs.yml

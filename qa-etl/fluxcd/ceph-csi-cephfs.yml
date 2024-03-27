@@ -1,0 +1,62 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: ceph-csi-cephfs
+  namespace: cqdg-qa-fluxcd
+spec:
+  interval: 10m
+  url: https://ceph.github.io/csi-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ceph-csi-cephfs
+  namespace: cqdg-qa-fluxcd
+spec:
+  chart:
+    spec:
+      chart: ceph-csi-cephfs
+      version: 3.10.2
+      sourceRef:
+        kind: HelmRepository
+        name: ceph-csi-cephfs
+        namespace: cqdg-qa-fluxcd
+  interval: 30s
+  targetNamespace: cqdg-qa
+  install:
+    disableWait: true
+  upgrade:
+    disableWait: true
+  values:
+    csiConfig:
+      - clusterID: "cephfs-qa"
+        monitors:
+          - "10.65.0.10:6789"
+          - "10.65.0.11:6789"
+          - "10.65.0.12:6789"
+
+    provisioner:
+      replicaCount: 1
+
+    readAffinity:
+      enabled: true
+
+    secret:
+      create: false
+
+    storageClass:
+      create: true
+      name: csi-cephfs-sc
+      clusterID: "cephfs-qa"
+      fsName: "cephfs_4_2"
+      mounter: "fuse"  # Assuming kernel, adjust if using fuse
+      provisionerSecretName: "csi-cephfs-secret"
+      provisionerSecretNamespace: "cqdg-qa"
+      controllerExpandSecretName: "csi-cephfs-secret"
+      controllerExpandSecretNamespace: "cqdg-qa"
+      nodeStageSecretName: "csi-cephfs-secret"
+      nodeStageSecretNamespace: "cqdg-qa"
+      reclaimPolicy: Delete
+      allowVolumeExpansion: true
+    sidecarLogLevel: 5 
