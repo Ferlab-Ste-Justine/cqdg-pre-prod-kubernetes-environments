@@ -40,7 +40,7 @@ spec:
         enabled: false
 
     provisioner:
-      replicaCount: 2
+      replicaCount: 1
 
     readAffinity:
       enabled: true
