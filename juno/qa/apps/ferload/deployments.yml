@@ -33,6 +33,11 @@ spec:
             secretKeyRef:
               name: keycloak-client-resource-server-credentials
               key: client-secret
+        - name: AUTH_DEVICE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: keycloak-client-acl-credentials
+              key: client-secret
         envFrom:
         - configMapRef:
             name: ferload-configs
