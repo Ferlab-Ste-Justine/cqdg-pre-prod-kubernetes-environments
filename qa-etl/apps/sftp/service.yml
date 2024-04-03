@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sftp-server-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: sftp-server
+  ports:
+    - protocol: TCP
+      port: 22
+      targetPort: 22
