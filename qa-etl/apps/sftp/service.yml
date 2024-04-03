@@ -1,13 +1,15 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sftp-server-service
-  namespace: cqdg-qa 
+  labels:
+    app: sftp-server
+  name: sftp-server
 spec:
   type: NodePort
+  ports:
+    - port: 8888
+      targetPort: 8888
+      protocol: TCP
   selector:
     app: sftp-server
-  ports:
-    - protocol: TCP
-      port: 22
-      targetPort: 22

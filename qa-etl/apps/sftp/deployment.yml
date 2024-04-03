@@ -16,7 +16,7 @@ spec:
       - name: sftp
         image: atmoz/sftp:latest
         ports:
-        - containerPort: 22
+        - containerPort: 8888
         volumeMounts:
         - mountPath: /home/user/upload
           name: sftp-data
