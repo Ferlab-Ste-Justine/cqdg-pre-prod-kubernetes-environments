@@ -23,3 +23,4 @@ spec:
   dnsNames:
     - jobs-qa.etl.juno.cqdg.ferlab.bio
     - spark-history-qa.etl.juno.cqdg.ferlab.bio
+    - sftp-qa.etl.juno.cqdg.ferlab.bio
