@@ -17,6 +17,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: sftp-server-service
+              name: sftp-server
               port:
                 number: 8888
