@@ -31,3 +31,5 @@ spec:
       - name: sftp-data
         persistentVolumeClaim:
           claimName: sftp-pvc
+      nodeSelector:
+        node: number4
