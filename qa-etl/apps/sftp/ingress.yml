@@ -19,4 +19,4 @@ spec:
             service:
               name: sftp-server
               port:
-                number: 8888
+                number: 22
