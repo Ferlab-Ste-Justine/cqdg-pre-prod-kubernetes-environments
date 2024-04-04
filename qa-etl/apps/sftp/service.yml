@@ -4,12 +4,13 @@ kind: Service
 metadata:
   labels:
     app: sftp-server
-  name: sftp-server
+  name: sftp-service
 spec:
   type: NodePort
   ports:
     - port: 22
-      targetPort: 22
       protocol: TCP
+      targetPort: 22
+      nodePort: 30222
   selector:
     app: sftp-server
