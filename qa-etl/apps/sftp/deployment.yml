@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sftp-server
+  namespace: cqdg-qa
 spec:
   replicas: 1
   selector:
@@ -22,7 +23,10 @@ spec:
           name: sftp-data
         env:
         - name: SFTP_USERS
-          value: "user:pass:::upload"
+          valueFrom:
+            secretKeyRef:
+              name: sftp-user-credentials
+              key: sftp-users
       volumes:
       - name: sftp-data
         persistentVolumeClaim:
