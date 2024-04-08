@@ -4,9 +4,12 @@ kind: PersistentVolumeClaim
 metadata:
  name: sftp-pvc
 spec:
- accessModes:
-  - ReadWriteMany
- resources:
-  requests:
-   storage: 50Gi
- storageClassName: csi-cephfs-sc
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+    storage: 50Gi
+  storageClassName: csi-cephfs-sc
+  selector:
+    matchLabels:
+      environment: sftp-qa
