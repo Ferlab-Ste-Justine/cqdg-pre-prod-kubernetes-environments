@@ -18,7 +18,7 @@ data:
   AIRFLOW_VAR_FERLOAD_URL: 'http://ferload:9090'
   AIRFLOW_VAR_ID_SERVICE_URL: 'http://id-service:5000'
   AIRFLOW_VAR_OBO_PARSER_IMAGE: 'index.docker.io/ferlabcrsj/obo-parser:bac3ee939a6484e6615e0a25482001f54e25e42e-1709901599' # {"$imagepolicy": "cqdg-qa-fluxcd:obo-parser"}
-  AIRFLOW_VAR_ETL_IMAGE: 'index.docker.io/ferlabcrsj/etl-cqdg-portal:bf33d3ece2c3d7e54e906e473064428673623c15-1711466011' # {"$imagepolicy": "cqdg-qa-fluxcd:etl"}
+  AIRFLOW_VAR_ETL_IMAGE: 'index.docker.io/ferlabcrsj/etl-cqdg-portal:21b483c46ad39d82b45d093c3b67fd151f1880b9-1712590952' # {"$imagepolicy": "cqdg-qa-fluxcd:etl"}
   AIRFLOW_VAR_FHAVRO_EXPORT_IMAGE: 'index.docker.io/ferlabcrsj/fhavro-export:bf33d3ece2c3d7e54e906e473064428673623c15-1711466036' # {"$imagepolicy": "cqdg-qa-fluxcd:fhavro-export"}
   AIRFLOW_VAR_ARRANGER_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-api-arranger:bfddb4b0479e6772054239d046e0106f3053fa47-1711486910' # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
   AIRFLOW_VAR_FHIR_IMPORT_IMAGE: 'index.docker.io/ferlabcrsj/cqdg-fhir-import:62addc285ab0225dc916ebe040a394f7c9ad757f-1711138020' # {"$imagepolicy": "cqdg-qa-fluxcd:fhir-import"}
