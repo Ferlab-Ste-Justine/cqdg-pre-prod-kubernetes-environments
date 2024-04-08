@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
- name: sftp-pvc
+  name: sftp-pvc
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-    storage: 50Gi
+      storage: 50Gi
   storageClassName: csi-cephfs-sc
   selector:
     matchLabels:
