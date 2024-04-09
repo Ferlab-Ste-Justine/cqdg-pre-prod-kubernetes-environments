@@ -6,3 +6,4 @@ namespace: cqdg-qa
 resources:
   - configs.yml
   - nextflow.yml
+  - pvc.yml

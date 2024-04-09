@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cqdg-qa-nextflow-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: csi-cephfs-sc
+  selector:
+    matchLabels:
+      environment: nextflow-qa
