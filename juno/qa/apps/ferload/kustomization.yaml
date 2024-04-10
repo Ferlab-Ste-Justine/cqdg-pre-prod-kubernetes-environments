@@ -21,7 +21,7 @@ configMapGenerator:
       - AUTH_URL=http://keycloak-http
       - AUTH_REALM=CQDG
       - AUTH_CLIENT_ID=cqdg-resource-server
-      - AUTH_DEVICE_CLIENT_ID=cqdg-acl
+      - AUTH_AUDIENCE_CLIENT_ID=cqdg-ferload
       - FERLOAD_CLIENT_METHOD="device"
       - FERLOAD_CLIENT_CLIENT_ID="ferload"
       - FERLOAD_CLIENT_TOKEN_LINK=https://portail.qa.juno.cqdg.ferlab.bio/ferload_token
