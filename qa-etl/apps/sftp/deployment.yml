@@ -13,25 +13,37 @@ spec:
       labels:
         app: sftp-server
     spec:
-      initContainers:
-      - name: init-sftp
-        image: busybox
-        volumeMounts:
-        - name: sftp-data
-          mountPath: /home
-        command: ['sh', '-c', 'mkdir -p /home/admin /home/user1 /home/user2 /home/admin/shared /home/user1/shared /home/user2/shared && chown 1000:1000 /home/admin && chown 1001:1001 /home/user1 && chown 1002:1002 /home/user2 && chmod 777 /home/*/shared']
       containers:
       - name: sftp
         image: atmoz/sftp
         ports:
         - containerPort: 22
         volumeMounts:
-        - mountPath: /home
-          name: sftp-data
+        - name: all-projects-volume
+          mountPath: /home/admin/project1
+          subPath: project1
+        - name: all-projects-volume
+          mountPath: /home/admin/project2
+          subPath: project2
+        - name: all-projects-volume
+          mountPath: /home/admin/project3
+          subPath: project3
+        - name: all-projects-volume
+          mountPath: /home/user1/project1
+          subPath: project1
+        - name: all-projects-volume
+          mountPath: /home/user1/project2
+          subPath: project2
+        - name: all-projects-volume
+          mountPath: /home/user2/project2
+          subPath: project2
+        - name: all-projects-volume
+          mountPath: /home/user2/project3
+          subPath: project3
         env:
         - name: SFTP_USERS
-          value: "admin:pass:1000:1000::/home/admin/shared user1:pass:1001:1001::/home/user1/shared user2:pass:1002:1002::/home/user2/shared"
+          value: admin:pass:1000:1000:/home/admin user1:pass:1001:1001:/home/user1 user2:pass:1002:1002:/home/user2
       volumes:
-      - name: sftp-data
+      - name: all-projects-volume
         persistentVolumeClaim:
-          claimName: sftp-pvc
+          claimName: all-projects-pvc
