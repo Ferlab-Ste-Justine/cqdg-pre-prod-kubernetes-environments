@@ -46,4 +46,4 @@ spec:
       volumes:
       - name: all-projects-volume
         persistentVolumeClaim:
-          claimName: all-projects-pvc
+          claimName: sftp-pvc
