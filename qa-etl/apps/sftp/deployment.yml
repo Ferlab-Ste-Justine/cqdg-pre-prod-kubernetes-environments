@@ -13,9 +13,16 @@ spec:
       labels:
         app: sftp-server
     spec:
+      initContainers:
+      - name: init-sftp
+        image: busybox
+        volumeMounts:
+        - name: sftp-data
+          mountPath: /home
+        command: ['sh', '-c', 'mkdir -p /home/admin /home/user1 /home/user2 /home/shared && chown 1000:1000 /home/admin && chown 1001:1001 /home/user1 && chown 1002:1002 /home/user2 && chmod 775 /home/shared && chown 1000:1000 /home/shared']
       containers:
       - name: sftp
-        image: atmoz/sftp:latest
+        image: atmoz/sftp
         ports:
         - containerPort: 22
         volumeMounts:
@@ -23,7 +30,7 @@ spec:
           name: sftp-data
         env:
         - name: SFTP_USERS
-          value: "admin:admin1234:1000:1000::/home:/project1,/project2,/project3;user1:user1:1001:1001::/home:/project2,/project3;user2:user2:1002:1002::/home:/project3"
+          value: "admin:pass:1000:1000::/home/admin;/home/shared;user1:pass:1001:1001::/home/user1;/home/shared;user2:pass:1002:1002::/home/user2;/home/shared"
       volumes:
       - name: sftp-data
         persistentVolumeClaim:
