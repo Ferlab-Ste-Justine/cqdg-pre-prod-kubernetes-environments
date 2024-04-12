@@ -28,25 +28,25 @@ spec:
         volumeMounts:
         - name: all-projects-volume
           mountPath: /home/admin/project1
-          subPath: project1
+          subPath: admin/project1
         - name: all-projects-volume
           mountPath: /home/admin/project2
-          subPath: project2
+          subPath: admin/project2
         - name: all-projects-volume
           mountPath: /home/admin/project3
-          subPath: project3
+          subPath: admin/project3
         - name: all-projects-volume
           mountPath: /home/user1/project1
-          subPath: project1
+          subPath: user1/project1
         - name: all-projects-volume
           mountPath: /home/user1/project2
-          subPath: project2
+          subPath: user1/project2
         - name: all-projects-volume
           mountPath: /home/user2/project2
-          subPath: project2
+          subPath: user2/project2
         - name: all-projects-volume
           mountPath: /home/user2/project3
-          subPath: project3
+          subPath: user2/project3
         env:
         - name: SFTP_USERS
           value: "admin:pass:1000:1000:/home/admin user1:pass:1001:1001:/home/user1 user2:pass:1002:1002:/home/user2"
