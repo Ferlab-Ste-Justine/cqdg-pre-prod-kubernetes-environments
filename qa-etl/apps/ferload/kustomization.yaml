@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cqdg-qa
+
+resources:
+  - services.yml
+  - deployments.yml
+  - entrypoint
+
+patchesStrategicMerge:
+  - dns-overrides.yml
+  
+configMapGenerator:
+  - name: ferload-configs
+    options:
+      disableNameSuffixHash: false
+    literals:
+      - LOG_LEVEL="DEBUG"
+      - AUTH_URL=http://keycloak-http
+      - AUTH_REALM=CQDG
+      - AUTH_CLIENT_ID=cqdg-resource-server
+      - AUTH_AUDIENCE_CLIENT_ID=cqdg-ferload
+      - FERLOAD_CLIENT_METHOD="device"
+      - FERLOAD_CLIENT_CLIENT_ID="ferload"
+      - FERLOAD_CLIENT_TOKEN_LINK=https://portail.qa.juno.cqdg.ferlab.bio/ferload_token
+      - FERLOAD_CLIENT_TOKEN_HELPER="Please copy / paste this url in your browser to get a new authentication token."
+      - AWS_ENDPOINT=https://objets.juno.calculquebec.ca
+      - AWS_PATH_ACCESS_STYLE=true
+      - AWS_REGION=regionone
+      - AWS_PRESIGNED_URL_EXPIRATION_IN_SECONDS=3600
+      - DRS_ID=cqdg_qa
+      - DRS_NAME=CQDG QA
+      - DRS_ORGANIZATION_NAME=CQDG
+      - DRS_ORGANIZATION_URL=https://portail.qa.juno.cqdg.ferlab.bio
+      - DRS_SELF_HOST=drs.qa.juno.cqdg.ferlab.bio

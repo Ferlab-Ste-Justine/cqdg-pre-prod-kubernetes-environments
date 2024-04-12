@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ferload
+  name: ferload-int
   annotations:
     secret.reloader.stakater.com/reload: "keycloak-client-resource-server-credentials"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ferload
+      app: ferload-int
   template:
     metadata:
       labels:
-        app: ferload
+        app: ferload-int
     spec:
       volumes:
       - name: ingress-ca-certificate
@@ -51,7 +51,7 @@ spec:
           mountPath: /opt/entrypoint
         resources:
           requests:
-            cpu: '2'
+            cpu: '1'
           limits:
             memory: "4096Mi"
             cpu: '2'
