@@ -19,7 +19,7 @@ spec:
         volumeMounts:
         - name: all-projects-volume
           mountPath: /mnt
-        command: ["/bin/sh", "-c", "mkdir -p /mnt/project1 /mnt/project2 /mnt/project3 && chown 1000:1000 /mnt/project1 /mnt/project2 /mnt/project3 && chmod 770 /mnt/project1 /mnt/project2 /mnt/project3 && chgrp 1000 /mnt/project1 /mnt/project2 /mnt/project3"]
+        command: ["/bin/sh", "-c", "mkdir -p /mnt/admin/project1 /mnt/admin/project2 /mnt/admin/project3; mkdir -p /mnt/user1/project1 /mnt/user1/project2; mkdir -p /mnt/user2/project2 /mnt/user2/project3; chown -R 1000:1000 /mnt/admin; chown -R 1001:1001 /mnt/user1; chown -R 1002:1002 /mnt/user2; chmod -R 755 /mnt/admin; chmod -R 755 /mnt/user1; chmod -R 755 /mnt/user2;"]
       containers:
       - name: sftp
         image: atmoz/sftp
