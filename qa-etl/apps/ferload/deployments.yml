@@ -22,7 +22,6 @@ spec:
       containers:
       - image: index.docker.io/ferlabcrsj/ferload:f881b1dd9e0b3ef473fe6a66413424f9156372d9-1712264979 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
         name: ferload
-        command: ["/opt/entrypoint/entrypoint.sh"]
         env:
         - name: AUTH_CLIENT_SECRET
           valueFrom:
