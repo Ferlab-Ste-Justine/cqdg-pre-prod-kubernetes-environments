@@ -19,7 +19,7 @@ spec:
         volumeMounts:
         - name: sftp-data
           mountPath: /home
-        command: ['sh', '-c', 'mkdir -p /home/admin /home/user1 /home/user2 /home/admin/shared /home/user1/shared /home/user2/shared && chown 1000:1000 /home/admin && chown 1001:1001 /home/user1 && chown 1002:1002 /home/user2']
+        command: ['sh', '-c', 'mkdir -p /home/admin /home/user1 /home/user2 /home/admin/shared /home/user1/shared /home/user2/shared && chown 1000:1000 /home/admin && chown 1001:1001 /home/user1 && chown 1002:1002 /home/user2 && chmod 777 /home/*/shared']
       containers:
       - name: sftp
         image: atmoz/sftp
