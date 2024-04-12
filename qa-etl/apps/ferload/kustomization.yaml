@@ -6,11 +6,7 @@ namespace: cqdg-qa
 resources:
   - services.yml
   - deployments.yml
-  - entrypoint
 
-patchesStrategicMerge:
-  - dns-overrides.yml
-  
 configMapGenerator:
   - name: ferload-configs
     options:

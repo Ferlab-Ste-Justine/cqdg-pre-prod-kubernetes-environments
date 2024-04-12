@@ -19,10 +19,6 @@ spec:
         secret:
           secretName: cqdg-ingress-ca-certificate
           defaultMode: 0555
-      - name: entrypoint
-        configMap:
-          name: ferload-entrypoint
-          defaultMode: 0555
       containers:
       - image: index.docker.io/ferlabcrsj/ferload:f881b1dd9e0b3ef473fe6a66413424f9156372d9-1712264979 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
         name: ferload
@@ -47,8 +43,6 @@ spec:
         - name: ingress-ca-certificate
           mountPath: /opt/ingress-ca
           readOnly: true
-        - name: entrypoint
-          mountPath: /opt/entrypoint
         resources:
           requests:
             cpu: '1'
