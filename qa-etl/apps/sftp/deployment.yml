@@ -13,6 +13,13 @@ spec:
       labels:
         app: sftp-server
     spec:
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        volumeMounts:
+        - name: all-projects-volume
+          mountPath: /mnt
+        command: ["/bin/sh", "-c", "mkdir -p /mnt/project1 /mnt/project2 /mnt/project3 && chown 1000:1000 /mnt/project1 /mnt/project2 /mnt/project3 && chmod 770 /mnt/project1 /mnt/project2 /mnt/project3 && chgrp 1000 /mnt/project1 /mnt/project2 /mnt/project3"]
       containers:
       - name: sftp
         image: atmoz/sftp
@@ -42,8 +49,8 @@ spec:
           subPath: project3
         env:
         - name: SFTP_USERS
-          value: admin:pass:1000:1000:/home/admin user1:pass:1001:1001:/home/user1 user2:pass:1002:1002:/home/user2
+          value: "admin:pass:1000:1000:/home/admin user1:pass:1001:1001:/home/user1 user2:pass:1002:1002:/home/user2"
       volumes:
       - name: all-projects-volume
         persistentVolumeClaim:
-          claimName: sftp-pvc
+          claimName: all-projects-pvc
