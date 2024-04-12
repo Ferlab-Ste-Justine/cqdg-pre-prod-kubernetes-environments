@@ -23,10 +23,7 @@ spec:
           name: sftp-data
         env:
         - name: SFTP_USERS
-          valueFrom:
-            secretKeyRef:
-              name: sftp-user-credentials
-              key: sftp-users
+          value: "admin:admin1234:1000:1000::/home:/project1,/project2,/project3;user1:user1:1001:1001::/home:/project2,/project3;user2:user2:1002:1002::/home:/project3"
       volumes:
       - name: sftp-data
         persistentVolumeClaim:
