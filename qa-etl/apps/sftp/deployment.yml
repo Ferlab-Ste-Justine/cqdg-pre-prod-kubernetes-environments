@@ -30,7 +30,7 @@ spec:
           name: sftp-data
         env:
         - name: SFTP_USERS
-          value: "admin:pass:1000:1000::/home/admin/shared;user1:pass:1001:1001::/home/user1/shared;user2:pass:1002:1002::/home/user2/shared"
+          value: "admin:pass:1000:1000::/home/admin/shared user1:pass:1001:1001::/home/user1/shared user2:pass:1002:1002::/home/user2/shared"
       volumes:
       - name: sftp-data
         persistentVolumeClaim:
