@@ -15,7 +15,7 @@ data:
   AIRFLOW_VAR_CLINICAL_DATA_BUCKET: 'cqdg-qa-app-clinical-data-service'
   AIRFLOW_VAR_FILE_IMPORT_BUCKET: 'cqdg-qa-file-import'
   AIRFLOW_VAR_FHIR_URL: 'http://fhir-server:8080/fhir'
-  AIRFLOW_VAR_FERLOAD_URL: 'http://ferload:9090'
+  AIRFLOW_VAR_FERLOAD_URL: 'http://ferload-int:9090'
   AIRFLOW_VAR_ID_SERVICE_URL: 'http://id-service:5000'
   AIRFLOW_VAR_OBO_PARSER_IMAGE: 'index.docker.io/ferlabcrsj/obo-parser:bac3ee939a6484e6615e0a25482001f54e25e42e-1709901599' # {"$imagepolicy": "cqdg-qa-fluxcd:obo-parser"}
   AIRFLOW_VAR_ETL_IMAGE: 'index.docker.io/ferlabcrsj/etl-cqdg-portal:21b483c46ad39d82b45d093c3b67fd151f1880b9-1712590952' # {"$imagepolicy": "cqdg-qa-fluxcd:etl"}
