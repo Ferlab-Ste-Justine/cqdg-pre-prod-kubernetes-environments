@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sftp
-        image: atmoz/sftp:latest
+        image: atmoz/sftp:debian-jessie
         ports:
         - containerPort: 22
         volumeMounts:
