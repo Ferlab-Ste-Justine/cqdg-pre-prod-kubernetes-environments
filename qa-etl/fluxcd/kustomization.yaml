@@ -27,7 +27,7 @@ resources:
   - reloader.yml
   - obo-parser.yml
   - nextflow-access.yml
-  #- nextflow.yml
+  - nextflow.yml
   - troubleshoot.yml
   - ceph-csi-cephfs.yml
   - sftp.yml
