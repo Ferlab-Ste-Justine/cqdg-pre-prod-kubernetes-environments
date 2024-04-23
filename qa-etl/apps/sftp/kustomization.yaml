@@ -4,6 +4,6 @@ kind: Kustomization
 namespace: cqdg-qa
 
 resources:
-  - deployment.yml
+  # - deployment.yml
   - pvc.yml
   - service.yml
