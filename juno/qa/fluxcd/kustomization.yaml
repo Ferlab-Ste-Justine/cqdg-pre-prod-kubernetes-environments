@@ -12,6 +12,7 @@ resources:
   - docs.yml
   - fhir-console.yml
   - fhir-server.yml
+  - fluentd-daemonset.yml
   - k8-prometheus.yml
   - keycloak.yml
   - keycloak-configuration.yml
