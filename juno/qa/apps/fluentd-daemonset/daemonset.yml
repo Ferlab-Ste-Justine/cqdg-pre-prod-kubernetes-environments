@@ -34,7 +34,7 @@ spec:
           - name: FLUENT_OPENSEARCH_INDEX_NAME
             value: "cqdg-qa-kubernetes-logs"
           - name:  FLUENT_OPENSEARCH_HOST
-            value: "workers.search.ops.juno.cqdg.ferlab.bio"
+            value: "cqdg-ops-alpha-opensearch-workers"
           - name:  FLUENT_OPENSEARCH_PORT
             value: "9200"
           - name: FLUENT_OPENSEARCH_SCHEME
