@@ -46,3 +46,4 @@ resources:
   - deployment-crds.yml
   - deployment-crs.yml
   - deployment-cluster-crs.yml
+  - blackbox-exporter.yml
