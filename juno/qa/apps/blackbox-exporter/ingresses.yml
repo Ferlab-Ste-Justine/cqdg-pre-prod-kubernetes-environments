@@ -20,5 +20,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: blackbox-exporter
-              servicePort: 9115
+              service:
+                name: blackbox-exporter
+                port:
+                  number: 9115
