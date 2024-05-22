@@ -3,6 +3,8 @@ modules:
     prober: http
     http:
       preferred_ip_protocol: "ip4"
+      tls_config:
+        ca_file: /opt/ingress-ca/ca.pem
   http_post_2xx:
     prober: http
     http:

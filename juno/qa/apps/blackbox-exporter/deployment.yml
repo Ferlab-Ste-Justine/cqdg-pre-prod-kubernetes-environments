@@ -15,22 +15,27 @@ spec:
         app: blackbox-exporter
     spec:
       volumes:
-      - name: configs
-        configMap:
-          name: blackbox-exporter-configs
-          defaultMode: 0555
-      imagePullSecrets:
-      - name: images-registry-credentials
-      containers:
-      - image: index.docker.io/prom/blackbox-exporter:v0.16.0
-        name: blackbox-exporter
-        resources:
-          requests:
-            memory: "2048Mi"
-            cpu: "0.50"
-          limits:
-            memory: "4096Mi"
-            cpu: "1.00"
-        volumeMounts:
         - name: configs
-          mountPath: /etc/blackbox_exporter
+          configMap:
+            name: blackbox-exporter-configs
+            defaultMode: 0555
+        - name: ingress-ca
+          secret:
+            secretName: cqdg-ingress-ca-certificate
+      imagePullSecrets:
+        - name: images-registry-credentials
+      containers:
+        - image: index.docker.io/prom/blackbox-exporter:v0.16.0
+          name: blackbox-exporter
+          resources:
+            requests:
+              memory: "2048Mi"
+              cpu: "0.50"
+            limits:
+              memory: "4096Mi"
+              cpu: "1.00"
+        volumeMounts:
+          - name: configs
+            mountPath: /etc/blackbox_exporter
+          - name: ingress-ca
+            mountPath: /opt/ingress-ca
