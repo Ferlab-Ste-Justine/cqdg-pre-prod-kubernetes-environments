@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - blackbox-exporter.qa.cqdg.ferlab.bio
+        - blackbox-exporter.qa.juno.cqdg.ferlab.bio
       secretName: cqdg-ingress-certificate
   rules:
-    - host: blackbox-exporter.qa.cqdg.ferlab.bio
+    - host: blackbox-exporter.qa.juno.cqdg.ferlab.bio
       http:
         paths:
           - path: /
