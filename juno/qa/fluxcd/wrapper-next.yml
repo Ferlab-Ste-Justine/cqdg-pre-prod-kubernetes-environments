@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: arranger-next
+  name: wrapper-next
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa/apps/arranger-next"
+  path: "./juno/qa/apps/wrapper-next"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
@@ -15,7 +15,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: arranger-next
+  name: wrapper-next
 spec:
   sourceRef:
     kind: GitRepository
@@ -23,11 +23,11 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./juno/qa/apps/arranger-next"
+    path: "./juno/qa/apps/wrapper-next"
   git:
     checkout:
       ref:
-        branch: arranger-next
+        branch: wrapper-next
     commit:
       author:
         name: ferlab-automation
@@ -35,12 +35,12 @@ spec:
       messageTemplate: |
         Auto-release from fluxcd
     push:
-      branch: arranger-next
+      branch: wrapper-next
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: arranger-next
+  name: wrapper-next
 spec:
   image: index.docker.io/ferlabcrsj/cqdg-api-arranger
   interval: 1m
@@ -52,10 +52,10 @@ spec:
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 metadata:
-  name: arranger-next
+  name: wrapper-next
 spec:
   imageRepositoryRef:
-    name: arranger-next
+    name: wrapper-next
     namespace: cqdg-qa-fluxcd
   filterTags:
     pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'
