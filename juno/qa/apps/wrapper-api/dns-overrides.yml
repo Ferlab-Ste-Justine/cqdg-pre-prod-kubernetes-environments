@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wrapper-next
+  name: wrapper-api
 spec:
   template:
     spec:

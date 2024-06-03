@@ -1,11 +1,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: wrapper-next
+  name: wrapper-api
 spec:
   serviceAccountName: fluxcd
   interval: 1m
-  path: "./juno/qa/apps/wrapper-next"
+  path: "./juno/qa/apps/wrapper-api"
   sourceRef:
     kind: GitRepository
     name: cqdg-apps
@@ -15,7 +15,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageUpdateAutomation
 metadata:
-  name: wrapper-next
+  name: wrapper-api
 spec:
   sourceRef:
     kind: GitRepository
@@ -23,11 +23,11 @@ spec:
   interval: 1m
   update:
     strategy: Setters
-    path: "./juno/qa/apps/wrapper-next"
+    path: "./juno/qa/apps/wrapper-api"
   git:
     checkout:
       ref:
-        branch: wrapper-next
+        branch: main
     commit:
       author:
         name: ferlab-automation
@@ -35,14 +35,14 @@ spec:
       messageTemplate: |
         Auto-release from fluxcd
     push:
-      branch: wrapper-next
+      branch: main
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: wrapper-next
+  name: wrapper-api
 spec:
-  image: index.docker.io/ferlabcrsj/cqdg-api-arranger
+  image: index.docker.io/ferlabcrsj/cqdg-wrapper-api
   interval: 1m
   accessFrom:
     namespaceSelectors:
@@ -52,10 +52,10 @@ spec:
 kind: ImagePolicy
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 metadata:
-  name: wrapper-next
+  name: wrapper-api
 spec:
   imageRepositoryRef:
-    name: wrapper-next
+    name: wrapper-api
     namespace: cqdg-qa-fluxcd
   filterTags:
     pattern: '^[a-fA-F0-9]+-(?P<ts>.*)'

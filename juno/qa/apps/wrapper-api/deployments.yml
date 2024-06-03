@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wrapper-next
+  name: wrapper-api
   annotations:
     secret.reloader.stakater.com/reload: "arranger-keycloak-credentials"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: wrapper-next
+      app: wrapper-api
   template:
     metadata:
       labels:
-        app: wrapper-next
+        app: wrapper-api
     spec:
       containers:
       - image: index.docker.io/ferlabcrsj/cqdg-api-arranger:2.0.3 # {"$imagepolicy": "cqdg-qa-fluxcd:arranger"}
         imagePullPolicy: Always
-        name: wrapper-next
+        name: wrapper-api
         env:
         - name: ES_USER
           valueFrom:
