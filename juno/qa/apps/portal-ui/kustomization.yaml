@@ -17,8 +17,8 @@ configMapGenerator:
       - KEYCLOAK_REALM=CQDG
       - KEYCLOAK_CLIENT=cqdg-acl
       - S3_ENDPOINT=https://objets.juno.calculquebec.ca
-      - REACT_APP_ARRANGER_API_URL=https://data-api.qa.juno.cqdg.ferlab.bio
-      - REACT_APP_ARRANGER_PROJECT_ID=cqdg
+      - REACT_APP_WRAPPER_API_URL=https://data-api.qa.juno.cqdg.ferlab.bio
+      - REACT_APP_PROJECT_ID=cqdg
       - REACT_APP_KC_AUTH_SERVER_URL=https://auth.qa.juno.cqdg.ferlab.bio
       - REACT_APP_KC_CLIENT_ID=cqdg-client
       - REACT_APP_KC_REALM=CQDG
