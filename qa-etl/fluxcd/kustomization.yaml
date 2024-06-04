@@ -21,8 +21,6 @@ resources:
   - fhavro-export.yml
   - ferload.yml
   - ferload-drs-import.yml
-  - arranger.yml
-  - wrapper-api.yml
   - fhir-import.yml
   - etl.yml
   - reloader.yml
