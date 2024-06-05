@@ -23,7 +23,8 @@ spec:
                 claimName: cqdg-qa-nextflow-pvc
         containers:
         - name: nextflow
-          image: nextflow/nextflow:23.10.1
+          image: index.docker.io/ferlabcrsj/nextflow:1.0.2
+          workingDir: /mnt/workspace
           env:
             - name: NXF_WORK
               value: s3://cqdg-qa-file-import/nextflow/scratch
@@ -37,10 +38,22 @@ spec:
                 secretKeyRef:
                   name: ceph-s3-credentials
                   key: secret
+            - name: AWS_ENDPOINT_URL
+              value: https://objets.juno.calculquebec.ca
+              
+            # Configuring rclone remote with name s3
+            - name: RCLONE_CONFIG_S3_TYPE
+              value: s3
+            - name: RCLONE_CONFIG_S3_PROVIDER
+              value: Ceph
+            - name: RCLONE_CONFIG_S3_ENV_AUTH
+              value: "true"
+            - name: RCLONE_CONFIG_S3_ENDPOINT
+              value: https://objets.juno.calculquebec.ca
           command:
             - "/bin/bash"
             - "-c"
-            - "while true; do sleep 30; done;"
+            - "sleep infinity"
           volumeMounts:
             - name: nextflow
               mountPath: /root/nextflow/config
