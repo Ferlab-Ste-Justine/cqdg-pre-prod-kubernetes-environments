@@ -1,5 +1,5 @@
 terraform_path: /bin/terraform
-command: wait
+command: apply
 timeout:
   wait: 30m
 sources:
