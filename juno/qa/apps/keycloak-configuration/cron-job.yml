@@ -8,7 +8,7 @@ spec:
   startingDeadlineSeconds: 15
   jobTemplate:
     spec:
-      activeDeadlineSeconds: 300
+      activeDeadlineSeconds: 3000
       backoffLimit: 0
       template:
         spec:
