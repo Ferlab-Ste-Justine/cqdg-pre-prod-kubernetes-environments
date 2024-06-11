@@ -24,7 +24,7 @@ spec:
           name: ferload-entrypoint
           defaultMode: 0555
       containers:
-      - image: index.docker.io/ferlabcrsj/ferload:1349766c73b46ade9eff4ef0938ee00e1dda1840-1716822758 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
+      - image: index.docker.io/ferlabcrsj/ferload:f780a35926f69ae3701898c859d3717793b98337-1718127582 # {"$imagepolicy": "cqdg-qa-fluxcd:ferload"}
         name: ferload
         command: ["/opt/entrypoint/entrypoint.sh"]
         env:
