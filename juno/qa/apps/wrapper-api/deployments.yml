@@ -15,7 +15,7 @@ spec:
         app: wrapper-api
     spec:
       containers:
-      - image: index.docker.io/ferlabcrsj/cqdg-wrapper-api:05e55849f192f3ff4e467c779fded15e7fadb6c1-1718150724 # {"$imagepolicy": "cqdg-qa-fluxcd:wrapper-api"}
+      - image: index.docker.io/ferlabcrsj/cqdg-wrapper-api:1d0fe6ec5d8d91ba59e618f5987e6905deb2a06d-1718286455 # {"$imagepolicy": "cqdg-qa-fluxcd:wrapper-api"}
         imagePullPolicy: Always
         name: wrapper-api
         env:
