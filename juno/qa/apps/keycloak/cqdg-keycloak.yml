@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: index.docker.io/ferlabcrsj/cqdg-keycloak:541234e473f30d8bcaee88216b69cb8e5d3a422b-1717766879 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
+          image: index.docker.io/ferlabcrsj/cqdg-keycloak:3d033933052faf02639ed3a47d5983d46b8fe9a9-1718283921 # {"$imagepolicy": "cqdg-qa-fluxcd:keycloak"}
           args: ["start --optimized"]
           env:
             - name: KC_DB_USERNAME
