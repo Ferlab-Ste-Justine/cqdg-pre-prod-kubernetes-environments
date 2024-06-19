@@ -26,3 +26,4 @@ configMapGenerator:
       - ES_HOST=https://workers.search.qa.juno.cqdg.ferlab.bio:9200/
       - USERS_API_URL=https://users.qa.juno.cqdg.ferlab.bio
       - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
+      - FERLOAD_URL=https://ferload.qa.juno.cqdg.ferlab.bio
