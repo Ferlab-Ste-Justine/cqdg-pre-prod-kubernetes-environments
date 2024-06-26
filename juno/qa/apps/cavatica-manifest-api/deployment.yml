@@ -15,7 +15,7 @@ spec:
         app: cavatica-manifest-api
     spec:
       containers:
-        - image: index.docker.io/ferlabcrsj/cavatica-manifest-api:97ab3c8de488d1e75ca07d4f9d446c43f568a734-1719417126 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
+        - image: index.docker.io/ferlabcrsj/api-portal-reports:980b774e6afd8b9f3a557f08047c81e72e8402d6-1715284830 # {"$imagepolicy": "cqdg-qa-fluxcd:report-api"}
           name: cavatica-manifest-api
           resources:
             requests:
