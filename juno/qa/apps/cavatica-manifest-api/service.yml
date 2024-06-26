@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cavatica-manifest-api
+  name: cavatica-manifest-api
+spec:
+  ports:
+    - port: 1313
+      protocol: TCP
+      targetPort: 1313
+  selector:
+    app: cavatica-manifest-api
