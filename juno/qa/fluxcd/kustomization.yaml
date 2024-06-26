@@ -6,7 +6,7 @@ namespace: cqdg-qa-fluxcd
 resources:
   - arranger.yml
   - wrapper-api.yml
-  - cavatica-manifest-api.yml
+#  - cavatica-manifest-api.yml
   - clinical-data.yml
   - cqdg-apps.yml
   - datagrid-service.yml
