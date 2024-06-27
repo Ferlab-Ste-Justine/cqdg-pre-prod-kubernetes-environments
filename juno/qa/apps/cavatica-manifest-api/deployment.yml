@@ -32,6 +32,16 @@ spec:
                 secretKeyRef:
                   name: keycloak-client-cavatica-credentials
                   key: client-secret
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: ferload-s3-credentials
+                  key: access
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ferload-s3-credentials
+                  key: secret
           envFrom:
             - configMapRef:
                 name: cavatica-manifest-api-customizations
