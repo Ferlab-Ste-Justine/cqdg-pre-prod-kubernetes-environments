@@ -36,17 +36,15 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: ferload-s3-credentials
-                  key: access
-            - name: AWS_SECRET_KEY
+                  key: AWS_ACCESS_KEY
+            - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: ferload-s3-credentials
-                  key: secret
+                  key: AWS_SECRET_KEY
           envFrom:
             - configMapRef:
                 name: cavatica-manifest-api-customizations
-            - secretRef:
-                name: ferload-s3-credentials
           volumeMounts:
             - name: ingress-ca-certificate
               mountPath: /opt/ingress-ca
