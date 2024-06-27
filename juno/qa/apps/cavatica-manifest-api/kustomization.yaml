@@ -28,7 +28,7 @@ configMapGenerator:
     - KEYCLOAK_AUDIENCE_ID=cqdg-acl
     - KEYCLOAK_CLIENT_ID=cqdg-cavatica
     - MANIFEST_BUCKET=cqdg_qa_cavatica_manifests
-    - FHIR_URL=http://fhir-server:8080/fhir
+    - FHIR_URL=https://fhir.qa.juno.cqdg.ferlab.bio
     - NODE_EXTRA_CA_CERTS=/opt/ca-bundle/ca.pem
 
 generatorOptions:
