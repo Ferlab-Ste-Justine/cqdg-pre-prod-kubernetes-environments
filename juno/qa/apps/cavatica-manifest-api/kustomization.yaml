@@ -20,7 +20,7 @@ configMapGenerator:
   literals:
     - MOCK_KEY_MANAGER=true
     - FENCE_LIST=gen3|dcf
-    - FERLOAD_URL=https://auth.qa.juno.cqdg.ferlab.bio
+    - FERLOAD_URL=https://ferload.qa.juno.cqdg.ferlab.bio
     - DRS_URL=drs://drs.qa.juno.cqdg.ferlab.bio
     - AWS_ENDPOINT=https://objets.juno.calculquebec.ca
     - KEYCLOAK_URL=https://auth.qa.juno.cqdg.ferlab.bio
